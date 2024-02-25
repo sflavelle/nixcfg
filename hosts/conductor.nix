@@ -10,8 +10,8 @@
     ];
 
   nixpkgs.config.permittedInsecurePackages = [
-  	"openssl-1.1.1u"
-	   "nodejs-16.20.0"
+  	"openssl-1.1.1w"
+	"nodejs-16.20.0"
   ];
 
   # Hardware Configuration
@@ -120,6 +120,12 @@
 		rclone distrobox yt-dlp gallery-dl ympd
   ];
 
+  
+# Files that may cause failure if they don't exist
+  systemd.tmpfiles.rules = [
+  "f ${config.services.home-assistant.configDir}/automations.yaml 0755 hass hass"
+];
+
   services.syncthing = {
       enable = true;
       openDefaultPorts = true;
@@ -175,20 +181,26 @@
   	owner = "hass";
         path = "/var/lib/hass/secrets.yaml";
         content = '' 
-        	latitude: ${config.sops.placeholder.lat} 
-                longitude: ${config.sops.placeholder.long} 
-                elevation: ${config.sops.placeholder.elevation} 
+        latitude: "${config.sops.placeholder.lat}"
+        longitude: "${config.sops.placeholder.long}"
+        elevation: "${config.sops.placeholder.ele}"
         '';
   };
   services.home-assistant = {
         enable = true;
         openFirewall = true;
-        extraComponents = [ "mqtt" "zeroconf" "whisper" "piper" "tuya" "sonos" "aussie_broadband" "calendar" "date" "datetime" "color_extractor" ];
+        extraComponents = [
+            "mqtt" "zeroconf" "calendar" "date" "datetime" "color_extractor" "cloud"
+            "cast" "wyoming" "ipp" "upnp" 
+            "sensibo" "tuya" "sonos" "asuswrt"
+            "aussie_broadband"
+        ];
         customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
             mushroom
             mini-media-player
         ];
         config = {
+            default_config = {};
             homeassistant = {
                 name = "Home";
                 unit_system = "metric";
@@ -197,6 +209,7 @@
                 longitude = "!secret longitude";
                 elevation = "!secret elevation";
             };
+            "automation ui" = "!include automations.yaml";
         };
     };
   services.zigbee2mqtt = {
@@ -205,6 +218,8 @@
           homeassistant = config.services.home-assistant.enable;
           permit_join = true;
           serial.port = "/dev/ttyACM0";
+          frontend = true;
+          availability = true;
       };
   };
 

@@ -41,7 +41,8 @@
         sops = {
             defaultSopsFile = ./secrets/secrets.yaml;
             age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-            age.generateKey = false;
+            age.keyFile = "/home/lily/.config/sops/age/keys.txt";
+            age.generateKey = true;
         };
     };
     nixosConfigurations = {
@@ -102,7 +103,7 @@
                           sopsFile = ./secrets/hass.yaml;
                           owner = "hass";
                       };
-                      elevation = {
+                      ele = {
                           sopsFile = ./secrets/hass.yaml;
                           owner = "hass";
                       };
