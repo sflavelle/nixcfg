@@ -1,0 +1,23 @@
+diff --git a/drivers/acpi/resource.c b/drivers/acpi/resource.c
+index 297a88587031..3204bed08b3c 100644
+--- a/drivers/acpi/resource.c
++++ b/drivers/acpi/resource.c
+@@ -484,6 +484,18 @@ static const struct dmi_system_id tongfang_gm_rg[] = {
+ 			DMI_MATCH(DMI_BOARD_NAME, "GMxRGxx"),
+ 		},
+ 	},
++	{
++		.ident = "Infinity E15-5A165-BM",
++		.matches = {
++			DMI_MATCH(DMI_BOARD_NAME, "GM5RG1E0009COM"),
++		},
++	},
++	{
++		.ident = "Infinity E15-5A305-1M",
++		.matches = {
++			DMI_MATCH(DMI_BOARD_NAME, "GM5RGEE0016COM"),
++		},
++	},
+ 	{ }
+ };
+ 
