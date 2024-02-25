@@ -40,6 +40,8 @@
 
         sops = {
             defaultSopsFile = ./secrets/secrets.yaml;
+            age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+            age.generateKey = false;
         };
     };
     nixosConfigurations = {
@@ -50,7 +52,6 @@
           ./hosts/snatcher.nix
           ./common/desktop.nix
           ./users/lily.nix
-          ./cachix.nix
           musnix.nixosModules.musnix
           self.nixosModules.commonModules
 	  {
@@ -91,10 +92,22 @@
               ./common/server.nix
               ./users/lily.nix
               self.nixosModules.commonModules
-              { sops.secrets.hass = {
-                  format = "yaml";
-                  sopsFile = ./secrets/hass.yaml;
-              }; }
+              {
+                  sops.secrets = {
+                      lat = {
+                      	sopsFile = ./secrets/hass.yaml;
+                      	owner = "hass";
+                      };
+                      long = {
+                          sopsFile = ./secrets/hass.yaml;
+                          owner = "hass";
+                      };
+                      elevation = {
+                          sopsFile = ./secrets/hass.yaml;
+                          owner = "hass";
+                      };
+                  };
+              }
           ];
       };
     };

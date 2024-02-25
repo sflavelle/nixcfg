@@ -170,6 +170,16 @@
 
   # Smart Home
 
+  
+  sops.templates."home-assistant-secrets.yaml" = {
+  	owner = "hass";
+        path = "/var/lib/hass/secrets.yaml";
+        content = '' 
+        	latitude: ${config.sops.placeholder.lat} 
+                longitude: ${config.sops.placeholder.long} 
+                elevation: ${config.sops.placeholder.elevation} 
+        '';
+  };
   services.home-assistant = {
         enable = true;
         openFirewall = true;
@@ -183,6 +193,9 @@
                 name = "Home";
                 unit_system = "metric";
                 time_zone = "Australia/Melbourne";
+                latitude = "!secret latitude";
+                longitude = "!secret longitude";
+                elevation = "!secret elevation";
             };
         };
     };

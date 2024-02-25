@@ -1,10 +1,14 @@
 keys:
     - &lily age1j7klhmscm57mump26ytqye36t9rr666d5y3dsczent4666ydlq5slv6jcf
-    - &host_snatcher age19tktff0vsr2q97qlzhq98uczcd4ax79dxge7fc6dgu092gd9qp6q7z309
-    - &host_minion age1h96jvjsvn4522ae53kyzdky5ede74ezpqkgx2rgh6738jr8vvexqfzwmg
-    - &host_conductor age12lfj3ypjm46vwu99fg3hdmarjy6um3rycsrgen05z06kpype79tshk7rt
+    - &host_snatcher age19tktff0vsr2q97qlzhq98uczcd4ax79dxge7fc6dgu092gd9qp6q7z309u
+    - &host_minion age1h96jvjsvn4522ae53kyzdky5ede74ezpqkgx2rgh6738jr8vvexqfzwmgl
+    - &host_conductor 10abeac84929514c266dc127b0c73c6073819a00
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *lily
+      - *host_minion
+      - *host_snatcher
+      pgp:
+      - *host_conductor
