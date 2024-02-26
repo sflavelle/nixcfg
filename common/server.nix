@@ -2,10 +2,7 @@
 
 {
 
-  imports =
-    [
-      ./all.nix
-    ];
+  imports = [ ./all.nix ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = lib.mkDefault true;

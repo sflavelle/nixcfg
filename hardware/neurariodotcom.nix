@@ -4,11 +4,10 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
-  boot.initrd.availableKernelModules = [ "virtio_pci" "virtio_scsi" "ahci" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "virtio_pci" "virtio_scsi" "ahci" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
@@ -25,14 +24,12 @@
     terminal_output serial
   '';
 
-  fileSystems."/" =
-    { device = "/dev/sda";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/sda";
+    fsType = "ext4";
+  };
 
-  swapDevices =
-    [ { device = "/dev/sdb"; }
-    ];
+  swapDevices = [{ device = "/dev/sdb"; }];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

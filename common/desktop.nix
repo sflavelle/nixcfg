@@ -2,28 +2,28 @@
 
 {
 
-  imports =
-    [
-      ./all.nix
-    ];
+  imports = [ ./all.nix ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = lib.mkDefault true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "dm-mirror" ];
-  boot.kernel.sysctl = {
-      "vm.max_map_count" = 2147483642;
-  };
+  boot.kernel.sysctl = { "vm.max_map_count" = 2147483642; };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   nixpkgs.config.input-fonts.acceptLicense = true;
   fonts.packages = with pkgs; [
-    font-awesome input-fonts
-    xkcd-font ultimate-oldschool-pc-font-pack
-    eunomia monaspace _3270font
-    comic-relief comic-mono
+    font-awesome
+    input-fonts
+    xkcd-font
+    ultimate-oldschool-pc-font-pack
+    eunomia
+    monaspace
+    _3270font
+    comic-relief
+    comic-mono
   ];
 
   # Enable automatic login for the user.
@@ -31,7 +31,10 @@
   services.xserver.displayManager.autoLogin.user = "lily";
 
   hardware.opengl.setLdLibraryPath = true;
-  hardware.opengl = { enable = true; driSupport = true; };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -54,24 +57,21 @@
     jack.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-      simple-mtpfs 
-  ];
-
+  environment.systemPackages = with pkgs; [ simple-mtpfs ];
 
   services.flatpak.enable = true;
   hardware.steam-hardware.enable = true;
 
   programs.firefox = {
-      enable = true;
-      nativeMessagingHosts.packages = with pkgs; [ ff2mpv ];
+    enable = true;
+    nativeMessagingHosts.packages = with pkgs; [ ff2mpv ];
   };
 
   programs.kdeconnect.enable = true;
 
   services.zerotierone = {
-      enable = true;
-      joinNetworks = [ "a84ac5c10a91ecb1" ];
-    };
+    enable = true;
+    joinNetworks = [ "a84ac5c10a91ecb1" ];
+  };
 
 }

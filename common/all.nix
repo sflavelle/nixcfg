@@ -7,10 +7,9 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nix.gc = {
-      automatic = true;
-      dates = "weekly";
+    automatic = true;
+    dates = "weekly";
   };
-
 
   # Enable networking
   networking.networkmanager.enable = lib.mkDefault true;
@@ -34,27 +33,35 @@
   };
 
   environment.systemPackages = with pkgs; [
-      distrobox rclone
-      pciutils inxi du-dust
+    distrobox
+    rclone
+    pciutils
+    inxi
+    du-dust
 
-      zip xz unzip p7zip
-      rar unrar sops
+    zip
+    xz
+    unzip
+    p7zip
+    rar
+    unrar
+    sops
   ];
 
   programs.nix-ld.enable = true;
   programs.zsh.enable = true;
 
   services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
       enable = true;
-      nssmdns4 = true;
-      publish = {
-        enable = true;
-        addresses = true;
-        domain = true;
-        hinfo = true;
-        userServices = true;
-        workstation = true;
-      };
+      addresses = true;
+      domain = true;
+      hinfo = true;
+      userServices = true;
+      workstation = true;
+    };
   };
 
   services.openssh = {
@@ -63,28 +70,27 @@
   };
 
   programs.mosh = {
-      enable = true;
-      openFirewall = true;
+    enable = true;
+    openFirewall = true;
   };
 
   services.zerotierone = {
+    enable = true;
+    joinNetworks = [ "e4da7455b2e8404f" ];
+  };
+
+  programs = {
+    fzf = {
+      keybindings = true;
+      fuzzyCompletion = true;
+    };
+
+    tmux = {
       enable = true;
-      joinNetworks = [ "e4da7455b2e8404f" ];
+      reverseSplit = true;
+      newSession = true;
+      baseIndex = 1;
     };
-
-    programs =  {
-      fzf = {
-          keybindings = true;
-          fuzzyCompletion = true;
-      };
-
-
-      tmux = {
-        enable = true;
-        reverseSplit = true;
-        newSession = true;
-        baseIndex = 1;
-      };
-    };
+  };
 
 }

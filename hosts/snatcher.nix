@@ -6,18 +6,17 @@
 
 {
 
-  imports =
-    [ # Include the results of the hardware scan.
-      ../hardware/snatcher.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ../hardware/snatcher.nix
+  ];
 
   # boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
   systemd.extraConfig = "DefaultLimitNOFILE=524288";
   musnix = {
-      enable = true;
-      soundcardPciId = "0c:00.6";
-      kernel.realtime = true;
-      kernel.packages = pkgs.linuxPackages_latest_rt;
+    enable = true;
+    soundcardPciId = "0c:00.6";
+    kernel.realtime = true;
+    kernel.packages = pkgs.linuxPackages_latest_rt;
   };
 
   networking.hostName = "snatcher"; # Define your hostname.
@@ -40,7 +39,7 @@
       ];
     };
     "/mnt/nas/shared" = {
-      device = (builtins.replaceStrings [" "] ["\\040"] "//10.0.0.3/media");
+      device = (builtins.replaceStrings [ " " ] [ "\\040" ] "//10.0.0.3/media");
       fsType = "cifs";
       options = [
         "uid=1000"
@@ -63,34 +62,46 @@
 
   users.users.lily.extraGroups = [ "audio" ];
   users.users.lily.packages = (with pkgs; [
-      pandoc keyfinder-cli
-      beets-unstable
-      # Programs
-      steam-rom-manager sunshine
-      discord-rpc
-      protontricks
-      obs-studio
-      bitwig-studio
-      godot_4
-      via
-      hydrus
+    pandoc
+    keyfinder-cli
+    beets-unstable
+    # Programs
+    steam-rom-manager
+    sunshine
+    discord-rpc
+    protontricks
+    obs-studio
+    bitwig-studio
+    godot_4
+    via
+    hydrus
 
-      # Media Production
-      davinci-resolve inkscape reaper
-      # Plugins
-      yabridge zam-plugins CHOWTapeModel lsp-plugins
+    # Media Production
+    davinci-resolve
+    inkscape
+    reaper
+    # Plugins
+    yabridge
+    zam-plugins
+    CHOWTapeModel
+    lsp-plugins
 
-      gzdoom
+    gzdoom
 
-      # Custom Packages
-      (pkgs.callPackage ../pkgs/poptracker.nix {})
+    # Custom Packages
+    (pkgs.callPackage ../pkgs/poptracker.nix { })
 
-      ]) ++ (with pkgs.obs-studio-plugins; [
-		  obs-vkcapture input-overlay obs-text-pthread obs-source-clone
-		  obs-shaderfilter obs-source-record obs-pipewire-audio-capture
-      ]);
+  ]) ++ (with pkgs.obs-studio-plugins; [
+    obs-vkcapture
+    input-overlay
+    obs-text-pthread
+    obs-source-clone
+    obs-shaderfilter
+    obs-source-record
+    obs-pipewire-audio-capture
+  ]);
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -104,9 +115,9 @@
   hardware.bluetooth.enable = true;
 
   services.syncthing = {
-      enable = true;
-      openDefaultPorts = true;
-      user = "lily";
+    enable = true;
+    openDefaultPorts = true;
+    user = "lily";
   };
 
   virtualisation.containers.enable = true;
@@ -117,19 +128,27 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.variables = {
-    EDITOR = "kak";
-  };
+  environment.variables = { EDITOR = "kak"; };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
-   wget httpie pandoc powershell git curl
-   partition-manager gparted
-   python311 python311Packages.pipx python311Packages.pip
-   wineWowPackages.stagingFull wineasio
-   coreutils clang
+    wget
+    httpie
+    pandoc
+    powershell
+    git
+    curl
+    partition-manager
+    gparted
+    python311
+    python311Packages.pipx
+    python311Packages.pip
+    wineWowPackages.stagingFull
+    wineasio
+    coreutils
+    clang
 
-   # soundfonts
-   soundfont-arachno
+    # soundfonts
+    soundfont-arachno
   ];
 
   # Open ports in the firewall.

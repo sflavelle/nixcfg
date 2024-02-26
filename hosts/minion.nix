@@ -6,38 +6,36 @@
 
 {
 
-  imports =
-    [ # Include the results of the hardware scan.
-      ../hardware/minion.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ../hardware/minion.nix
+  ];
 
   # Seems my patch is built for 6.6
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.grub = {
-      enable = true;
-      efiSupport = true;
-      device = "nodev";
+    enable = true;
+    efiSupport = true;
+    device = "nodev";
   };
-  
+
   boot.kernelPatches = [{
-      name = "acpi quirk";
-      patch = /etc/nixos/hardware/minion-fixirq.patch;
+    name = "acpi quirk";
+    patch = /etc/nixos/hardware/minion-fixirq.patch;
   }];
 
   networking.hostName = "minion"; # Define your hostname.
 
-  services.tlp = {
-      enable = true;
-  };
-  services.power-profiles-daemon.enable = lib.mkForce false; # Since TLP is enabled instead
+  services.tlp = { enable = true; };
+  services.power-profiles-daemon.enable =
+    lib.mkForce false; # Since TLP is enabled instead
 
   hardware.nvidia.prime = {
-      amdgpuBusId = "PCI:5:0:0";
-      nvidiaBusId = "PCI:1:0:0";
-      offload.enable = true;
-      offload.enableOffloadCmd = true;
+    amdgpuBusId = "PCI:5:0:0";
+    nvidiaBusId = "PCI:1:0:0";
+    offload.enable = true;
+    offload.enableOffloadCmd = true;
   };
 
   # Enable CUPS to print documents.
@@ -52,40 +50,50 @@
 
   users.users.lily.extraGroups = [ "audio" ];
   users.users.lily.packages = (with pkgs; [
-      pandoc
-      # Programs
-      steam-rom-manager
-      lutris
-      obs-studio
+    pandoc
+    # Programs
+    steam-rom-manager
+    lutris
+    obs-studio
 
-      # Custom Packages
-      (pkgs.callPackage ../pkgs/poptracker.nix {})
+    # Custom Packages
+    (pkgs.callPackage ../pkgs/poptracker.nix { })
 
-      ]) ++ (with pkgs.obs-studio-plugins; [
-		  obs-vkcapture input-overlay obs-text-pthread obs-source-clone
-		  obs-shaderfilter obs-source-record obs-pipewire-audio-capture
-      ]);
+  ]) ++ (with pkgs.obs-studio-plugins; [
+    obs-vkcapture
+    input-overlay
+    obs-text-pthread
+    obs-source-clone
+    obs-shaderfilter
+    obs-source-record
+    obs-pipewire-audio-capture
+  ]);
 
   services.syncthing = {
-      enable = true;
-      openDefaultPorts = true;
-      user = "lily";
+    enable = true;
+    openDefaultPorts = true;
+    user = "lily";
   };
 
   virtualisation.podman.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.variables = {
-    EDITOR = "kak";
-  };
+  environment.variables = { EDITOR = "kak"; };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
-   cfs-zen-tweaks
-   wget httpie pandoc powershell git curl
-   partition-manager gparted
-   wineWowPackages.stable
-   coreutils clang
+    cfs-zen-tweaks
+    wget
+    httpie
+    pandoc
+    powershell
+    git
+    curl
+    partition-manager
+    gparted
+    wineWowPackages.stable
+    coreutils
+    clang
   ];
 
   system.stateVersion = "23.05"; # Did you read the comment?

@@ -20,97 +20,102 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, musnix, home-manager, hyprland, stylix, ... }@inputs: {
-    nixosModules."commonModules" = { config, lib, inputs, ... }: {
+  outputs =
+    { self, nixpkgs, musnix, home-manager, hyprland, stylix, ... }@inputs: {
+      nixosModules."commonModules" = { config, lib, inputs, ... }: {
         imports = [
-            inputs.home-manager.nixosModules.home-manager
-            inputs.stylix.nixosModules.stylix
-            inputs.sops-nix.nixosModules.sops
-            ./users/lily.nix
+          inputs.home-manager.nixosModules.home-manager
+          inputs.stylix.nixosModules.stylix
+          inputs.sops-nix.nixosModules.sops
+          ./users/lily.nix
         ];
 
         home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
+          useGlobalPkgs = true;
+          useUserPackages = true;
         };
 
         stylix = {
-            image = lib.mkDefault /home/lily/Pictures/Wallpapers/Mac/10-3-6k.jpg;
+          image = lib.mkDefault /home/lily/Pictures/Wallpapers/Mac/10-3-6k.jpg;
         };
 
         sops = {
-            defaultSopsFile = ./secrets/secrets.yaml;
-            age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-            age.keyFile = "/home/lily/.config/sops/age/keys.txt";
-            age.generateKey = true;
+          defaultSopsFile = ./secrets/secrets.yaml;
+          age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+          age.keyFile = "/home/lily/.config/sops/age/keys.txt";
+          age.generateKey = true;
         };
-    };
-    nixosConfigurations = {
-      "snatcher" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };  # pass custom arguments into all sub module.
-        modules = [
-          ./hosts/snatcher.nix
-          ./common/desktop.nix
-          ./users/lily.nix
-          musnix.nixosModules.musnix
-          self.nixosModules.commonModules
-	  {
-	     stylix.image = /home/lily/Pictures/Wallpapers/wallhaven/wallhaven_lq88ky_1920x1080.jpg;
-          }
-        ];
       };
-      "minion" = nixpkgs.lib.nixosSystem {
+      nixosConfigurations = {
+        "snatcher" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs;
+          }; # pass custom arguments into all sub module.
+          modules = [
+            ./hosts/snatcher.nix
+            ./common/desktop.nix
+            ./users/lily.nix
+            musnix.nixosModules.musnix
+            self.nixosModules.commonModules
+            {
+              stylix.image =
+                /home/lily/Pictures/Wallpapers/wallhaven/wallhaven_lq88ky_1920x1080.jpg;
+            }
+          ];
+        };
+        "minion" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-              ./hosts/minion.nix
-              ./common/desktop.nix
-              ./users/lily.nix
-              self.nixosModules.commonModules
-              {
-                  stylix.image = /home/lily/Pictures/Wallpapers/Windows/1920x1200.jpg;
-              }
+            ./hosts/minion.nix
+            ./common/desktop.nix
+            ./users/lily.nix
+            self.nixosModules.commonModules
+            {
+              stylix.image =
+                /home/lily/Pictures/Wallpapers/Windows/1920x1200.jpg;
+            }
 
           ];
-      };
-      # Servers
-      "neurariodotcom" = nixpkgs.lib.nixosSystem {
+        };
+        # Servers
+        "neurariodotcom" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-              ./hosts/neurariodotcom.nix
-              ./common/server.nix
-              ./users/lily.nix
-              self.nixosModules.commonModules
+            ./hosts/neurariodotcom.nix
+            ./common/server.nix
+            ./users/lily.nix
+            self.nixosModules.commonModules
           ];
-      };
-      "conductor" = nixpkgs.lib.nixosSystem {
+        };
+        "conductor" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-              ./hosts/conductor.nix
-              ./common/server.nix
-              ./users/lily.nix
-              self.nixosModules.commonModules
-              {
-                  sops.secrets = {
-                      lat = {
-                      	sopsFile = ./secrets/hass.yaml;
-                      	owner = "hass";
-                      };
-                      long = {
-                          sopsFile = ./secrets/hass.yaml;
-                          owner = "hass";
-                      };
-                      ele = {
-                          sopsFile = ./secrets/hass.yaml;
-                          owner = "hass";
-                      };
-                  };
-              }
+            ./hosts/conductor.nix
+            ./common/server.nix
+            ./users/lily.nix
+            self.nixosModules.commonModules
+            {
+              sops.secrets = {
+                lat = {
+                  sopsFile = ./secrets/hass.yaml;
+                  owner = "hass";
+                };
+                long = {
+                  sopsFile = ./secrets/hass.yaml;
+                  owner = "hass";
+                };
+                ele = {
+                  sopsFile = ./secrets/hass.yaml;
+                  owner = "hass";
+                };
+              };
+            }
           ];
+        };
       };
     };
-  };
 }
