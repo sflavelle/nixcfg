@@ -19,15 +19,15 @@ default:
 	@just --list
 
 @ deploy mode='switch':
-	if test -n "{{ip}}"; nixos-rebuild {{mode}} --flake /home/lily/.config/nixos#{{machine}} --target-host {{ip}} --use-remote-sudo --show-trace; end
-	if test -z "{{ip}}"; sudo nixos-rebuild {{mode}} --flake /home/lily/.config/nixos#{{machine}} --use-remote-sudo --show-trace; end
+	if test -n "{{ip}}"; nixos-rebuild {{mode}} --flake git+https://git.neurario.com/splatsune/nixcfg.git#{{machine}} --target-host {{ip}} --use-remote-sudo --show-trace; end
+	if test -z "{{ip}}"; sudo nixos-rebuild {{mode}} --flake git+https://git.neurario.com/splatsune/nixcfg.git#{{machine}} --use-remote-sudo --show-trace; end
 
 deploy-list +MACHINES:
 	@test -n "{{MACHINES}}" || echo "Supply a list of machines to deploy."
 	@for m in {{MACHINES}}; echo "Updating $m..."; just machine=$m deploy switch; end
 
 debug:
-	nixos-rebuild switch --flake /home/lily/.config/nixos#{{machine}} --use-remote-sudo --show-trace --verbose
+	nixos-rebuild switch --flake git+https://git.neurario.com/splatsune/nixcfg.git#{{machine}} --use-remote-sudo --show-trace --verbose
 
 update:
 	sudo nix flake update
