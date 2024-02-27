@@ -10,6 +10,10 @@
     automatic = true;
     dates = "weekly";
   };
+  nix.optimize = {
+    automatic = true;
+    dates = "weekly";
+  };
 
   # Enable networking
   networking.networkmanager.enable = lib.mkDefault true;
@@ -93,4 +97,7 @@
     };
   };
 
+  environment.shellAliases = {
+      just-nix = "just -f ${./justfile}"
+  };
 }

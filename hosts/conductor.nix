@@ -174,22 +174,9 @@
     enable = true;
     openFirewall = true;
     extraComponents = [
-      "mqtt"
-      "zeroconf"
-      "calendar"
-      "date"
-      "datetime"
-      "color_extractor"
-      "cloud"
-      "cast"
-      "wyoming"
-      "ipp"
-      "upnp"
-      "sensibo"
-      "tuya"
-      "sonos"
-      "asuswrt"
-      "aussie_broadband"
+      "mqtt" "zeroconf" "calendar" "date" "datetime" "color_extractor" "cloud"
+      "cast" "wyoming" "ipp" "upnp"
+      "sensibo" "tuya" "sonos" "asuswrt" "aussie_broadband" "openweathermap"
     ];
     customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
       mushroom
@@ -217,6 +204,9 @@
       frontend = true;
       availability = true;
     };
+  };
+  services.esphome = {
+      enable = true;
   };
 
   # Containers
