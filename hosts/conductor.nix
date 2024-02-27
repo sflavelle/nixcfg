@@ -113,10 +113,10 @@
 
   services.syncthing = {
     enable = true;
+    user = "lily";
     openDefaultPorts = true;
     guiAddress = "0.0.0.0:8384";
   };
-  users.users.syncthing.extraGroups = [ "users" ];
 
   services.magnetico = {
     enable = true;
