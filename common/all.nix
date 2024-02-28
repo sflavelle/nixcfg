@@ -98,6 +98,6 @@
   };
 
   environment.shellAliases = {
-      just-nix = "just -f ${./justfile}"
+      just-nix = "just -f ${./justfile}";
   };
 }
