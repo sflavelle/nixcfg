@@ -98,6 +98,6 @@
   };
 
   environment.shellAliases = {
-      just-nix = "just -f ${../justfile}";
+      just-nix = "just -f ${ pkgs.fetchurl { url = "https://git.neurario.com/splatsune/nixcfg/raw/commit/52f02faf5b8318798b7f671ec51e250a360b6b83/justfile"; hash = "sha256-IyHMNDqeJVseFNCfoA3ZDHsf/EUDEPC7n7e0hOUDKP0"; } }";
   };
 }
