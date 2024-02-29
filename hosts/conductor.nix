@@ -193,6 +193,7 @@
         elevation = "!secret elevation";
       };
       "automation ui" = "!include automations.yaml";
+      "script ui" = "!include scripts.yaml";
     };
   };
   services.zigbee2mqtt = {
@@ -207,6 +208,9 @@
   };
   services.esphome = {
       enable = true;
+      port = 8122;
+      address = "10.0.0.3";
+      openFirewall = true;
   };
 
   # Containers
