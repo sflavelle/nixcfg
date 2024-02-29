@@ -97,6 +97,11 @@
     };
   };
 
+  stylix.image = pkgs.fetchurl { # Boot/Login theme
+  	url = "https://w.wallhaven.cc/full/d6/wallhaven-d6mz8m.jpg";
+  	hash = "";
+  };
+
   environment.shellAliases = {
       just-nix = "just -f ${ pkgs.fetchurl { url = "https://git.neurario.com/splatsune/nixcfg/raw/commit/52f02faf5b8318798b7f671ec51e250a360b6b83/justfile"; hash = "sha256-IyHMNDqeJVseFNCfoA3ZDHsf/EUDEPC7n7e0hOUDKP0"; } }";
   };

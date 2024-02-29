@@ -18,11 +18,19 @@ in {
   stylix = {
     autoEnable = graphical;
     image = if host == "snatcher" then
-      /home/lily/Pictures/gallery-dl/tumblr/tumblr_xing2lee_121027387230_02.jpg
+      pkgs.fetchurl {
+          url = "https://w.wallhaven.cc/full/o5/wallhaven-o5ym69.jpg"; # BotW Link, Gerudo Town
+          hash = "";
+      }
     else if host == "minion" then
-      /home/lily/Pictures/Wallpapers/Windows/img0_3840x2160.jpg
+      pkgs.fetchurl {
+          url = "https://archive.org/download/windows-xp-bliss-4k-lu-3840x2400/windows-xp-bliss-4k-lu-3840x2400.jpg"; # Windows XP "Bliss"
+          hash = "";
     else
-      /home/lily/Pictures/Wallpapers/gallery-dl/wallhaven/wallhaven_j3d79p_3440x1440.jpg;
+      pkgs.fetchurl {
+          url = "https://w.wallhaven.cc/full/yx/wallhaven-yxk7jg.jpg"; # BOTW Link/Zelda, modern day, subway
+          hash = "";
+      };
     fonts = rec {
       monospace = {
         name = "Fira Code";

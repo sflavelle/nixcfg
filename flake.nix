@@ -35,10 +35,6 @@
           useUserPackages = true;
         };
 
-        stylix = {
-          image = lib.mkDefault /home/lily/Pictures/Wallpapers/Mac/10-3-6k.jpg;
-        };
-
         sops = {
           defaultSopsFile = ./secrets/secrets.yaml;
           age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
