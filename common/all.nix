@@ -10,9 +10,9 @@
     automatic = true;
     dates = "weekly";
   };
-  nix.optimize = {
+  nix.optimise = {
     automatic = true;
-    dates = "weekly";
+    dates = [ "weekly" ];
   };
 
   # Enable networking
@@ -98,6 +98,6 @@
   };
 
   environment.shellAliases = {
-      just-nix = "just -f ${./justfile}";
+      just-nix = "just -f ${../justfile}";
   };
 }
