@@ -23,7 +23,7 @@
   boot.kernelPatches = [{
     name = "acpi quirk";
     patch = pkgs.fetchurl {
-        url = "https://git.neurario.com/splatsune/nixcfg/raw/branch/master/hardware/minion-fixirq.patch";
+        url = "https://git.neurario.com/splatsune/nixcfg/raw/commit/87c4f04fcdc8564982fe780aa25024a54c5dada4/hardware/minion-fixirq.patch";
         hash = "sha256-Lo4QWOC2sVRsB+90uiaimuyhFXyaHgKuAeDLN+Bjb/g=";
     };
   }];
