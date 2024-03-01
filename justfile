@@ -20,9 +20,9 @@ ip := if machine == "minion" {
 default:
 	@just --list
 
-@ deploy mode='switch':
-	if test {{machine}} != (cat /etc/hostname); nixos-rebuild {{mode}} --flake git+https://git.neurario.com/splatsune/nixcfg.git#{{machine}} --target-host {{ip}} --use-remote-sudo --show-trace; end
-	if test {{machine}} = (cat /etc/hostname); sudo nixos-rebuild {{mode}} --flake git+https://git.neurario.com/splatsune/nixcfg.git --use-remote-sudo --show-trace; end
+@ deploy mode='switch' args:
+	if test {{machine}} != (cat /etc/hostname); nixos-rebuild {{mode}} {{args}} --flake git+https://git.neurario.com/splatsune/nixcfg.git#{{machine}} --target-host {{ip}} --use-remote-sudo --show-trace; end
+	if test {{machine}} = (cat /etc/hostname); sudo nixos-rebuild {{mode}} {{args}} --flake git+https://git.neurario.com/splatsune/nixcfg.git --use-remote-sudo --show-trace; end
 
 deploy-list +MACHINES:
 	@test -n "{{MACHINES}}" || echo "Supply a list of machines to deploy."
