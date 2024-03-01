@@ -45,6 +45,7 @@ in {
     };
   };
 
+  programs.atuin.enable = true;
   programs.bat.enable = true;
   programs.btop.enable = true;
   programs.comodoro.enable = true;
@@ -82,6 +83,7 @@ in {
   programs.pandoc.enable = true;
   programs.pywal.enable = true;
   programs.yt-dlp.enable = true;
+  programs.zoxide.enable = true;
 
   programs.git = {
     enable = true;

@@ -42,7 +42,6 @@
     pciutils
     inxi
     du-dust
-    atuin
 
     zip
     xz
