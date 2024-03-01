@@ -54,10 +54,6 @@
             ./users/lily.nix
             musnix.nixosModules.musnix
             self.nixosModules.commonModules
-            {
-              stylix.image =
-                /home/lily/Pictures/Wallpapers/wallhaven/wallhaven_lq88ky_1920x1080.jpg;
-            }
           ];
         };
         "minion" = nixpkgs.lib.nixosSystem {
@@ -68,10 +64,6 @@
             ./common/desktop.nix
             ./users/lily.nix
             self.nixosModules.commonModules
-            {
-              stylix.image =
-                /home/lily/Pictures/Wallpapers/Windows/1920x1200.jpg;
-            }
 
           ];
         };
