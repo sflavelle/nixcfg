@@ -25,7 +25,7 @@ in {
     else if host == "minion" then
       pkgs.fetchurl {
           url = "https://archive.org/download/windows-xp-bliss-4k-lu-3840x2400/windows-xp-bliss-4k-lu-3840x2400.jpg"; # Windows XP "Bliss"
-          hash = "";
+          hash = "sha256-QiSjrWx19YsHT425WTpa8NTptnBwGvdRm6/JRcSWAm8=";
       }
     else
       pkgs.fetchurl {
