@@ -68,7 +68,6 @@ in {
           # Programs
           firefox
           vivaldi
-          nextcloud-client
           vscode
           libreoffice
           qbittorrent
