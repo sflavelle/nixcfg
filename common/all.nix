@@ -42,6 +42,7 @@
     pciutils
     inxi
     du-dust
+    atuin
 
     zip
     xz
@@ -99,7 +100,7 @@
 
   stylix.image = pkgs.fetchurl { # Boot/Login theme
   	url = "https://w.wallhaven.cc/full/d6/wallhaven-d6mz8m.jpg";
-  	hash = "";
+  	hash = "sha256-LWAYOBf1exIyG35UkS1li7+VRAIdPZhZC5o798ac4N8=";
   };
 
   environment.shellAliases = {
