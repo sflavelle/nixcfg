@@ -62,7 +62,6 @@
 
   users.users.lily.extraGroups = [ "audio" ];
   users.users.lily.packages = (with pkgs; [
-    pandoc
     keyfinder-cli
     beets-unstable
     # Programs

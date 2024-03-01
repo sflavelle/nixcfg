@@ -30,7 +30,7 @@ in {
     else
       pkgs.fetchurl {
           url = "https://w.wallhaven.cc/full/yx/wallhaven-yxk7jg.jpg"; # BOTW Link/Zelda, modern day, subway
-          hash = "";
+          hash = "sha256-HSRDhPk4HJj3ncfUYY/90hA1vAWcCnYVXOrFJF3aQ2k=";
       };
     fonts = rec {
       monospace = {
