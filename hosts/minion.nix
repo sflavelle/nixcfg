@@ -22,7 +22,10 @@
 
   boot.kernelPatches = [{
     name = "acpi quirk";
-    patch = /etc/nixos/hardware/minion-fixirq.patch;
+    patch = pkgs.fetchurl {
+        url = "https://git.neurario.com/splatsune/nixcfg/raw/branch/master/hardware/minion-fixirq.patch";
+        hash = "sha256-Lo4QWOC2sVRsB+90uiaimuyhFXyaHgKuAeDLN+Bjb/g=";
+    };
   }];
 
   networking.hostName = "minion"; # Define your hostname.
