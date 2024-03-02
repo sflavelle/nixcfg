@@ -103,6 +103,6 @@
   };
 
   environment.shellAliases = {
-      just-nix = "just -f ${ pkgs.fetchurl { url = "https://git.neurario.com/splatsune/nixcfg/raw/commit/52f02faf5b8318798b7f671ec51e250a360b6b83/justfile"; hash = "sha256-IyHMNDqeJVseFNCfoA3ZDHsf/EUDEPC7n7e0hOUDKP0"; } }";
+      just-nix = "just -f ${ pkgs.fetchurl { url = "https://git.neurario.com/splatsune/nixcfg/raw/commit/2f4a9706cb4b2cd6f7d6da1ba463a315d53c9a37/justfile"; hash = "sha256-IyHMNDqeJVseFNCfoA3ZDHsf/EUDEPC7n7e0hOUDKP0"; } }";
   };
 }
