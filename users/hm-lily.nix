@@ -45,7 +45,14 @@ in {
     };
   };
 
-  programs.atuin.enable = true;
+  programs.atuin = {
+      enable = true;
+      settings = {
+          sync_address = "http://10.0.0.3:8888";
+          sync_frequency = "10m";
+          auto_sync = true;
+      };
+  };
   programs.bat.enable = true;
   programs.btop.enable = true;
   programs.comodoro.enable = true;
