@@ -34,8 +34,8 @@ in {
       };
     fonts = rec {
       monospace = {
-        name = "Fira Code";
-        package = pkgs.fira-code;
+        name = "Maple Mono (NF)";
+        package = pkgs.maple-mono-NF;
       };
       sansSerif = {
         name = "Cantarell";
@@ -91,6 +91,15 @@ in {
   programs.pywal.enable = true;
   programs.yt-dlp.enable = true;
   programs.zoxide.enable = true;
+  programs.zsh = {
+      enable = true;
+      enableAutosuggestions = true;
+      oh-my-zsh = {
+          enable = true;
+          theme = "darkblood";
+          plugins = [ "vscode" ];
+      };
+  };
 
   programs.git = {
     enable = true;
