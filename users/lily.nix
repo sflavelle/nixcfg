@@ -58,6 +58,8 @@ in {
           sox
           linuxwave
 
+          faircamp
+
           nix-prefetch
 
           steam-run
