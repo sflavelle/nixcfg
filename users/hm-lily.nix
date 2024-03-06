@@ -1,6 +1,7 @@
 { osConfig, lib, pkgs, ... }:
 let
   host = osConfig.networking.hostName;
+  lowPower = host == "dweller";
   graphical = osConfig.services.xserver.enable;
 in {
   home = {
@@ -68,7 +69,7 @@ in {
   programs.gh.enable = true;
   programs.kakoune.enable = true;
   programs.khal.enable = true;
-  programs.mangohud.enable = graphical;
+  programs.mangohud.enable = graphical && !lowPower;
   programs.mangohud.enableSessionWide = true;
   programs.mangohud.settings = {
     output_folder = /home/lily/Documents/mangohud;
@@ -76,7 +77,7 @@ in {
   };
   programs.mpv = { enable = graphical; };
   programs.obs-studio = {
-    enable = graphical;
+    enable = graphical && !lowPower;
     plugins = with pkgs.obs-studio-plugins; [
       obs-vkcapture
       input-overlay
