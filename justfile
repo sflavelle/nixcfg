@@ -15,6 +15,8 @@ ip := if machine == "minion" {
 	"neurario.com"
 } else if machine == "conductor" {
 	"10.0.0.3"
+} else if machine == "dweller" {
+	"10.0.2.3"
 } else { "" }
 
 default:
