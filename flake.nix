@@ -44,6 +44,7 @@
       };
       nixosConfigurations = {
         "snatcher" = nixpkgs.lib.nixosSystem {
+          # Primary Desktop PC
           system = "x86_64-linux";
           specialArgs = {
             inherit inputs;
@@ -57,6 +58,7 @@
           ];
         };
         "minion" = nixpkgs.lib.nixosSystem {
+          # Infinity Gaming laptop
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
@@ -65,6 +67,16 @@
             ./users/lily.nix
             self.nixosModules.commonModules
 
+          ];
+        };
+        "dweller" - nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/dweller.nix
+            ./common/desktop.nix
+            ./users/lily.nix
+            self.nixosModules.commonModules
           ];
         };
         # Servers
