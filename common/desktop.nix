@@ -16,9 +16,7 @@
   nixpkgs.config.input-fonts.acceptLicense = true;
   fonts.packages = with pkgs; [
     font-awesome
-    input-fonts
     xkcd-font
-    ultimate-oldschool-pc-font-pack
     eunomia
     monaspace
     _3270font
@@ -61,13 +59,6 @@
 
   services.flatpak.enable = true;
   hardware.steam-hardware.enable = true;
-
-  programs.firefox = {
-    enable = true;
-    nativeMessagingHosts.packages = with pkgs; [ ff2mpv ];
-  };
-
-  programs.kdeconnect.enable = true;
 
   services.zerotierone = {
     enable = true;

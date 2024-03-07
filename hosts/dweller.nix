@@ -17,6 +17,12 @@
   networking.hostName = "dweller"; # Define your hostname.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
+  # This Chromebook has 16GB storage, optimise as much as we can
+  nix.settings.auto-optimise-store = true;
+  zramSwap = {
+      enable = true;
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 

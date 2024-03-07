@@ -122,4 +122,12 @@ in {
   };
 
   services.playerctld.enable = true;
+
+  wayland.windowManager.sway = {
+      enable = lowPower;
+      config = rec {
+          modifier = "Mod4"; # Search/Logo on Chromebook
+          terminal = "kitty";
+      };
+  };
 }
