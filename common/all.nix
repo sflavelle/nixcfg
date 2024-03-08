@@ -96,6 +96,6 @@
   stylix.image = ../resources/wallpapers/Distance-AllianceOS.png; # Boot/Login Theme
   
   environment.shellAliases = {
-      just-nix = "just -f ${ pkgs.fetchurl { url = "https://git.neurario.com/splatsune/nixcfg/raw/commit/b6ceae769a15556313bb56d279c70459d3c89a39/justfile"; hash = "sha256-6yeRLYYVcjWMnU6U5JNpoNb0cmx4TknPJO2ht34vZvo="; } }";
+      just-nix = "just -f ${ pkgs.fetchurl { url = "https://git.neurario.com/splatsune/nixcfg/raw/commit/3ad3666ed2cf22366afa7d72965dc72c325cfd99/justfile"; hash = "sha256-Tw5UCx5SDODs29UtqXYsKRHDVu81xC2UYTt+M5n6TGI="; } }";
   };
 }
