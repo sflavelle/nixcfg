@@ -9,6 +9,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "dm-mirror" ];
   boot.kernel.sysctl = { "vm.max_map_count" = 2147483642; };
+  boot.plymouth.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
