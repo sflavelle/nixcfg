@@ -14,8 +14,7 @@ in {
     shell = pkgs.zsh;
     packages = with pkgs;
       lib.mkMerge [
-        ([
-          # Terminal
+        ([ # All systems (terminal)
           neofetch
           emacs
           zellij
@@ -37,7 +36,7 @@ in {
 
           pandoc
         ])
-        (lib.mkIf config.services.xserver.enable [
+        (lib.mkIf config.services.xserver.enable [ # All systems (graphical)
           # Programs
           vscode
           (discord.override {
@@ -46,17 +45,20 @@ in {
           })
           playerctl
           bitwarden
-          (if !lowPower then jellyfin-media-player else jellyfin-mpv-shim)
           rclone
 
         ])
-        (lib.mkIf config.services.xserver.enable && !lowPower [
+        (lib.mkIf config.services.xserver.enable && !lowPower [ # More powerful devices
             libreoffice
             calibre
             protonup-qt
             steam-run
+            jellyfin-media-player
         ])
-        (lib.mkIf config.services.xserver.desktopManager.gnome.enable [
+        (lib.mkIf config.services.xserver.enable && lowPower [ # Less powerful, chromebooks etc)
+            jellyfin-mpv-shim
+        ])
+        (lib.mkIf config.services.xserver.desktopManager.gnome.enable [ # Gnome-specific
           gnome.gnome-tweaks
           gnome.gnome-shell-extensions
         ])
