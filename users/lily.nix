@@ -3,6 +3,7 @@
 let
 
   graphical = config.services.xserver.enable;
+  lowPower = config.networking.hostName == "dweller";
 
 in {
   home-manager.users.lily = import ./hm-lily.nix;
@@ -34,27 +35,26 @@ in {
 
           nix-prefetch
 
-          steam-run
-
           pandoc
         ])
         (lib.mkIf config.services.xserver.enable [
           # Programs
           vscode
-          libreoffice
-          qbittorrent
           (discord.override {
-            withOpenASAR = true;
-            withVencord = true;
+            withOpenASAR = !lowPower;
+            withVencord = !lowPower;
           })
           playerctl
-          snapcast
           bitwarden
-          jellyfin-media-player
-          calibre
+          (if !lowPower then jellyfin-media-player else jellyfin-mpv-shim)
           rclone
-          protonup-qt
 
+        ])
+        (lib.mkIf config.services.xserver.enable && !lowPower [
+            libreoffice
+            calibre
+            protonup-qt
+            steam-run
         ])
         (lib.mkIf config.services.xserver.desktopManager.gnome.enable [
           gnome.gnome-tweaks
@@ -62,8 +62,6 @@ in {
         ])
       ];
   };
-
-  nixpkgs.config.permittedInsecurePackages = [ "pulsar-1.109.0" ];
 
   nix.settings.trusted-users = [ "lily" ];
   security.sudo.wheelNeedsPassword = false;

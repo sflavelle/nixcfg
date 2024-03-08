@@ -127,7 +127,7 @@ in {
       enable = lowPower;
       config = rec {
           modifier = "Mod4"; # Search/Logo on Chromebook
-          terminal = "kitty";
+          terminal = "foot";
       };
   };
 }
