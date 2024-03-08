@@ -50,6 +50,8 @@
     rar
     unrar
     sops
+
+    nvd
   ];
 
   programs.nix-ld.enable = true;
@@ -89,20 +91,11 @@
       fuzzyCompletion = true;
     };
 
-    tmux = {
-      enable = true;
-      reverseSplit = true;
-      newSession = true;
-      baseIndex = 1;
-    };
   };
 
-  stylix.image = pkgs.fetchurl { # Boot/Login theme
-  	url = "https://w.wallhaven.cc/full/d6/wallhaven-d6mz8m.jpg";
-  	hash = "sha256-LWAYOBf1exIyG35UkS1li7+VRAIdPZhZC5o798ac4N8=";
-  };
-
+  stylix.image = ../resources/wallpapers/Distance-AllianceOS.png; # Boot/Login Theme
+  
   environment.shellAliases = {
-      just-nix = "just -f ${ pkgs.fetchurl { url = "https://git.neurario.com/splatsune/nixcfg/raw/commit/2f4a9706cb4b2cd6f7d6da1ba463a315d53c9a37/justfile"; hash = "sha256-FXVCbWEm48FN5iYgcycvslyUHE2w4/4dzZ2jnYIGuAM="; } }";
+      just-nix = "just -f ${ pkgs.fetchurl { url = "https://git.neurario.com/splatsune/nixcfg/raw/commit/b6ceae769a15556313bb56d279c70459d3c89a39/justfile"; hash = "sha256-6yeRLYYVcjWMnU6U5JNpoNb0cmx4TknPJO2ht34vZvo="; } }";
   };
 }
