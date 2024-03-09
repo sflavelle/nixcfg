@@ -25,6 +25,34 @@
 
   # Keyboard customization
   sound.mediaKeys.enable = true;
+  services.keyd = {
+      enable = true;
+      keyboards = {
+          chromekb = {
+              ids = [ "0001:0001" ];
+              settings = {
+                  main = {
+                      f1 = "overload(prev, f1)";
+                      f2 = "overload(next, f2)";
+                      f3 = "overload(refresh, f3)";
+                      f4 = "overload(f11, f4)";
+                      f5 = "overload(cyclewindows, f5)";
+                      f6 = "overload(brightnessdown, f6)";
+                      f7 = "overload(brightnessup, f7)";
+                      f8 = "overload(mute, f8)";
+                      f9 = "overload(volumedown, f9)";
+                      f10 = "overload(volumeup, f10)";
+                  };
+                  control = {
+                     left = "home";
+                     right = "end";
+                     up = "pageup";
+                     down = "pagedown";
+                  };
+              };
+          };
+      };
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
