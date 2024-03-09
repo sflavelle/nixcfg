@@ -200,7 +200,6 @@
     enable = true;
     settings = {
       homeassistant = config.services.home-assistant.enable;
-      permit_join = true;
       serial.port = "/dev/ttyACM0";
       frontend = true;
       availability = true;
