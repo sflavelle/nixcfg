@@ -48,14 +48,14 @@ in {
           rclone
 
         ])
-        (lib.mkIf config.services.xserver.enable && !lowPower [ # More powerful devices
+        (lib.mkIf (config.services.xserver.enable && !lowPower) [ # More powerful devices
             libreoffice
             calibre
             protonup-qt
             steam-run
             jellyfin-media-player
         ])
-        (lib.mkIf config.services.xserver.enable && lowPower [ # Less powerful, chromebooks etc)
+        (lib.mkIf (config.services.xserver.enable && lowPower) [ # Less powerful, chromebooks etc)
             jellyfin-mpv-shim
         ])
         (lib.mkIf config.services.xserver.desktopManager.gnome.enable [ # Gnome-specific
