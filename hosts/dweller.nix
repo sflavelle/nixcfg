@@ -56,6 +56,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  stylix.polarity = "dark";
 
 
   services.xserver.displayManager.lightdm.enable = true;
