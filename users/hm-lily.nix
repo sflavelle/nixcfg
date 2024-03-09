@@ -10,8 +10,6 @@ in {
     stateVersion = "23.11";
     sessionPath = [ ];
     sessionVariables = {
-      MPD_HOST = "10.0.0.3";
-      EDITOR = "kak";
     };
     shellAliases = { };
   };
@@ -67,7 +65,23 @@ in {
   programs.fzf.enable = true;
   programs.gallery-dl.enable = true;
   programs.gh.enable = true;
-  programs.kakoune.enable = true;
+  programs.kakoune = {
+      enable = true;
+      defaultEditor = true;
+      plugins = with pkgs.kakounePlugins; [ auto-pairs-kak kak-lsp smarttab-kak ];
+      config = {
+          tabStop = 2;
+          ui = {
+              enableMouse = true;
+          };
+          wrapLines = {
+              enable = true;
+              indent = true;
+              maxWidth = 100;
+              word = true;
+          };
+      };
+  };
   programs.khal.enable = true;
   programs.mangohud.enable = graphical && !lowPower;
   programs.mangohud.enableSessionWide = true;
