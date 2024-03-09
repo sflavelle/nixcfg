@@ -63,7 +63,13 @@
   programs.sway.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
+
+  services.syncthing = {
+      enable = true;
+      openDefaultPorts = true;
+      user = "lily";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
