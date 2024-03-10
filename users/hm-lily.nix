@@ -12,6 +12,14 @@ in {
     sessionVariables = {
     };
     shellAliases = { };
+    pointerCursor = {
+        gtk.enable = true;
+        name = "Vanilla-DMZ";
+    };
+  };
+
+  gtk = {
+      enable = true;
   };
 
   stylix = {
@@ -33,8 +41,8 @@ in {
       };
     fonts = rec {
       monospace = {
-        name = "Maple Mono (NF)";
-        package = pkgs.maple-mono-NF;
+        name = "Monaspace Neon Var";
+        package = pkgs.monaspace;
       };
       sansSerif = {
         name = "Cantarell";
@@ -46,6 +54,10 @@ in {
 
   programs.alacritty = {
       enable = true;
+      settings = {
+          window.blur = true;
+          window.opacity = lib.mkForce 0.75;
+      };
   };
   programs.atuin = {
       enable = true;
@@ -150,11 +162,77 @@ in {
 
   wayland.windowManager.hyprland = {
       enable = (osConfig.networking.hostName == "snatcher");
+      plugins = [
+         # split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces # 'undefined variable?'
+      ];
       settings = {
           "$mod" = "SUPER";
+          "$modShift" = "SUPERSHIFT";
+          decoration.rounding = 12;
+          env = [
+              "LIBVA_DRIVER_NAME,nvidia"
+              "XDG_SESSION_TYPE,wayland"
+              "GBM_BACKEND,nvidia-drm"
+              "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+              "WLR_NO_HARDWARE_CURSORS,1"
+          ];
+          exec-once = [
+             "waybar"
+             "dunst"
+          ];
+          monitor = [
+              "DP-2, preferred, 1440x900, 1"
+              "DP-1, preferred, 0x0, 1, transform, 3"
+              # Sometimes the monitors show up two IDs up. I have no idea why.
+              "DP-4, preferred, 1440x900, 1"
+              "DP-3, preferred, 0x0, 1, transform, 3"
+          ];
+          
           bind = [
+              # Quick Launches
               "$mod, T, exec, alacritty"
+              "$mod, space, exec, wofi --show drun"
 
+              # Workspaces
+              "$mod, S, togglespecialworkspace,"
+              "$modShift, S, movetoworkspace, special"
+              "$mod, G, togglespecialworkspace, game"
+              "$modShift, G, movetoworkspace, special:game"
+              
+              "$mod, left, movefocus, l"
+              "$mod, right, movefocus, r"
+              "$mod, up, movefocus, u"
+              "$mod, down, movefocus, d"
+
+              "$modShift, left, movewindow, l"
+              "$modShift, right, movewindow, r"
+              "$modShift, up, movewindow, u"
+              "$modShift, down, movewindow, d"
+
+              # Window Management
+              "$mod, bracketleft, splitratio, -0.1"
+              "$mod, bracketright, splitratio, +0.1"
+
+              "$mod, f, fullscreen, 0"
+              "$modShift, f, fakefullscreen,"
+              "$mod, period, togglefloating,"
+          ] ++ (
+          	# This snippet copied from hyprland wiki
+          	builtins.concatLists (builtins.genList (
+          		x: let
+          			ws = let
+          				c = (x+1) / 10;
+          			in
+          				builtins.toString (x + 1 - (c * 10));
+          		in [
+              		"$mod, ${ws}, workspace, ${toString (x + 1)}"
+              		"$modShift, ${ws}, movetoworkspace, ${toString (x + 1)}"
+              		]
+              	)
+              	10)
+              );
+          layerrule = [
+              "blur, waybar"
           ];
       };
   };

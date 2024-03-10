@@ -55,8 +55,7 @@
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ hplip ];
 
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma6.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
   programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -155,7 +154,7 @@
 
 
     # hyprland accessories
-    dunst waybar
+    dunst waybar hyprpaper
   ];
 
   # Open ports in the firewall.
