@@ -147,7 +147,7 @@ in {
   };
 
   wayland.windowManager.hyprland = {
-      enable = (osConfig.networking.hostName == "snatcher");;
+      enable = (osConfig.networking.hostName == "snatcher");
       settings = {
           "$mod" = "SUPER";
           bind = [
