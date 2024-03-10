@@ -75,6 +75,7 @@ in {
         stateVersion = "23.11";
         sessionPath = [ ];
         sessionVariables = {
+            "XDG_SCREENSHOTS_DIR" = "$HOME/Pictures/DesktopScreenshots";
         };
         shellAliases = { };
         pointerCursor = {
@@ -302,6 +303,11 @@ in {
                   "$modShift, period, pseudo,"
 
                   "$mod, q, killactive,"
+
+                  # Screenshots
+                  ", print, exec, grimblast copysave screen" # Full desktop screenshot
+                  "SHIFT, print, exec, grimblast --freeze copysave area" # Area/Window Capture
+                  "ALT, print, exec, grimblast copysave active" # Active Window Capture
               ] ++ (
                 # This snippet copied from hyprland wiki
                 builtins.concatLists (builtins.genList (
