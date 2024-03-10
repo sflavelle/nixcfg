@@ -18,16 +18,29 @@
     hyprland.url = "github:hyprwm/Hyprland";
     stylix.url = "github:danth/stylix";
     sops-nix.url = "github:Mic92/sops-nix";
+
+    # Hyprland Plugins
+    split-monitor-workspaces = {
+        url = "github:Duckonaut/split-monitor-workspaces";
+        inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs =
-    { self, nixpkgs, musnix, home-manager, hyprland, stylix, ... }@inputs: {
+    { self,
+      nixpkgs,
+      musnix,
+      home-manager,
+      hyprland,
+      stylix,
+      sops-nix,
+      split-monitor-workspaces,
+      ... }@inputs: {
       nixosModules."commonModules" = { config, lib, inputs, ... }: {
         imports = [
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
           inputs.sops-nix.nixosModules.sops
-          ./users/lily.nix
         ];
 
         home-manager = {
