@@ -1,10 +1,10 @@
-{ home-manager, osConfig, config, pkgs, lib, ... }:
+{ home-manager, config, pkgs, lib, inputs, ... }:
 
 let
 
-  host = osConfig.networking.hostName;
+  host = config.networking.hostName;
   lowPower = host == "dweller";
-  graphical = osConfig.services.xserver.enable;
+  graphical = config.services.xserver.enable;
 
 in {
   users.users.lily = {
@@ -226,9 +226,9 @@ in {
       };
 
       wayland.windowManager.hyprland = {
-          enable = (osConfig.networking.hostName == "snatcher");
+          enable = (config.networking.hostName == "snatcher");
           plugins = [
-            split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces # 'undefined variable?'
+            # inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces # currently crashes on current hypr ver
           ];
           settings = {
               "$mod" = "SUPER";
@@ -240,6 +240,10 @@ in {
                   
               };
               decoration.rounding = 12;
+              dwindle = {
+                pseudotile = true;
+                preserve_split = true;
+              };
               env = [
                   "LIBVA_DRIVER_NAME,nvidia"
                   "XDG_SESSION_TYPE,wayland"
@@ -250,6 +254,9 @@ in {
               exec-once = [
                 "waybar"
                 "dunst"
+                "hyprctl hyprpaper preload '${config.home-manager.users.lily.stylix.image}'"
+                "hyprctl hyprpaper wallpaper 'DP-1,${config.home-manager.users.lily.stylix.image}'"
+                "hyprctl hyprpaper wallpaper 'DP-3,${config.home-manager.users.lily.stylix.image}'"
               ];
               monitor = [
                   "DP-2, preferred, 1440x900, 1"
@@ -287,10 +294,14 @@ in {
                   # Window Management
                   "$mod, bracketleft, splitratio, -0.1"
                   "$mod, bracketright, splitratio, +0.1"
+                  "$mod, backslash, togglesplit,"
 
                   "$mod, f, fullscreen, 0"
                   "$modShift, f, fakefullscreen,"
                   "$mod, period, togglefloating,"
+                  "$modShift, period, pseudo,"
+
+                  "$mod, q, killactive,"
               ] ++ (
                 # This snippet copied from hyprland wiki
                 builtins.concatLists (builtins.genList (

@@ -154,7 +154,7 @@
 
 
     # hyprland accessories
-    dunst waybar hyprpaper
+    dunst waybar hyprpaper grimblast-unstable
   ];
 
   # Open ports in the firewall.
