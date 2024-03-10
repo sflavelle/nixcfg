@@ -44,7 +44,9 @@ in {
     };
   };
 
-  programs.alacritty.enable = true;
+  programs.alacritty = {
+      enable = true;
+  };
   programs.atuin = {
       enable = true;
       settings = {
