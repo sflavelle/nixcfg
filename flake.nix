@@ -25,6 +25,7 @@
       nixosModules."commonModules" = { config, lib, inputs, ... }: {
         imports = [
           inputs.home-manager.nixosModules.home-manager
+          inputs.hyprland.homeManagerModules.default
           inputs.stylix.nixosModules.stylix
           inputs.sops-nix.nixosModules.sops
           ./users/lily.nix
