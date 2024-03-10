@@ -168,6 +168,12 @@ in {
       settings = {
           "$mod" = "SUPER";
           "$modShift" = "SUPERSHIFT";
+          general.allow_tearing = true;
+          decoration.blur = {
+              size = 20;
+              passes = 2;
+              
+          };
           decoration.rounding = 12;
           env = [
               "LIBVA_DRIVER_NAME,nvidia"
@@ -187,7 +193,11 @@ in {
               "DP-4, preferred, 1440x900, 1"
               "DP-3, preferred, 0x0, 1, transform, 3"
           ];
-          
+
+          bindm = [
+              "$mod, mouse:272, movewindow"
+              "$mod, mouse:273, resizewindow"
+          ];
           bind = [
               # Quick Launches
               "$mod, T, exec, alacritty"
