@@ -44,6 +44,7 @@ in {
     };
   };
 
+  programs.alacritty.enable = true;
   programs.atuin = {
       enable = true;
       settings = {
@@ -142,6 +143,17 @@ in {
       config = rec {
           modifier = "Mod4"; # Search/Logo on Chromebook
           terminal = "foot";
+      };
+  };
+
+  wayland.windowManager.hyprland = {
+      enable = (osConfig.networking.hostName == "snatcher");;
+      settings = {
+          "$mod" = "SUPER";
+          bind = [
+              "$mod, T, exec, alacritty"
+
+          ];
       };
   };
 }
