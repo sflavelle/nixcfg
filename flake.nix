@@ -20,9 +20,13 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     # Hyprland Plugins
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
     split-monitor-workspaces = {
-        url = "github:Duckonaut/split-monitor-workspaces";
-        inputs.hyprland.follows = "hyprland";
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
     };
   };
 
@@ -32,11 +36,12 @@
       musnix,
       home-manager,
       hyprland,
+      hyprland-plugins,
       stylix,
       sops-nix,
       split-monitor-workspaces,
       ... }@inputs: {
-      nixosModules."commonModules" = { config, lib, inputs, ... }: {
+      nixosModules."commonModules" = { config, lib, inputs, hyprland, hyprland-plugins, split-monitor-workspaces, ... }: {
         imports = [
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
@@ -46,6 +51,7 @@
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
+          extraSpecialArgs = { inherit inputs; };
         };
 
         sops = {
