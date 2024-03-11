@@ -56,7 +56,7 @@
     jack.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [ simple-mtpfs ];
+  environment.systemPackages = with pkgs; [ simple-mtpfs pavucontrol libnotify ];
 
   services.flatpak.enable = true;
   hardware.steam-hardware.enable = true;

@@ -22,6 +22,9 @@ in {
           edir
           epr
 
+          nom
+
+
           just
 
           gallery-dl
@@ -44,6 +47,7 @@ in {
             withVencord = !lowPower;
           })
           playerctl
+          pavucontrol
           bitwarden
           rclone
 
@@ -146,6 +150,7 @@ in {
       programs.fzf.enable = true;
       programs.gallery-dl.enable = true;
       programs.gh.enable = true;
+      programs.imv.enable = true;
       programs.kakoune = {
           enable = true;
           defaultEditor = true;
@@ -164,6 +169,25 @@ in {
           };
       };
       programs.khal.enable = true;
+      programs.lf = {
+          enable = true;
+          settings = {
+              mouse = true;
+              icons = true;
+          };
+          previewer.source = pkgs.writeShellScript "pv.sh" ''
+  					#!/bin/sh
+
+					  case "$1" in
+				      *.tar*) tar tf "$1";;
+				      *.zip) unzip -l "$1";;
+				      *.rar) unrar l "$1";;
+				      *.7z) 7z l "$1";;
+				      *.pdf) pdftotext "$1" -;;
+				      *) highlight -O ansi "$1" || cat "$1";;
+					  esac
+						'';
+      };
       programs.mangohud.enable = graphical && !lowPower;
       programs.mangohud.enableSessionWide = true;
       programs.mangohud.settings = {
@@ -226,6 +250,12 @@ in {
           };
       };
 
+			xdg.configFile."hypr/hyprpaper.conf".text = ''
+				splash = false
+			  
+				preload = ${config.home-manager.users.lily.stylix.image}
+				wallpaper = ,${config.home-manager.users.lily.stylix.image}
+				'';
       wayland.windowManager.hyprland = {
           enable = (config.networking.hostName == "snatcher");
           plugins = [
@@ -251,21 +281,22 @@ in {
                   "GBM_BACKEND,nvidia-drm"
                   "__GLX_VENDOR_LIBRARY_NAME,nvidia"
                   "WLR_NO_HARDWARE_CURSORS,1"
+                  "MOZ_ENABLE_WAYLAND,1"
               ];
               exec-once = [
                 "waybar"
                 "dunst"
-                "hyprctl hyprpaper preload '${config.home-manager.users.lily.stylix.image}'"
-                "hyprctl hyprpaper wallpaper 'DP-1,${config.home-manager.users.lily.stylix.image}'"
-                "hyprctl hyprpaper wallpaper 'DP-3,${config.home-manager.users.lily.stylix.image}'"
+                "hyprpaper"
               ];
-              monitor = [
+              monitor =
+              	if host == "snatcher" then [
                   "DP-2, preferred, 1440x900, 1"
                   "DP-1, preferred, 0x0, 1, transform, 3"
                   # Sometimes the monitors show up two IDs up. I have no idea why.
                   "DP-4, preferred, 1440x900, 1"
                   "DP-3, preferred, 0x0, 1, transform, 3"
-              ];
+              		]
+              	else ", preferred, auto, 1";
 
               bindm = [
                   "$mod, mouse:272, movewindow"
@@ -274,6 +305,7 @@ in {
               bind = [
                   # Quick Launches
                   "$mod, T, exec, alacritty"
+                  "$mod, E, exec, alacritty --working-directory ~ -e lf"
                   "$mod, space, exec, wofi --show drun"
 
                   # Workspaces
@@ -302,12 +334,24 @@ in {
                   "$mod, period, togglefloating,"
                   "$modShift, period, pseudo,"
 
+                  "$mod, C, centerwindow,"
+                  "$mod, M, fullscreen, 1" #Maximise
+
                   "$mod, q, killactive,"
+                  "$mod alt, q, exit,"
+
+                  # Group Management
+                  "$mod, TAB, changegroupactive,f"
+                  "$modShift, TAB, changegroupactive,b"
+                  "$mod ALT,left, movewindoworgroup,l"
+                  "$mod ALT,right, movewindoworgroup,r"
+                  "$mod ALT,up, movewindoworgroup,u"
+                  "$mod ALT,down, movewindoworgroup,d"
 
                   # Screenshots
-                  ", print, exec, grimblast copysave screen" # Full desktop screenshot
-                  "SHIFT, print, exec, grimblast --freeze copysave area" # Area/Window Capture
-                  "ALT, print, exec, grimblast copysave active" # Active Window Capture
+                  ", print, exec, grimblast --notify copysave screen" # Full desktop screenshot
+                  "SHIFT, print, exec, grimblast --freeze --notify copysave area" # Area/Window Capture
+                  "ALT, print, exec, grimblast --notify copysave active" # Active Window Capture
               ] ++ (
                 # This snippet copied from hyprland wiki
                 builtins.concatLists (builtins.genList (
@@ -326,6 +370,15 @@ in {
               layerrule = [
                   "blur, waybar"
               ];
+              windowrulev2 = [
+                  "float,center 1,dimaround,class:^(poptracker)$,title:^(Settings)"
+                  "float,class:^(com.usebottles.bottles)$,title:^(Bottles)$"
+                  "group new,workspace 3,class:^(steam)$"
+              ] ++ (lib.lists.forEach [
+                  "class:Celeste"
+                  "class:^(steam_app_)"
+                  ]
+									(app: "immediate,workspace 3,monitor 1,idleinhibit focus,maximize,group set," + app));
           };
       };
   };
