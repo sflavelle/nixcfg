@@ -152,10 +152,6 @@
 
     # soundfonts
     soundfont-arachno
-
-
-    # hyprland accessories
-    dunst waybar hyprpaper grimblast
   ];
 
   # Open ports in the firewall.

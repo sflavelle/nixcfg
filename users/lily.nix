@@ -51,6 +51,8 @@ in {
           bitwarden
           rclone
 
+          tetrio-desktop
+
         ])
         (lib.mkIf (config.services.xserver.enable && !lowPower) [ # More powerful devices
             libreoffice
@@ -65,6 +67,12 @@ in {
         (lib.mkIf config.services.xserver.desktopManager.gnome.enable [ # Gnome-specific
           gnome.gnome-tweaks
           gnome.gnome-shell-extensions
+        ])
+        (lib.mkIf config.home-manager.users.lily.wayland.windowManager.hyprland.enable [ # Hyprland utils
+        	swaynotificationcenter
+        	hypridle hyprpaper hyprlock
+        	grimblast
+        	yambar yambar-hyprland-wses
         ])
       ];
   };
@@ -284,8 +292,8 @@ in {
                   "MOZ_ENABLE_WAYLAND,1"
               ];
               exec-once = [
-                "waybar"
-                "dunst"
+                "yambar"
+                "swaync"
                 "hyprpaper"
               ];
               monitor =
@@ -341,6 +349,7 @@ in {
                   "$mod alt, q, exit,"
 
                   # Group Management
+                  "$mod ALT, G, togglegroup,"
                   "$mod, TAB, changegroupactive,f"
                   "$modShift, TAB, changegroupactive,b"
                   "$mod ALT,left, movewindoworgroup,l"
@@ -378,7 +387,7 @@ in {
                   "class:Celeste"
                   "class:^(steam_app_)"
                   ]
-									(app: "immediate,workspace 3,monitor 1,idleinhibit focus,maximize,group set," + app));
+									(app: "immediate,tile,workspace 3,monitor 1,idleinhibit focus,maximize,group set," + app));
           };
       };
   };
