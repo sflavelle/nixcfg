@@ -104,8 +104,8 @@ in {
         autoEnable = graphical;
         image = if host == "snatcher" then
           pkgs.fetchurl {
-              url = "https://w.wallhaven.cc/full/o5/wallhaven-o5ym69.jpg"; # BotW Link, Gerudo Town
-              hash = "sha256-VDsfBM04iEdDjBnFBSXj7flyK/ydtrsa7cuQGC6GDrY=";
+              url = "https://w.wallhaven.cc/full/9d/wallhaven-9dzz7x.png"; # Celeste official art, Summit
+              hash = "sha256-5F8ovJQOj6xVu5aiKufDtQH7J4ZJufXstphUhqsN9X4=";
           }
         else if host == "minion" then
           pkgs.fetchurl {
@@ -258,6 +258,25 @@ in {
           };
       };
 
+			xdg.configFile."hypr/hypridle.conf".text = ''
+				general {
+    				lock_cmd = pidof hyprlock || hyprlock
+    				unlock_cmd = loginctl unlock-session
+    				before_sleep_cmd = loginctl lock-session
+    				after_sleep_cmd = hyprctl dispatch dpms on
+				}
+
+				listener {
+    				timeout = ${if lowPower then "180" else "900"} # 15 minutes: lock session (Dweller: 3 minutes)
+    				on-timeout = loginctl lock-session
+				}
+
+				listener {
+    				timeout = ${if lowPower then "300" else "1200"} # 20 minutes: monitors off (Dweller: 5 minutes)
+    				on-timeout = hyprctl dispatch dpms off
+    				on-resume = hyprctl dispatch dpms on
+				}
+			'';
 			xdg.configFile."hypr/hyprpaper.conf".text = ''
 				splash = false
 			  
@@ -290,11 +309,14 @@ in {
                   "__GLX_VENDOR_LIBRARY_NAME,nvidia"
                   "WLR_NO_HARDWARE_CURSORS,1"
                   "MOZ_ENABLE_WAYLAND,1"
+                  "HYPRCURSOR_THEME,HyprBibataModernClassicSVG"
+                  "HYPRCURSOR_SIZE,48"
               ];
               exec-once = [
                 "waybar"
                 "swaync"
                 "hyprpaper"
+                "hypridle"
               ];
               monitor =
               	if host == "snatcher" then [
@@ -386,7 +408,7 @@ in {
                   "group new,workspace 3,class:^(steam)$"
               ] ++ (lib.lists.forEach [
                   "class:Celeste"
-                  "class:^(steam_app_)"
+                  "class:(steam_app_)"
                   ]
 									(app: "immediate,tile,workspace 3,monitor 1,idleinhibit focus,maximize,group set," + app));
           };
