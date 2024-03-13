@@ -72,7 +72,7 @@ in {
         	swaynotificationcenter
         	hypridle hyprpaper hyprlock
         	grimblast
-        	yambar yambar-hyprland-wses
+        	waybar
         ])
       ];
   };
@@ -265,7 +265,7 @@ in {
 				wallpaper = ,${config.home-manager.users.lily.stylix.image}
 				'';
       wayland.windowManager.hyprland = {
-          enable = (config.networking.hostName == "snatcher");
+          enable = graphical;
           plugins = [
             # inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces # currently crashes on current hypr ver
           ];
@@ -292,7 +292,7 @@ in {
                   "MOZ_ENABLE_WAYLAND,1"
               ];
               exec-once = [
-                "yambar"
+                "waybar"
                 "swaync"
                 "hyprpaper"
               ];
@@ -315,6 +315,7 @@ in {
                   "$mod, T, exec, alacritty"
                   "$mod, E, exec, alacritty --working-directory ~ -e lf"
                   "$mod, space, exec, wofi --show drun"
+                  "$mod, backspace, exec, swaync-client -t"
 
                   # Workspaces
                   "$mod, S, togglespecialworkspace,"
