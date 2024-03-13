@@ -402,10 +402,21 @@ in {
               layerrule = [
                   "blur, waybar"
               ];
+              windowrule = [
+                  "float, confirm"
+                  "float, dialog"
+                  "float, download"
+                  "float, notification"
+                  "float, error"
+                  "float, splash"
+                  "float, title:Open File"
+                  "Float, title:^(Picture-in-Picture)$"
+              ];
               windowrulev2 = [
-                  "float,center 1,dimaround,class:^(poptracker)$,title:^(Settings)"
+                  "float,class:^(poptracker)$,title:^(Settings)"
                   "float,class:^(com.usebottles.bottles)$,title:^(Bottles)$"
-                  "group new,workspace 3,class:^(steam)$"
+                  "group new,class:^(steam)$"
+                  "workspace 3,class:^(steam)$"
               ] ++ (lib.lists.forEach [
                   "class:Celeste"
                   "class:(steam_app_)"
