@@ -410,7 +410,7 @@ in {
                   "float, error"
                   "float, splash"
                   "float, title:Open File"
-                  "Float, title:^(Picture-in-Picture)$"
+                  "float, title:^(Picture-in-Picture)$"
               ];
               windowrulev2 = [
                   "float,class:^(poptracker)$,title:^(Settings)"
