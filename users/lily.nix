@@ -36,6 +36,7 @@ in {
           linuxwave
 
           nix-prefetch
+          mqttx
 
           pandoc
         ])
@@ -256,12 +257,26 @@ in {
 
       services.playerctld.enable = true;
 
+      xdg.configFile."hypr/idle-hass.sh" = {
+          executable = true;
+          text = ''
+      	#!/bin/env bash
+      	mqttx pub -t '/machines/$(cat /etc/hostname)/active)' -h 192.168.192.2 -p 1883 -m "$1"
+      '';
+      };
+
 			xdg.configFile."hypr/hypridle.conf".text = ''
 				general {
     				lock_cmd = pidof hyprlock || hyprlock
     				unlock_cmd = kill -USR1 $(pidof hyprlock)
     				before_sleep_cmd = loginctl lock-session
     				after_sleep_cmd = hyprctl dispatch dpms on
+				}
+
+				listener {
+    				timeout = 300
+    				on-timeout = $HOME/.config/hypr/idle-hass.sh ON
+    				on-resume = $HOME/.config/hypr/idle-hass.sh OFF
 				}
 
 				listener {
@@ -472,11 +487,12 @@ in {
                   "float,class:^(com.usebottles.bottles)$,title:^(Bottles)$"
                   "group new,class:^(steam)$"
                   "workspace 3,class:^(steam)$"
-              ] ++ (lib.lists.forEach [
+              ] ++ (lib.lists.flatten (lib.lists.forEach [
                   "class:Celeste"
                   "class:(steam_app_)"
                   ]
-									(app: "immediate,tile,workspace 3,monitor 1,idleinhibit focus,maximize,group set," + app));
+									(app: lib.lists.forEach ["immediate" "tile" "workspace 3" "monitor 1" "idleinhibit focus" "maximize" "group set" ] (rule: rule + "," + app))
+									));
           };
       };
   };
