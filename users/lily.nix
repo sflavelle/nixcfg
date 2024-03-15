@@ -381,12 +381,18 @@ in {
                   "$mod, mouse:272, movewindow"
                   "$mod, mouse:273, resizewindow"
               ];
+              bindl = [
+                  ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+                  ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+              ];
               bind = [
                   # Quick Launches
                   "$mod, T, exec, alacritty"
                   "$mod, E, exec, alacritty --working-directory ~ -e lf"
                   "$mod, space, exec, wofi --show drun"
                   "$mod, backspace, exec, swaync-client -t"
+
+                  ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
                   # Workspaces
                   "$mod, S, togglespecialworkspace,"
