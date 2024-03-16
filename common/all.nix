@@ -37,8 +37,8 @@
   };
 
   environment.systemPackages = with pkgs; [
-    distrobox
     rclone
+    psmisc
     pciutils
     inxi
     du-dust

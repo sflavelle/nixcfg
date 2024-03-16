@@ -16,7 +16,6 @@ in {
       lib.mkMerge [
         ([ # All systems (terminal)
           neofetch
-          emacs
           zellij
           calc
           edir
@@ -24,33 +23,23 @@ in {
 
           nom
 
-
           just
 
-          gallery-dl
-          yt-dlp
           mpv
           playerctl
-          mlt
-          sox
-          linuxwave
 
           nix-prefetch
-          mqttx
 
           pandoc
         ])
         (lib.mkIf config.services.xserver.enable [ # All systems (graphical)
           # Programs
-          vscode
           (discord.override {
             withOpenASAR = !lowPower;
             withVencord = !lowPower;
           })
-          gtkcord4
           playerctl
           pavucontrol
-          bitwarden
           rclone
           fontpreview
 
@@ -63,16 +52,20 @@ in {
             protonup-qt
             steam-run
             jellyfin-media-player
+            vscode
+            bitwarden
+            mlt sox
         ])
         (lib.mkIf (config.services.xserver.enable && lowPower) [ # Less powerful, chromebooks etc)
             jellyfin-mpv-shim
+            netsurf.browser
         ])
         (lib.mkIf config.services.xserver.desktopManager.gnome.enable [ # Gnome-specific
           gnome.gnome-tweaks
           gnome.gnome-shell-extensions
         ])
         (lib.mkIf config.home-manager.users.lily.wayland.windowManager.hyprland.enable [ # Hyprland utils
-        	swaynotificationcenter
+        	swaynotificationcenter wofi
         	hypridle hyprpaper hyprlock
         	grimblast
         	waybar
@@ -93,10 +86,6 @@ in {
             "XDG_SCREENSHOTS_DIR" = "$HOME/Pictures/DesktopScreenshots";
         };
         shellAliases = { };
-        pointerCursor = {
-            gtk.enable = true;
-            name = "Vanilla-DMZ";
-        };
       };
 
       gtk = {
@@ -136,7 +125,7 @@ in {
       programs.alacritty = {
           enable = true;
           settings = {
-              window.blur = true;
+              window.blur = !lowPower;
               window.opacity = lib.mkForce 0.75;
           };
       };
@@ -156,12 +145,11 @@ in {
         enableAliases = true;
         icons = true;
       };
-      programs.feh.enable = graphical;
-      programs.firefox = { enable = graphical; };
+      programs.firefox = { enable = graphical && !lowPower; };
       programs.fzf.enable = true;
-      programs.gallery-dl.enable = true;
+      programs.gallery-dl.enable = !lowPower;
       programs.gh.enable = true;
-      programs.imv.enable = true;
+      programs.imv.enable = graphical;
       programs.kakoune = {
           enable = true;
           defaultEditor = true;
@@ -219,9 +207,7 @@ in {
         ];
       };
       programs.pandoc.enable = true;
-      programs.pywal.enable = true;
       programs.yt-dlp.enable = true;
-      programs.zoxide.enable = true;
       programs.zsh = {
           enable = true;
           enableAutosuggestions = true;
@@ -241,8 +227,6 @@ in {
             credential.helper = "store";
         };
       };
-
-      qt.enable = graphical;
 
       services.darkman = {
         enable = false;

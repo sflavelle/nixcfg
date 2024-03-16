@@ -2,7 +2,7 @@
 # This project inspired by Veronica Explains video:
 # https://www.youtube.com/watch?v=z6oyqrrXTLM
 
-{ config, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 {
   imports =
@@ -71,8 +71,9 @@
   stylix.polarity = "dark";
 
 
-  services.xserver.displayManager.lightdm.enable = true;
-  programs.sway.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  programs.hyprland.enable = true;
+  programs.hyprland.package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
