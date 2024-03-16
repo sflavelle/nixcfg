@@ -71,10 +71,6 @@
   stylix.polarity = "dark";
 
 
-  services.xserver.displayManager.sddm.enable = true;
-  programs.hyprland.enable = true;
-  programs.hyprland.package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 

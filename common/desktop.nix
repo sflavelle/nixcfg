@@ -24,6 +24,13 @@
     comic-mono
   ];
 
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;
+  programs.hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  };
+
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = lib.mkDefault false;
   services.xserver.displayManager.autoLogin.user = "lily";

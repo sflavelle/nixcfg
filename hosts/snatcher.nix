@@ -55,13 +55,7 @@
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ hplip ];
 
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
-  programs.hyprland = {
-      enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  };
-
+  services.xserver.displayManager.autoLogin.enable = true;
   services.preload.enable = true;
 
   users.users.lily.extraGroups = [ "audio" ];

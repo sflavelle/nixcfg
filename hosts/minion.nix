@@ -48,9 +48,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-
   users.users.lily.extraGroups = [ "audio" ];
   users.users.lily.packages = (with pkgs; [
     pandoc
