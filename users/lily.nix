@@ -142,7 +142,6 @@ in {
       programs.comodoro.enable = true;
       programs.eza = {
         enable = true;
-        enableAliases = true;
         icons = true;
       };
       programs.firefox = { enable = graphical && !lowPower; };
