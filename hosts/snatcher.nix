@@ -88,14 +88,6 @@
     # Custom Packages
     (pkgs.callPackage ../pkgs/poptracker.nix { })
 
-  ]) ++ (with pkgs.obs-studio-plugins; [
-    obs-vkcapture
-    input-overlay
-    obs-text-pthread
-    obs-source-clone
-    obs-shaderfilter
-    obs-source-record
-    obs-pipewire-audio-capture
   ]);
 
   services.xserver.videoDrivers = [ "nvidia" ];

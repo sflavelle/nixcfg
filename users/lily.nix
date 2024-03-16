@@ -199,7 +199,6 @@ in {
           obs-vkcapture
           input-overlay
           obs-text-pthread
-          obs-source-clone
           obs-shaderfilter
           obs-source-record
           obs-pipewire-audio-capture

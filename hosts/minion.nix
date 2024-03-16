@@ -59,14 +59,6 @@
     # Custom Packages
     (pkgs.callPackage ../pkgs/poptracker.nix { })
 
-  ]) ++ (with pkgs.obs-studio-plugins; [
-    obs-vkcapture
-    input-overlay
-    obs-text-pthread
-    obs-source-clone
-    obs-shaderfilter
-    obs-source-record
-    obs-pipewire-audio-capture
   ]);
 
   services.syncthing = {
@@ -79,8 +71,6 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.variables = { EDITOR = "kak"; };
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
     cfs-zen-tweaks
     wget
