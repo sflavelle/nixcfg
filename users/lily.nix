@@ -4,6 +4,7 @@ let
 
   host = config.networking.hostName;
   lowPower = host == "dweller";
+  laptop = (host == "minion" || host == "dweller");
   graphical = config.services.xserver.enable;
 
 in {
@@ -274,12 +275,12 @@ in {
 #				}
 
 				listener {
-    				timeout = ${if lowPower then "180" else "900"} # 15 minutes: lock session (Dweller: 3 minutes)
+    				timeout = ${if laptop then "180" else "900"} # 15 minutes: lock session (Dweller: 3 minutes)
     				on-timeout = loginctl lock-session
 				}
 
 				listener {
-    				timeout = ${if lowPower then "300" else "1200"} # 20 minutes: monitors off (Dweller: 5 minutes)
+    				timeout = ${if laptop then "300" else "1200"} # 20 minutes: monitors off (Dweller: 5 minutes)
     				on-timeout = hyprctl dispatch dpms off
     				on-resume = hyprctl dispatch dpms on
 				}
@@ -350,12 +351,19 @@ in {
               "$mod" = "SUPER";
               "$modShift" = "SUPERSHIFT";
               general.allow_tearing = true;
-              decoration.blur = {
+              decoration.blur = if lowPower then false else {
                   size = 20;
                   passes = 2;
                   
               };
+              decoration.drop_shadow = !lowPower;
               decoration.rounding = 12;
+              input = {
+                  touchpad = {
+                      natural_scroll = true;
+                      clickfinger_behavior = true;
+                  };
+              };
               dwindle = {
                 pseudotile = true;
                 preserve_split = true;
