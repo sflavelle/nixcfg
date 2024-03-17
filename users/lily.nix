@@ -69,6 +69,8 @@ in {
         	hypridle hyprpaper hyprlock
         	grimblast
         	waybar
+        	clipman wl-clipboard
+        	gnome.nautilus
         ])
       ];
   };
@@ -144,7 +146,7 @@ in {
         enable = true;
         icons = true;
       };
-      programs.firefox = { enable = graphical && !lowPower; };
+      programs.firefox = { enable = graphical; };
       programs.fzf.enable = true;
       programs.gallery-dl.enable = !lowPower;
       programs.gh.enable = true;
@@ -192,7 +194,17 @@ in {
         output_folder = /home/lily/Documents/mangohud;
         full = true;
       };
-      programs.mpv = { enable = graphical; };
+      programs.mpv = {
+          enable = graphical;
+          scripts = with pkgs.mpvScripts; [
+              mpris
+              autoload
+              sponsorblock
+              mpv-playlistmanager
+              acompressor
+              reload
+          ];
+      };
       programs.obs-studio = {
         enable = graphical && !lowPower;
         plugins = with pkgs.obs-studio-plugins; [
@@ -255,11 +267,11 @@ in {
     				after_sleep_cmd = hyprctl dispatch dpms on
 				}
 
-				listener {
-    				timeout = 300
-    				on-timeout = $HOME/.config/hypr/idle-hass.sh ON
-    				on-resume = $HOME/.config/hypr/idle-hass.sh OFF
-				}
+#				listener {
+#    				timeout = 300
+#    				on-timeout = $HOME/.config/hypr/idle-hass.sh ON
+#    				on-resume = $HOME/.config/hypr/idle-hass.sh OFF
+#				}
 
 				listener {
     				timeout = ${if lowPower then "180" else "900"} # 15 minutes: lock session (Dweller: 3 minutes)
@@ -363,6 +375,7 @@ in {
                 "swaync"
                 "hyprpaper"
                 "hypridle"
+                "wl-paste -p -t text --watch clipman store -P --histpath='~/.local/share/clipman-primary.json'"
               ];
               monitor =
               	if host == "snatcher" then [
@@ -385,9 +398,11 @@ in {
               bind = [
                   # Quick Launches
                   "$mod, T, exec, alacritty"
-                  "$mod, E, exec, alacritty --working-directory ~ -e lf"
+                  "$mod, E, exec, nautilus"
+                  "$mod, B, exec, firefox"
                   "$mod, space, exec, wofi --show drun"
                   "$mod, backspace, exec, swaync-client -t"
+                  "$mod, V, exec, clipman pick -t wofi"
 
                   ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
@@ -469,11 +484,14 @@ in {
                   "float,class:^(com.usebottles.bottles)$,title:^(Bottles)$"
                   "group new,class:^(steam)$"
                   "workspace 3,class:^(steam)$"
+                  "tile,class:^(Archipelago.+Client)$"
+                  "monitor 0,class:mpv"
               ] ++ (lib.lists.flatten (lib.lists.forEach [
                   "class:Celeste"
                   "class:(steam_app_)"
+                  "title:(Nix|Emu|Biz)Hawk"
                   ]
-									(app: lib.lists.forEach ["immediate" "tile" "workspace 3" "monitor 1" "idleinhibit focus" "maximize" "group set" ] (rule: rule + "," + app))
+									(app: lib.lists.forEach ["immediate" "tile" "workspace 3 silent" "monitor 1" "idleinhibit focus" "group set" ] (rule: rule + "," + app))
 									));
           };
       };
