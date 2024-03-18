@@ -28,6 +28,7 @@ in {
 
           mpv
           playerctl
+          stc-cli
 
           nix-prefetch
 
@@ -351,7 +352,7 @@ in {
               "$mod" = "SUPER";
               "$modShift" = "SUPERSHIFT";
               general.allow_tearing = true;
-              decoration.blur = if lowPower then false else {
+              decoration.blur = if lowPower then { enabled = false;} else {
                   size = 20;
                   passes = 2;
                   
