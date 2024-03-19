@@ -351,7 +351,11 @@ in {
           settings = {
               "$mod" = "SUPER";
               "$modShift" = "SUPERSHIFT";
-              general.allow_tearing = true;
+              general = {
+              	allow_tearing = true;
+								gaps_out = if (host == "dweller") then 5 else 20;
+								cursor_inactive_timeout = 20;
+							};
               decoration.blur = if lowPower then { enabled = false;} else {
                   size = 20;
                   passes = 2;
@@ -368,6 +372,10 @@ in {
               dwindle = {
                 pseudotile = true;
                 preserve_split = true;
+              };
+              misc = {
+                  disable_hyprland_logo = true;
+                  disable_splash_rendering = true;
               };
               env = [
                   "LIBVA_DRIVER_NAME,nvidia"
@@ -460,6 +468,7 @@ in {
                   ", print, exec, grimblast --notify copysave screen" # Full desktop screenshot
                   "SHIFT, print, exec, grimblast --freeze --notify copysave area" # Area/Window Capture
                   "ALT, print, exec, grimblast --notify copysave active" # Active Window Capture
+                  "CTRL, print, exec, grimblast --notify copysave output" # Active Monitor
               ] ++ (
                 # This snippet copied from hyprland wiki
                 builtins.concatLists (builtins.genList (
@@ -495,12 +504,24 @@ in {
                   "workspace 3,class:^(steam)$"
                   "tile,class:^(Archipelago.+Client)$"
                   "monitor 0,class:mpv"
-              ] ++ (lib.lists.flatten (lib.lists.forEach [
+                  "suppressevent fullscreen maximize,class:mpv"
+                  "opacity 0 override,title:^(Wine System Tray)$"
+                  "nofocus,title:^(Wine System Tray)$"
+              ] ++
+              (lib.lists.forEach [
+                  "opacity 0.0 override 0.0 override"
+                  "noanim"
+                  "noinitalfocus"
+                  "maxsize 1 1"
+                  "noblur"
+              ] (rule: rule + ", class:^(xwaylandvideobridge)$"))
+              ++
+              (lib.lists.flatten (lib.lists.forEach [
                   "class:Celeste"
                   "class:(steam_app_)"
                   "title:(Nix|Emu|Biz)Hawk"
                   ]
-									(app: lib.lists.forEach ["immediate" "tile" "workspace 3 silent" "monitor 1" "idleinhibit focus" "group set" ] (rule: rule + "," + app))
+									(app: lib.lists.forEach ["immediate" "tile" "workspace 3 silent" "monitor 1" "idleinhibit focus" "group set" "suppressevent fullscreen maximize" ] (rule: rule + "," + app))
 									));
           };
       };

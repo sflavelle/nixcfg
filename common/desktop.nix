@@ -62,7 +62,10 @@
     jack.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [ simple-mtpfs pavucontrol libnotify ];
+  environment.systemPackages = with pkgs; [
+      simple-mtpfs pavucontrol libnotify
+      xwaylandvideobridge
+  ];
 
   services.flatpak.enable = true;
   hardware.steam-hardware.enable = true;
