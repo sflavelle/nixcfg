@@ -1,7 +1,6 @@
 (defwindow primarybar
-	:monitor '["DP-2" "DP-4" "PHL 436M6VBR" 1]'
+	:monitor "PHL 436M6VBR"
 	:geometry (geometry :x "0%"
-											:y "20px"
 											:width "90%"
 											:height "30px"
 											:anchor "top center")

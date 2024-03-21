@@ -239,6 +239,7 @@ in {
           obs-shaderfilter
           obs-source-record
           obs-pipewire-audio-capture
+          obs-teleport
         ];
       };
 #      programs.notmuch.enable = true;
@@ -414,7 +415,7 @@ in {
               ];
               exec-once = [
 #                "waybar"
-                "eww"
+                "eww --restart open primarybar"
                 "swaync"
                 "hyprpaper"
                 "hypridle"
