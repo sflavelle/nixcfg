@@ -12,6 +12,7 @@
     # which represents the GitHub repository URL + branch/commit-id/tag.
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nix-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     musnix.url = "github:musnix/musnix";
@@ -34,6 +35,7 @@
   outputs =
     { self,
       nixpkgs,
+      nix-stable,
       musnix,
       home-manager,
       hyprland,
@@ -41,13 +43,23 @@
       stylix,
       sops-nix,
       split-monitor-workspaces,
-      ... }@inputs: {
-      nixosModules."commonModules" = { config, lib, inputs, hyprland, hyprland-plugins, split-monitor-workspaces, ... }: {
+      ... }@inputs:
+				let
+					system = "x86_64-linux";
+					overlay-stable = final: prev: {
+    					stable = import nix-stable { inherit system; config.allowUnfree = true; };
+					};
+
+				in
+      {
+      nixosModules."commonModules" = { config, lib, inputs, hyprland, hyprland-plugins, split-monitor-workspaces, ... }:{
         imports = [
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
           inputs.sops-nix.nixosModules.sops
         ];
+
+        nixpkgs.overlays = [ overlay-stable ];
 
         home-manager = {
           useGlobalPkgs = true;

@@ -418,6 +418,22 @@
         "type": "github"
       }
     },
+    "nix-stable": {
+      "locked": {
+        "lastModified": 1710951922,
+        "narHash": "sha256-FOOBJ3DQenLpTNdxMHR2CpGZmYuctb92gF0lpiirZ30=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f091af045dff8347d66d186a62d42aceff159456",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1710272261,
@@ -520,6 +536,7 @@
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
         "musnix": "musnix",
+        "nix-stable": "nix-stable",
         "nixpkgs": "nixpkgs_3",
         "sops-nix": "sops-nix",
         "split-monitor-workspaces": "split-monitor-workspaces",

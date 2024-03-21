@@ -84,7 +84,6 @@ in {
         	swaynotificationcenter wofi
         	hypridle hyprpaper hyprlock
         	grimblast
-        	waybar
         	clipman wl-clipboard
         	gnome.nautilus
         ])
@@ -93,6 +92,16 @@ in {
 
   nix.settings.trusted-users = [ "lily" ];
   security.sudo.wheelNeedsPassword = false;
+
+  programs.steam = {
+      enable = (!lowPower && graphical);
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      package = pkgs.steam;
+      gamescopeSession = {
+          enable = true;
+      };
+  };
 
   home-manager.users.lily = {
       home = {
@@ -278,6 +287,29 @@ in {
       };
 
       services.playerctld.enable = true;
+      programs.waybar = {
+          enable = config.home-manager.users.lily.wayland.windowManager.hyprland.enable;
+          package = pkgs.stable.waybar;
+          systemd = { enable = true; target = "hyprland-session.target"; };
+          settings = {
+              primarybar = {
+                  layer = "top";
+                  position = "top";
+                  height = 32;
+                  output = [
+                      "DP-2"
+                      "DP-4"
+                  ];
+                  
+                  modules-left = [ "hyprland/workspaces" "mpris" ];
+                  modules-center = [ "hyprland/window" ];
+                  modules-right = [ "pulseaudio" "group/system" "user" "clock" ];
+
+                  "hyprland/workspaces" = {
+                  };
+              };
+          };
+      };
 
       xdg.configFile."hypr/idle-hass.sh" = {
           executable = true;
