@@ -162,7 +162,11 @@ in {
       programs.bat.enable = true;
       programs.btop.enable = true;
       programs.comodoro.enable = true;
-      programs.eza = {
+      programs.eww = {
+          enable = config.home-manager.users.lily.wayland.windowManager.hyprland.enable;
+          configDir = ../fragments/eww;
+      };
+			programs.eza = {
         enable = true;
         icons = true;
       };
@@ -409,7 +413,8 @@ in {
                   "HYPRCURSOR_SIZE,48"
               ];
               exec-once = [
-                "waybar"
+#                "waybar"
+                "eww"
                 "swaync"
                 "hyprpaper"
                 "hypridle"
@@ -532,7 +537,7 @@ in {
                   "float,class:^(poptracker)$,title:^(Settings)"
                   "float,class:^(com.usebottles.bottles)$,title:^(Bottles)$"
                   "group new,class:^(steam)$"
-                  "workspace 3,class:^(steam)$"
+                  "workspace 3 silent,class:^(steam)$"
                   "tile,class:^(Archipelago.+Client)$"
                   "monitor 0,class:mpv"
                   "suppressevent fullscreen maximize,class:mpv"
