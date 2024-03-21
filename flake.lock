@@ -553,16 +553,15 @@
         "nix-filter": "nix-filter"
       },
       "locked": {
-        "lastModified": 1709265859,
-        "narHash": "sha256-1LsW+CjapiODVndKp3EnfzOBpodH1dsxwMInq91AoDY=",
-        "owner": "bivsk",
+        "lastModified": 1710514039,
+        "narHash": "sha256-lwsQXv6GjSjxzxtChEpWcEMXomTFcWzAxTqxg1DSrAU=",
+        "owner": "TyroneWatermelon420",
         "repo": "split-monitor-workspaces",
-        "rev": "8da072e94b0347c8124f1fc3ed8ee032b6da9c8b",
+        "rev": "0b941e95ad10dd6ea1936d400d12b5b3b2e8ec83",
         "type": "github"
       },
       "original": {
-        "owner": "bivsk",
-        "ref": "bivsk",
+        "owner": "TyroneWatermelon420",
         "repo": "split-monitor-workspaces",
         "type": "github"
       }

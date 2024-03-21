@@ -29,8 +29,11 @@ in {
           mpv
           playerctl
           stc-cli
+          musikcube
 
           nix-prefetch
+
+          wayvnc
 
           pandoc
         ])
@@ -44,8 +47,13 @@ in {
           pavucontrol
           rclone
           fontpreview
+          astroid
+
+          valent
 
           tetrio-desktop
+          gweled rocksndiamonds
+          torus-trooper
 
         ])
         (lib.mkIf (config.services.xserver.enable && !lowPower) [ # More powerful devices
@@ -57,6 +65,12 @@ in {
             vscode
             bitwarden
             mlt sox
+        ])
+        (lib.mkIf (config.services.xserver.enable && host == "snatcher") [
+            gamehub gamescope
+            ultimatestunts stuntrally xmoto
+            runescape openttd
+            zaz
         ])
         (lib.mkIf (config.services.xserver.enable && lowPower) [ # Less powerful, chromebooks etc)
             jellyfin-mpv-shim
@@ -92,8 +106,12 @@ in {
         shellAliases = { };
       };
 
+      accounts = import ../fragments/lily-accounts.nix {inherit pkgs config lib home-manager inputs;};
+
       gtk = {
           enable = true;
+          iconTheme.package = pkgs.gnome.adwaita-icon-theme;
+          iconTheme.name = "Adwaita";
       };
 
       stylix = {
@@ -152,6 +170,7 @@ in {
       programs.fzf.enable = true;
       programs.gallery-dl.enable = !lowPower;
       programs.gh.enable = true;
+      programs.himalaya.enable = true;
       programs.imv.enable = graphical;
       programs.kakoune = {
           enable = true;
@@ -218,11 +237,13 @@ in {
           obs-pipewire-audio-capture
         ];
       };
+#      programs.notmuch.enable = true;
+      programs.offlineimap.enable = true;
       programs.pandoc.enable = true;
       programs.yt-dlp.enable = true;
       programs.zsh = {
           enable = true;
-          enableAutosuggestions = true;
+          autosuggestion.enable = true;
           oh-my-zsh = {
               enable = true;
               theme = "darkblood";
@@ -346,7 +367,7 @@ in {
       wayland.windowManager.hyprland = {
           enable = graphical;
           plugins = [
-            # inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces # currently crashes on current hypr ver
+            # inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces # currently segfaults hyprland
           ];
           settings = {
               "$mod" = "SUPER";
@@ -423,11 +444,13 @@ in {
 
                   ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
+                  "$mod, escape, exec, sleep 1 && hyprctl dispatch dpms off"
+
                   # Workspaces
                   "$mod, S, togglespecialworkspace,"
-                  "$modShift, S, movetoworkspace, special"
+                  "$modShift, S,movetoworkspace, special"
                   "$mod, G, togglespecialworkspace, game"
-                  "$modShift, G, movetoworkspace, special:game"
+                  "$modShift, G,movetoworkspace, special:game"
                   
                   "$mod, left, movefocus, l"
                   "$mod, right, movefocus, r"
@@ -448,6 +471,7 @@ in {
                   "$modShift, f, fakefullscreen,"
                   "$mod, period, togglefloating,"
                   "$modShift, period, pseudo,"
+                  "$mod, slash, pin,"
 
                   "$mod, C, centerwindow,"
                   "$mod, M, fullscreen, 1" #Maximise
@@ -478,8 +502,8 @@ in {
                     in
                       builtins.toString (x + 1 - (c * 10));
                   in [
-                      "$mod, ${ws}, workspace, ${toString (x + 1)}"
-                      "$modShift, ${ws}, movetoworkspace, ${toString (x + 1)}"
+                      "$mod, ${ws},workspace, ${toString (x + 1)}"
+                      "$modShift, ${ws},movetoworkspace, ${toString (x + 1)}"
                       ]
                     )
                     10)
@@ -487,6 +511,13 @@ in {
               layerrule = [
                   "blur, waybar"
               ];
+              workspace = if host == "snatcher" then [
+                  "1, monitor:DP-1, monitor:DP-3, default:true, gapsout:5, persistent:true"
+                  "2, monitor:DP-2, monitor:DP-4, default:true, persistent:true"
+                  "3, monitor:DP-2, monitor:DP-4, on-created-empty:steam"
+                  "4, monitor:DP-2, monitor:DP-4"
+                  "5, monitor:DP-1, monitor:DP-3, gapsout:5"
+              ] else [];
               windowrule = [
                   "float, confirm"
                   "float, dialog"
@@ -511,7 +542,7 @@ in {
               (lib.lists.forEach [
                   "opacity 0.0 override 0.0 override"
                   "noanim"
-                  "noinitalfocus"
+                  "noinitialfocus"
                   "maxsize 1 1"
                   "noblur"
               ] (rule: rule + ", class:^(xwaylandvideobridge)$"))
@@ -520,8 +551,9 @@ in {
                   "class:Celeste"
                   "class:(steam_app_)"
                   "title:(Nix|Emu|Biz)Hawk"
+                  "class:^(rocksndiamonds)$"
                   ]
-									(app: lib.lists.forEach ["immediate" "tile" "workspace 3 silent" "monitor 1" "idleinhibit focus" "group set" "suppressevent fullscreen maximize" ] (rule: rule + "," + app))
+									(app: lib.lists.forEach ["immediate" "tile" "workspace 3 silent" "monitor 1" "idleinhibit focus" "group set" "suppressevent fullscreen maximize" "fullscreen" ] (rule: rule + "," + app))
 									));
           };
       };

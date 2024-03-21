@@ -26,7 +26,7 @@
     };
     split-monitor-workspaces = {
       #url = "github:Duckonaut/split-monitor-workspaces";
-      url = "github:bivsk/split-monitor-workspaces/bivsk";
+      url = "github:TyroneWatermelon420/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
     };
   };
@@ -66,6 +66,9 @@
     				substituters = ["https://hyprland.cachix.org"];
     				trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
 				  };
+				nixpkgs.config.permittedInsecurePackages = [
+                "openssl-1.1.1w"
+        ];
       };
       nixosConfigurations = {
         "snatcher" = nixpkgs.lib.nixosSystem {
@@ -137,6 +140,7 @@
                   sopsFile = ./secrets/hass.yaml;
                   owner = "hass";
                 };
+                "passwords/icloud" = { owner = "lily"; };
               };
             }
           ];
