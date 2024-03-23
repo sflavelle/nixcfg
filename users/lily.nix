@@ -446,7 +446,6 @@ in {
                   "HYPRCURSOR_SIZE,48"
               ];
               exec-once = [
-                "waybar"
 #                "eww --restart open primarybar"
                 "swaync"
                 "hyprpaper"
