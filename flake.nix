@@ -13,6 +13,7 @@
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     musnix.url = "github:musnix/musnix";
@@ -36,6 +37,7 @@
     { self,
       nixpkgs,
       nix-stable,
+      nixos-hardware,
       musnix,
       home-manager,
       hyprland,
@@ -118,6 +120,18 @@
             ./users/lily.nix
             self.nixosModules.commonModules
           ];
+        };
+        "badgeseller" = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs; };
+            modules = [
+                ./common/desktop.nix
+                ./users/lily.nix
+                self.nixosModules.commonModules
+                "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-gnome.nix"
+                nixos-hardware.nixosModules.apple-macbook-air-6
+                nixos-hardware.nixosModules.apple-t2
+            ];
         };
         # Servers
         "neurariodotcom" = nixpkgs.lib.nixosSystem {

@@ -49,7 +49,7 @@
 
   # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = lib.mkDefault false;
 
   # Realtime Kernel
   security.rtkit.enable = true;
