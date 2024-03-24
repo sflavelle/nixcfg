@@ -163,7 +163,7 @@ in {
           enable = true;
           settings = {
               window.blur = !lowPower;
-              window.opacity = lib.mkForce 0.75;
+              window.opacity = lib.mkForce 0.85;
           };
       };
       programs.atuin = {
@@ -276,7 +276,7 @@ in {
         userName = "Lily Flavelle";
         userEmail = "me@neurario.com";
         diff-so-fancy.enable = true;
-        extraConfig= {
+        extraConfig = {
             credential.helper = "store";
         };
       };
@@ -314,7 +314,16 @@ in {
                   "hyprland/workspaces" = {
                   };
               };
-          } else {};
+          } else {
+              primarybar = {
+                  layer = "top";
+                  position = "top";
+                  height = 32;
+                  modules-left = [ "hyprland/workspaces" "mpris" ];
+                  modules-center = [ "hyprland/window" ];
+                  modules-right = [ "pulseaudio" "group/system" "user" "clock" ];
+              };
+          };
       };
 
       xdg.desktopEntries = {
