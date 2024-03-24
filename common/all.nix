@@ -15,6 +15,8 @@
     dates = [ "weekly" ];
   };
 
+  boot.tmp.cleanOnBoot = true;
+
   # Enable networking
   networking.networkmanager.enable = lib.mkDefault true;
   networking.search = [ "local" ];

@@ -7,6 +7,15 @@ let
   laptop = (host == "minion" || host == "dweller");
   graphical = config.services.xserver.enable;
 
+  readerscript = pkgs.writeShellApplication {
+      name = "ereadmenu";
+      runtimeInputs = [ pkgs.wofi pkgs.fzf ];
+      text = ''
+      	book=$(find ~/eBooks -iname \*.epub | ${if graphical then ("${pkgs.wofi}/bin/wofi -i -w 2") else ("${pkgs.fzf}/bin/fzf -1 -0")})
+      	${if graphical then "foliate" else "epr"} "$book"
+      '';
+  };
+
 in {
   users.users.lily = {
     isNormalUser = true;
@@ -48,6 +57,7 @@ in {
           rclone
           fontpreview
           astroid
+          foliate
 
           valent
 
@@ -92,16 +102,6 @@ in {
 
   nix.settings.trusted-users = [ "lily" ];
   security.sudo.wheelNeedsPassword = false;
-
-  programs.steam = {
-      enable = (!lowPower && graphical);
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      package = pkgs.steam;
-      gamescopeSession = {
-          enable = true;
-      };
-  };
 
   home-manager.users.lily = {
       home = {
@@ -311,6 +311,15 @@ in {
           };
       };
 
+      xdg.desktopEntries = {
+          readerscript = {
+              name = "eReadMenu";
+              genericName = "Book Launcher Picker";
+              exec = "${readerscript}";
+              terminal = false;
+          };
+      };
+
       xdg.configFile."hypr/idle-hass.sh" = {
           executable = true;
           text = ''
@@ -475,7 +484,7 @@ in {
                   "$mod, T, exec, alacritty"
                   "$mod, E, exec, nautilus"
                   "$mod, B, exec, firefox"
-                  "$mod, space, exec, wofi --show drun"
+                  "$mod, space, exec, wofi -i -w 4 --show drun"
                   "$mod, backspace, exec, swaync-client -t"
                   "$mod, V, exec, clipman pick -t wofi"
 
@@ -570,6 +579,7 @@ in {
                   "float,class:^(com.usebottles.bottles)$,title:^(Bottles)$"
                   "group new,class:^(steam)$"
                   "workspace 3 silent,class:^(steam)$"
+                  "stayfocused,class:^(steam)$,title:^(Sign in to Steam)$"
                   "tile,class:^(Archipelago.+Client)$"
                   "monitor 0,class:mpv"
                   "suppressevent fullscreen maximize,class:mpv"
