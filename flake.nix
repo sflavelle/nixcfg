@@ -74,6 +74,7 @@
           age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
           age.keyFile = "/home/lily/.config/sops/age/keys.txt";
           age.generateKey = true;
+          secrets."passwords/linux".neededForUsers = true;
         };
 
 				  nix.settings = {
@@ -125,6 +126,7 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
             modules = [
+                ./hosts/badgeseller.nix
                 ./common/desktop.nix
                 ./users/lily.nix
                 self.nixosModules.commonModules
