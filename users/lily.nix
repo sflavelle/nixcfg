@@ -4,7 +4,7 @@ let
 
   host = config.networking.hostName;
   lowPower = host == "dweller";
-  laptop = (host == "minion" || host == "dweller");
+  laptop = (host == "minion" || host == "dweller" || host == "badgeseller");
   graphical = config.services.xserver.enable;
 
   readerscript = pkgs.writeShellApplication {

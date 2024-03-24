@@ -130,10 +130,8 @@
                 ./common/desktop.nix
                 ./users/lily.nix
                 self.nixosModules.commonModules
-                "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares.nix"
                 nixos-hardware.nixosModules.apple-macbook-air-6
                 nixos-hardware.nixosModules.apple-t2
-                { hardware.pulseaudio.enable = nixpkgs.lib.mkForce false; }
             ];
         };
         # Servers
