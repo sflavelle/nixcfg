@@ -54,9 +54,12 @@
     sops
 
     nvd
+
+    udiskie
   ];
 
   programs.nix-ld.enable = true;
+  services.udisks2.enable = true;
   programs.zsh.enable = true;
 
   services.avahi = {
