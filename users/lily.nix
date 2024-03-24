@@ -292,7 +292,7 @@ in {
           enable = config.home-manager.users.lily.wayland.windowManager.hyprland.enable;
           package = pkgs.stable.waybar;
           systemd = { enable = true; target = "hyprland-session.target"; };
-          settings = {
+          settings = if (host == "snatcher") then {
               primarybar = {
                   layer = "top";
                   position = "top";
@@ -309,7 +309,7 @@ in {
                   "hyprland/workspaces" = {
                   };
               };
-          };
+          } else {};
       };
 
       xdg.desktopEntries = {
