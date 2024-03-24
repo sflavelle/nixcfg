@@ -77,7 +77,7 @@
 
   services.openssh = {
     enable = true;
-    settings.PermitRootLogin = "no";
+    settings.PermitRootLogin = lib.mkDefault "no";
   };
 
   programs.mosh = {

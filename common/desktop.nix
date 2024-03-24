@@ -24,8 +24,8 @@
     comic-mono
   ];
 
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
+  services.xserver.displayManager.sddm.enable = lib.mkDefault true;
+  services.xserver.displayManager.sddm.wayland.enable = lib.mkDefault true;
   programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -33,7 +33,7 @@
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = lib.mkDefault false;
-  services.xserver.displayManager.autoLogin.user = "lily";
+  services.xserver.displayManager.autoLogin.user = lib.mkDefault "lily";
 
   hardware.opengl.setLdLibraryPath = true;
   hardware.opengl = {
