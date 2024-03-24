@@ -4,6 +4,7 @@
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux_6_7;
   nixpkgs.config.allowUnfree = true;
+  hardware.enableRedistributableFirmware = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nix.gc = {
