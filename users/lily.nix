@@ -21,6 +21,7 @@ in {
     isNormalUser = true;
     description = "Lily Flavelle";
     extraGroups = [ "networkmanager" "wheel" "input" "audio" "video" ];
+    hashedPasswordFile = config.sops.secrets."passwords/linux".path;
     shell = pkgs.zsh;
     packages = with pkgs;
       lib.mkMerge [
