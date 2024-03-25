@@ -4,7 +4,7 @@ let
 
   host = config.networking.hostName;
   lowPower = host == "dweller";
-  laptop = (host == "minion" || host == "dweller");
+  laptop = (host == "minion" || host == "dweller" || host == "badgeseller");
   graphical = config.services.xserver.enable;
 
   readerscript = pkgs.writeShellApplication {
@@ -136,6 +136,11 @@ in {
               url = "https://archive.org/download/windows-xp-bliss-4k-lu-3840x2400/windows-xp-bliss-4k-lu-3840x2400.jpg"; # Windows XP "Bliss"
               hash = "sha256-QiSjrWx19YsHT425WTpa8NTptnBwGvdRm6/JRcSWAm8=";
           }
+        else if host == "badgeseller" then
+        	pkgs.fetchurl {
+            	url = "https://512pixels.net/downloads/macos-wallpapers-6k/10-4-6k.jpg"; # Mac OS X 10.4 'Tiger' wallpaper
+            	hash = "sha256-YG/7pekoRwMma5ujN3ImYxdWt7GTxI06tXvdS1uTjP4=";
+        	}
         else
           pkgs.fetchurl {
               url = "https://w.wallhaven.cc/full/yx/wallhaven-yxk7jg.jpg"; # BOTW Link/Zelda, modern day, subway
@@ -158,7 +163,7 @@ in {
           enable = true;
           settings = {
               window.blur = !lowPower;
-              window.opacity = lib.mkForce 0.75;
+              window.opacity = lib.mkForce 0.85;
           };
       };
       programs.atuin = {
@@ -271,7 +276,7 @@ in {
         userName = "Lily Flavelle";
         userEmail = "me@neurario.com";
         diff-so-fancy.enable = true;
-        extraConfig= {
+        extraConfig = {
             credential.helper = "store";
         };
       };
@@ -292,7 +297,7 @@ in {
           enable = config.home-manager.users.lily.wayland.windowManager.hyprland.enable;
           package = pkgs.stable.waybar;
           systemd = { enable = true; target = "hyprland-session.target"; };
-          settings = {
+          settings = if (host == "snatcher") then {
               primarybar = {
                   layer = "top";
                   position = "top";
@@ -322,6 +327,14 @@ in {
                   modules-left = [ "hyprland/workspaces" ];
                   modules-center = [ "hyprland/window" ];
                   modules-right = [ "clock" ];
+          } else {
+              primarybar = {
+                  layer = "top";
+                  position = "top";
+                  height = 32;
+                  modules-left = [ "hyprland/workspaces" "mpris" ];
+                  modules-center = [ "hyprland/window" ];
+                  modules-right = [ "pulseaudio" "group/system" "user" "clock" ];
               };
           };
       };
