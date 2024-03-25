@@ -309,6 +309,20 @@ in {
                   "hyprland/workspaces" = {
                   };
               };
+              accessorybar = {
+                  layer = "top";
+                  position = "top";
+                  height = 32;
+                  output = [
+                      "DP-1"
+                      "DP-3"
+                      "HDMI-A-2"
+                  ];
+
+                  modules-left = [ "hyprland/workspaces" ];
+                  modules-center = [ "hyprland/window" ];
+                  modules-right = [ "clock" ];
+              };
           };
       };
 
@@ -470,6 +484,8 @@ in {
                   # Sometimes the monitors show up two IDs up. I have no idea why.
                   "DP-4, preferred, 1440x900, 1"
                   "DP-3, preferred, 0x0, 1, transform, 3"
+                  # Then my spare
+                  "HDMI-A-2, 1920x1080@120, 5280x1440, 1"
               		]
               	else ", preferred, auto, 1";
 

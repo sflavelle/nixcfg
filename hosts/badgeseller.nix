@@ -42,7 +42,6 @@
 
   users.users.lily = {
       isNormalUser = true;
-      initialPassword = "M33p...";
   };
 
   # Configure keymap in X11

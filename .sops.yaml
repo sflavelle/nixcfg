@@ -3,6 +3,7 @@ keys:
     - &host_snatcher age19tktff0vsr2q97qlzhq98uczcd4ax79dxge7fc6dgu092gd9qp6q7z309u
     - &host_minion age1h96jvjsvn4522ae53kyzdky5ede74ezpqkgx2rgh6738jr8vvexqfzwmgl
     - &host_conductor 10abeac84929514c266dc127b0c73c6073819a00
+    - &host_badgeseller age1gjvc6jmkmwfhl84ep6myx4ntqs8325lvq7ee2q3ljt6t3y6d6a5s3zm8j3
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -10,5 +11,6 @@ creation_rules:
       - *lily
       - *host_minion
       - *host_snatcher
+      - *host_badgeseller
       pgp:
       - *host_conductor
