@@ -20,6 +20,10 @@
     hyprland.url = "github:hyprwm/Hyprland";
     stylix.url = "github:danth/stylix";
     sops-nix.url = "github:Mic92/sops-nix";
+    mac-brcm-fw = {
+        url = "path:/home/lily/.config/nixsupplements/brcm";
+        flake = false;
+    };
 
     # Hyprland Plugins
     hyprland-plugins = {
@@ -42,6 +46,7 @@
       home-manager,
       hyprland,
       hyprland-plugins,
+      mac-brcm-fw,
       stylix,
       sops-nix,
       split-monitor-workspaces,

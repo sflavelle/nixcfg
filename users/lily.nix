@@ -327,7 +327,8 @@ in {
                   modules-left = [ "hyprland/workspaces" ];
                   modules-center = [ "hyprland/window" ];
                   modules-right = [ "clock" ];
-          } else {
+          		};
+          	} else {
               primarybar = {
                   layer = "top";
                   position = "top";
