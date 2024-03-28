@@ -309,7 +309,7 @@ in {
                   
                   modules-left = [ "hyprland/workspaces" "mpris" ];
                   modules-center = [ "hyprland/window" ];
-                  modules-right = [ "pulseaudio" "group/system" "user" "clock" ];
+                  modules-right = [ "pulseaudio" "group/system" "tray" "user" "clock" ];
 
                   "hyprland/workspaces" = {
                   };
@@ -335,7 +335,7 @@ in {
                   height = 32;
                   modules-left = [ "hyprland/workspaces" "mpris" ];
                   modules-center = [ "hyprland/window" ];
-                  modules-right = [ "pulseaudio" "group/system" "user" "clock" ];
+                  modules-right = [ "pulseaudio" "group/system" "tray" "user" "clock" ];
               };
           };
       };
