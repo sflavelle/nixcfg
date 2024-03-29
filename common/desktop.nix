@@ -12,6 +12,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  security.pam.services.hyprlock = {};
 
   nixpkgs.config.input-fonts.acceptLicense = true;
   fonts.packages = with pkgs; [
@@ -39,6 +40,7 @@
   hardware.opengl = {
     enable = true;
     driSupport = true;
+    driSupport32Bit = true;
   };
 
   # Configure keymap in X11

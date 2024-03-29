@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 {
 
@@ -99,7 +99,11 @@
 
   };
 
-  stylix.image = ../resources/wallpapers/Distance-AllianceOS.png; # Boot/Login Theme
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml"; # Boot/Login Theme
+  stylix.image = pkgs.fetchurl {
+    url = "https://w.wallhaven.cc/full/4v/wallhaven-4vp755.jpg";
+    hash = "";
+  };
   
   environment.shellAliases = {
       just-nix = "just -f ${ pkgs.fetchurl { url = "https://git.neurario.com/splatsune/nixcfg/raw/commit/3ad3666ed2cf22366afa7d72965dc72c325cfd99/justfile"; hash = "sha256-Tw5UCx5SDODs29UtqXYsKRHDVu81xC2UYTt+M5n6TGI="; } }";

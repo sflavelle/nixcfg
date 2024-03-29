@@ -7,14 +7,7 @@ let
   laptop = (host == "minion" || host == "dweller" || host == "badgeseller");
   graphical = config.services.xserver.enable;
 
-  readerscript = pkgs.writeShellApplication {
-      name = "ereadmenu";
-      runtimeInputs = [ pkgs.wofi pkgs.fzf ];
-      text = ''
-      	book=$(find ~/eBooks -iname \*.epub | ${if graphical then ("${pkgs.wofi}/bin/wofi -i -w 2") else ("${pkgs.fzf}/bin/fzf -1 -0")})
-      	${if graphical then "foliate" else "epr"} "$book"
-      '';
-  };
+  colors = config.home-manager.users.lily.stylix.base16Scheme;
 
 in {
   users.users.lily = {
@@ -53,12 +46,15 @@ in {
             withOpenASAR = !lowPower;
             withVencord = !lowPower;
           })
+          fractal
+          
           playerctl
           pavucontrol
           rclone
           fontpreview
           astroid
           foliate
+          spacedrive
 
           valent
 
@@ -93,7 +89,7 @@ in {
         ])
         (lib.mkIf config.home-manager.users.lily.wayland.windowManager.hyprland.enable [ # Hyprland utils
         	swaynotificationcenter wofi
-        	hypridle hyprpaper hyprlock
+        	hypridle swww hyprlock
         	grimblast
         	clipman wl-clipboard
         	gnome.nautilus
@@ -118,6 +114,11 @@ in {
 
       accounts = import ../fragments/lily-accounts.nix {inherit pkgs config lib home-manager inputs;};
 
+      services.gnome-keyring = {
+          enable = true;
+          components = [ "secrets" ];
+      };
+
       gtk = {
           enable = true;
           iconTheme.package = pkgs.gnome.adwaita-icon-theme;
@@ -126,11 +127,13 @@ in {
 
       stylix = {
         autoEnable = graphical;
+        polarity = "dark";
         image = if host == "snatcher" then
-          pkgs.fetchurl {
-              url = "https://w.wallhaven.cc/full/9d/wallhaven-9dzz7x.png"; # Celeste official art, Summit
-              hash = "sha256-5F8ovJQOj6xVu5aiKufDtQH7J4ZJufXstphUhqsN9X4=";
-          }
+        	/home/lily/Pictures/Wallpapers/Celeste-Upscale/upscayl_jpg_realesrgan-x4plus-anime_2x/complete-7.jpg
+#          pkgs.fetchurl {
+#              url = "https://w.wallhaven.cc/full/k7/wallhaven-k7659d.jpg"; # Celeste official art, Core
+#              hash = "sha256-AGSaVK5P5L7oemQ9s9vd354nWtpl8/v4O9nbRNroAA0=";
+#          }
         else if host == "minion" then
           pkgs.fetchurl {
               url = "https://archive.org/download/windows-xp-bliss-4k-lu-3840x2400/windows-xp-bliss-4k-lu-3840x2400.jpg"; # Windows XP "Bliss"
@@ -156,6 +159,9 @@ in {
             package = pkgs.cantarell-fonts;
           };
           serif = sansSerif;
+        };
+        targets.waybar = {
+            enableRightBackColors = true;
         };
       };
 
@@ -227,12 +233,6 @@ in {
 				      *) highlight -O ansi "$1" || cat "$1";;
 					  esac
 						'';
-      };
-      programs.mangohud.enable = graphical && !lowPower;
-      programs.mangohud.enableSessionWide = true;
-      programs.mangohud.settings = {
-        output_folder = /home/lily/Documents/mangohud;
-        full = true;
       };
       programs.mpv = {
           enable = graphical;
@@ -335,17 +335,8 @@ in {
                   height = 32;
                   modules-left = [ "hyprland/workspaces" "mpris" ];
                   modules-center = [ "hyprland/window" ];
-                  modules-right = [ "pulseaudio" "group/system" "tray" "user" "clock" ];
+                  modules-right = [ "pulseaudio" "group/system" "tray" (lib.mkIf laptop "battery") "user" "clock" ];
               };
-          };
-      };
-
-      xdg.desktopEntries = {
-          readerscript = {
-              name = "eReadMenu";
-              genericName = "Book Launcher Picker";
-              exec = "${readerscript}";
-              terminal = false;
           };
       };
 
@@ -433,12 +424,6 @@ in {
 				}
 
 			'';
-			xdg.configFile."hypr/hyprpaper.conf".text = ''
-				splash = false
-			  
-				preload = ${config.home-manager.users.lily.stylix.image}
-				wallpaper = ,${config.home-manager.users.lily.stylix.image}
-				'';
       wayland.windowManager.hyprland = {
           enable = graphical;
           plugins = [
@@ -486,10 +471,15 @@ in {
               exec-once = [
 #                "eww --restart open primarybar"
                 "swaync"
-                "hyprpaper"
+                "swww init --no-cache"
                 "hypridle"
                 "udiskie &"
                 "wl-paste -p -t text --watch clipman store -P --histpath='~/.local/share/clipman-primary.json'"
+                "[workspace 1 silent] discord"
+                "[workspace 3 silent] com.valvesoftware.Steam"
+              ];
+              exec = [
+                  "swww img ${config.home-manager.users.lily.stylix.image} --transition-type random --transition-step 10"
               ];
               monitor =
               	if host == "snatcher" then [
@@ -609,6 +599,7 @@ in {
               windowrulev2 = [
                   "float,class:^(poptracker)$,title:^(Settings)"
                   "float,class:^(com.usebottles.bottles)$,title:^(Bottles)$"
+                  "float,class:^(org.mozilla.Thunderbird)$,title:^$"
                   "group new,class:^(steam)$"
                   "workspace 3 silent,class:^(steam)$"
                   "stayfocused,class:^(steam)$,title:^(Sign in to Steam)$"
@@ -632,10 +623,70 @@ in {
                   "title:(Nix|Emu|Biz)Hawk"
                   "class:^(rocksndiamonds)$"
                   ]
-									(app: lib.lists.forEach ["immediate" "tile" "workspace 3 silent" "monitor 1" "idleinhibit focus" "group set" "suppressevent fullscreen maximize" "fullscreen" ] (rule: rule + "," + app))
+									(app: lib.lists.forEach ["immediate" "tile" "workspace 3 silent" "idleinhibit focus" "group set" "maximize" ] (rule: rule + "," + app))
 									));
           };
       };
+
+      home.file = {
+        ".config/Vencord/themes/stylix-discord.css".text = ''
+/**
+* @name base16
+* @author ThePinkUnicorn
+* @version 1.0.0
+* @description base16 theme generated from https://github.com/tinted-theming/schemes
+**/
+
+:root {
+    --base00: #''+colors.base00+''; /* Black */
+    --base01: #''+colors.base01+''; /* Bright Black */
+    --base02: #''+colors.base02+''; /* Grey */
+    --base03: #''+colors.base03+''; /* Brighter Grey */
+    --base04: #''+colors.base04+''; /* Bright Grey */
+    --base05: #''+colors.base05+''; /* White */
+    --base06: #''+colors.base06+''; /* Brighter White */
+    --base07: #''+colors.base07+''; /* Bright White */
+    --base08: #''+colors.base08+''; /* Red */
+    --base09: #''+colors.base09+''; /* Orange */
+    --base0A: #''+colors.base0A+''; /* Yellow */
+    --base0B: #''+colors.base0B+''; /* Green */
+    --base0C: #''+colors.base0C+''; /* Cyan */
+    --base0D: #''+colors.base0D+''; /* Blue */
+    --base0E: #''+colors.base0E+''; /* Purple */
+    --base0F: #''+colors.base0F+''; /* Magenta */
+
+    --primary-630: var(--base00); /* Autocomplete background */
+    --primary-660: var(--base00); /* Search input background */
+}
+
+.theme-light, .theme-dark {
+    --search-popout-option-fade: none; /* Disable fade for search popout */
+    --bg-overlay-2: var(--base00); /* These 2 are needed for proper threads coloring */
+    --home-background: var(--base00);
+    --background-primary: var(--base00);
+    --background-secondary: var(--base01);
+    --background-secondary-alt: var(--base01);
+    --channeltextarea-background: var(--base01);
+    --background-tertiary: var(--base00);
+    --background-accent: var(--base0E);
+    --background-floating: var(--base01);
+    --background-modifier-selected: var(--base00);
+    --text-normal: var(--base05);
+    --text-secondary: var(--base00);
+    --text-muted: var(--base03);
+    --text-link: var(--base0C);
+    --interactive-normal: var(--base05);
+    --interactive-hover: var(--base0C);
+    --interactive-active: var(--base0A);
+    --interactive-muted: var(--base03);
+    --header-primary: var(--base06);
+    --header-secondary: var(--base03);
+    --scrollbar-thin-track: transparent;
+    --scrollbar-auto-track: transparent;
+}
+'';
   };
+
+      };
 
 }

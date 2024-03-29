@@ -18,6 +18,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     musnix.url = "github:musnix/musnix";
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprpaper.url = "github:hyprwm/hyprpaper";
+    hyprpaper.inputs.nixpkgs.follows = "nixpkgs";
+    hyprlock.url = "github:hyprwm/hyprlock";
+    hyprlock.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
     sops-nix.url = "github:Mic92/sops-nix";
     mac-brcm-fw = {
@@ -45,6 +49,8 @@
       musnix,
       home-manager,
       hyprland,
+      hyprpaper,
+      hyprlock,
       hyprland-plugins,
       mac-brcm-fw,
       stylix,
@@ -54,7 +60,7 @@
 				let
 					system = "x86_64-linux";
 					overlay-stable = final: prev: {
-    					stable = import nix-stable { inherit system; config.allowUnfree = true; };
+            stable = import nix-stable { inherit system; config.allowUnfree = true; };
 					};
 
 				in
@@ -82,10 +88,10 @@
           secrets."passwords/linux".neededForUsers = true;
         };
 
-				  nix.settings = {
-    				substituters = ["https://hyprland.cachix.org"];
-    				trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-				  };
+        nix.settings = {
+          substituters = ["https://hyprland.cachix.org"];
+          trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+        };
 				nixpkgs.config.permittedInsecurePackages = [
                 "openssl-1.1.1w"
         ];

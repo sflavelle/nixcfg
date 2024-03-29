@@ -12,12 +12,6 @@
 
   # boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
   systemd.extraConfig = "DefaultLimitNOFILE=524288";
-  musnix = {
-    enable = true;
-    soundcardPciId = "0c:00.6";
-    kernel.realtime = true;
-    kernel.packages = pkgs.linuxPackages_latest_rt;
-  };
 
   networking.hostName = "snatcher"; # Define your hostname.
   networking.firewall.enable = false;
@@ -57,7 +51,7 @@
           hashTableSizeMB = 8096;
           verbosity = "crit";
           extraOptions = [
-              "--thread-count" "8"
+              "--thread-count" "4"
               "--loadavg-target" "5.0"
           ];
 		  };
@@ -76,24 +70,18 @@
     beets-unstable
     # Programs
     steam-rom-manager
-    sunshine
-    discord-rpc
     protontricks
     obs-studio
     bitwig-studio
     godot_4
     via
-    hydrus
 
     # Media Production
-    davinci-resolve
+    (davinci-resolve.override { studioVariant = true; } )
     inkscape
     reaper
     # Plugins
     yabridge
-    zam-plugins
-    CHOWTapeModel
-    lsp-plugins
 
     gzdoom
 
@@ -129,9 +117,16 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.variables = { EDITOR = "kak"; };
+  environment.variables = { 
+    EDITOR = "kak";
+    GBM_BACKEND = "nvidia-drm";
+    LIBVA_DRIVER_NAME = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
+    (davinci-resolve.override { studioVariant = true; } )
+    
     wget
     httpie
     pandoc
@@ -140,10 +135,7 @@
     curl
     partition-manager
     gparted
-    python311
-    python311Packages.pipx
-    python311Packages.pip
-    wineWowPackages.stagingFull
+    wineWowPackages.waylandFull
     wineasio
     coreutils
     clang
