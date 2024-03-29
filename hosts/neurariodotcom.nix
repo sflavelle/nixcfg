@@ -38,8 +38,7 @@
     php
     rclone
     neovim
-    helix
-    writefreely
+    python312Packages.pelican
   ];
 
   # Web Services.
@@ -47,25 +46,11 @@
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "me+acme@neurario.com";
 
-  services.mysql = {
-    enable = true;
-    package = pkgs.mariadb;
-    ensureUsers = [
-      {
-        name = "writefreely";
-        ensurePermissions = { "writefreely.*" = "ALL PRIVILEGES"; };
-      }
-      { name = "splatsune"; }
-    ];
-    ensureDatabases = [ "writefreely" ];
-  };
-
   services.nginx = {
     enable = true;
     recommendedProxySettings = true;
     recommendedOptimisation = true;
     recommendedTlsSettings = true;
-    virtualHosts."neurario.com" = { enableACME = lib.mkForce true; };
   };
 
   services.uptime-kuma = {
@@ -78,22 +63,21 @@
   services.node-red.withNpmAndGcc = true;
   services.node-red.openFirewall = true;
 
-  services.writefreely = {
-    enable = true;
-    host = "neurario.com";
-    nginx.enable = true;
-    nginx.forceSSL = true;
-    settings = {
-      app.single_user = true;
-      app.federation = true;
-      app.site_name = "Head in Space";
-    };
-    database = {
-      type = "mysql";
-      passwordFile = "/.secrets/writefreelydb";
-      createLocally = true;
-    };
-    admin.name = "Splatsune";
+  services.dendrite = {
+      # Matrix
+      enable = true;
+      loadCredential = [
+          "private_key:/home/lily/matrix_key.pem"
+      ];
+      settings = {
+          global.server_name = "chat.neurario.com";
+          # global.well_known_server_name = "neurario.com:8443";
+          global.private_key = "$CREDENTIALS_DIRECTORY/private_key";
+
+          client_api.registration_shared_secret = "Schizm For Dummies";
+
+          mscs.mscs = [ "msc2836" ];
+      };
   };
 
   services.forgejo = {
@@ -106,6 +90,10 @@
 
   # Container proxies
   services.nginx.virtualHosts = {
+    "neurario.com" = {
+        root = "/home/lily/repos/ndc";
+        default = true;
+    };
     "git.neurario.com" = {
       enableACME = true;
       forceSSL = true;
@@ -141,6 +129,13 @@
         basicAuth = { neutopia = "meep"; };
       };
     };
+    "chat.neurario.com" = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+            proxyPass = "http://127.0.0.1:8008";
+        };
+    };
   };
 
   virtualisation.podman.enable = true;
@@ -156,7 +151,7 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 443 80 18080 ];
+  networking.firewall.allowedTCPPorts = [ 443 80 18080 8008 8448 ];
   networking.firewall.allowedUDPPorts = [ ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
