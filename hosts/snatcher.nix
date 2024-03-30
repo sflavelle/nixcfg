@@ -111,6 +111,11 @@
     user = "lily";
   };
 
+  programs.gamescope = {
+      enable = true;
+      args = [ "--fullscreen" ];
+  };
+
   virtualisation.containers.enable = true;
   virtualisation.podman.enable = true;
 
@@ -121,9 +126,6 @@
   # $ nix search wget
   environment.variables = { 
     EDITOR = "kak";
-    GBM_BACKEND = "nvidia-drm";
-    LIBVA_DRIVER_NAME = "nvidia";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [

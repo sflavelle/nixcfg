@@ -55,6 +55,7 @@ in {
           astroid
           foliate
           spacedrive
+          gnome.file-roller
 
           valent
 
@@ -129,11 +130,10 @@ in {
         autoEnable = graphical;
         polarity = "dark";
         image = if host == "snatcher" then
-        	/home/lily/Pictures/Wallpapers/Celeste-Upscale/upscayl_jpg_realesrgan-x4plus-anime_2x/complete-7.jpg
-#          pkgs.fetchurl {
-#              url = "https://w.wallhaven.cc/full/k7/wallhaven-k7659d.jpg"; # Celeste official art, Core
-#              hash = "sha256-AGSaVK5P5L7oemQ9s9vd354nWtpl8/v4O9nbRNroAA0=";
-#          }
+          pkgs.fetchurl {
+              url = "https://lemmy.ca/pictrs/image/4e94b9b8-a119-4b83-a617-3b1ba0413316.jpeg"; # In The Streets of Scandinavia, Kevin Gnutzmans, https://www.artstation.com/artwork/lRwQae
+              hash = "sha256-y50sBdWG20l9g478wFgm4iE/DT9j9U6FXK1r0XdKWdE=";
+          }
         else if host == "minion" then
           pkgs.fetchurl {
               url = "https://archive.org/download/windows-xp-bliss-4k-lu-3840x2400/windows-xp-bliss-4k-lu-3840x2400.jpg"; # Windows XP "Bliss"
@@ -459,10 +459,7 @@ in {
                   disable_splash_rendering = true;
               };
               env = [
-                  "LIBVA_DRIVER_NAME,nvidia"
                   "XDG_SESSION_TYPE,wayland"
-                  "GBM_BACKEND,nvidia-drm"
-                  "__GLX_VENDOR_LIBRARY_NAME,nvidia"
                   "WLR_NO_HARDWARE_CURSORS,1"
                   "MOZ_ENABLE_WAYLAND,1"
                   "HYPRCURSOR_THEME,HyprBibataModernClassicSVG"
@@ -599,7 +596,7 @@ in {
                   "float,class:^(poptracker)$,title:^(Settings)"
                   "float,class:^(com.usebottles.bottles)$,title:^(Bottles)$"
                   "float,class:^(org.mozilla.Thunderbird)$,title:^$"
-                  "group new,class:^(steam)$"
+                  "group new locked,class:^(steam)$"
                   "workspace 3 silent,class:^(steam)$"
                   "stayfocused,class:^(steam)$,title:^(Sign in to Steam)$"
                   "tile,class:^(Archipelago.+Client)$"
@@ -622,7 +619,7 @@ in {
                   "title:(Nix|Emu|Biz)Hawk"
                   "class:^(rocksndiamonds)$"
                   ]
-									(app: lib.lists.forEach ["immediate" "tile" "workspace 3 silent" "idleinhibit focus" "group set" "maximize" ] (rule: rule + "," + app))
+									(app: lib.lists.forEach ["immediate" "tile" "workspace 3 silent" "idleinhibit focus" "group invade" ] (rule: rule + "," + app))
 									));
           };
       };
