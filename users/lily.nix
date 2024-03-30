@@ -471,7 +471,6 @@ in {
               exec-once = [
 #                "eww --restart open primarybar"
                 "swaync"
-                "swww init --no-cache"
                 "hypridle"
                 "udiskie &"
                 "wl-paste -p -t text --watch clipman store -P --histpath='~/.local/share/clipman-primary.json'"
@@ -479,7 +478,7 @@ in {
                 "[workspace 3 silent] com.valvesoftware.Steam"
               ];
               exec = [
-                  "swww img ${config.home-manager.users.lily.stylix.image} --transition-type random --transition-step 10"
+                  "swww init --no-cache; swww img ${config.home-manager.users.lily.stylix.image} --transition-type random --transition-step 10"
               ];
               monitor =
               	if host == "snatcher" then [
