@@ -90,16 +90,17 @@
 
   ]);
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
 
-  hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-  };
+  hardware.opengl.extraPackages = with pkgs; [
+	  rocmPackages.clr.icd
+	];
+
+	systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
+
 
   hardware.keyboard.qmk.enable = true;
   hardware.bluetooth.enable = true;
