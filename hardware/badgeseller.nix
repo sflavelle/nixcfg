@@ -11,7 +11,6 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/087f1ef5-bf9f-4eae-a6cd-f16da25535bc";
@@ -30,9 +29,9 @@
     name = "brcm-firmware";
 
     buildCommand = ''
-      dir="$out/lib/firmware"
+      dir="$out"
       mkdir -p "$dir"
-      cp -r ${inputs.mac-brcm-fw}/* "$dir"
+      cp -r ${inputs.mac-brcm-fw}/lib "$dir"
     '';
   })
 ];

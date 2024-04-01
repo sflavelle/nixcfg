@@ -9,6 +9,13 @@ let
 
   colors = config.home-manager.users.lily.stylix.base16Scheme;
 
+  bizhawk = import inputs.bizhawk {
+      forNixOS = true;
+      pkgs = pkgs;
+      mono = pkgs.mono;
+      lua = pkgs.lua5_4;
+  };
+
 in {
   users.users.lily = {
     isNormalUser = true;
@@ -24,6 +31,7 @@ in {
           calc
           edir
           epr
+          mimeo
 
           nom
 
@@ -73,6 +81,8 @@ in {
             vscode
             bitwarden
             mlt sox
+            retroarchFull
+            # bizhawk.emuhawk
         ])
         (lib.mkIf (config.services.xserver.enable && host == "snatcher") [
             gamehub gamescope
@@ -93,7 +103,7 @@ in {
         	hypridle swww hyprlock
         	grimblast
         	clipman wl-clipboard
-        	gnome.nautilus
+        	gnome.nautilus blueman bluetuith
         ])
       ];
   };
@@ -433,7 +443,7 @@ in {
               "$mod" = "SUPER";
               "$modShift" = "SUPERSHIFT";
               general = {
-              	allow_tearing = true;
+              	# allow_tearing = true;
 								gaps_out = if (host == "dweller") then 5 else 20;
 								cursor_inactive_timeout = 20;
 							};
@@ -457,6 +467,11 @@ in {
               misc = {
                   disable_hyprland_logo = true;
                   disable_splash_rendering = true;
+                  enable_swallow = true;
+                  swallow_regex = "^(Alacritty)$";
+                  allow_session_lock_restore = true;
+                  key_press_enables_dpms = true;
+                  new_window_takes_over_fullscreen = 2;
               };
               env = [
                   "XDG_SESSION_TYPE,wayland"
@@ -487,6 +502,10 @@ in {
                   # Then my spare
                   "HDMI-A-2, 1920x1080@120, 5280x1440, 1"
               		]
+              	else if laptop then [
+                  	"eDP-1,highrr,auto,1"
+                  	",preferred,auto,1"
+              	]
               	else ", preferred, auto, 1";
 
               bindm = [
@@ -508,7 +527,6 @@ in {
 
                   ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
-                  "$mod, escape, exec, sleep 1 && hyprctl dispatch dpms off"
 
                   # Workspaces
                   "$mod, S, togglespecialworkspace,"
@@ -578,7 +596,7 @@ in {
               workspace = if host == "snatcher" then [
                   "1, monitor:DP-1, monitor:DP-3, default:true, gapsout:5, persistent:true"
                   "2, monitor:DP-2, monitor:DP-4, default:true, persistent:true"
-                  "3, monitor:DP-2, monitor:DP-4, on-created-empty:steam"
+                  "3, monitor:DP-2, monitor:DP-4, on-created-empty:com.valvesoftware.Steam"
                   "4, monitor:DP-2, monitor:DP-4"
                   "5, monitor:DP-1, monitor:DP-3, gapsout:5"
               ] else [];
@@ -599,6 +617,8 @@ in {
                   "group new locked,class:^(steam)$"
                   "workspace 3 silent,class:^(steam)$"
                   "stayfocused,class:^(steam)$,title:^(Sign in to Steam)$"
+                  "nofocus,class:^(steam)$,title:^(notificationtoasts)"
+                  "rounding 0,class:^(steam)$,title:^(notificationtoasts)"
                   "tile,class:^(Archipelago.+Client)$"
                   "monitor 0,class:mpv"
                   "suppressevent fullscreen maximize,class:mpv"

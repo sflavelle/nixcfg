@@ -45,6 +45,10 @@
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ hplip ];
 
+	hardware.bluetooth = {
+    	enable = true;
+	};
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 

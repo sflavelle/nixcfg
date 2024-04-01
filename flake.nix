@@ -24,8 +24,10 @@
     hyprlock.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
     sops-nix.url = "github:Mic92/sops-nix";
+    bizhawk.url = "github:TASEmulators/BizHawk/master";
+    bizhawk.flake = false;
     mac-brcm-fw = {
-        url = "path:/home/lily/.config/nixsupplements/brcm";
+        url = "github:AdityaGarg8/Apple-Firmware";
         flake = false;
     };
 
@@ -36,7 +38,7 @@
     };
     split-monitor-workspaces = {
       #url = "github:Duckonaut/split-monitor-workspaces";
-      url = "github:TyroneWatermelon420/split-monitor-workspaces";
+      url = "github:chriselrod/split-monitor-workspaces/patch-1";
       inputs.hyprland.follows = "hyprland";
     };
   };
@@ -55,6 +57,7 @@
       mac-brcm-fw,
       stylix,
       sops-nix,
+      bizhawk,
       split-monitor-workspaces,
       ... }@inputs:
 				let
