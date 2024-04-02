@@ -5,6 +5,7 @@ let
   host = config.networking.hostName;
   lowPower = host == "dweller";
   laptop = (host == "minion" || host == "dweller" || host == "badgeseller");
+  hiDpi = (host == "badgeseller");
   graphical = config.services.xserver.enable;
 
   colors = config.home-manager.users.lily.stylix.base16Scheme;
@@ -180,6 +181,8 @@ in {
           settings = {
               window.blur = !lowPower;
               window.opacity = lib.mkForce 0.85;
+              font.size = if hiDpi then lib.mkForce 18 else 12;
+              colors.transparent_background_colors = true;
           };
       };
       programs.atuin = {
@@ -210,7 +213,6 @@ in {
       programs.kakoune = {
           enable = true;
           defaultEditor = true;
-          plugins = with pkgs.kakounePlugins; [ auto-pairs-kak kak-lsp smarttab-kak ];
           config = {
               tabStop = 2;
               ui = {
@@ -225,25 +227,6 @@ in {
           };
       };
       programs.khal.enable = true;
-      programs.lf = {
-          enable = true;
-          settings = {
-              mouse = true;
-              icons = true;
-          };
-          previewer.source = pkgs.writeShellScript "pv.sh" ''
-  					#!/bin/sh
-
-					  case "$1" in
-				      *.tar*) tar tf "$1";;
-				      *.zip) unzip -l "$1";;
-				      *.rar) unrar l "$1";;
-				      *.7z) 7z l "$1";;
-				      *.pdf) pdftotext "$1" -;;
-				      *) highlight -O ansi "$1" || cat "$1";;
-					  esac
-						'';
-      };
       programs.mpv = {
           enable = graphical;
           scripts = with pkgs.mpvScripts; [
@@ -307,7 +290,65 @@ in {
           enable = config.home-manager.users.lily.wayland.windowManager.hyprland.enable;
           package = pkgs.stable.waybar;
           systemd = { enable = true; target = "hyprland-session.target"; };
-          settings = if (host == "snatcher") then {
+          style = ''
+          	.modules-right {
+              	font-size: 18px;
+          	}
+          '';
+          settings = lib.mkMerge [
+              ({ primarybar = { # Common settings
+              			
+                  "clock".format = "{:%A %d, %I:%M %p}";
+                  "user".format = "{user}@${host}";
+
+                  "cpu".format = "{}% ";
+                  "memory".format = "{}% ";
+                  "disk".format = "{percentage_used}% full 🖴";
+                  "bluetooth" = {
+											"tooltip-format" = "{controller_alias}\t{controller_address}";
+											"tooltip-format-connected" = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+											"tooltip-format-enumerate-connected" = "{device_alias}\t{device_address}";
+                  };
+
+                  "pulseaudio" = {
+                      "on-click" = "pavucontrol";
+                      "format" = "{volume}% {icon}";
+                      "format-bluetooth" = "{volume}% {icon}";
+									    "format-muted" = "";
+									    "format-icons" = {
+								        "headphone" = "";
+								        "hands-free" = "";
+								        "headset" = "";
+								        "phone" = "";
+								        "portable" = "";
+								        "car" = "";
+								        "default" = ["" ""];
+											};
+                  };
+			
+									"network" = {
+										"format-wifi" = "{essid} ({signalStrength}%) ";
+										"format-ethernet" = "{ipaddr}/{cidr} 󰊗";
+										"format-disconnected" = "no internet";
+									};
+
+                  "hyprland/window" = {
+                      separate-outputs = true;
+                      rewrite = {
+                          "(.*) — Mozilla Firefox" = "🌎 $1";
+                      };
+                  };
+
+                  "group/system" = {
+                      orientation = "inherit";
+                      modules = [ "cpu" "memory" "disk" "network"
+                      	(lib.mkIf config.hardware.bluetooth.enable "bluetooth")
+                      	(lib.mkIf laptop "backlight")
+                      ];
+                  };
+              };
+              })
+              (lib.mkIf (host == "snatcher") {
               primarybar = {
                   layer = "top";
                   position = "top";
@@ -320,9 +361,6 @@ in {
                   modules-left = [ "hyprland/workspaces" "mpris" ];
                   modules-center = [ "hyprland/window" ];
                   modules-right = [ "pulseaudio" "group/system" "tray" "user" "clock" ];
-
-                  "hyprland/workspaces" = {
-                  };
               };
               accessorybar = {
                   layer = "top";
@@ -338,7 +376,9 @@ in {
                   modules-center = [ "hyprland/window" ];
                   modules-right = [ "clock" ];
           		};
-          	} else {
+          		})
+          		
+          		(lib.mkIf (host != "snatcher") {
               primarybar = {
                   layer = "top";
                   position = "top";
@@ -347,7 +387,8 @@ in {
                   modules-center = [ "hyprland/window" ];
                   modules-right = [ "pulseaudio" "group/system" "tray" (lib.mkIf laptop "battery") "user" "clock" ];
               };
-          };
+              })
+          ];
       };
 
       xdg.configFile."hypr/idle-hass.sh" = {
@@ -619,7 +660,8 @@ in {
                   "stayfocused,class:^(steam)$,title:^(Sign in to Steam)$"
                   "nofocus,class:^(steam)$,title:^(notificationtoasts)"
                   "rounding 0,class:^(steam)$,title:^(notificationtoasts)"
-                  "tile,class:^(Archipelago.+Client)$"
+                  "tile,class:^(Archipelago)"
+                  "tile,title:^(Lua Console)$"
                   "monitor 0,class:mpv"
                   "suppressevent fullscreen maximize,class:mpv"
                   "opacity 0 override,title:^(Wine System Tray)$"
