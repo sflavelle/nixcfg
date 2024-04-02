@@ -478,7 +478,7 @@ in {
       wayland.windowManager.hyprland = {
           enable = graphical;
           plugins = [
-            # inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces # currently segfaults hyprland
+            inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
           ];
           settings = {
               "$mod" = "SUPER";
@@ -527,7 +527,7 @@ in {
                 "hypridle"
                 "udiskie &"
                 "wl-paste -p -t text --watch clipman store -P --histpath='~/.local/share/clipman-primary.json'"
-                "[workspace 1 silent] discord"
+                "[workspace 11 silent] discord"
                 "[workspace 3 silent] com.valvesoftware.Steam"
               ];
               exec = [
@@ -535,11 +535,11 @@ in {
               ];
               monitor =
               	if host == "snatcher" then [
-                  "DP-2, preferred, 1440x900, 1"
-                  "DP-1, preferred, 0x0, 1, transform, 3"
+                  "DP-1, preferred, 1440x900, 1"
+                  "DP-2, preferred, 0x0, 1, transform, 3"
                   # Sometimes the monitors show up two IDs up. I have no idea why.
-                  "DP-4, preferred, 1440x900, 1"
-                  "DP-3, preferred, 0x0, 1, transform, 3"
+                  "DP-3, preferred, 1440x900, 1"
+                  "DP-4, preferred, 0x0, 1, transform, 3"
                   # Then my spare
                   "HDMI-A-2, 1920x1080@120, 5280x1440, 1"
               		]
@@ -625,8 +625,8 @@ in {
                     in
                       builtins.toString (x + 1 - (c * 10));
                   in [
-                      "$mod, ${ws},workspace, ${toString (x + 1)}"
-                      "$modShift, ${ws},movetoworkspace, ${toString (x + 1)}"
+                      "$mod, ${ws},split-workspace, ${toString (x + 1)}"
+                      "$modShift, ${ws},split-movetoworkspace, ${toString (x + 1)}"
                       ]
                     )
                     10)
@@ -634,13 +634,6 @@ in {
               layerrule = [
                   "blur, waybar"
               ];
-              workspace = if host == "snatcher" then [
-                  "1, monitor:DP-1, monitor:DP-3, default:true, gapsout:5, persistent:true"
-                  "2, monitor:DP-2, monitor:DP-4, default:true, persistent:true"
-                  "3, monitor:DP-2, monitor:DP-4, on-created-empty:com.valvesoftware.Steam"
-                  "4, monitor:DP-2, monitor:DP-4"
-                  "5, monitor:DP-1, monitor:DP-3, gapsout:5"
-              ] else [];
               windowrule = [
                   "float, confirm"
                   "float, dialog"
@@ -662,7 +655,7 @@ in {
                   "rounding 0,class:^(steam)$,title:^(notificationtoasts)"
                   "tile,class:^(Archipelago)"
                   "tile,title:^(Lua Console)$"
-                  "monitor 0,class:mpv"
+                  "monitor HDMI-A-2,class:mpv"
                   "suppressevent fullscreen maximize,class:mpv"
                   "opacity 0 override,title:^(Wine System Tray)$"
                   "nofocus,title:^(Wine System Tray)$"
