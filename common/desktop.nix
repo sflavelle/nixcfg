@@ -15,6 +15,9 @@
   security.pam.services.hyprlock = {};
 
   nixpkgs.config.input-fonts.acceptLicense = true;
+  nixpkgs.config = {
+      firefox.speechSynthesisSupport = false;
+  };
   fonts.packages = with pkgs; [
     font-awesome
     xkcd-font

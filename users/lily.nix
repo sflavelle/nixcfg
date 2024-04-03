@@ -63,12 +63,10 @@ in {
           fontpreview
           astroid
           foliate
-          spacedrive
           gnome.file-roller
 
           valent
 
-          tetrio-desktop
           gweled rocksndiamonds
           torus-trooper
 
@@ -83,6 +81,7 @@ in {
             bitwarden
             mlt sox
             retroarchFull
+            tetrio-desktop
             # bizhawk.emuhawk
         ])
         (lib.mkIf (config.services.xserver.enable && host == "snatcher") [
@@ -93,7 +92,6 @@ in {
         ])
         (lib.mkIf (config.services.xserver.enable && lowPower) [ # Less powerful, chromebooks etc)
             jellyfin-mpv-shim
-            netsurf.browser
         ])
         (lib.mkIf config.services.xserver.desktopManager.gnome.enable [ # Gnome-specific
           gnome.gnome-tweaks
@@ -195,11 +193,6 @@ in {
       };
       programs.bat.enable = true;
       programs.btop.enable = true;
-      programs.comodoro.enable = true;
-      programs.eww = {
-          enable = config.home-manager.users.lily.wayland.windowManager.hyprland.enable;
-          configDir = ../fragments/eww;
-      };
 			programs.eza = {
         enable = true;
         icons = true;
@@ -298,7 +291,7 @@ in {
           settings = lib.mkMerge [
               ({ primarybar = { # Common settings
               			
-                  "clock".format = "{:%A %d, %I:%M %p}";
+                  "clock".format = "{:%A %d\n%I:%M %p}";
                   "user".format = "{user}@${host}";
 
                   "cpu".format = "{}% ";
@@ -340,10 +333,16 @@ in {
                   };
 
                   "group/system" = {
-                      orientation = "inherit";
-                      modules = [ "cpu" "memory" "disk" "network"
-                      	(lib.mkIf config.hardware.bluetooth.enable "bluetooth")
+                      orientation = "orthogonal";
+                      modules = [ "cpu" "memory" 
                       	(lib.mkIf laptop "backlight")
+                      ];
+                  };
+
+                  "group/network" = {
+                      orientation = "orthogonal";
+                      modules = ["network"
+                      	(lib.mkIf config.hardware.bluetooth.enable "bluetooth")
                       ];
                   };
               };
@@ -354,21 +353,21 @@ in {
                   position = "top";
                   height = 32;
                   output = [
-                      "DP-2"
-                      "DP-4"
+                      "DP-1"
+                      "DP-3"
                   ];
                   
                   modules-left = [ "hyprland/workspaces" "mpris" ];
                   modules-center = [ "hyprland/window" ];
-                  modules-right = [ "pulseaudio" "group/system" "tray" "user" "clock" ];
+                  modules-right = [ "pulseaudio" "disk" "group/system" "group/network" "tray" "user" "clock" ];
               };
               accessorybar = {
                   layer = "top";
                   position = "top";
                   height = 32;
                   output = [
-                      "DP-1"
-                      "DP-3"
+                      "DP-2"
+                      "DP-4"
                       "HDMI-A-2"
                   ];
 
@@ -385,7 +384,11 @@ in {
                   height = 32;
                   modules-left = [ "hyprland/workspaces" "mpris" ];
                   modules-center = [ "hyprland/window" ];
-                  modules-right = [ "pulseaudio" "group/system" "tray" (lib.mkIf laptop "battery") "user" "clock" ];
+                  modules-right = [
+                      "pulseaudio" "group/system" "group/network"
+                      (lib.mkIf laptop "battery")
+                      	(lib.mkIf laptop "backlight")
+                      "tray" "user" "clock" ];
               };
               })
           ];
