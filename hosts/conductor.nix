@@ -106,11 +106,6 @@
     ympd
   ];
 
-  # Files that may cause failure if they don't exist
-  systemd.tmpfiles.rules = [
-    "f ${config.services.home-assistant.configDir}/automations.yaml 0755 hass hass"
-  ];
-
   services.syncthing = {
     enable = true;
     user = "lily";
@@ -118,12 +113,6 @@
     guiAddress = "0.0.0.0:8384";
   };
 
-  services.magnetico = {
-    enable = true;
-    web.address = "0.0.0.0";
-    web.port = 8101;
-    crawler.maxNeighbors = 200;
-  };
   services.transmission = {
     enable = true;
     openFirewall = true;
@@ -161,41 +150,15 @@
 
   # Smart Home
 
-  sops.templates."home-assistant-secrets.yaml" = {
-    owner = "hass";
-    path = "/var/lib/hass/secrets.yaml";
-    content = ''
-      latitude: "${config.sops.placeholder.lat}"
-      longitude: "${config.sops.placeholder.long}"
-      elevation: "${config.sops.placeholder.ele}"
-    '';
+  virtualisation.oci-containers.containers.homeassistant = {
+      volumes = [ "/srv/hass2024:/config" ];
+      environment.TZ = "Australia/Melbourne";
+      image = "ghcr.io/home-assistant/home-assistant:2024.4.1";
+      extraOptions = [
+          "--network=host"
+      ];
   };
-  services.home-assistant = {
-    enable = true;
-    openFirewall = true;
-    extraComponents = [
-      "mqtt" "zeroconf" "calendar" "date" "datetime" "color_extractor" "cloud"
-      "cast" "wyoming" "ipp" "upnp"
-      "sensibo" "tuya" "sonos" "asuswrt" "aussie_broadband" "openweathermap"
-    ];
-    customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
-      mushroom
-      mini-media-player
-    ];
-    config = {
-      default_config = { };
-      homeassistant = {
-        name = "Home";
-        unit_system = "metric";
-        time_zone = "Australia/Melbourne";
-        latitude = "!secret latitude";
-        longitude = "!secret longitude";
-        elevation = "!secret elevation";
-      };
-      "automation ui" = "!include automations.yaml";
-      "script ui" = "!include scripts.yaml";
-    };
-  };
+
   services.zigbee2mqtt = {
     enable = true;
     settings = {
@@ -248,6 +211,11 @@
       enable = true;
       host = "0.0.0.0";
       openRegistration = true;
+  };
+
+  services.ollama = {
+      enable = true;
+      listenAddress = "0.0.0.0:11111";
   };
 
   # Networking Containers

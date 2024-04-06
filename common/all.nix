@@ -43,8 +43,12 @@
     rclone
     psmisc
     pciutils
+    usbutils
     inxi
     du-dust
+    httpie
+
+    steam-run
 
     zip
     xz
