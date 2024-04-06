@@ -89,6 +89,12 @@
           age.keyFile = "/home/lily/.config/sops/age/keys.txt";
           age.generateKey = true;
           secrets."passwords/linux".neededForUsers = true;
+          secrets = {
+                "passwords/icloud" = { owner = "lily"; };
+                "passwords/gmail/neuraria" = { owner = "lily"; };
+                "passwords/gmail/simonsayslps" = { owner = "lily"; };
+                "passwords/gmail/simonf" = { owner = "lily"; };
+              };
         };
 
         nix.settings = {
@@ -167,23 +173,6 @@
             ./common/server.nix
             ./users/lily.nix
             self.nixosModules.commonModules
-            {
-              sops.secrets = {
-                lat = {
-                  sopsFile = ./secrets/hass.yaml;
-                  owner = "hass";
-                };
-                long = {
-                  sopsFile = ./secrets/hass.yaml;
-                  owner = "hass";
-                };
-                ele = {
-                  sopsFile = ./secrets/hass.yaml;
-                  owner = "hass";
-                };
-                "passwords/icloud" = { owner = "lily"; };
-              };
-            }
           ];
         };
       };

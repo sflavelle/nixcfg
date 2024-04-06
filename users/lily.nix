@@ -48,12 +48,16 @@ in {
           wayvnc
 
           pandoc
+
+          cl-wordle bastet _2048-in-terminal
+          
+          
         ])
         (lib.mkIf config.services.xserver.enable [ # All systems (graphical)
           # Programs
           (discord.override {
-            withOpenASAR = !lowPower;
-            withVencord = !lowPower;
+            withOpenASAR = true;
+            withVencord = true;
           })
           fractal
           
@@ -65,7 +69,11 @@ in {
           foliate
           gnome.file-roller
 
+          youtube-tui
+
           valent
+
+          virt-viewer
 
           gweled rocksndiamonds
           torus-trooper
@@ -335,7 +343,6 @@ in {
                   "group/system" = {
                       orientation = "orthogonal";
                       modules = [ "cpu" "memory" 
-                      	(lib.mkIf laptop "backlight")
                       ];
                   };
 
@@ -544,7 +551,7 @@ in {
                   "DP-3, preferred, 1440x900, 1"
                   "DP-4, preferred, 0x0, 1, transform, 3"
                   # Then my spare
-                  "HDMI-A-2, 1920x1080@120, 5280x1440, 1"
+                  "HDMI-A-2, 1920x1080@60, 5280x1440, 1"
               		]
               	else if laptop then [
                   	"eDP-1,highrr,auto,1"
@@ -662,6 +669,7 @@ in {
                   "suppressevent fullscreen maximize,class:mpv"
                   "opacity 0 override,title:^(Wine System Tray)$"
                   "nofocus,title:^(Wine System Tray)$"
+                  "group new,class:^(steam_app_),title:^(Z:\\home\\lily\\)"
               ] ++
               (lib.lists.forEach [
                   "opacity 0.0 override 0.0 override"
