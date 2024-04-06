@@ -116,6 +116,11 @@
       args = [ "--fullscreen" ];
   };
 
+  services.ollama = {
+      enable = true;
+      acceleration = "rocm";
+  };
+
   virtualisation.containers.enable = true;
   virtualisation.podman.enable = true;
 
