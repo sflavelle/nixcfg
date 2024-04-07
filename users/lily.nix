@@ -302,7 +302,7 @@ in {
                   "clock".format = "{:%A %d\n%I:%M %p}";
                   "user".format = "{user}@${host}";
 
-                  "cpu".format = "{}% ";
+                  "cpu".format = "{load} ";
                   "memory".format = "{}% ";
                   "disk".format = "{percentage_used}% full 🖴";
                   "bluetooth" = {
@@ -325,6 +325,13 @@ in {
 								        "car" = "";
 								        "default" = ["" ""];
 											};
+                  };
+
+                  "backlight" = {
+                      "format" = "{percent}% {icon}";
+                      "format-icons" = ["" ""];
+                      "on-scroll-up" = "${pkgs.brillo}/bin/brillo -A 5";
+                      "on-scroll-down" = "${pkgs.brillo}/bin/brillo -U 5";
                   };
 			
 									"network" = {
@@ -566,6 +573,8 @@ in {
               bindl = [
                   ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
                   ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+                  ", XF86MonBrightnessDown, exec, brillo -U 5"
+                  ", XF86MonBrightnessUp, exec, brillo -A 5"
               ];
               bind = [
                   # Quick Launches
