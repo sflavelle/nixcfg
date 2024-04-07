@@ -1,6 +1,7 @@
 { home-manager, config, pkgs, lib, inputs, ... }:
 let
     name = "Simon Flavelle";
+    graphical = config.services.xserver.enable;
 in
     {
         calendar.accounts = {
@@ -32,24 +33,28 @@ in
                    offlineimap = {
                        enable = true;
                    };
+                   thunderbird.enable = graphical;
                };
                neuraria = {
                 flavor = "gmail.com";
                 address = "neuraria@gmail.com";
                 realName = name;
                 passwordCommand = "cat /run/secrets/passwords/gmail/neuraria";
+                thunderbird.enable = graphical;
                };
                simonsayslps = {
                 flavor = "gmail.com";
                 address = "simonsayslps@gmail.com";
                 realName = name;
                 passwordCommand = "cat /run/secrets/passwords/gmail/simonsayslps";
+                thunderbird.enable = graphical;
                };
                simonflavelle = {
                 flavor = "gmail.com";
                 address = "simon.flavelle@gmail.com";
                 realName = name;
                 passwordCommand = "cat /run/secrets/passwords/gmail/simonf";
+                thunderbird.enable = graphical;
                };
            };
         };
