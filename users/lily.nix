@@ -42,6 +42,7 @@ in {
           playerctl
           stc-cli
           musikcube
+          rbw
 
           nix-prefetch
 
@@ -68,10 +69,9 @@ in {
           astroid
           foliate
           gnome.file-roller
+          goldwarden
 
           youtube-tui
-
-          valent
 
           virt-viewer
 
@@ -86,13 +86,14 @@ in {
             steam-run
             jellyfin-media-player
             vscode
-            bitwarden
             mlt sox
             retroarchFull
             tetrio-desktop
             # bizhawk.emuhawk
         ])
         (lib.mkIf (config.services.xserver.enable && host == "snatcher") [
+            appflowy
+
             gamehub gamescope
             ultimatestunts stuntrally xmoto
             runescape openttd
@@ -495,7 +496,6 @@ in {
       wayland.windowManager.hyprland = {
           enable = graphical;
           plugins = [
-            inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
           ];
           settings = {
               "$mod" = "SUPER";
@@ -581,6 +581,7 @@ in {
                   "$mod, T, exec, alacritty"
                   "$mod, E, exec, nautilus"
                   "$mod, B, exec, firefox"
+                  "$mod, V, exec, pavucontrol"
                   "$mod, space, exec, wofi -i -w 4 --show drun"
                   "$mod, backspace, exec, swaync-client -t"
                   "$mod, V, exec, clipman pick -t wofi"
@@ -644,8 +645,8 @@ in {
                     in
                       builtins.toString (x + 1 - (c * 10));
                   in [
-                      "$mod, ${ws},split-workspace, ${toString (x + 1)}"
-                      "$modShift, ${ws},split-movetoworkspace, ${toString (x + 1)}"
+                      "$mod, ${ws},workspace, ${toString (x + 1)}"
+                      "$modShift, ${ws},movetoworkspace, ${toString (x + 1)}"
                       ]
                     )
                     10)

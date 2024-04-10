@@ -244,6 +244,15 @@
       };
       ports = [ "8083:80" ];
     };
+    ollamaui = {
+        image = "ghcr.io/open-webui/open-webui:main";
+        volumes = [ "open-webui:/app/backend/data" ];
+        ports = [ "3000:8080" ];
+        environment.OLLAMA_BASE_URL = "http://10.0.0.3:11111";
+        extraOptions = [
+            "--add-host=host.docker.internal:host-gateway"
+        ];
+    };
   };
 
   services.fwupd.enable = true;

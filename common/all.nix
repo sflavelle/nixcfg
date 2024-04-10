@@ -95,19 +95,10 @@
     joinNetworks = [ "e4da7455b2e8404f" ];
   };
 
-  programs = {
-    fzf = {
-      keybindings = true;
-      fuzzyCompletion = true;
-    };
-
-  };
+  programs.fzf.enable = true;
 
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml"; # Boot/Login Theme
-  stylix.image = pkgs.fetchurl {
-    url = "https://w.wallhaven.cc/full/4v/wallhaven-4vp755.jpg";
-    hash = "";
-  };
+  stylix.image = ../resources/wallpapers/Distance-AllianceOS.png;
   
   environment.shellAliases = {
       just-nix = "just -f ${ pkgs.fetchurl { url = "https://git.neurario.com/splatsune/nixcfg/raw/commit/3ad3666ed2cf22366afa7d72965dc72c325cfd99/justfile"; hash = "sha256-Tw5UCx5SDODs29UtqXYsKRHDVu81xC2UYTt+M5n6TGI="; } }";

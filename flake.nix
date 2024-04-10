@@ -40,10 +40,6 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-    split-monitor-workspaces = {
-      url = "github:Duckonaut/split-monitor-workspaces";
-      inputs.hyprland.follows = "hyprland";
-    };
   };
 
   outputs =
@@ -51,6 +47,7 @@
       nixpkgs,
       nix-stable,
       nixos-hardware,
+      disko,
       musnix,
       home-manager,
       hyprland,
@@ -61,7 +58,6 @@
       stylix,
       sops-nix,
       bizhawk,
-      split-monitor-workspaces,
       ... }@inputs:
 				let
 					system = "x86_64-linux";
