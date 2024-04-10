@@ -9,7 +9,7 @@
 
   nix.gc = {
     automatic = true;
-    dates = "weekly";
+    dates = "monthly";
   };
   nix.optimise = {
     automatic = true;
@@ -17,6 +17,7 @@
   };
 
   boot.tmp.cleanOnBoot = true;
+  boot.loader.systemd-boot.netbootxyz.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = lib.mkDefault true;

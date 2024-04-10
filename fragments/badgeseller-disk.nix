@@ -20,9 +20,10 @@
               name = "root";
               end = "-0";
               content = {
-                type = "filesystem";
-                format = "bcachefs";
+                type = "btrfs";
                 mountpoint = "/";
+                extraArgs = [ "-f" ];
+                mountOptions = [ "compress=zstd" "noatime" ];
               };
             };
           };
