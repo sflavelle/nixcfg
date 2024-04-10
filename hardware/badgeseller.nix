@@ -12,18 +12,6 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/087f1ef5-bf9f-4eae-a6cd-f16da25535bc";
-      fsType = "ext4";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/5F66-17ED";
-      fsType = "vfat";
-    };
-
-  swapDevices = [ ];
-
   hardware.firmware = [
   (pkgs.stdenvNoCC.mkDerivation {
     name = "brcm-firmware";
