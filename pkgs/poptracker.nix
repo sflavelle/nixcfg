@@ -6,14 +6,13 @@
 , SDL2_ttf
 , openssl
 , util-linux
-, python310Packages
-, python310
 , which
+, gnome
 }:
 
 stdenv.mkDerivation rec {
     name = "poptracker";
-    version = "0.25.7";
+    version = "0.25.8";
 
     src = fetchFromGitHub {
         owner = "black-sliver";
@@ -24,8 +23,7 @@ stdenv.mkDerivation rec {
     };
 
     nativeBuildInputs = [ SDL2 SDL2_ttf SDL2_image openssl util-linux ];
-    buildInputs = [ SDL2 SDL2_ttf SDL2_image openssl which python310
-      python310Packages.tkinter python310Packages.dbus-python ];
+    buildInputs = [ SDL2 SDL2_ttf SDL2_image openssl which gnome.zenity ];
 
 
 
