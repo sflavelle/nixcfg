@@ -16,6 +16,10 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    disko = {
+        url = "github:nix-community/disko";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
     musnix.url = "github:musnix/musnix";
     hyprland.url = "github:hyprwm/Hyprland";
     hyprpaper.url = "github:hyprwm/hyprpaper";
@@ -151,6 +155,9 @@
                 self.nixosModules.commonModules
                 nixos-hardware.nixosModules.apple-macbook-air-6
                 nixos-hardware.nixosModules.apple-t2
+
+                disko.nixosModules.disko
+                ./fragments/badgeseller-disk.nix
             ];
         };
         # Servers
