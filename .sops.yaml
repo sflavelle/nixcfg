@@ -3,7 +3,7 @@ keys:
     - &host_snatcher age19tktff0vsr2q97qlzhq98uczcd4ax79dxge7fc6dgu092gd9qp6q7z309u
     - &host_minion age1h96jvjsvn4522ae53kyzdky5ede74ezpqkgx2rgh6738jr8vvexqfzwmgl
     - &host_conductor 10abeac84929514c266dc127b0c73c6073819a00
-    - &host_badgeseller age1hmggmtjsrza7pz53dd9dxec522de0x598cvfhh9qyrwangyhlecs623xw4
+    - &host_badgeseller age13gkhey709vn3pddh08g50lj75q8jn8y4hh89yqfu58srmf5wf9asnufpgy
     - &host_dweller age1radty2fp9cg4aawnj28dp209skrxlxtd48hd5h990ct6vf9nqp6q9zdq6l
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
