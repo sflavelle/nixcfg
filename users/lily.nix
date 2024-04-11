@@ -60,23 +60,16 @@ in {
             withOpenASAR = true;
             withVencord = true;
           })
-          fractal
           
           playerctl
           pavucontrol
-          rclone
           fontpreview
           astroid
-          foliate
-          gnome.file-roller
           goldwarden
 
           youtube-tui
 
           virt-viewer
-
-          gweled rocksndiamonds
-          torus-trooper
 
         ])
         (lib.mkIf (config.services.xserver.enable && !lowPower) [ # More powerful devices
@@ -106,7 +99,7 @@ in {
           gnome.gnome-tweaks
           gnome.gnome-shell-extensions
         ])
-        (lib.mkIf config.home-manager.users.lily.wayland.windowManager.hyprland.enable [ # Hyprland utils
+        (lib.mkIf config.home-manager.users.lily.wayland.windowManager.sway.enable [ # Hyprland utils
         	swaynotificationcenter wofi
         	hypridle swww hyprlock
         	grimblast
@@ -132,17 +125,6 @@ in {
       };
 
       accounts = import ../fragments/lily-accounts.nix {inherit pkgs config lib home-manager inputs;};
-
-      services.gnome-keyring = {
-          enable = true;
-          components = [ "secrets" ];
-      };
-
-      gtk = {
-          enable = true;
-          iconTheme.package = pkgs.gnome.adwaita-icon-theme;
-          iconTheme.name = "Adwaita";
-      };
 
       stylix = {
         autoEnable = graphical;
@@ -188,16 +170,8 @@ in {
           settings = {
               window.blur = !lowPower;
               window.opacity = lib.mkForce 0.85;
-              font.size = if hiDpi then lib.mkForce 18 else 12;
+              font.size = 12;
               colors.transparent_background_colors = true;
-          };
-      };
-      programs.atuin = {
-          enable = true;
-          settings = {
-              sync_address = "http://10.0.0.3:8888";
-              sync_frequency = "10m";
-              auto_sync = true;
           };
       };
       programs.bat.enable = true;
@@ -231,6 +205,9 @@ in {
       programs.khal.enable = true;
       programs.mpv = {
           enable = graphical;
+          config = {
+              ytdl-format = "ytdl-format=bestvideo[height<=?1080][fps<=?30]+bestaudio/best";
+          };
           scripts = with pkgs.mpvScripts; [
               mpris
               autoload
@@ -277,7 +254,7 @@ in {
       };
 
       services.darkman = {
-        enable = false;
+        enable = true;
         settings = {
           lat = 36.76;
           lng = 144.29;
@@ -289,7 +266,7 @@ in {
 
       services.playerctld.enable = true;
       programs.waybar = {
-          enable = config.home-manager.users.lily.wayland.windowManager.hyprland.enable;
+          enable = config.home-manager.users.lily.wayland.windowManager.sway.enable;
           package = pkgs.stable.waybar;
           systemd = { enable = true; target = "sway-session.target"; };
           style = ''
@@ -341,7 +318,7 @@ in {
 										"format-disconnected" = "no internet";
 									};
 
-                  "hyprland/window" = {
+                  "sway/window" = {
                       separate-outputs = true;
                       rewrite = {
                           "(.*) — Mozilla Firefox" = "🌎 $1";
@@ -350,7 +327,7 @@ in {
 
                   "group/system" = {
                       orientation = "orthogonal";
-                      modules = [ "cpu" "memory" 
+                      modules = [ "cpu" "memory"
                       ];
                   };
 
@@ -417,84 +394,8 @@ in {
       '';
       };
 
-			xdg.configFile."hypr/hypridle.conf".text = ''
-				general {
-    				lock_cmd = pidof hyprlock || hyprlock
-    				unlock_cmd = kill -USR1 $(pidof hyprlock)
-    				before_sleep_cmd = loginctl lock-session
-    				after_sleep_cmd = hyprctl dispatch dpms on
-				}
-
-#				listener {
-#    				timeout = 300
-#    				on-timeout = $HOME/.config/hypr/idle-hass.sh ON
-#    				on-resume = $HOME/.config/hypr/idle-hass.sh OFF
-#				}
-
-				listener {
-    				timeout = ${if laptop then "180" else "900"} # 15 minutes: lock session (Dweller: 3 minutes)
-    				on-timeout = loginctl lock-session
-				}
-
-				listener {
-    				timeout = ${if laptop then "300" else "1200"} # 20 minutes: monitors off (Dweller: 5 minutes)
-    				on-timeout = hyprctl dispatch dpms off
-    				on-resume = hyprctl dispatch dpms on
-				}
-			'';
-			xdg.configFile."hypr/hyprlock.conf".text = ''
-				general {
-    				grace = 30
-				}
-
-				background {
-    				monitor =
-    				path = screenshot
-
-    				blur_passes = 3
-    				blur_size = 10
-				}
-
-				input-field {
-				    monitor =
-				    size = 200, 50
-				    outline_thickness = 3
-				    dots_size = 0.33 # Scale of input-field height, 0.2 - 0.8
-				    dots_spacing = 0.15 # Scale of dots' absolute size, 0.0 - 1.0
-				    dots_center = false
-				    dots_rounding = -1 # -1 default circle, -2 follow input-field rounding
-				    outer_color = rgb(151515)
-				    inner_color = rgb(200, 200, 200)
-				    font_color = rgb(10, 10, 10)
-				    fade_on_empty = true
-				    fade_timeout = 1000 # Milliseconds before fade_on_empty is triggered.
-				    placeholder_text = <i>Input Password...</i> # Text rendered in the input box when it's empty.
-				    hide_input = false
-				    rounding = -1 # -1 means complete rounding (circle/oval)
-				    check_color = rgb(204, 136, 34)
-				    fail_color = rgb(204, 34, 34) # if authentication failed, changes outer_color and fail message color
-				    fail_text = <i>$FAIL <b>($ATTEMPTS)</b></i> # can be set to empty
-				    fail_transition = 300 # transition time in ms between normal outer_color and fail_color
-				    capslock_color = -1
-				    numlock_color = -1
-				    bothlock_color = -1 # when both locks are active. -1 means don't change outer color (same for above)
-				    invert_numlock = false # change color if numlock is off
-
-				    position = 0, -20
-				    halign = center
-				    valign = center
-				}
-
-				label {
-    				monitor =
-    				text = cmd[update:1000] echo "<span foreground='##ff2222'>$(date)</span>"
-    				font_size = 24
-    				font_family = "xkcd-Regular"
-				}
-
-			'';
       wayland.windowManager.hyprland = {
-          enable = graphical;
+          enable = false;
           plugins = [
           ];
           settings = {
