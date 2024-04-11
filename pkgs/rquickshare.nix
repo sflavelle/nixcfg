@@ -12,14 +12,14 @@
            hash = "sha256-ilVXMyPAxn58YNiMY2Q8PAasYe7XSq01Mj8i458VvsY=";
         };
 
-        desktopItems = [
-            (makeDesktopItem {
-                name = "r-quick-share";
-                exec = "r-quick-share";
-                icon = "r-quick-share";
-                desktopName = "Quick Share";
-                genericName = "Android file sharing";
-                categories = "Utilities;Internet;";
-            })
-        ];
+#        desktopItems = [
+#            (makeDesktopItem {
+#                name = "r-quick-share";
+#                exec = "r-quick-share";
+#                icon = "r-quick-share";
+#                desktopName = "Quick Share";
+#                genericName = "Android file sharing";
+#                categories = "Utilities;Internet;";
+#            })
+#        ];
     }
