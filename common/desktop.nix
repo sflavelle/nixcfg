@@ -75,6 +75,7 @@
   environment.systemPackages = with pkgs; [
       simple-mtpfs pavucontrol libnotify
       xwaylandvideobridge
+      (callPackage ../pkgs/rquickshare.nix {})
   ];
 
   services.flatpak.enable = true;
