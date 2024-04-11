@@ -13,9 +13,10 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   security.pam.services.hyprlock = {};
+  security.pam.services.swaylock = {};
 
-  nixpkgs.config.input-fonts.acceptLicense = true;
   nixpkgs.config = {
+      input-fonts.acceptLicense = true;
       firefox.speechSynthesisSupport = false;
   };
   fonts.packages = with pkgs; [
@@ -28,16 +29,20 @@
     comic-mono
   ];
 
-  services.xserver.displayManager.sddm.enable = lib.mkDefault true;
-  services.xserver.displayManager.sddm.wayland.enable = lib.mkDefault true;
-  programs.hyprland = {
+  services.greetd = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      restart = true;
+      settings = {
+          default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -c 'sway' -t";
+      };
   };
 
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = lib.mkDefault false;
-  services.xserver.displayManager.autoLogin.user = lib.mkDefault "lily";
+  programs.sway = {
+    enable = true;
+    extraPackages = with pkgs; [
+      swaysome swayosd swaylock
+    ];
+  };
 
   hardware.opengl.setLdLibraryPath = true;
   hardware.opengl = {

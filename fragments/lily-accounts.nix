@@ -4,11 +4,6 @@ let
     graphical = config.services.xserver.enable;
 in
     {
-        calendar.accounts = {
-            icloud = {
-                
-            };
-        };
         email = {
            accounts = {
                icloud = {

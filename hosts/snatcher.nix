@@ -61,7 +61,6 @@
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ hplip ];
 
-  services.xserver.displayManager.autoLogin.enable = true;
   services.preload.enable = true;
 
   users.users.lily.extraGroups = [ "audio" ];

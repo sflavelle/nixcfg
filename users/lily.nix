@@ -291,7 +291,7 @@ in {
       programs.waybar = {
           enable = config.home-manager.users.lily.wayland.windowManager.hyprland.enable;
           package = pkgs.stable.waybar;
-          systemd = { enable = true; target = "hyprland-session.target"; };
+          systemd = { enable = true; target = "sway-session.target"; };
           style = ''
           	.modules-right {
               	font-size: 18px;
@@ -372,8 +372,8 @@ in {
                       "DP-3"
                   ];
                   
-                  modules-left = [ "hyprland/workspaces" "mpris" ];
-                  modules-center = [ "hyprland/window" ];
+                  modules-left = [ "sway/workspaces" "mpris" ];
+                  modules-center = [ "sway/window" ];
                   modules-right = [ "pulseaudio" "disk" "group/system" "group/network" "tray" "user" "clock" ];
               };
               accessorybar = {
@@ -386,8 +386,8 @@ in {
                       "HDMI-A-2"
                   ];
 
-                  modules-left = [ "hyprland/workspaces" ];
-                  modules-center = [ "hyprland/window" ];
+                  modules-left = [ "sway/workspaces" ];
+                  modules-center = [ "sway/window" ];
                   modules-right = [ "clock" ];
           		};
           		})
@@ -397,8 +397,8 @@ in {
                   layer = "top";
                   position = "top";
                   height = 32;
-                  modules-left = [ "hyprland/workspaces" "mpris" ];
-                  modules-center = [ "hyprland/window" ];
+                  modules-left = [ "sway/workspaces" "mpris" ];
+                  modules-center = [ "sway/window" ];
                   modules-right = [
                       "pulseaudio" "group/system" "group/network"
                       (lib.mkIf laptop "battery")
@@ -698,6 +698,90 @@ in {
 									(app: lib.lists.forEach ["immediate" "tile" "workspace 3 silent" "idleinhibit focus" "group invade" ] (rule: rule + "," + app))
 									));
           };
+      };
+
+      wayland.windowManager.sway = {
+        enable = true;
+        systemd.xdgAutostart = true;
+        config = rec {
+          terminal = "alacritty";
+          modifier = "Mod4";
+
+					gaps = {
+    					smartBorders = "on";
+    					smartGaps = true;
+					};
+          
+          keybindings = 
+          let 
+            modifier = config.home-manager.users.lily.wayland.windowManager.sway.config.modifier;
+            modShift = "${modifier}+Shift";
+          in lib.mkOptionDefault {
+              "${modifier}+t" = "exec alacritty"; # Terminal
+              "${modifier}+e" = "exec nautilus"; # Explorer
+              "${modifier}+b" = "exec firefox"; # Browser
+              "${modifier}+a" = "exec pavucontrol"; # Audio
+              "${modifier}+space" = "exec wofi -i -w 4 --show drun";
+              "${modifier}+backspace" = "exec swaync-client -t";
+
+              "${modifier}+1" = "exec swaysome focus 1";
+              "${modifier}+2" = "exec swaysome focus 2";
+              "${modifier}+3" = "exec swaysome focus 3";
+              "${modifier}+4" = "exec swaysome focus 4";
+              "${modifier}+5" = "exec swaysome focus 5";
+              "${modifier}+6" = "exec swaysome focus 6";
+              "${modifier}+7" = "exec swaysome focus 7";
+              "${modifier}+8" = "exec swaysome focus 8";
+              "${modifier}+9" = "exec swaysome focus 9";
+              "${modifier}+0" = "exec swaysome focus 10";
+              
+              "${modShift}+1" = "exec swaysome move 1";
+              "${modShift}+2" = "exec swaysome move 2";
+              "${modShift}+3" = "exec swaysome move 3";
+              "${modShift}+4" = "exec swaysome move 4";
+              "${modShift}+5" = "exec swaysome move 5";
+              "${modShift}+6" = "exec swaysome move 6";
+              "${modShift}+7" = "exec swaysome move 7";
+              "${modShift}+8" = "exec swaysome move 8";
+              "${modShift}+9" = "exec swaysome move 9";
+              "${modShift}+0" = "exec swaysome move 10";
+              
+              "${modShift}+backslash" = "splitv";
+              "${modShift}+minus" = "splith";
+              "${modifier}+f" = "fullscreen toggle";
+              "${modifier}+slash" = "layout toggle split";
+
+              "${modifier}+q" = "kill";
+              "${modShift}+q" = "exec swaymsg exit"; # Need to setup nag
+            };
+          startup = [
+            { command = "swaync"; }
+            { command = "swayidle"; }
+            { command = "udiskie &"; }
+            { command = "swayosd-server"; }
+            { command = "wl-paste -p -t text --watch clipman store -P --histpath='~/.local/share/clipman-primary.json'"; }
+            { command = "swaysome init"; }
+            { command = "swaysome rearrange-workspaces"; always = true; }
+            { command = "swaymsg focus output DP-1"; }
+          ];
+
+          output =
+          if host == "snatcher" then {
+              DP-1 = {
+                  mode = "3840x2160";
+                  position = "1440 900";
+              };
+              DP-2 = {
+                  mode = "3440x1440";
+                  position = "0 0";
+                  transform = "90";
+              };
+              HDMI-A-2 = {
+                  mode = "1920x1080";
+                  position = "5280 1440";
+              };
+          }  else {};
+        };
       };
 
       home.file = {

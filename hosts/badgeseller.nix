@@ -17,9 +17,10 @@
   nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "badgeseller"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.wifi.macAddress = "permanent";
+  networking.networkmanager.wifi.scanRandMacAddress = false;
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
   hardware.bluetooth.enable = true;
   hardware.facetimehd.enable = true;
   programs.light.enable = true;
