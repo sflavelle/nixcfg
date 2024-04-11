@@ -139,6 +139,9 @@
             ./common/desktop.nix
             ./users/lily.nix
             self.nixosModules.commonModules
+
+            disko.nixosModules.disko
+            ./fragments/dweller-disk.nix
           ];
         };
         "badgeseller" = nixpkgs.lib.nixosSystem {
