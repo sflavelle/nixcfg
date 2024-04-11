@@ -8,13 +8,8 @@
 
   boot.kernelParams = [
       "acpi_backlight=native"
+      "mem_sleep_default=s2idle"
   ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "badgeseller"; # Define your hostname.
   networking.networkmanager.wifi.macAddress = "permanent";
