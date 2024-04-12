@@ -20,12 +20,11 @@
         url = "github:nix-community/disko";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-generators = {
+        url = "github:nix-community/nixos-generators";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
     musnix.url = "github:musnix/musnix";
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprpaper.url = "github:hyprwm/hyprpaper";
-    hyprpaper.inputs.nixpkgs.follows = "nixpkgs";
-    hyprlock.url = "github:hyprwm/hyprlock";
-    hyprlock.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
     sops-nix.url = "github:Mic92/sops-nix";
     bizhawk.url = "github:TASEmulators/BizHawk/master";
@@ -35,11 +34,6 @@
         flake = false;
     };
 
-    # Hyprland Plugins
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
   };
 
   outputs =
@@ -48,12 +42,9 @@
       nix-stable,
       nixos-hardware,
       disko,
+      nixos-generators,
       musnix,
       home-manager,
-      hyprland,
-      hyprpaper,
-      hyprlock,
-      hyprland-plugins,
       mac-brcm-fw,
       stylix,
       sops-nix,
@@ -67,7 +58,7 @@
 
 				in
       {
-      nixosModules."commonModules" = { config, lib, inputs, hyprland, hyprland-plugins, split-monitor-workspaces, ... }:{
+      nixosModules."commonModules" = { config, lib, inputs, ... }:{
         imports = [
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
@@ -97,8 +88,8 @@
         };
 
         nix.settings = {
-          substituters = ["https://hyprland.cachix.org"];
-          trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+          substituters = [];
+          trusted-public-keys = [];
         };
 				nixpkgs.config.permittedInsecurePackages = [
                 "openssl-1.1.1w"
@@ -180,6 +171,22 @@
             self.nixosModules.commonModules
           ];
         };
+      };
+      packages.x86_64-linux = {
+        # Utilities
+        "isopadre" = nixos-generators.nixosGenerate { # Generic ISO image
+        	system = "x86_64-linux";
+        	specialArgs = { inherit inputs; };
+        	format = "install-iso";
+        	modules = [
+            	./common/desktop.nix
+            	./users/lily.nix
+            	self.nixosModules.commonModules
+            	{
+                	networking.networkmanager.enable = false;
+            	}
+        	];
+      	};
       };
     };
 }

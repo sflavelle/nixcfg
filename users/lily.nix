@@ -655,8 +655,8 @@ in {
               "${modShift}+9" = "exec swaysome move 9";
               "${modShift}+0" = "exec swaysome move 10";
               
-              "${modShift}+backslash" = "splitv";
-              "${modShift}+minus" = "splith";
+              "${modShift}+backslash" = "splith";
+              "${modShift}+minus" = "splitv";
               "${modifier}+f" = "fullscreen toggle";
               "${modifier}+slash" = "layout toggle splitv splith stacking tabbed";
 
