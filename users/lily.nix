@@ -609,16 +609,43 @@ in {
         config = rec {
           terminal = "alacritty";
           modifier = "Mod4";
+          bars = lib.mkForce [];
+          seat = {};
 
 					gaps = {
     					smartBorders = "on";
     					smartGaps = true;
 					};
+
+					assigns = {
+    					# Main Display
+    					"11: web" = [{ class = "^Firefox$"; }];
+    					"13: games" = [{ class = "^steam_app_"; } { class = "^steam$"; }];
+
+    					# Vertical Display
+    					"21: chat" = [{ app_id = "^discord$"; } { class = "^steam$"; title = "^Friends List"; }];
+					};
+
+					window.commands = [
+    					{
+        					criteria.app_id = "Alacritty";
+        					command = "border pixel 2";
+    					}
+    					{
+        					criteria.class = "^steam_app_";
+        					command = "fullscreen enable, inhibit_idle focus";
+    					}
+    					{
+        					criteria.class = "^xwaylandvideobridge$";
+        					command = "no_focus, opacity 0, floating enable, resize set width 1 px height 1 px";
+    					}
+					];
           
           keybindings = 
           let 
             modifier = config.home-manager.users.lily.wayland.windowManager.sway.config.modifier;
             modShift = "${modifier}+Shift";
+            modAlt = "${modifier}+Alt";
           in lib.mkOptionDefault {
               "${modifier}+t" = "exec alacritty"; # Terminal
               "${modifier}+e" = "exec nautilus"; # Explorer
@@ -654,11 +681,20 @@ in {
               "${modShift}+8" = "exec swaysome move 8";
               "${modShift}+9" = "exec swaysome move 9";
               "${modShift}+0" = "exec swaysome move 10";
+
+              "${modifier}+s" = "scratchpad show";
+              "${modShift}+s" = "move window to scratchpad";
               
               "${modShift}+backslash" = "splith";
               "${modShift}+minus" = "splitv";
               "${modifier}+f" = "fullscreen toggle";
+              "${modifier}+period" = "floating toggle";
               "${modifier}+slash" = "layout toggle splitv splith stacking tabbed";
+              
+              "${modAlt}+left" = "resize shrink width";
+              "${modAlt}+right" = "resize grow width";
+              "${modAlt}+up" = "resize grow height";
+              "${modAlt}+down" = "resize shrink height";
 
               "${modifier}+q" = "kill";
               "${modShift}+q" = "exec swaymsg exit"; # Need to setup nag
