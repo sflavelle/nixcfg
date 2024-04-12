@@ -206,7 +206,9 @@ in {
       programs.mpv = {
           enable = graphical;
           config = {
+              keep-open = "yes";
               ytdl-format = "ytdl-format=bestvideo[height<=?1080][fps<=?30]+bestaudio/best";
+              ytdl-raw-options = "cookies-from-browser=firefox";
           };
           scripts = with pkgs.mpvScripts; [
               mpris
@@ -625,6 +627,12 @@ in {
               "${modifier}+space" = "exec wofi -i -w 4 --show drun";
               "${modifier}+backspace" = "exec swaync-client -t";
 
+
+              "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+";
+              "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+              "XF86MonBrightnessDown" = "exec brillo -U 5";
+              "XF86MonBrightnessUp" = "exec brillo -A 5";
+
               "${modifier}+1" = "exec swaysome focus 1";
               "${modifier}+2" = "exec swaysome focus 2";
               "${modifier}+3" = "exec swaysome focus 3";
@@ -650,7 +658,7 @@ in {
               "${modShift}+backslash" = "splitv";
               "${modShift}+minus" = "splith";
               "${modifier}+f" = "fullscreen toggle";
-              "${modifier}+slash" = "layout toggle split";
+              "${modifier}+slash" = "layout toggle splitv splith stacking tabbed";
 
               "${modifier}+q" = "kill";
               "${modShift}+q" = "exec swaymsg exit"; # Need to setup nag
@@ -661,7 +669,7 @@ in {
             { command = "udiskie &"; }
             { command = "swayosd-server"; }
             { command = "wl-paste -p -t text --watch clipman store -P --histpath='~/.local/share/clipman-primary.json'"; }
-            { command = "swaysome init"; }
+            { command = "swaysome init 1"; }
             { command = "swaysome rearrange-workspaces"; always = true; }
             { command = "swaymsg focus output DP-1"; }
           ];
