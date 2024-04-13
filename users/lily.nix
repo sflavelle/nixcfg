@@ -211,7 +211,7 @@ in {
           config = {
               keep-open = "yes";
               ytdl-format = "ytdl-format=bestvideo[height<=?1080][fps<=?30]+bestaudio/best";
-              ytdl-raw-options = "cookies-from-browser=firefox";
+              ytdl-raw-options = if !lowPower then "cookies-from-browser=firefox" else false;
           };
           scripts = with pkgs.mpvScripts; [
               mpris
@@ -662,7 +662,7 @@ in {
     					}
 					];
 
-					workspaceOutputAssign = if host == "snatcher" then [
+					workspaceOutputAssign = if (host == "snatcher") then [
     					{ output = "DP-1"; workspace = "11"; }
     					{ output = "DP-1"; workspace = "12"; }
     					{ output = "DP-1"; workspace = "13"; }
@@ -763,7 +763,7 @@ in {
             { command = "swayosd-server"; }
             { command = "wl-paste -p -t text --watch clipman store -P --histpath='~/.local/share/clipman-primary.json'"; }
             { command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway"; }
-          ] ++ lib.mkIf (host == "snatcher") [ { command = "swaymsg focus workspace 31"; }
+         		{ command = "swaymsg focus workspace 31"; }
             { command = "swaymsg focus workspace 21"; }
             { command = "swaymsg focus workspace 11"; }
             { command = "swaysome init 1"; }
