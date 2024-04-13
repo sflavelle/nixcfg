@@ -12,7 +12,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  security.pam.services.hyprlock = {};
   security.pam.services.swaylock = {};
 
   nixpkgs.config = {
@@ -42,6 +41,11 @@
     extraPackages = with pkgs; [
       swaysome swayosd swaylock
     ];
+  };
+
+  xdg.portal = {
+      enable = true;
+      wlr.enable = true;
   };
 
   hardware.opengl.setLdLibraryPath = true;
@@ -74,7 +78,6 @@
 
   environment.systemPackages = with pkgs; [
       simple-mtpfs pavucontrol libnotify
-      xwaylandvideobridge
       (callPackage ../pkgs/rquickshare.nix {})
   ];
 

@@ -4,7 +4,7 @@ keys:
     - &host_minion age1h96jvjsvn4522ae53kyzdky5ede74ezpqkgx2rgh6738jr8vvexqfzwmgl
     - &host_conductor age12lfj3ypjm46vwu99fg3hdmarjy6um3rycsrgen05z06kpype79tshk7rt6
     - &host_badgeseller age13gkhey709vn3pddh08g50lj75q8jn8y4hh89yqfu58srmf5wf9asnufpgy
-    - &host_dweller age1radty2fp9cg4aawnj28dp209skrxlxtd48hd5h990ct6vf9nqp6q9zdq6l
+    - &host_dweller age1es7yxp39q4p9lmj2609qx7uq65mdkxarx7rgwlg2qnpenu6lcggqfyuuvs
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:

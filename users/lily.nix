@@ -45,6 +45,7 @@ in {
           rbw
 
           nix-prefetch
+          nix-tree
 
           wayvnc
 
@@ -86,6 +87,7 @@ in {
         ])
         (lib.mkIf (config.services.xserver.enable && host == "snatcher") [
             appflowy
+            gimp
 
             gamehub gamescope
             ultimatestunts stuntrally xmoto
@@ -94,17 +96,18 @@ in {
         ])
         (lib.mkIf (config.services.xserver.enable && lowPower) [ # Less powerful, chromebooks etc)
             jellyfin-mpv-shim
+            palemoon-bin
         ])
         (lib.mkIf config.services.xserver.desktopManager.gnome.enable [ # Gnome-specific
           gnome.gnome-tweaks
           gnome.gnome-shell-extensions
         ])
         (lib.mkIf config.home-manager.users.lily.wayland.windowManager.sway.enable [ # Hyprland utils
-        	swaynotificationcenter wofi
-        	hypridle swww hyprlock
+        	swaynotificationcenter
+        	swayidle swww 
         	grimblast
         	clipman wl-clipboard
-        	gnome.nautilus blueman bluetuith
+        	blueman bluetuith
         ])
       ];
   };
@@ -180,7 +183,7 @@ in {
         enable = true;
         icons = true;
       };
-      programs.firefox = { enable = graphical; };
+      programs.firefox = { enable = graphical && !lowPower; };
       programs.fzf.enable = true;
       programs.gallery-dl.enable = !lowPower;
       programs.gh.enable = true;
@@ -606,7 +609,25 @@ in {
       wayland.windowManager.sway = {
         enable = true;
         systemd.xdgAutostart = true;
-        config = rec {
+        config = let
+        	lockdelay = if laptop then 300 else 600;
+        	monitordelay = if laptop then 420 else 900;
+
+        	lockcmd = "swaylock -f -c 00000099 -e -F -L";
+        	idledaemon = lib.concatStringsSep " " [
+            	"swayidle -w"
+            	"timeout ${lockdelay} '${lockcmd}'"
+            	"timeout ${monitordelay} 'swaymsg output * power off'"
+            	"resume 'swaymsg output * power on'"
+            	"before-sleep '${lockcmd}'"
+        	];
+
+        	launcher = "${pkgs.rofi-wayland}/bin/rofi -show combi -modes combi -combi-modes 'window,drun,run'";
+        	filemanager = "${pkgs.xfce.thunar}/bin/thunar";
+        	webbrowser = if lowPower then "palemoon" else "firefox";
+        	
+        in
+        {
           terminal = "alacritty";
           modifier = "Mod4";
           bars = lib.mkForce [];
@@ -619,11 +640,11 @@ in {
 
 					assigns = {
     					# Main Display
-    					"11: web" = [{ class = "^Firefox$"; }];
-    					"13: games" = [{ class = "^steam_app_"; } { class = "^steam$"; }];
+    					"11" = [{ class = "^Firefox$"; }];
+    					"13" = [{ class = "^steam_app_"; } { class = "^steam$"; }];
 
     					# Vertical Display
-    					"21: chat" = [{ app_id = "^discord$"; } { class = "^steam$"; title = "^Friends List"; }];
+    					"21" = [{ app_id = "^discord$"; } { class = "^steam$"; title = "^Friends List"; }];
 					};
 
 					window.commands = [
@@ -633,13 +654,43 @@ in {
     					}
     					{
         					criteria.class = "^steam_app_";
-        					command = "fullscreen enable, inhibit_idle focus";
+        					command = "fullscreen enable, inhibit_idle focus, move window to workspace number 13";
     					}
     					{
         					criteria.class = "^xwaylandvideobridge$";
         					command = "no_focus, opacity 0, floating enable, resize set width 1 px height 1 px";
     					}
 					];
+
+					workspaceOutputAssign = if host == "snatcher" then [
+    					{ output = "DP-1"; workspace = "11"; }
+    					{ output = "DP-1"; workspace = "12"; }
+    					{ output = "DP-1"; workspace = "13"; }
+    					{ output = "DP-1"; workspace = "14"; }
+    					{ output = "DP-1"; workspace = "15"; }
+    					{ output = "DP-1"; workspace = "16"; }
+    					{ output = "DP-1"; workspace = "17"; }
+    					{ output = "DP-1"; workspace = "18"; }
+    					{ output = "DP-1"; workspace = "19"; }
+    					{ output = "DP-2"; workspace = "21"; }
+    					{ output = "DP-2"; workspace = "22"; }
+    					{ output = "DP-2"; workspace = "23"; }
+    					{ output = "DP-2"; workspace = "24"; }
+    					{ output = "DP-2"; workspace = "25"; }
+    					{ output = "DP-2"; workspace = "26"; }
+    					{ output = "DP-2"; workspace = "27"; }
+    					{ output = "DP-2"; workspace = "28"; }
+    					{ output = "DP-2"; workspace = "29"; }
+    					{ output = "HDMI-A-2"; workspace = "31"; }
+    					{ output = "HDMI-A-2"; workspace = "32"; }
+    					{ output = "HDMI-A-2"; workspace = "33"; }
+    					{ output = "HDMI-A-2"; workspace = "34"; }
+    					{ output = "HDMI-A-2"; workspace = "35"; }
+    					{ output = "HDMI-A-2"; workspace = "36"; }
+    					{ output = "HDMI-A-2"; workspace = "37"; }
+    					{ output = "HDMI-A-2"; workspace = "38"; }
+    					{ output = "HDMI-A-2"; workspace = "39"; }
+					] else [];
           
           keybindings = 
           let 
@@ -648,10 +699,10 @@ in {
             modAlt = "${modifier}+Alt";
           in lib.mkOptionDefault {
               "${modifier}+t" = "exec alacritty"; # Terminal
-              "${modifier}+e" = "exec nautilus"; # Explorer
-              "${modifier}+b" = "exec firefox"; # Browser
+              "${modifier}+e" = "exec ${filemanager}"; # Explorer
+              "${modifier}+b" = "exec ${webbrowser}"; # Browser
               "${modifier}+a" = "exec pavucontrol"; # Audio
-              "${modifier}+space" = "exec wofi -i -w 4 --show drun";
+              "${modifier}+space" = "exec ${launcher}";
               "${modifier}+backspace" = "exec swaync-client -t";
 
 
@@ -696,18 +747,26 @@ in {
               "${modAlt}+up" = "resize grow height";
               "${modAlt}+down" = "resize shrink height";
 
+              # Screenshots
+              "print" =  "exec grimblast --notify copysave screen"; # Full desktop screenshot
+              "SHIFT+print" = "exec grimblast --freeze --notify copysave area"; # Area/Window Capture
+              "ALT+print" = "exec grimblast --notify copysave active"; # Active Window Capture
+              "CTRL+print" = "exec grimblast --notify copysave output"; # Active Monitor
+
               "${modifier}+q" = "kill";
               "${modShift}+q" = "exec swaymsg exit"; # Need to setup nag
             };
           startup = [
             { command = "swaync"; }
             { command = "swayidle"; }
-            { command = "udiskie &"; }
+            { command = "udiskie"; }
             { command = "swayosd-server"; }
             { command = "wl-paste -p -t text --watch clipman store -P --histpath='~/.local/share/clipman-primary.json'"; }
+            { command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway"; }
+          ] ++ lib.mkIf (host == "snatcher") [ { command = "swaymsg focus workspace 31"; }
+            { command = "swaymsg focus workspace 21"; }
+            { command = "swaymsg focus workspace 11"; }
             { command = "swaysome init 1"; }
-            { command = "swaysome rearrange-workspaces"; always = true; }
-            { command = "swaymsg focus output DP-1"; }
           ];
 
           output =
