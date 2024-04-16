@@ -93,7 +93,7 @@ in {
             appflowy
             gimp
             cava strawberry
-            (pkgs.callPackage ../pkgs/freyrjs.nix {})
+#            (pkgs.callPackage ../pkgs/freyrjs.nix {})
 
             gamehub gamescope
             ultimatestunts stuntrally xmoto
