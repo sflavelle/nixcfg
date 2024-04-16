@@ -70,7 +70,6 @@
     # Programs
     steam-rom-manager
     protontricks
-    obs-studio
     bitwig-studio
     godot_4
     via

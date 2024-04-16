@@ -33,6 +33,9 @@ in {
           edir
           epr
           mimeo
+          duf
+          up
+          
 
           nom
 
@@ -84,10 +87,13 @@ in {
             retroarchFull
             tetrio-desktop
             # bizhawk.emuhawk
+            mumble
         ])
         (lib.mkIf (config.services.xserver.enable && host == "snatcher") [
             appflowy
             gimp
+            cava strawberry
+            (pkgs.callPackage ../pkgs/freyrjs.nix {})
 
             gamehub gamescope
             ultimatestunts stuntrally xmoto
@@ -105,7 +111,7 @@ in {
         (lib.mkIf config.home-manager.users.lily.wayland.windowManager.sway.enable [ # Hyprland utils
         	swaynotificationcenter
         	swayidle swww 
-        	grimblast
+        	grim slurp
         	clipman wl-clipboard
         	blueman bluetuith
         ])
@@ -232,6 +238,11 @@ in {
           obs-source-record
           obs-pipewire-audio-capture
           obs-teleport
+          wlrobs
+          obs-rgb-levels-filter
+          obs-backgroundremoval
+          advanced-scene-switcher
+          (pkgs.callPackage ../pkgs/obs-plugin-advanced-masks.nix {})
         ];
       };
 #      programs.notmuch.enable = true;
@@ -327,6 +338,9 @@ in {
                       separate-outputs = true;
                       rewrite = {
                           "(.*) — Mozilla Firefox" = "🌎 $1";
+                          "(.*) — Pale Moon" = "🌎 $1";
+                          "(.*) - mpv" = "📹 $1";
+                          "(.*) - Thunar" = "📁 $1";
                       };
                   };
 
@@ -382,7 +396,7 @@ in {
                   modules-left = [ "sway/workspaces" "mpris" ];
                   modules-center = [ "sway/window" ];
                   modules-right = [
-                      "pulseaudio" "group/system" "group/network"
+                      "pulseaudio" "disk" "group/system" "group/network"
                       (lib.mkIf laptop "battery")
                       	(lib.mkIf laptop "backlight")
                       "tray" "user" "clock" ];
@@ -401,80 +415,13 @@ in {
 
       wayland.windowManager.hyprland = {
           enable = false;
-          plugins = [
-          ];
           settings = {
-              "$mod" = "SUPER";
-              "$modShift" = "SUPERSHIFT";
-              general = {
-              	# allow_tearing = true;
-								gaps_out = if (host == "dweller") then 5 else 20;
-								cursor_inactive_timeout = 20;
-							};
-              decoration.blur = if lowPower then { enabled = false;} else {
-                  size = 20;
-                  passes = 2;
-                  
-              };
-              decoration.drop_shadow = !lowPower;
-              decoration.rounding = 12;
-              input = {
-                  touchpad = {
-                      natural_scroll = true;
-                      clickfinger_behavior = true;
-                  };
-              };
-              dwindle = {
-                pseudotile = true;
-                preserve_split = true;
-              };
-              misc = {
-                  disable_hyprland_logo = true;
-                  disable_splash_rendering = true;
-                  enable_swallow = true;
-                  swallow_regex = "^(Alacritty)$";
-                  allow_session_lock_restore = true;
-                  key_press_enables_dpms = true;
-                  new_window_takes_over_fullscreen = 2;
-              };
               env = [
                   "XDG_SESSION_TYPE,wayland"
                   "WLR_NO_HARDWARE_CURSORS,1"
                   "MOZ_ENABLE_WAYLAND,1"
                   "HYPRCURSOR_THEME,HyprBibataModernClassicSVG"
                   "HYPRCURSOR_SIZE,48"
-              ];
-              exec-once = [
-#                "eww --restart open primarybar"
-                "swaync"
-                "hypridle"
-                "udiskie &"
-                "wl-paste -p -t text --watch clipman store -P --histpath='~/.local/share/clipman-primary.json'"
-                "[workspace 11 silent] discord"
-                "[workspace 3 silent] com.valvesoftware.Steam"
-              ];
-              exec = [
-                  "swww init --no-cache; swww img ${config.home-manager.users.lily.stylix.image} --transition-type random --transition-step 10"
-              ];
-              monitor =
-              	if host == "snatcher" then [
-                  "DP-1, preferred, 1440x900, 1"
-                  "DP-2, preferred, 0x0, 1, transform, 3"
-                  # Sometimes the monitors show up two IDs up. I have no idea why.
-                  "DP-3, preferred, 1440x900, 1"
-                  "DP-4, preferred, 0x0, 1, transform, 3"
-                  # Then my spare
-                  "HDMI-A-2, 1920x1080@60, 5280x1440, 1"
-              		]
-              	else if laptop then [
-                  	"eDP-1,highrr,auto,1"
-                  	",preferred,auto,1"
-              	]
-              	else ", preferred, auto, 1";
-
-              bindm = [
-                  "$mod, mouse:272, movewindow"
-                  "$mod, mouse:273, resizewindow"
               ];
               bindl = [
                   ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
@@ -610,16 +557,18 @@ in {
         enable = true;
         systemd.xdgAutostart = true;
         config = let
-        	lockdelay = if laptop then 300 else 600;
-        	monitordelay = if laptop then 420 else 900;
+        	lockdelay = if laptop then "300" else "600";
+        	monitordelay = if laptop then "420" else "900";
 
-        	lockcmd = "swaylock -f -c 00000099 -e -F -L";
+        	lockcmd = "swaylock -f -e -F -l -i DP-1:${config.home-manager.users.lily.stylix.image}";
         	idledaemon = lib.concatStringsSep " " [
             	"swayidle -w"
             	"timeout ${lockdelay} '${lockcmd}'"
-            	"timeout ${monitordelay} 'swaymsg output * power off'"
-            	"resume 'swaymsg output * power on'"
+            	"timeout ${monitordelay} 'swaymsg output * dpms off'"
+            	"resume 'swaymsg output * dpms on'"
             	"before-sleep '${lockcmd}'"
+            	"lock '${lockcmd}'"
+            	"unlock 'killall -s SIGUSR1 swaylock'"
         	];
 
         	launcher = "${pkgs.rofi-wayland}/bin/rofi -show combi -modes combi -combi-modes 'window,drun,run'";
@@ -631,12 +580,26 @@ in {
           terminal = "alacritty";
           modifier = "Mod4";
           bars = lib.mkForce [];
-          seat = {};
+          seat."*" = { hide_cursor = "10000"; };
+
+          focus.followMouse = "always";
+
+          input = {
+              "type:touchpad" = {
+                  natural_scroll = "enabled";
+                  scroll_method = "two_finger";
+                  tap = "enabled";
+                  dwt = "enabled";
+                  accel_profile = "adaptive";
+              };
+          };
 
 					gaps = {
     					smartBorders = "on";
-    					smartGaps = true;
+#    					smartGaps = true;
+    					outer = 15;
 					};
+					window.hideEdgeBorders = "smart";
 
 					assigns = {
     					# Main Display
@@ -654,11 +617,15 @@ in {
     					}
     					{
         					criteria.class = "^steam_app_";
-        					command = "fullscreen enable, inhibit_idle focus, move window to workspace number 13";
+        					command = "fullscreen enable, floating disable, inhibit_idle focus, move window to workspace number 13";
+    					}
+    					{
+        					criteria.title = "title:(Nix|Emu|Biz)Hawk";
+        					command = "fullscreen enable, floating disable, inhibit_idle visible, move window to workspace number 13";
     					}
     					{
         					criteria.class = "^xwaylandvideobridge$";
-        					command = "no_focus, opacity 0, floating enable, resize set width 1 px height 1 px";
+        					command = "no_focus, floating enable, resize set width 1 px height 1 px";
     					}
 					];
 
@@ -758,7 +725,7 @@ in {
             };
           startup = [
             { command = "swaync"; }
-            { command = "swayidle"; }
+            { command = idledaemon; }
             { command = "udiskie"; }
             { command = "swayosd-server"; }
             { command = "wl-paste -p -t text --watch clipman store -P --histpath='~/.local/share/clipman-primary.json'"; }

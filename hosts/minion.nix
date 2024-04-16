@@ -58,7 +58,6 @@
     # Programs
     steam-rom-manager
     lutris
-    obs-studio
 
     # Custom Packages
     (pkgs.callPackage ../pkgs/poptracker.nix { })
