@@ -78,13 +78,6 @@
           age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
           age.keyFile = "/home/lily/.config/sops/age/keys.txt";
           age.generateKey = true;
-          secrets."passwords/linux".neededForUsers = true;
-          secrets = {
-                "passwords/icloud" = { owner = "lily"; };
-                "passwords/gmail/neuraria" = { owner = "lily"; };
-                "passwords/gmail/simonsayslps" = { owner = "lily"; };
-                "passwords/gmail/simonf" = { owner = "lily"; };
-              };
         };
 
         nix.settings = {
@@ -148,6 +141,17 @@
 
                 disko.nixosModules.disko
                 ./fragments/badgeseller-disk.nix
+            ];
+        };
+        "rumbi" = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs; };
+            modules = [
+                # This is just meant to be used as a Home Assistant terminal basically
+                # We'll put what we need to run web and media stuff
+
+                self.nixosModules.commonModules
+                ./hosts/rumbi.nix
             ];
         };
         # Servers

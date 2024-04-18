@@ -121,6 +121,14 @@ in {
   nix.settings.trusted-users = [ "lily" ];
   security.sudo.wheelNeedsPassword = false;
 
+  sops.secrets = {
+                "passwords/linux".neededForUsers = true;
+                "passwords/icloud" = { owner = "lily"; };
+                "passwords/gmail/neuraria" = { owner = "lily"; };
+                "passwords/gmail/simonsayslps" = { owner = "lily"; };
+                "passwords/gmail/simonf" = { owner = "lily"; };
+              };
+
   home-manager.users.lily = {
       home = {
         username = "lily";
