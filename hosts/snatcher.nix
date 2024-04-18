@@ -61,9 +61,9 @@
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ hplip ];
 
-  services.preload.enable = true;
-
-  users.users.lily.extraGroups = [ "audio" ];
+	programs.adb.enable = true;
+	
+  users.users.lily.extraGroups = [ "audio" "adbusers" ];
   users.users.lily.packages = (with pkgs; [
     keyfinder-cli
     beets-unstable
