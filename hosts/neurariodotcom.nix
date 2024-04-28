@@ -138,16 +138,6 @@
   };
 
   virtualisation.podman.enable = true;
-  virtualisation.oci-containers.containers = {
-    "neutopiadiscord-archive" = {
-      image = "slada/dcef:main";
-      volumes = [
-        "dcef_cache:/dcef/cache"
-        "${/home/lily/NeutopiaDiscordExport}:/dcef/exports"
-      ];
-      ports = [ "21011:21011" ];
-    };
-  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 443 80 18080 8008 8448 ];
