@@ -82,7 +82,6 @@
 
   services.forgejo = {
     enable = true;
-    dump.enable = true;
     lfs.enable = true;
     settings.server.DOMAIN = "git.neurario.com";
     settings.server.ROOT_URL = "https://git.neurario.com";
