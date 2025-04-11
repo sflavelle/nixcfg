@@ -47,7 +47,6 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -96,8 +95,15 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  services.handheld-daemon = {
+    enable = true;
+    ui.enable = true;
+    user = "splatsune";
+  };
   programs.steam.enable = true;
   jovian.steam.enable = true;
+  jovian.steam.user = "splatsune";
+  jovian.steam.desktopSession = "plasma";
   jovian.steam.autoStart = true;
   jovian.decky-loader.enable = true;
 
