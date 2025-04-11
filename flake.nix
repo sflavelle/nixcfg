@@ -41,7 +41,7 @@
 	  overlay-stable = final: prev: {
             stable = import nix-stable { inherit system; config.allowUnfree = true; };
 	  };
-	in
+in
       {
       nixosModules."commonModules" = { config, lib, inputs, ... }:{
         imports = [
@@ -50,6 +50,7 @@
         nixpkgs.overlays = [ overlay-stable ];
 
         nix.settings = {
+	  experimental-features = ["nix-command" "flakes"];
           substituters = [];
           trusted-public-keys = [];
         };
@@ -86,34 +87,6 @@
 	    inputs.jovian.nixosModules.default
 	  ];
         };
-        "dweller" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/dweller.nix
-            self.nixosModules.commonModules
-          ];
-        };
-        "badgeseller" = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs; };
-            modules = [
-                ./hosts/badgeseller.nix
-                self.nixosModules.commonModules
-                nixos-hardware.nixosModules.apple-macbook-air-6
-                nixos-hardware.nixosModules.apple-t2
-            ];
-        };
-        "rumbi" = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs; };
-            modules = [
-                # This is just meant to be used as a Home Assistant terminal basically
-                # We'll put what we need to run web and media stuff
-
-                self.nixosModules.commonModules
-                ./hosts/rumbi.nix
-            ];
-        };
     };
+  };
 }
