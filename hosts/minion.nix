@@ -86,31 +86,16 @@
     description = "Simon Flavelle";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kdePackages.kate gh git steam-run
+      kdePackages.kate steam-run
       thunderbird
       bitwarden-desktop
       mpv
-      jetbrains.pycharm-community-src
-      (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
     ];
   };
 
   # Install firefox.
   programs.firefox.enable = true;
   programs.localsend.enable = true;
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-    protontricks.enable = true;
-    gamescopeSession.enable = true;
-    
-  };
-  programs.gamescope.enable = true;
-  services.tailscale.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

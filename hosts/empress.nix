@@ -1,14 +1,14 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ../hardware/empress.nix
-    ];
+  imports = [
+    ../hardware/empress.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -59,7 +59,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -81,10 +81,13 @@
   users.users.splatsune = {
     isNormalUser = true;
     description = "Simon Flavelle";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -101,11 +104,16 @@
     user = "splatsune";
   };
   programs.steam.enable = true;
-  jovian.steam.enable = true;
-  jovian.steam.user = "splatsune";
-  jovian.steam.desktopSession = "plasma";
-  jovian.steam.autoStart = true;
-  jovian.decky-loader.enable = true;
+  jovian = {
+    has.amd.gpu = true;
+    steam = {
+      enable = true;
+      user = "splatsune";
+      desktopSession = "plasma";
+      autoStart = true;
+    };
+    decky-loader.enable = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -113,8 +121,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

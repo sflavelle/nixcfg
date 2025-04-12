@@ -15,78 +15,108 @@
     nix-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-generators = {
-        url = "github:nix-community/nixos-generators";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     mac-brcm-fw = {
-        url = "github:AdityaGarg8/Apple-Firmware";
-        flake = false;
+      url = "github:AdityaGarg8/Apple-Firmware";
+      flake = false;
     };
     jovian = {
-	url = "github:Jovian-Experiments/Jovian-NixOS";
-	inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
 
   outputs =
-    { self,
+    {
+      self,
       nixpkgs,
       nix-stable,
       nixos-hardware,
       nixos-generators,
-      ... }@inputs:
-	let
-	  system = "x86_64-linux";
-	  overlay-stable = final: prev: {
-            stable = import nix-stable { inherit system; config.allowUnfree = true; };
-	  };
-in
-      {
-      nixosModules."commonModules" = { config, lib, inputs, ... }:{
-        imports = [
-        ];
-
-        nixpkgs.overlays = [ overlay-stable ];
-
-        nix.settings = {
-	  experimental-features = ["nix-command" "flakes"];
-          substituters = [];
-          trusted-public-keys = [];
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      overlay-stable = final: prev: {
+        stable = import nix-stable {
+          inherit system;
+          config.allowUnfree = true;
         };
-	nixpkgs.config.permittedInsecurePackages = [
-        ];
       };
+    in
+    {
+      nixosModules."commonModules" =
+        {
+          config,
+          lib,
+          inputs,
+          ...
+        }:
+        {
+          imports = [
+          ];
+
+          services.openssh.enable = true;
+          services.tailscale.enable = true;
+          environment.systemPackages = with pkgs; [
+            duf dust fd eza curl fzf btop
+          ];
+
+          nixpkgs.overlays = [ overlay-stable ];
+
+          nix.settings = {
+            experimental-features = [
+              "nix-command"
+              "flakes"
+            ];
+            substituters = [ ];
+            trusted-public-keys = [ ];
+          };
+          nixpkgs.config.permittedInsecurePackages = [
+          ];
+
+        };
       nixosConfigurations = {
         "snatcher" = nixpkgs.lib.nixosSystem {
           # Primary Desktop PC
-          system = "x86_64-linux";
+          system = system;
           specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/snatcher.nix
             self.nixosModules.commonModules
+            ./hosts/snatcher.nix
+            ./modules/desktop-games.nix
+            ./modules/dev.nix
+            ./modules/chat.nix
           ];
         };
         "minion" = nixpkgs.lib.nixosSystem {
           # Infinity Gaming laptop
-          system = "x86_64-linux";
+          system = system;
           specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/minion.nix
             self.nixosModules.commonModules
-
+            ./hosts/minion.nix
+            ./modules/desktop-games.nix
+            ./modules/dev.nix
+            ./modules/chat.nix
           ];
         };
         "empress" = nixpkgs.lib.nixosSystem {
-	  # Lenovo Legion Go
-	  system = "x86_64-linux";
-	  specialArgs = { inherit inputs; };
-	  modules = [
-	    ./hosts/empress.nix
-	    self.nixosModules.commonModules
-	    inputs.jovian.nixosModules.default
-	  ];
+          # Lenovo Legion Go
+          system = system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            self.nixosModules.commonModules
+            inputs.jovian.nixosModules.default
+
+            ./hosts/empress.nix
+            ./modules/desktop-games.nix
+            ./modules/chat.nix
+          ];
         };
+      };
     };
-  };
 }
