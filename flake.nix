@@ -65,7 +65,6 @@
           services.tailscale.enable = true;
           environment.systemPackages = with pkgs; [
             duf dust fd eza curl fzf btop
-            inputs.zen-browser.packages."${system}".specific
           ];
 
           nixpkgs.overlays = [ overlay-stable ];
