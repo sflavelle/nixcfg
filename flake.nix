@@ -14,6 +14,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +54,7 @@
           config,
           lib,
           inputs,
+          system,
           ...
         }:
         {
@@ -63,6 +65,7 @@
           services.tailscale.enable = true;
           environment.systemPackages = with pkgs; [
             duf dust fd eza curl fzf btop
+            inputs.zen-browser.packages."${system}".specific
           ];
 
           nixpkgs.overlays = [ overlay-stable ];

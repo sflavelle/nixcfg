@@ -7,7 +7,7 @@
 
 {
   users.users.splatsune.packages = with pkgs; [
-    gamemode
+    gamemode mangohud
     archipelago poptracker steam-devices-udev-rules
     itch heroic 
     shipwright
@@ -25,4 +25,10 @@
     
   };
   programs.gamescope.enable = true;
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32bit = true;
+  };
 }
