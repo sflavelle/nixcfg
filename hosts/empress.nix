@@ -105,7 +105,6 @@
   };
   programs.steam.enable = true;
   jovian = {
-    has.amd.gpu = true;
     steam = {
       enable = true;
       user = "splatsune";
