@@ -26,8 +26,5 @@
   };
   programs.gamescope.enable = true;
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-  };
+  hardware.opengl.enable = true;
 }
