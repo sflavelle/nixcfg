@@ -12,7 +12,7 @@
     itch heroic 
     shipwright
     lutris 
-    torus-trooper stuntrally xmoto space-cadet-pinball
+    stuntrally xmoto space-cadet-pinball
     tetrio-desktop ringracers gzdoom
   ];
 
