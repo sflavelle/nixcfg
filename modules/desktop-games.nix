@@ -12,8 +12,8 @@
     itch heroic 
     shipwright
     lutris 
-    stuntrally xmoto space-cadet-pinball
-    tetrio-desktop ringracers gzdoom
+    xmoto space-cadet-pinball
+    tetrio-desktop ringracers
   ];
 
   programs.steam = {
