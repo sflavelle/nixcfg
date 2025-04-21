@@ -13,7 +13,7 @@
     shipwright
     lutris 
     xmoto space-cadet-pinball
-    tetrio-desktop ringracers osu-lazer
+    tetrio-desktop ringracers osu-lazer-bin
     sgt-puzzles
     shattered-pixel-dungeon
   ];
