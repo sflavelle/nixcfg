@@ -137,4 +137,8 @@
         };
       };
     };
+    packages = {
+      mpv-watch = import ./pkgs/mpv-watch.nix;
+      pydymenu = import ./pkgs/pydymenu.nix { inherit nixpkgs; };
+    };
 }
