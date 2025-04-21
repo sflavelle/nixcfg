@@ -8,6 +8,6 @@
   users.users."splatsune".packages = with pkgs; [
     ungoogled-chromium
     snapcast
-    mpv-watch
+    (callPackage ../pkgs/mpv-watch.nix)
   ];
 }

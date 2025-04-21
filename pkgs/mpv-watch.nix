@@ -2,10 +2,15 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  buildPythonApplication,
+  python312Packages,
+  mpv,
+  fzf,
+  rofi,
   pydymenu,
 }:
-let
+python312Packages.buildPythonApplication rec {
+  pname = "mpv-watch";
+  version = "unstable-2025-01-16";
   dots = fetchFromGitHub {
     owner = "sflavelle";
     repo = "dots";
@@ -13,18 +18,22 @@ let
     hash = "sha256-rHpd+UqOw1j/o2ird3MouT6/jbjT1VUpPnngKun2l6A=";
   };
 
-in buildPythonApplication rec {
-  pname = "mpv-watch";
-  version = "unstable-2025-01-16";
-  src = ${dots}/dot_local/bin/executable_watch;
-}
   dependencies = [
     pydymenu
+    mpv
+    fzf rofi
   ];
+
+  installPhase = ''install -Dm755 dot_local/bin/executable_watch $out/bin/mpv-watch'';
+  postInstall = ''
+    wrapProgram $out/bin/mpv-watch \
+      --set PATH ${lib.makeBinPath [mpv fzf rofi]}
+      '';
 
   meta = {
     description = "Helper script to easily launch a playlist in MPV";
     homepage = "https://github.com/sflavelle/dots/blob/master/dot_local/bin/executable_watch";
     license = lib.licenses.unfree; # Not set
     maintainers = with lib.maintainers; [ ];
-  }
+  };
+}
