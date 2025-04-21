@@ -97,6 +97,7 @@
             self.nixosModules.commonModules
             ./hosts/snatcher.nix
             ./modules/desktop-games.nix
+            ./modules/desktop-software.nix
             ./modules/dev.nix
             ./modules/chat.nix
           ];
@@ -109,6 +110,7 @@
             self.nixosModules.commonModules
             ./hosts/minion.nix
             ./modules/desktop-games.nix
+            ./modules/desktop-software.nix
             ./modules/dev.nix
             ./modules/chat.nix
           ];
@@ -123,6 +125,7 @@
 
             ./hosts/empress.nix
             ./modules/desktop-games.nix
+            ./modules/desktop-software.nix
             ./modules/chat.nix
           ];
         };
