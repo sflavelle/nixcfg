@@ -27,6 +27,10 @@
       url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
@@ -118,6 +122,17 @@
             ./hosts/empress.nix
             ./modules/desktop-games.nix
             ./modules/chat.nix
+          ];
+        };
+
+        # Servers
+        "puppetmaster" = nixpkgs.lib.nixosSystem {
+          system = system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/puppetmaster.nix
+            inputs.disko.nixosModules.disko
+            ./modules/disko-puppetmaster.nix
           ];
         };
       };
