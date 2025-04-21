@@ -7,13 +7,15 @@
 
 {
   users.users.splatsune.packages = with pkgs; [
-    gamemode mangohud
+    gamemode mangohud ludusavi
     archipelago poptracker steam-devices-udev-rules
     itch heroic 
     shipwright
     lutris 
     xmoto space-cadet-pinball
-    tetrio-desktop ringracers
+    tetrio-desktop ringracers osu-lazer
+    sgt-puzzles
+    shattered-pixel-dungeon
   ];
 
   programs.steam = {

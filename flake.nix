@@ -68,6 +68,8 @@
 
           services.openssh.enable = true;
           services.tailscale.enable = true;
+
+          services.flatpak.enable = true;
           environment.systemPackages = with pkgs; [
             duf dust fd eza curl fzf btop
           ];
