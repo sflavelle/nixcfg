@@ -108,6 +108,7 @@
   ];
 
   services.xserver.videoDrivers = ["nvidia"];
+  hardware.nvidia.open = true;
   hardware.nvidia.modesetting.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
