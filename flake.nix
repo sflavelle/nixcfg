@@ -71,7 +71,7 @@
 
           services.flatpak.enable = true;
           environment.systemPackages = with pkgs; [
-            duf dust fd eza curl fzf btop
+            duf dust fd eza curl fzf btop helix
           ];
 
           nixpkgs.overlays = [ overlay-stable ];
@@ -138,9 +138,9 @@
           ];
         };
       };
-    };
-    packages = {
+    packages."x86_64-linux" = {
       mpv-watch = import ./pkgs/mpv-watch.nix;
-      pydymenu = import ./pkgs/pydymenu.nix { inherit nixpkgs; };
+      pydymenu = import ./pkgs/pydymenu.nix {};
     };
+};
 }
