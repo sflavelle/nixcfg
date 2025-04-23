@@ -33,7 +33,7 @@
       ];
     };
     "/mnt/nas/shared" = {
-      device = (builtins.replaceStrings [ " " ] [ "\\040" ] "//10.0.0.3/media");
+      device = (builtins.replaceStrings [ " " ] [ "\\040" ] "//10.0.0.69/media");
       fsType = "cifs";
       options = [
         "uid=1000"
@@ -75,23 +75,27 @@
       #  thunderbird
     ];
   };
-  # users.users.lily.packages = (with pkgs; [
-  #   keyfinder-cli
-  #   beets-unstable
-  #   # Programs
-  #   steam-rom-manager
-  #   protontricks
-  #   godot_4
-  #   via
 
-  #   # Media Production
-  #   (davinci-resolve.override { studioVariant = true; } )
-  #   inkscape
-  #   reaper
-  #   # Plugins
-  #   yabridge
+  users.users."${hostSpec.username}" = {
+    extraGroups = [ "audio" "adbusers" ];
+    packages = with pkgs; [
+      keyfinder-cli
+      beets-unstable
+      # Programs
+      steam-rom-manager
+      protontricks
+      godot_4
+      via
 
-  # ]);
+      # Media Production
+      # (davinci-resolve.override { studioVariant = true; } )
+      inkscape
+      reaper
+      # Plugins
+      yabridge
+
+    ];
+  }
 
   services.xserver.videoDrivers = [ "amdgpu" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
@@ -132,15 +136,8 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.variables = { 
-    EDITOR = "kak";
-    };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
-    (davinci-resolve.override { studioVariant = true; } )
-    
-    wget
-    httpie
     pandoc
     powershell
     git
@@ -149,7 +146,6 @@
     wineWowPackages.waylandFull
     wineasio
     coreutils
-    clang
 
     # soundfonts
     soundfont-arachno
