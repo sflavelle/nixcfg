@@ -23,6 +23,17 @@
       enable = true;
   };
 
+  users.users.splatsune = {
+    isNormalUser = true;
+    description = "Simon Flavelle";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     ungoogled-chromium
     ghostty

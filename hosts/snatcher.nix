@@ -62,25 +62,36 @@
   services.printing.drivers = with pkgs; [ hplip ];
 
 	programs.adb.enable = true;
-	
-  users.users.lily.extraGroups = [ "audio" "adbusers" ];
-  users.users.lily.packages = (with pkgs; [
-    keyfinder-cli
-    beets-unstable
-    # Programs
-    steam-rom-manager
-    protontricks
-    godot_4
-    via
 
-    # Media Production
-    (davinci-resolve.override { studioVariant = true; } )
-    inkscape
-    reaper
-    # Plugins
-    yabridge
+  users.users.lily = {
+    isNormalUser = true;
+    description = "Simon Flavelle";
+    extraGroups = [
+      "networkmanager"
+      "wheel" "audio" "adbusers" 
+    ];
+    packages = with pkgs; [
+      kdePackages.kate
+      #  thunderbird
+    ];
+  };
+  # users.users.lily.packages = (with pkgs; [
+  #   keyfinder-cli
+  #   beets-unstable
+  #   # Programs
+  #   steam-rom-manager
+  #   protontricks
+  #   godot_4
+  #   via
 
-  ]);
+  #   # Media Production
+  #   (davinci-resolve.override { studioVariant = true; } )
+  #   inkscape
+  #   reaper
+  #   # Plugins
+  #   yabridge
+
+  # ]);
 
   services.xserver.videoDrivers = [ "amdgpu" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
