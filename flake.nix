@@ -75,6 +75,7 @@
           services.tailscale.enable = true;
 
           xdg.portal.enable = true;
+          xdg.portal.extraPortals = with pkgs; [kdePackages.xdg-desktop-portal-kde];
           services.flatpak.enable = true;
           environment.systemPackages = with pkgs; [
             duf dust fd eza curl fzf btop helix

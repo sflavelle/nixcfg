@@ -6,7 +6,7 @@
 }:
 
 {
-  users.users.splatsune.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     gh git
     jetbrains.pycharm-community-src vscode-with-extensions
   ];

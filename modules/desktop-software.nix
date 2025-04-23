@@ -5,7 +5,7 @@
   ...
 }:
 {
-  users.users."splatsune".packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     ungoogled-chromium
     snapcast
     # (callPackage ../pkgs/mpv-watch.nix)

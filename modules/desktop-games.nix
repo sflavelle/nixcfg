@@ -6,7 +6,7 @@
 }:
 
 {
-  users.users.splatsune.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     gamemode mangohud ludusavi
     archipelago poptracker steam-devices-udev-rules
     itch heroic 
