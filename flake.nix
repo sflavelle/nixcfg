@@ -16,7 +16,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     niri.url = "github:sodiboo/niri-flake";
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";    
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -67,19 +67,27 @@
         {
           imports = [
             inputs.nixos-generators.nixosModules.all-formats
+            ./modules/options
           ];
 
           virtualisation.diskSize = 32 * 1024;
 
           services.openssh.enable = true;
           services.tailscale.enable = true;
-
-          xdg.portal.enable = true;
-          xdg.portal.extraPortals = with pkgs; [kdePackages.xdg-desktop-portal-kde];
           services.flatpak.enable = true;
           environment.systemPackages = with pkgs; [
-            duf dust fd eza curl fzf btop helix
+            duf
+            dust
+            fd
+            eza
+            curl
+            fzf
+            btop
+            helix
           ];
+          environment.variables = {
+            EDITOR = "hx";
+          };
 
           nixpkgs.overlays = [ overlay-stable ];
 
@@ -123,7 +131,7 @@
         "dweller" = nixpkgs.lib.nixosSystem {
           # Acer Chromebook C720
           system = system;
-          specialArgs = { inherit inputs;};
+          specialArgs = { inherit inputs; };
           modules = [
             self.nixosModules.commonModules
             inputs.niri.nixosModules.niri
@@ -133,6 +141,9 @@
             ./modules/dev.nix
             ./modules/niri.nix
             ./modules/chat.nix
+
+            inputs.disko.nixosModules.disko
+            ./modules/disko-dweller.nix
           ];
         };
         "empress" = nixpkgs.lib.nixosSystem {
@@ -163,9 +174,9 @@
           ];
         };
       };
-    packages."x86_64-linux" = {
-      mpv-watch = import ./pkgs/mpv-watch.nix;
-      pydymenu = import ./pkgs/pydymenu.nix {};
+      packages."x86_64-linux" = {
+        mpv-watch = import ./pkgs/mpv-watch.nix;
+        pydymenu = import ./pkgs/pydymenu.nix { };
+      };
     };
-};
 }
