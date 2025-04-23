@@ -145,7 +145,6 @@
     powershell
     git
     curl
-    partition-manager
     gparted
     wineWowPackages.waylandFull
     wineasio
