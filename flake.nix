@@ -53,6 +53,7 @@
           config.allowUnfree = true;
         };
       };
+      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
     in
     {
       nixosModules."commonModules" =
@@ -68,13 +69,14 @@
           imports = [
             inputs.nixos-generators.nixosModules.all-formats
             ./modules/options
+            ./modules/users/lily
           ];
 
           virtualisation.diskSize = 32 * 1024;
 
           services.openssh.enable = true;
           services.tailscale.enable = true;
-          services.flatpak.enable = true;
+
           environment.systemPackages = with pkgs; [
             duf
             dust
