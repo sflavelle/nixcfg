@@ -1,10 +1,9 @@
-{ lib, ... }:
+{ config, lib, pkgs, ... }:
 let
-  mainUser = config.hostSpec.username;
+  mainUser = config.hostSpec.userName;
   name = if config.hostSpec.isPublic then "Simon Flavelle" else "Lily Flavelle"; # yes i'm not out yet
 in
 {
-  imports = lib.custom.scanPaths ./.;
 
   users.users."${mainUser}" = {
     isNormalUser = true;
@@ -18,17 +17,17 @@ in
       ([ # All systems
 
       ])
-      (mkIf config.hostSpec.hasPhysicalKeyboard [
+      (lib.mkIf config.hostSpec.hasPhysicalKeyboard [
 
       ])
-    ]
+    ];
   };
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users."${mainUser}" = {
+  # home-manager = {
+  #   useGlobalPkgs = true;
+  #   useUserPackages = true;
+  #   users."${mainUser}" = {
       
-    }
-  }
+  #   };
+  # };
 }

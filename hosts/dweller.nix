@@ -5,10 +5,10 @@
 { config, inputs, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ../hardware/dweller.nix
-    ];
+  hostSpec = {
+    hostName = "dweller";
+    isPublic = true;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -21,17 +21,6 @@
   nix.settings.auto-optimise-store = true;
   zramSwap = {
       enable = true;
-  };
-
-  users.users.splatsune = {
-    isNormalUser = true;
-    description = "Simon Flavelle";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    packages = with pkgs; [
-    ];
   };
 
   environment.systemPackages = with pkgs; [

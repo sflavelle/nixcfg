@@ -6,8 +6,9 @@
 {
   options.hostSpec = {
     # Data vars
-    username = lib.mkOption {
+    userName = lib.mkOption {
       type = lib.types.str;
+      default = if config.hostSpec.isPublic then "splatsune" else "lily";
       description = "The username of the host";
     };
     hostName = lib.mkOption {
@@ -81,5 +82,9 @@
       default = true;
       description = "Whether a device has a usable physical keyboard - set false to indicate tablets or gaming handhelds";
     };
-  }
+  };
+
+  config = {
+    networking.hostName = config.hostSpec.hostName;
+  };
 }

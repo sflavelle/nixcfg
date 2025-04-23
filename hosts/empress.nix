@@ -6,20 +6,14 @@
 }:
 
 {
-  imports = [
-    ../hardware/empress.nix
-  ];
+  hostSpec = {
+    hostName = "empress";
+    isPublic = true;
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "empress"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -73,23 +67,9 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.splatsune = {
-    isNormalUser = true;
-    description = "Simon Flavelle";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
-  };
-
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "splatsune";
+  services.xserver.displayManager.autoLogin.user = config.hostSpec.username;
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -97,13 +77,13 @@
   services.handheld-daemon = {
     enable = true;
     ui.enable = true;
-    user = "splatsune";
+    user = config.hostSpec.username;
   };
   programs.steam.enable = true;
   jovian = {
     steam = {
       enable = true;
-      user = "splatsune";
+      user = config.hostSpec.username;
       desktopSession = "plasma";
       autoStart = true;
     };

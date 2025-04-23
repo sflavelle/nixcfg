@@ -46,6 +46,7 @@
       ...
     }@inputs:
     let
+      inherit (self) outputs;
       system = "x86_64-linux";
       overlay-stable = final: prev: {
         stable = import nix-stable {
@@ -76,6 +77,7 @@
 
           services.openssh.enable = true;
           services.tailscale.enable = true;
+          services.desktopManager.plasma6.enable = !config.hostSpec.isMinimal;
 
           environment.systemPackages = with pkgs; [
             duf
@@ -111,6 +113,7 @@
           modules = [
             self.nixosModules.commonModules
             ./hosts/snatcher.nix
+            ./hardware/snatcher.nix
             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
             ./modules/dev.nix

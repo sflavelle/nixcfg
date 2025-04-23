@@ -6,42 +6,19 @@
 
 {
 
-  imports = [ # Include the results of the hardware scan.
-    ../hardware/snatcher.nix
-  ];
+  hostSpec = {
+    hostName = "snatcher";
+  };
 
   # boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
   systemd.extraConfig = "DefaultLimitNOFILE=524288";
 
-  networking.hostName = "snatcher"; # Define your hostname.
   networking.firewall.enable = false;
 
   fileSystems = {
     "/home" = {
       device = "/dev/userdata/userhome";
       fsType = "btrfs";
-    };
-    "/mnt/nas/home" = {
-      device = "//10.0.0.3/media";
-      fsType = "cifs";
-      options = [
-        "uid=1000"
-        "gid=100"
-        "_netdev"
-        "x-systemd.automount"
-        "credentials=/home/lily/.smb-nas"
-      ];
-    };
-    "/mnt/nas/shared" = {
-      device = (builtins.replaceStrings [ " " ] [ "\\040" ] "//10.0.0.69/media");
-      fsType = "cifs";
-      options = [
-        "uid=1000"
-        "gid=100"
-        "_netdev"
-        "x-systemd.automount"
-        "credentials=/home/lily/.smb-nas"
-      ];
     };
   };
 
@@ -63,20 +40,7 @@
 
 	programs.adb.enable = true;
 
-  users.users.lily = {
-    isNormalUser = true;
-    description = "Simon Flavelle";
-    extraGroups = [
-      "networkmanager"
-      "wheel" "audio" "adbusers" 
-    ];
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
-  };
-
-  users.users."${hostSpec.username}" = {
+  users.users."${config.hostSpec.userName}" = {
     extraGroups = [ "audio" "adbusers" ];
     packages = with pkgs; [
       keyfinder-cli
@@ -95,7 +59,7 @@
       yabridge
 
     ];
-  }
+  };
 
   services.xserver.videoDrivers = [ "amdgpu" ];
   boot.initrd.kernelModules = [ "amdgpu" ];

@@ -1,4 +1,7 @@
 { lib, ... }:
 {
-  imports = lib.custom.scanPaths ./.;
+  imports = [
+    ./hostSpec.nix
+    ./monitors.nix
+  ];
 }
