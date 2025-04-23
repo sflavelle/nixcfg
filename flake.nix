@@ -88,8 +88,6 @@
               "nix-command"
               "flakes"
             ];
-            substituters = [ ];
-            trusted-public-keys = [ ];
           };
           nixpkgs.config.permittedInsecurePackages = [
           ];
