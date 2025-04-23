@@ -14,7 +14,9 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    niri.url = "github:sodiboo/niri-flake";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";    
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -64,7 +66,10 @@
         }:
         {
           imports = [
+            inputs.nixos-generators.nixosModules.all-formats
           ];
+
+          virtualisation.diskSize = 32 * 1024;
 
           services.openssh.enable = true;
           services.tailscale.enable = true;
@@ -115,6 +120,21 @@
             ./modules/chat.nix
           ];
         };
+        "dweller" = nixpkgs.lib.nixosSystem {
+          # Acer Chromebook C720
+          system = system;
+          specialArgs = { inherit inputs;};
+          modules = [
+            self.nixosModules.commonModules
+            inputs.niri.nixosModules.niri
+
+            ./hosts/dweller.nix
+            ./modules/chromebook.nix
+            ./modules/dev.nix
+            ./modules/niri.nix
+            ./modules/chat.nix
+          ];
+        };
         "empress" = nixpkgs.lib.nixosSystem {
           # Lenovo Legion Go
           system = system;
@@ -132,9 +152,11 @@
 
         # Servers
         "puppetmaster" = nixpkgs.lib.nixosSystem {
+          # Home Lab
           system = system;
           specialArgs = { inherit inputs; };
           modules = [
+            self.nixosModules.commonModules
             ./hosts/puppetmaster.nix
             inputs.disko.nixosModules.disko
             ./modules/disko-puppetmaster.nix

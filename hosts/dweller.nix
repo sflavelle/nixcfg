@@ -23,71 +23,16 @@
       enable = true;
   };
 
-  # Keyboard customization
-  sound.mediaKeys.enable = true;
-  hardware.brillo.enable = true;
-  services.keyd = {
-      enable = true;
-      keyboards = {
-          chromekb = {
-              ids = [ "0001:0001" ];
-              settings = {
-                  main = {
-                      f1 = "prev";
-                      f2 = "next";
-                      f3 = "refresh";
-                      f4 = "f11";
-                      f5 = "cyclewindows";
-                      f6 = "brightnessdown";
-                      f7 = "brightnessup";
-                      f8 = "mute";
-                      f9 = "volumedown";
-                      f10 = "volumeup";
-                  };
-                  "control+alt" = {
-                      f1 = "f1";
-                      f2 = "f2";
-                      f3 = "f3";
-                      f4 = "f4";
-                      f5 = "f5";
-                      f6 = "f6";
-                      f7 = "f7";
-                      f8 = "f8";
-                      f9 = "f9";
-                      f10 = "f10";
-                  };
-                  control = {
-                     left = "home";
-                     right = "end";
-                     up = "pageup";
-                     down = "pagedown";
-                  };
-              };
-          };
-      };
-  };
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  stylix.polarity = "dark";
-
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-
-  services.syncthing = {
-      enable = true;
-      openDefaultPorts = true;
-      user = "lily";
-  };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
+    ungoogled-chromium
+    ghostty
+    mpv yt-dlp
+
+    # extra CLI apps
+    epy 
   ];
 
-
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.11";
 
 }
 
