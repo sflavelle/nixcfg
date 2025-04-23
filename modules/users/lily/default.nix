@@ -8,6 +8,7 @@ in
 
   users.users."${mainUser}" = {
     isNormalUser = true;
+    initialHashedPassword = "$y$j9T$YtsEpAHJxRS/EyGrxjdC3.$p5EZjR9.344Xu2kVHyB.RLLGLetkSD/oT1Me8UbX3x4";
     description = name;
     extraGroups = [
       "networkmanager"
