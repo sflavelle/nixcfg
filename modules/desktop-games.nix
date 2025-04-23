@@ -8,7 +8,7 @@
 {
   environment.systemPackages = with pkgs; [
     gamemode mangohud ludusavi
-    archipelago poptracker steam-devices-udev-rules
+    archipelago stable.poptracker steam-devices-udev-rules
     itch heroic 
     shipwright
     lutris 
@@ -28,5 +28,5 @@
   };
   programs.gamescope.enable = true;
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 }
