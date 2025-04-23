@@ -70,7 +70,6 @@
     # Programs
     steam-rom-manager
     protontricks
-    bitwig-studio
     godot_4
     via
 
@@ -80,11 +79,6 @@
     reaper
     # Plugins
     yabridge
-
-    gzdoom
-
-    # Custom Packages
-    (pkgs.callPackage ../pkgs/poptracker.nix { })
 
   ]);
 
