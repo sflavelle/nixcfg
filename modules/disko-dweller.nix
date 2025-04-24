@@ -1,3 +1,4 @@
+{ config, lib, ...}:
 {
   disko.devices = {
     disk = {
@@ -31,6 +32,7 @@
                   mountpoint = "/nix";
                 };
               };
+            };
           };
         };
       };
