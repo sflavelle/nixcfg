@@ -10,13 +10,17 @@
       ../hardware/minion.nix
     ];
 
+  hostSpec = {
+    hostName = "minion";
+    isPublic = true;
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "empress"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -81,11 +85,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.splatsune = {
-    isNormalUser = true;
-    description = "Simon Flavelle";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
+  users.users."${config.hostSpec.userName}".packages = with pkgs; [
       kdePackages.kate steam-run
       thunderbird
       bitwarden-desktop
