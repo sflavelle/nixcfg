@@ -94,6 +94,7 @@
           };
 
           nixpkgs.overlays = [ overlay-stable ];
+          nixpkgs.config.allowUnfree = true;
 
           nix.settings = {
             experimental-features = [
