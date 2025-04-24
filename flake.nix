@@ -91,6 +91,7 @@
             fzf
             btop
             helix
+            zellij
           ];
           environment.variables = {
             EDITOR = "hx";
