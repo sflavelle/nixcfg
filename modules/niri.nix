@@ -17,7 +17,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    swaylock
+    swaylock waybar mako
   ];
 
 }
