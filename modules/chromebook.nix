@@ -1,7 +1,6 @@
   { config, lib, ...}:
   {
   # Keyboard customization
-  sound.mediaKeys.enable = true;
   hardware.brillo.enable = true;
   services.keyd = {
       enable = true;
