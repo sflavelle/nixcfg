@@ -77,6 +77,9 @@
 
           services.openssh.enable = true;
           services.tailscale.enable = true;
+
+          services.displayManager.ly.enable = config.hostSpec.isMinimal;
+          services.displayManager.sddm.enable = !config.hostSpec.isMinimal;
           services.desktopManager.plasma6.enable = !config.hostSpec.isMinimal;
 
           environment.systemPackages = with pkgs; [
