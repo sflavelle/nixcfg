@@ -8,6 +8,7 @@
   hostSpec = {
     hostName = "dweller";
     isPublic = true;
+    isMinimal = true;
   };
 
   # Use the systemd-boot EFI boot loader.
