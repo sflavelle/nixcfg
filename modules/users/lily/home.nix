@@ -1,6 +1,8 @@
 { config, lib, ... }:
 {
   home = {
+    username = "lily";
+    homeDirectory = "/home/lily";
     shell.enableShellIntegration = true;
     stateVersion = "25.05";
     
