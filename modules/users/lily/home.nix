@@ -16,7 +16,20 @@
   programs.yazi.enable = true;
 
   # Configs
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      window = {
+        blur = true;
+        opacity = 0.8;
+      };
+    };
+  };
   programs.rclone = {
     enable = true;
+  };
+  programs.zoxide = {
+    enable = true;
+    options = ["--cmd cd"];
   };
 }
