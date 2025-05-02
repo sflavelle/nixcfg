@@ -55,8 +55,14 @@
         };
       };
       lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+      homepkgs = nixpkgs.legacyPackages.${system};
     in
     {
+      homeconfigurations.lily = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit homepkgs;
+        modules = [ modules/users/lily/home.nix ];
+        extraSpecialArgs = { inherit inputs; };
+      };
       nixosModules."commonModules" =
         {
           config,
@@ -69,6 +75,7 @@
         {
           imports = [
             inputs.nixos-generators.nixosModules.all-formats
+            inputs.home-manager.nixosModules.home-manager
             ./modules/options
             ./modules/users/lily
           ];
@@ -82,6 +89,13 @@
           services.displayManager.sddm.enable = !config.hostSpec.isMinimal;
           services.desktopManager.plasma6.enable = !config.hostSpec.isMinimal;
 
+          users.defaultUserShell = pkgs.fish;
+
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+          };
+
           environment.systemPackages = with pkgs; [
             duf
             dust
@@ -91,6 +105,7 @@
             fzf
             btop
             helix
+            oh-my-posh
             zellij
           ];
           environment.variables = {
@@ -121,6 +136,7 @@
             ./hardware/snatcher.nix
             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
+            ./modules/niri.nix
             ./modules/dev.nix
             ./modules/chat.nix
           ];

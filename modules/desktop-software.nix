@@ -10,4 +10,6 @@
     snapcast
     # (callPackage ../pkgs/mpv-watch.nix)
   ];
+
+  programs.firefox.enable = true;
 }

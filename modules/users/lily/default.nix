@@ -1,9 +1,14 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 let
   mainUser = config.hostSpec.userName;
   name = if config.hostSpec.isPublic then "Simon Flavelle" else "Lily Flavelle"; # yes i'm not out yet
 in
 {
+
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    inputs.niri.homeModules.niri
+  ];
 
   users.users."${mainUser}" = {
     isNormalUser = true;
@@ -23,11 +28,6 @@ in
     ];
   };
 
-  # home-manager = {
-  #   useGlobalPkgs = true;
-  #   useUserPackages = true;
-  #   users."${mainUser}" = {
-      
-  #   };
-  # };
+  home-manager.users."${mainUser}" = ./home.nix;
+
 }
