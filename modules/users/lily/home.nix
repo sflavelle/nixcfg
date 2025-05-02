@@ -2,6 +2,7 @@
 {
   home = {
     shell.enableShellIntegration = true;
+    stateVersion = "25.05";
     
   };
 
