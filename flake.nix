@@ -55,11 +55,11 @@
         };
       };
       lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
-      homepkgs = nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       homeConfigurations.lily = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit homepkgs;
+        inherit pkgs;
         modules = [ modules/users/lily/home.nix ];
         extraSpecialArgs = { inherit inputs; };
       };
