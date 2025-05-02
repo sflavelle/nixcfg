@@ -11,6 +11,7 @@
   programs.fish.enable = true;
 
   programs.eza.enable = true;
+  programs.home-manager.enable = true;
   programs.mpv.enable = true;
   programs.yazi.enable = true;
 
