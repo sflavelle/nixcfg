@@ -58,7 +58,7 @@
       homepkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      homeconfigurations.lily = inputs.home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.lily = inputs.home-manager.lib.homeManagerConfiguration {
         inherit homepkgs;
         modules = [ modules/users/lily/home.nix ];
         extraSpecialArgs = { inherit inputs; };
