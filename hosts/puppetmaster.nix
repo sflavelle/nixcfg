@@ -120,7 +120,7 @@
   # Smart Home
 
   virtualisation.oci-containers.containers.homeassistant = {
-      volumes = [ "/srv/hass2025:/config" ];
+      volumes = [ "/srv/home-assistant:/config" ];
       environment.TZ = "Australia/Melbourne";
       image = "ghcr.io/home-assistant/home-assistant:2025.4.3";
       extraOptions = [
