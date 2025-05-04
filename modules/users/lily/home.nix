@@ -1,16 +1,18 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
+let
+  isNixOS = config ? hostSpec;
+  user = if isNixOS then config.hostSpec.userName else "lily";
+in
 {
   home = {
-    username = "lily";
-    homeDirectory = "/home/lily";
+    # username = if isNixOS then user;
+    # homeDirectory = if isNixOS then "/home/${user}";
     shell.enableShellIntegration = true;
     stateVersion = "25.05";
     
   };
 
   xdg.enable = true;
-
-  programs.fish.enable = true;
 
   programs.eza.enable = true;
   programs.home-manager.enable = true;
@@ -25,4 +27,10 @@
     enable = true;
     options = ["--cmd cd"];
   };
+
+  # Environments
+  # programs.niri = {
+  #   enable = isNixOS;
+  #   package = pkgs.niri-unstable;
+  # };
 }

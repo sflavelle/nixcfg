@@ -77,10 +77,11 @@
             inputs.nixos-generators.nixosModules.all-formats
             inputs.home-manager.nixosModules.home-manager
             ./modules/options
-            ./modules/users/lily
           ];
 
           virtualisation.diskSize = 32 * 1024;
+
+          programs.fish.enable = true;
 
           services.openssh.enable = true;
           services.tailscale.enable = true;
@@ -113,7 +114,7 @@
             EDITOR = "hx";
           };
 
-          nixpkgs.overlays = [ overlay-stable ];
+          nixpkgs.overlays = [ overlay-stable inputs.niri.overlays.niri ];
           nixpkgs.config.allowUnfree = true;
 
           nix.settings = {
@@ -135,9 +136,9 @@
             self.nixosModules.commonModules
             ./hosts/snatcher.nix
             ./hardware/snatcher.nix
+            ./modules/users/lily
             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
-            ./modules/niri.nix
             ./modules/dev.nix
             ./modules/chat.nix
           ];
@@ -149,6 +150,7 @@
           modules = [
             self.nixosModules.commonModules
             ./hosts/minion.nix
+            ./modules/users/lily
             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
             ./modules/dev.nix
@@ -164,9 +166,9 @@
             inputs.niri.nixosModules.niri
 
             ./hosts/dweller.nix
+            ./modules/users/lily
             ./modules/chromebook.nix
             ./modules/dev.nix
-            ./modules/niri.nix
             ./modules/chat.nix
 
             inputs.disko.nixosModules.disko
@@ -182,6 +184,7 @@
             inputs.jovian.nixosModules.default
 
             ./hosts/empress.nix
+            ./modules/users/lily
             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
             ./modules/chat.nix
