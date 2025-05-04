@@ -29,6 +29,7 @@
         type = "process";
         location = "${pkgs.mpv}/bin/mpv";
         sampleFormat = "48000:16:2";
+        query.logStderr = "true";
         query.params = lib.strings.concatStringsSep " " [
           "/mnt/media/soundscapes"
           "--shuffle --volume=0.5"
@@ -42,6 +43,7 @@
         type = "process";
         location = "${pkgs.mpv}/bin/mpv";
         sampleFormat = "48000:16:2";
+        query.logStderr = "true";
         query.params = lib.strings.concatStringsSep " " [
           "https://mediaserviceslive.akamaized.net/hls/live/2038311/newsradio/index.m3u8"
           "--shuffle --volume=1.0"
