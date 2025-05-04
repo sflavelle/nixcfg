@@ -137,23 +137,10 @@
       image = "ghcr.io/home-assistant/home-assistant:2025.4.3";
       extraOptions = [
           "--network=host"
+          "--device=/dev/ttyACM0"
       ];
   };
 
-  services.zigbee2mqtt = {
-    enable = true;
-    settings = {
-      homeassistant = true;
-      permit_join = true;
-      mqtt = {
-        base_topic = "zigbee2mqtt";
-        server = "mqtt://localhost:1883";
-      };
-      serial.port = "/dev/ttyACM0";
-      frontend = true;
-      availability = true;
-    };
-  };
   services.esphome = {
       enable = true;
       port = 8122;
