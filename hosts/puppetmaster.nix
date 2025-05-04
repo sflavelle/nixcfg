@@ -60,8 +60,11 @@
   services.samba = {
     enable = true;
     openFirewall = true;
-    securityType = "user";
-    shares = {
+    settings = {
+      global = {
+        security = "user";
+        "unix password sync" = "yes";
+      };
       homes = {
         browseable = "yes";
         "read only" = "no";
