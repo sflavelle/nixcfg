@@ -17,6 +17,17 @@
   # Nix Configuration
   nix = { daemonCPUSchedPolicy = "batch"; };
 
+  fileSystems."/mnt/media" = {
+      device = "/dev/disk/by-uuid/fb34e684-d992-4ce2-95c6-f70d8f613997";
+      fsType = "btrfs";
+      options = [ "nofail" ];
+  };
+  fileSystems."/home" = {
+      device = "/dev/disk/by-uuid/e368cad6-5bae-4448-874b-ebf90a1d713f";
+      fsType = "btrfs";
+      options = [ "nofail" ];
+  };
+
   # Enable networking
   networking = {
     enableIPv6 = true;
@@ -29,7 +40,7 @@
   };
 
   networking.firewall = {
-    enable = false;
+    enable = true;
     allowedTCPPorts = [ 27015 8123 80 8000 5001 ];
     allowedUDPPorts = [ 27005 27020 ];
     extraCommands =
@@ -46,7 +57,7 @@
     extraConfig = "	browseable = yes\n	smb encrypt = required\n";
     shares = {
       homes = {
-        browseable = "no";
+        browseable = "yes";
         "read only" = "no";
         "guest ok" = "no";
       };
@@ -77,24 +88,13 @@
   environment.systemPackages = with pkgs; [
     gh
     git
-    git-crypt
-    gnupg
     mosh
-    powershell
-    python311Packages.argcomplete
     rclone
     distrobox
     yt-dlp
     gallery-dl
     ympd
   ];
-
-  services.syncthing = {
-    enable = true;
-    user = "lily";
-    openDefaultPorts = true;
-    guiAddress = "0.0.0.0:8384";
-  };
 
   services.transmission = {
     enable = true;
@@ -208,6 +208,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 
 }
