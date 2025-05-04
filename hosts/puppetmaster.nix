@@ -182,7 +182,7 @@
     # Misc Service Containers
     cops = {
       image = "lscr.io/linuxserver/cops:latest";
-      volumes = [ "/srv/calibre-cops:/config" "/home/lily/eBooks:/books" ];
+      volumes = [ "/srv/calibre-cops:/config" "/home/lily/Calibre Library:/books" ];
       environment = {
         PUID = "1000";
         PGID = "100";
