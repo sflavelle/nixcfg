@@ -12,7 +12,12 @@
 
   services.snapserver = {
     enable = true;
+    tcp.enable = true;
+    tcp.listenAddress = "0.0.0.0";
     openFirewall = true;
+    listenAddress = "0.0.0.0";
+    buffer = 1000;
+    streamBuffer = 20;
     streams = {
       mpd = {
         type = "pipe";

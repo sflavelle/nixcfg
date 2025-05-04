@@ -133,6 +133,11 @@
     enable = true;
     settings = {
       homeassistant = true;
+      permit_join = true;
+      mqtt = {
+        base_topic = "zigbee2mqtt";
+        server = "mqtt://localhost:1883";
+      };
       serial.port = "/dev/ttyACM0";
       frontend = true;
       availability = true;
