@@ -93,6 +93,8 @@
           users.defaultUserShell = pkgs.fish;
           security.sudo.wheelNeedsPassword = lib.mkDefault false;
 
+          programs.nix-index.enable = true;
+
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;

@@ -94,6 +94,7 @@
     gallery-dl
     ympd
   ];
+  environment.enableAllTerminfo = true;
 
   services.transmission = {
     enable = true;
@@ -103,7 +104,7 @@
       rpc-bind-address = "0.0.0.0";
       rpc-whitelist = "127.0.0.1,10.0.*.*,192.168.192.*";
       rpc-port = 8100;
-      download-dir = "/mnt/media/downloads/Torrents";
+      download-dir = "/mnt/media/Downloads/Torrents";
     };
     downloadDirPermissions = "777";
   };
