@@ -22,9 +22,10 @@ in
       ])
     ];
   };
+  
   home-manager.sharedModules = [
     inputs.niri.homeModules.niri
   ];
-  home-manager.users."${mainUser}" = ./home.nix;
+  home-manager.users."${mainUser}".imports = [ ./home.nix ];
 
 }

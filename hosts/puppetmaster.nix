@@ -13,6 +13,10 @@
   nixpkgs.config.permittedInsecurePackages =
     [ "openssl-1.1.1w" "nodejs-16.20.0" ];
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   # Hardware Configuration
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -57,7 +61,6 @@
     enable = true;
     openFirewall = true;
     securityType = "user";
-    extraConfig = "	browseable = yes\n	smb encrypt = required\n";
     shares = {
       homes = {
         browseable = "yes";
@@ -71,16 +74,6 @@
         comment = "Shared Media Drive";
       };
     };
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.lily = {
-    extraGroups = [ "networkmanager" "wheel" "syncthing" ];
-    packages = with pkgs; [ filebot steamcmd tmux ];
-  };
-  users.users.juno = {
-    isNormalUser = true;
-    description = "Juno Trinity";
   };
 
   # Allow unfree packages

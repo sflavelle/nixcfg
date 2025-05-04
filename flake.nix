@@ -87,8 +87,8 @@
           services.tailscale.enable = true;
 
           services.displayManager.ly.enable = config.hostSpec.isMinimal;
-          services.displayManager.sddm.enable = !config.hostSpec.isMinimal;
-          services.desktopManager.plasma6.enable = !config.hostSpec.isMinimal;
+          services.displayManager.sddm.enable = !config.hostSpec.isMinimal && !config.hostSpec.isHandheld;
+          services.desktopManager.plasma6.enable = !config.hostSpec.isMinimal && !config.hostSpec.isHandheld;
 
           users.defaultUserShell = pkgs.fish;
 
@@ -163,7 +163,6 @@
           specialArgs = { inherit inputs; };
           modules = [
             self.nixosModules.commonModules
-            inputs.niri.nixosModules.niri
 
             ./hosts/dweller.nix
             ./modules/users/lily

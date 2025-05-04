@@ -9,7 +9,13 @@
   hostSpec = {
     hostName = "empress";
     isPublic = true;
+    isHandheld = true;
   };
+
+  imports =
+    [ # Include the results of the hardware scan.
+      ../hardware/empress.nix
+    ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -37,7 +43,7 @@
   };
   
   # Enable the KDE Plasma Desktop Environment.
-  services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -67,24 +73,20 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = config.hostSpec.username;
-
   # Install firefox.
   programs.firefox.enable = true;
 
   services.handheld-daemon = {
     enable = true;
     ui.enable = true;
-    user = config.hostSpec.username;
+    user = config.hostSpec.userName;
   };
   programs.steam.enable = true;
   jovian = {
     steam = {
       enable = true;
-      user = config.hostSpec.username;
-      desktopSession = "plasma";
+      user = config.hostSpec.userName;
+      desktopSession = "gamescope-wayland";
       autoStart = true;
     };
     decky-loader.enable = true;

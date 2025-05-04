@@ -62,6 +62,11 @@
       default = false;
       description = "Used to indicate a minimal host";
     };
+    isHandheld = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Used for handheld devices like tablets or gaming handhelds";
+    };
     isServer = lib.mkOption {
       type = lib.types.bool;
       default = false;
