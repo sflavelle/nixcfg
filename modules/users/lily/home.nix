@@ -35,6 +35,14 @@ in
     network.listenAddress = "any";
     dbFile = "/home/${user}/.local/share/mpd/database";
     playlistDirectory = "/home/${user}/.local/share/mpd/playlists";
+    extraConfig = lib.mkIf (config.hostSpec.hostname == "puppetmaster") ''
+      bind_to_address "any"
+      audio_output {
+        type "fifo"
+        name "Snapcast"
+        path "/run/snapserver/mpd-${user}";
+        format "48000:16:2"
+        '';
   };
   services.syncthing = {
     enable = true;

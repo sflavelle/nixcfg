@@ -19,7 +19,7 @@
     buffer = 1000;
     streamBuffer = 20;
     streams = {
-      mpd = {
+      "MPD (Lily)" = {
         type = "pipe";
         location = "/run/snapserver/mpd-lily";
         sampleFormat = "48000:16:2";

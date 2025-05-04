@@ -12,6 +12,7 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "pipewire"
     ];
     packages = with pkgs; lib.mkMerge [
       ([ # All systems
