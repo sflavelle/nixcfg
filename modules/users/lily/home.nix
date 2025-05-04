@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   isNixOS = config ? hostSpec;
-  user = if isNixOS then config.hostSpec.userName else "lily";
+  user = if isNixOS then mainUser else "lily";
 in
 {
   home = {
@@ -26,6 +26,19 @@ in
   programs.zoxide = {
     enable = true;
     options = ["--cmd cd"];
+  };
+
+  # Services
+  services.mpd = {
+    enable = true;
+    user = user;
+    musicDirectory = "/home/${user}/Music";
+    network.listenAddress = "any";
+    dbFile = "/home/${user}/.local/share/mpd/database";
+    playlistDirectory = "/home/${user}/.local/share/mpd/playlists";
+  };
+  services.syncthing = {
+    enable = true;
   };
 
   # Environments
