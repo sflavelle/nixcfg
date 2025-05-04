@@ -31,7 +31,6 @@ in
   # Services
   services.mpd = {
     enable = true;
-    user = user;
     musicDirectory = "/home/${user}/Music";
     network.listenAddress = "any";
     dbFile = "/home/${user}/.local/share/mpd/database";
