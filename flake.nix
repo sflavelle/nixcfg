@@ -94,6 +94,7 @@
           security.sudo.wheelNeedsPassword = lib.mkDefault false;
 
           programs.nix-index.enable = true;
+          programs.command-not-found.enable = lib.mkForce false;
 
           home-manager = {
             useGlobalPkgs = true;
