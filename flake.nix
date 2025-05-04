@@ -91,6 +91,7 @@
           services.desktopManager.plasma6.enable = !config.hostSpec.isMinimal && !config.hostSpec.isHandheld && !config.hostSpec.isServer;
 
           users.defaultUserShell = pkgs.fish;
+          security.sudo.wheelNeedsPassword = lib.mkDefault false;
 
           home-manager = {
             useGlobalPkgs = true;
