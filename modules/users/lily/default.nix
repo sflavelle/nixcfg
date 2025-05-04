@@ -5,11 +5,6 @@ let
 in
 {
 
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-    inputs.niri.homeModules.niri
-  ];
-
   users.users."${mainUser}" = {
     isNormalUser = true;
     initialHashedPassword = "$y$j9T$YtsEpAHJxRS/EyGrxjdC3.$p5EZjR9.344Xu2kVHyB.RLLGLetkSD/oT1Me8UbX3x4";
@@ -27,7 +22,9 @@ in
       ])
     ];
   };
-
-  # home-manager.users."${mainUser}" = ./home.nix;
+  home-manager.sharedModules = [
+    inputs.niri.homeModules.niri
+  ];
+  home-manager.users."${mainUser}" = ./home.nix;
 
 }
