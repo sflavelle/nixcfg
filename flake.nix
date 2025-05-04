@@ -197,6 +197,9 @@
             ./hosts/puppetmaster.nix
             inputs.disko.nixosModules.disko
             ./modules/disko-puppetmaster.nix
+            ./modules/users/juno
+
+            ./modules/home-audio.nix
           ];
         };
       };

@@ -1,7 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  networking.hostName = "puppetmaster"; # Define your hostname.
+  hostSpec = {
+    hostName = "puppetmaster";
+    isServer = true;
+  };
 
   imports = [ # Include the results of the hardware scan.
     ../hardware/puppetmaster.nix
