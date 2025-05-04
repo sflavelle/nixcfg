@@ -28,6 +28,6 @@ in
     ];
   };
 
-  home-manager.users."${mainUser}" = ./home.nix;
+  # home-manager.users."${mainUser}" = ./home.nix;
 
 }

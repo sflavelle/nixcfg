@@ -94,6 +94,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
+            extraSpecialArgs = { inherit inputs; };
           };
 
           environment.systemPackages = with pkgs; [
