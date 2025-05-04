@@ -100,6 +100,7 @@
   services.pipewire = {
     enable = true;
     audio.enable = true;
+    socketActivation = false;
     systemWide = true;
     alsa.enable = true;
     alsa.support32Bit = true;
