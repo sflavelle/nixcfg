@@ -86,9 +86,9 @@
           services.openssh.enable = true;
           services.tailscale.enable = true;
 
-          services.displayManager.ly.enable = config.hostSpec.isMinimal;
-          services.displayManager.sddm.enable = !config.hostSpec.isMinimal && !config.hostSpec.isHandheld;
-          services.desktopManager.plasma6.enable = !config.hostSpec.isMinimal && !config.hostSpec.isHandheld;
+          services.displayManager.ly.enable = config.hostSpec.isMinimal && !config.hostSpec.isServer;
+          services.displayManager.sddm.enable = !config.hostSpec.isMinimal && !config.hostSpec.isHandheld && !config.hostSpec.isServer;
+          services.desktopManager.plasma6.enable = !config.hostSpec.isMinimal && !config.hostSpec.isHandheld && !config.hostSpec.isServer;
 
           users.defaultUserShell = pkgs.fish;
 
