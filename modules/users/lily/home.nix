@@ -30,7 +30,7 @@ in
 
   # Services
   services.mpd = {
-    enable = true;
+    enable = if isNixOS then config.hostSpec.hostName == "puppetmaster" else false;
     musicDirectory = "/home/${user}/Music";
     network.listenAddress = "any";
     dbFile = "/home/${user}/.local/share/mpd/database";
