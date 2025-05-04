@@ -40,7 +40,7 @@ in
       audio_output {
         type "fifo"
         name "Snapcast"
-        path "/run/snapserver/mpd-${user}";
+        path "/run/snapserver/mpd-${user}"
         format "48000:16:2"
       }
         '';
