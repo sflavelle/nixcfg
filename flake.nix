@@ -85,6 +85,8 @@
 
           services.openssh.enable = true;
           services.tailscale.enable = true;
+          services.avahi.enable = true;
+          services.avahi.nssmdns4 = true;
 
           services.displayManager.ly.enable = config.hostSpec.isMinimal && !config.hostSpec.isServer;
           services.displayManager.sddm.enable = !config.hostSpec.isMinimal && !config.hostSpec.isHandheld && !config.hostSpec.isServer;
