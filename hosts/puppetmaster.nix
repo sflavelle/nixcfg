@@ -184,7 +184,7 @@
       image = "lscr.io/linuxserver/cops:latest";
       volumes = [ "/srv/calibre-cops:/config" "/home/lily/Calibre Library:/books" ];
       environment = {
-        PUID = "1000";
+        PUID = "1001";
         PGID = "100";
         TZ = "Australia/Melbourne";
       };
