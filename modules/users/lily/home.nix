@@ -35,7 +35,7 @@ in
     network.listenAddress = "any";
     dbFile = "/home/${user}/.local/share/mpd/database";
     playlistDirectory = "/home/${user}/.local/share/mpd/playlists";
-    extraConfig = lib.mkIf (config.hostSpec.hostname == "puppetmaster") ''
+    extraConfig = lib.mkIf (config.hostSpec.hostName == "puppetmaster") ''
       bind_to_address "any"
       audio_output {
         type "fifo"
