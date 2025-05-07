@@ -17,11 +17,19 @@
 
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
-  # This Chromebook has 16GB storage, optimise as much as we can
+  # This Chromebook has 128GB storage now, optimise as much as we can
   nix.settings.auto-optimise-store = true;
+  # Especially memory (2GB)
   zramSwap = {
       enable = true;
+      algorithm = "zstd";
   };
+  swapDevices = [
+    {
+      device = "/.swap";
+      size = 1 * 1024; # 2GB
+    }
+  ];
 
   environment.systemPackages = with pkgs; [
     ungoogled-chromium
