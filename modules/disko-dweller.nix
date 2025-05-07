@@ -21,7 +21,6 @@
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" ];
                 subvolumes."/root".mountpoint = "/";
                 subvolumes."/home" = {
                   mountOptions = [ "compress=zstd" ];
