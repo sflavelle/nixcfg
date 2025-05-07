@@ -1,0 +1,23 @@
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
+{
+  services.pipewire.systemWide = config.hostSpec.isServer;
+  services.pipewire.enable = config.hostSpec.isServer;
+
+  systemd.services.snapclient = {
+    enable = true;
+    wantedBy = [ "multi-user.target" ];
+    requires = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.snapclient}/bin/snapclient --host puppetmaster";
+      Restart = "always";
+      RestartSec = 5;
+    };
+  };
+}

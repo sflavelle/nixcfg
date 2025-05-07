@@ -16,7 +16,7 @@ in
     ];
     packages = with pkgs; lib.mkMerge [
       ([ # All systems
-
+        mpc
       ])
       (lib.mkIf config.hostSpec.hasPhysicalKeyboard [
 
