@@ -52,8 +52,12 @@ in
   };
 
   # Environments
-  # programs.niri = {
-  #   enable = isNixOS;
-  #   package = pkgs.niri-unstable;
-  # };
+  programs.niri = {
+    enable = isNixOS;
+    package = pkgs.niri-unstable;
+    # settings = import ./cfg/niri.nix {
+    #   inherit isNixOS;
+    #   inherit mainUser;
+    # };
+  };
 }

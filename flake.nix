@@ -176,8 +176,8 @@
             ./modules/dev.nix
             ./modules/chat.nix
 
-            inputs.disko.nixosModules.disko
-            ./modules/disko-dweller.nix
+            # inputs.disko.nixosModules.disko
+            # ./modules/disko-dweller.nix
           ];
         };
         "empress" = nixpkgs.lib.nixosSystem {
@@ -212,10 +212,6 @@
             ./modules/home-audio.nix
           ];
         };
-      };
-      packages."x86_64-linux" = {
-        mpv-watch = import ./pkgs/mpv-watch.nix;
-        pydymenu = import ./pkgs/pydymenu.nix { };
       };
     };
 }

@@ -10,6 +10,18 @@
     isPublic = true;
     isMinimal = true;
   };
+  # monitors = [
+  #   {
+  #     name = "LVDS1";
+  #     primary = true;
+  #     width = 1366;
+  #     height = 768;
+  #     refreshRate = 60;
+  #     x = 0;
+  #     y = 0;
+  #     scale = 1.0;
+  #   }
+  # ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
