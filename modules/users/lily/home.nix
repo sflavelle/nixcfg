@@ -9,7 +9,9 @@ in
     # homeDirectory = if isNixOS then "/home/${user}";
     shell.enableShellIntegration = true;
     stateVersion = "25.05";
-    
+    packages = with pkgs; [
+      youtube-tui
+    ]
   };
 
   xdg.enable = true;
