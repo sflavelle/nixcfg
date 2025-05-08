@@ -10,6 +10,7 @@ in
     shell.enableShellIntegration = true;
     stateVersion = "25.05";
     packages = with pkgs; [
+      xwayland-satellite
       youtube-tui
     ];
   };
