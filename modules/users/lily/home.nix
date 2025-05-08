@@ -1,7 +1,7 @@
 { config, lib, pkgs, mainUser, ... }:
 let
   isNixOS = config ? hostSpec;
-  user = if !isNixOS then "lily" else config.hostSpec.mainUser;
+  user = if !isNixOS then "lily" else mainUser;
 in
 {
   home = {
