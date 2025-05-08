@@ -11,7 +11,7 @@ in
     stateVersion = "25.05";
     packages = with pkgs; [
       youtube-tui
-    ]
+    ];
   };
 
   xdg.enable = true;
