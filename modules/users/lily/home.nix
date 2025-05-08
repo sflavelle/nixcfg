@@ -1,12 +1,12 @@
 { config, lib, pkgs, mainUser, ... }:
 let
   isNixOS = config ? hostSpec;
-  user = if isNixOS then mainUser else "lily";
+  user = if !isNixOS then "lily" else user;
 in
 {
   home = {
-    # username = if isNixOS then user;
-    # homeDirectory = if isNixOS then "/home/${user}";
+    username = if !isNixOS then "lily" else user;
+    homeDirectory = "/home/${user}";
     shell.enableShellIntegration = true;
     stateVersion = "25.05";
     packages = with pkgs; [
