@@ -1,9 +1,13 @@
-{ config, lib, pkgs, mainUser, ... }:
+{ config, lib, pkgs, mainUser, nixgl, ... }:
 let
   isNixOS = config ? hostSpec;
   user = if !isNixOS then "lily" else mainUser;
 in
 {
+  nixGL.packages = import nixgl { inherit pkgs; };
+  nixGL.defaultWrapper = "mesa"; # or the driver you need
+  nixGL.installScripts = [ "mesa" ];
+
   home = {
     username = if !isNixOS then "lily" else user;
     homeDirectory = "/home/${user}";
@@ -20,6 +24,7 @@ in
   programs.eza.enable = true;
   programs.home-manager.enable = true;
   programs.mpv.enable = true;
+  programs.mpv.package = config.lib.nixGL.wrap pkgs.mpv;
   programs.yazi.enable = true;
 
   # Configs

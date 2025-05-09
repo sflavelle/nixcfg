@@ -17,6 +17,7 @@
     niri.url = "github:sodiboo/niri-flake";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixgl.url   = "github:nix-community/nixGL";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -64,7 +65,7 @@
           modules/users/lily/home.nix 
           inputs.niri.homeModules.niri
           ];
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = { inherit inputs; nixgl = inputs.nixgl; };
       };
       nixosModules."commonModules" =
         {
