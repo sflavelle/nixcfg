@@ -20,7 +20,7 @@ in
     packages = with pkgs; [
       xwayland-satellite
       # youtube-tui
-      perl5.40.0-pipe-viewer
+      pipe-viewer
 
     ];
   };
