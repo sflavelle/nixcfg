@@ -65,7 +65,7 @@ in
 
   # Environments
   programs.niri = {
-    enable = isNixOS;
+    enable = isNixOS && !config.hostSpec.isServer;
     package = pkgs.niri-unstable;
     # settings = import ./cfg/niri.nix {
     #   inherit isNixOS;
