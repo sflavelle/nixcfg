@@ -19,7 +19,9 @@ in
     stateVersion = "25.05";
     packages = with pkgs; [
       xwayland-satellite
-      youtube-tui
+      # youtube-tui
+      perl5.40.0-pipe-viewer
+
     ];
   };
 
