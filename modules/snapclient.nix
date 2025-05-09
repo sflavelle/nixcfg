@@ -15,7 +15,7 @@
     requires = [ "network-online.target" ];
     after = [ "network-online.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.snapclient}/bin/snapclient --host puppetmaster";
+      ExecStart = "${pkgs.snapcast}/bin/snapclient --host puppetmaster";
       Restart = "always";
       RestartSec = 5;
     };
