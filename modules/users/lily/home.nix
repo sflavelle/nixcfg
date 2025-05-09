@@ -28,7 +28,7 @@ in
   programs.eza.enable = true;
   programs.home-manager.enable = true;
   programs.mpv.enable = true;
-  programs.mpv.package = if nixGLConfig != null then config.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
+  programs.mpv.package = if nixGLConfig != null && config.lib ? nixGL then config.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
   programs.yazi.enable = true;
 
   # Configs
