@@ -7,7 +7,7 @@ let
     packages = import nixgl { inherit pkgs; };
     defaultWrapper = "mesa"; # or the driver you need
     installScripts = [ "mesa" ];
-  } else null;
+  } else {};
 in
 {
   nixGL = nixGLConfig;
