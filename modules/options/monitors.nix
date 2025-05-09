@@ -50,11 +50,6 @@
             type = lib.types.bool;
             default = true;
           };
-          workspace = lib.mkOption {
-            type = lib.types.nullOr lib.types.str;
-            description = "Defines a workspace that should persist on this monitor.";
-            default = null;
-          };
           vrr = lib.mkOption {
             type = lib.types.int;
             description = "Variable Refresh Rate aka Adaptive Sync aka AMD FreeSync.\nValues are oriented towards hyprland's vrr values which are:\n0 = off, 1 = on, 2 = fullscreen only\nhttps://wiki.hyprland.org/Configuring/Variables/#misc";

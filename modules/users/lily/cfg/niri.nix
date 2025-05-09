@@ -1,6 +1,25 @@
 { inputs, config, lib, pkgs, isNixOS, mainUser, ... }:
 let 
   hostName = if isNixOS then config.hostSpec.hostName else false;
+
+  mapMonitors = monitor: {
+    "${monitor.name}" = {
+      enable = true;
+      mode = {
+        height = monitor.height;
+        width = monitor.width;
+        refresh = monitor.refreshRate;
+      }
+      position = {
+        x = monitor.x;
+        y = monitor.y;
+      };
+      scale = monitor.scale;
+      transform.rotation = monitor.transform;
+    };
+  };
+
+  mappedMonitors = map mapMonitors config.monitors;
 in
 lib.mkMerge [
   {
@@ -157,4 +176,7 @@ lib.mkMerge [
   }
 
   # Monitor config
+  {
+    outputs = mappedMonitors;
+  }
 ]

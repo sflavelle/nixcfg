@@ -10,18 +10,18 @@
     isPublic = true;
     isMinimal = true;
   };
-  # monitors = [
-  #   {
-  #     name = "LVDS1";
-  #     primary = true;
-  #     width = 1366;
-  #     height = 768;
-  #     refreshRate = 60;
-  #     x = 0;
-  #     y = 0;
-  #     scale = 1.0;
-  #   }
-  # ];
+  monitors = [
+    {
+      name = "eDP-1";
+      primary = true;
+      width = 1920;
+      height = 1080;
+      refreshRate = 120;
+      x = 0;
+      y = 0;
+      scale = 1.0;
+    }
+  ];
 
   imports = [
     ../hardware/dweller.nix
