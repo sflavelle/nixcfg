@@ -59,11 +59,11 @@
 
   services.beesd.filesystems = {
       home = {
-          spec = "/dev/mapper/userdata-userhome";
+          spec = "/dev/SSD/home";
           hashTableSizeMB = 8096;
           verbosity = "crit";
           extraOptions = [
-              "--thread-count" "4"
+              "--thread-count" "8"
               "--loadavg-target" "5.0"
           ];
 		  };
