@@ -9,6 +9,45 @@
   hostSpec = {
     hostName = "snatcher";
   };
+  monitors = [
+    {
+      name = "DP-2"; # KOGAN AUSTRALIA PTY LTD KAMN34RQUCSA Unknown
+      primary = true;
+      width = 3440;
+      height = 1440;
+      refreshRate = 144;
+      x = 1920;
+      y = 0;
+      scale = 1.0;
+    }
+    {
+      name = "DP-1"; # Philips Consumer Electronics Company PHL 216V6 ZV01929011836
+      width = 1920;
+      height = 1080;
+      refreshRate = 60;
+      x = 0;
+      y = 320;
+      scale = 1.0;
+    }
+    {
+      name = "HDMI-A-2"; # Microstep MSI G24C6 0x00000243
+      width = 1920;
+      height = 1080;
+      refreshRate = 60;
+      x = 5360;
+      y = 320;
+      scale = 1.0;
+    }
+    {
+      name = "HDMI-A-1"; # Graphica Computer HD Display Unknown
+      width = 1920;
+      height = 720;
+      refreshRate = 60;
+      x = 2780;
+      y = 1440;
+      scale = 1.0;
+    }
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
