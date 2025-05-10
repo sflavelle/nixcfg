@@ -10,6 +10,12 @@
   environment.systemPackages = with pkgs; [
   ];
 
+  services.mympd = {
+    enable = true;
+    settings.http_port = 6670;
+    openFirewall = true;
+  };
+
   services.snapserver = {
     enable = true;
     tcp.enable = true;
