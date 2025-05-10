@@ -1,5 +1,5 @@
 { inputs, config, lib, pkgs, isNixOS, mainUser, ... }:
-let 
+let
   hostName = if isNixOS then config.hostSpec.hostName else false;
 
   mapMonitors = monitor: {
@@ -9,7 +9,7 @@ let
         height = monitor.height;
         width = monitor.width;
         refresh = monitor.refreshRate;
-      }
+      };
       position = {
         x = monitor.x;
         y = monitor.y;
@@ -65,7 +65,7 @@ lib.mkMerge [
         active-color = "red";
         inactive-color = "gray";
       };
-      
+
     };
 
     environment = {
@@ -171,7 +171,7 @@ lib.mkMerge [
       "Ctrl+Alt+Delete".action = quit;
       "Mod+F4".action = quit;
       "Mod+Shift+Return".action = power-off-monitors;
-      
+
     };
   }
 
