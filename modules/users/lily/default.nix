@@ -17,9 +17,10 @@ in
     packages = with pkgs; lib.mkMerge [
       ([ # All systems
         mpc
+        fuzzel
       ])
       (lib.mkIf config.hostSpec.hasPhysicalKeyboard [
-
+        ghostty
       ])
     ];
   };
