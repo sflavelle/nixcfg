@@ -11,5 +11,7 @@
     # (callPackage ../pkgs/mpv-watch.nix)
   ];
 
+  services.flatpak.enable = true;
+
   programs.firefox.enable = true;
 }

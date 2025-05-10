@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }:
@@ -82,6 +83,11 @@
     user = config.hostSpec.userName;
   };
   programs.steam.enable = true;
+
+  # Jovian currently conflicts with Flatpak because of XDG Portals
+  # I'll have to figure this out eventually, but for now
+  service.flatpak.enable = lib.mkForce false;
+
   jovian = {
     steam = {
       enable = true;
