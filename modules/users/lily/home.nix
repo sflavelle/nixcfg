@@ -69,9 +69,9 @@ in
   programs.niri = {
     enable = isNixOS && !config.hostSpec.isServer;
     package = pkgs.niri-unstable;
-    # settings = import ./cfg/niri.nix {
-    #   inherit isNixOS;
-    #   inherit mainUser;
-    # };
+    settings = import ./cfg/niri.nix {
+      inherit isNixOS;
+      inherit mainUser;
+    };
   };
 }
