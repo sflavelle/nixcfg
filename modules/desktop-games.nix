@@ -9,13 +9,14 @@
   environment.systemPackages = with pkgs; [
     gamemode mangohud ludusavi
     archipelago stable.poptracker steam-devices-udev-rules
-    itch heroic 
+    itch heroic
     shipwright
-    lutris 
+    lutris
     xmoto space-cadet-pinball
     tetrio-desktop ringracers osu-lazer-bin
     sgt-puzzles
     shattered-pixel-dungeon
+    stable.gzdoom
   ];
 
   programs.steam = {
@@ -24,7 +25,7 @@
     localNetworkGameTransfers.openFirewall = true;
     protontricks.enable = true;
     gamescopeSession.enable = true;
-    
+
   };
   programs.gamescope.enable = true;
 

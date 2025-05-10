@@ -59,7 +59,7 @@
 
   fileSystems = {
     "/home" = {
-      device = "/dev/userdata/userhome";
+      device = "/dev/HDD/lily";
       fsType = "btrfs";
     };
   };
@@ -118,20 +118,9 @@
   hardware.keyboard.qmk.enable = true;
   hardware.bluetooth.enable = true;
 
-  services.syncthing = {
-    enable = true;
-    openDefaultPorts = true;
-    user = "lily";
-  };
-
   programs.gamescope = {
       enable = true;
       args = [ "--fullscreen" ];
-  };
-
-  services.ollama = {
-      enable = true;
-      acceleration = "rocm";
   };
 
   virtualisation.containers.enable = true;
