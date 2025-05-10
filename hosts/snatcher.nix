@@ -57,13 +57,6 @@
 
   networking.firewall.enable = false;
 
-  fileSystems = {
-    "/home" = {
-      device = "/dev/HDD/lily";
-      fsType = "btrfs";
-    };
-  };
-
   services.beesd.filesystems = {
       home = {
           spec = "/dev/mapper/userdata-userhome";
