@@ -86,7 +86,7 @@
 
   # Jovian currently conflicts with Flatpak because of XDG Portals
   # I'll have to figure this out eventually, but for now
-  service.flatpak.enable = lib.mkForce false;
+  services.flatpak.enable = lib.mkForce false;
 
   jovian = {
     steam = {
