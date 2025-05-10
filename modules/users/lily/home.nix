@@ -9,17 +9,18 @@ let
     installScripts = [ "mesa" ];
   } else {};
 
-  defaultConfig = {
-    hostSpec = {
-      hostName = "noHost";
-      isServer = false;
-      isMinimal = false;
-      isHandheld = false;
-    };
-    lib = lib;
-  };
+  # defaultConfig = {
+  #   hostSpec = {
+  #     hostName = "noHost";
+  #     isServer = false;
+  #     isMinimal = false;
+  #     isHandheld = false;
+  #   };
+  #   lib = lib;
+  # };
 
-  effectiveConfig = if isNixOS then config else lib.mkMerge [ defaultConfig config ];
+  # effectiveConfig = if isNixOS then config else lib.mkMerge [ defaultConfig config ];
+  effectiveConfig = config;
 in
 {
   nixGL = nixGLConfig;
@@ -78,12 +79,12 @@ in
   };
 
   # Environments
-  programs.niri = {
-    enable = isNixOS && !effectiveConfig.hostSpec.isServer;
-    package = pkgs.niri-unstable;
-    settings = import ./cfg/niri.nix {
-      inherit lib pkgs isNixOS mainUser inputs;
-      config = effectiveConfig;
-    };
-  };
+  # programs.niri = {
+  #   enable = isNixOS && !effectiveConfig.hostSpec.isServer;
+  #   package = pkgs.niri-unstable;
+  #   settings = import ./cfg/niri.nix {
+  #     inherit lib pkgs isNixOS mainUser inputs;
+  #     config = effectiveConfig;
+  #   };
+  # };
 }
