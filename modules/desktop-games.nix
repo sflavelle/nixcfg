@@ -14,9 +14,10 @@
     lutris
     xmoto space-cadet-pinball
     tetrio-desktop ringracers osu-lazer-bin
+    celeste64
     sgt-puzzles
     shattered-pixel-dungeon
-    stable.gzdoom
+    gzdoom
   ];
 
   programs.steam = {
