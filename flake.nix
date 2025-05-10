@@ -61,11 +61,23 @@
     {
       homeConfigurations.lily = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ 
-          modules/users/lily/home.nix 
+        modules = [
+          modules/users/lily/home.nix
           inputs.niri.homeModules.niri
           ];
-        extraSpecialArgs = { inherit inputs; nixgl = inputs.nixgl; };
+        extraSpecialArgs = {
+          inherit inputs;
+          nixgl = inputs.nixgl;
+          config = lib.mkMerge [
+            {
+              hostSpec = {
+               hostName = "noHost";
+               isServer = false;
+              };
+            lib = pkgs.lib;
+            }
+          ];
+        };
       };
       nixosModules."commonModules" =
         {

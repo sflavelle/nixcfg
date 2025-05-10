@@ -8,6 +8,18 @@ let
     defaultWrapper = "mesa"; # or the driver you need
     installScripts = [ "mesa" ];
   } else {};
+
+  defaultConfig = {
+    hostSpec = {
+      hostName = "noHost";
+      isServer = false;
+      isMinimal = false;
+      isHandheld = false;
+    };
+    lib = lib;
+  };
+
+  effectiveConfig = if isNixOS then config else lib.mkMerge [ defaultConfig config ];
 in
 {
   nixGL = nixGLConfig;
@@ -30,7 +42,7 @@ in
   programs.eza.enable = true;
   programs.home-manager.enable = true;
   programs.mpv.enable = true;
-  programs.mpv.package = if nixGLConfig != null && config.lib ? nixGL then config.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
+  programs.mpv.package = if nixGLConfig != null && effectiveConfig.lib ? nixGL then effectiveConfig.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
   programs.yazi.enable = true;
 
   # Configs
@@ -44,12 +56,12 @@ in
 
   # Services
   services.mpd = {
-    enable = if isNixOS then config.hostSpec.hostName == "puppetmaster" else false;
+    enable = effectiveConfig.hostSpec.hostName == "puppetmaster";
     musicDirectory = "/home/${user}/Music";
     network.listenAddress = "any";
     dbFile = "/home/${user}/.local/share/mpd/database";
     playlistDirectory = "/home/${user}/.local/share/mpd/playlists";
-    extraConfig = lib.mkIf (config.hostSpec.hostName == "puppetmaster") ''
+    extraConfig = lib.mkIf (effectiveConfig.hostSpec.hostName == "puppetmaster") ''
       bind_to_address "any"
       audio_output {
         type "fifo"
@@ -67,12 +79,11 @@ in
 
   # Environments
   programs.niri = {
-    enable = isNixOS && !config.hostSpec.isServer;
+    enable = isNixOS && !effectiveConfig.hostSpec.isServer;
     package = pkgs.niri-unstable;
     settings = import ./cfg/niri.nix {
-      inherit isNixOS;
-      inherit mainUser;
-      inherit inputs;
+      inherit isNixOS mainUser inputs;
+      config = effectiveConfig;
     };
   };
 }

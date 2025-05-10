@@ -1,6 +1,6 @@
 { inputs, config, lib, pkgs, isNixOS, mainUser, ... }:
 let
-  hostName = if isNixOS then config.hostSpec.hostName else false;
+  hostName = config.hostSpec.hostName;
 
   mapMonitors = monitor: {
     "${monitor.name}" = {
