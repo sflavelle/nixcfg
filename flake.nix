@@ -68,15 +68,7 @@
         extraSpecialArgs = {
           inherit inputs;
           nixgl = inputs.nixgl;
-          config = lib.mkMerge [
-            {
-              hostSpec = {
-               hostName = "noHost";
-               isServer = false;
-              };
-            lib = pkgs.lib;
-            }
-          ];
+          nixpkgs = inputs.nixpkgs;
         };
       };
       nixosModules."commonModules" =

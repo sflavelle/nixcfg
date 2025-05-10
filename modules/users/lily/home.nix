@@ -56,7 +56,7 @@ in
 
   # Services
   services.mpd = {
-    enable = effectiveConfig.hostSpec.hostName == "puppetmaster";
+    enable = if effectiveConfig ? hostSpec then effectiveConfig.hostSpec.hostName == "puppetmaster" else false;
     musicDirectory = "/home/${user}/Music";
     network.listenAddress = "any";
     dbFile = "/home/${user}/.local/share/mpd/database";
@@ -82,7 +82,7 @@ in
     enable = isNixOS && !effectiveConfig.hostSpec.isServer;
     package = pkgs.niri-unstable;
     settings = import ./cfg/niri.nix {
-      inherit isNixOS mainUser inputs;
+      inherit lib pkgs isNixOS mainUser inputs;
       config = effectiveConfig;
     };
   };

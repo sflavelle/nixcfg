@@ -19,12 +19,12 @@ let
     };
   };
 
-  mappedMonitors = map mapMonitors config.monitors;
+  mappedMonitors = if config ? monitors then map mapMonitors config.monitors else {};
 in
 lib.mkMerge [
   {
-    inputs.touchpad.tap = true;
-    inputs.touchpad.natural-scroll = true;
+    input.touchpad.tap = true;
+    input.touchpad.natural-scroll = true;
     input.focus-follows-mouse.max-scroll-amount = "20%";
 
     prefer-no-csd = true;
@@ -39,11 +39,11 @@ lib.mkMerge [
 
         # { fixed = 1080; }
       ];
-      default-column-width = [ "proportion 0.33333" ];
+      default-column-width.proportion = 1. / 3.;
       focus-ring = {
         width = 4;
-        active-color = "#ff00ff";
-        inactive-color = "#ff0000";
+        active.color = "rgb(255 0 255)";
+        inactive.color = "rgb(0 0 0)";
       };
       border.enable = false;
       shadow = {
@@ -62,8 +62,8 @@ lib.mkMerge [
         gaps-between-tabs = 2;
         position = "right";
         length.total-proportion = 1.0;
-        active-color = "red";
-        inactive-color = "gray";
+        active.color = "red";
+        inactive.color = "gray";
       };
 
     };
