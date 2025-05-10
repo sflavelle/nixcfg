@@ -150,6 +150,7 @@
             self.nixosModules.commonModules
             ./hosts/snatcher.nix
             ./hardware/snatcher.nix
+            ./modules/mounts-snatcher.nix
             ./modules/users/lily
             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
