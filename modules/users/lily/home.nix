@@ -1,4 +1,4 @@
-{ config, lib, pkgs, mainUser, nixgl ? null, ... }:
+{ inputs, config, lib, pkgs, mainUser, nixgl ? null, ... }:
 let
   isNixOS = config ? hostSpec;
   user = if !isNixOS then "lily" else mainUser;
@@ -72,6 +72,7 @@ in
     settings = import ./cfg/niri.nix {
       inherit isNixOS;
       inherit mainUser;
+      inherit inputs;
     };
   };
 }
