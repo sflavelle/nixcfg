@@ -113,11 +113,8 @@
           };
 
           environment.systemPackages = with pkgs; [
-            duf
-            dust
-            fd
-            eza
-            curl
+            duf dust fd eza
+            curl wget
             fzf
             btop
             helix
