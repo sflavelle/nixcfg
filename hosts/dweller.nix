@@ -36,7 +36,7 @@
   # This Chromebook has 128GB storage now, optimise as much as we can
   nix.settings.auto-optimise-store = true;
   nix.extraOptions = ''
-    download-buffer-size = ${128 * 1024 * 1024}
+    download-buffer-size = ${builtins.toString (128 * 1024 * 1024)}
     '';
   # Especially memory (2GB)
   zramSwap = {
