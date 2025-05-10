@@ -55,7 +55,6 @@
           config.allowUnfree = true;
         };
       };
-      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
@@ -84,6 +83,7 @@
           imports = [
             inputs.nixos-generators.nixosModules.all-formats
             inputs.home-manager.nixosModules.home-manager
+            inputs.niri.nixosModules.niri
             ./modules/options
           ];
 
