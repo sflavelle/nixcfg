@@ -219,18 +219,6 @@
             ./modules/snapclient.nix
           ];
         };
-        "grooves" = nixpkgs.lib.nixosSystem {
-          # Mainly a Bedroom Speaker
-          system = system;
-          specialArgs = { inherit inputs; };
-          modules = [
-            self.nixosModules.commonModules
-            ./hosts/grooves.nix
-            ./modules/users/lily
-
-            ./modules/snapclient.nix
-          ];
-        };
       };
     };
 }
