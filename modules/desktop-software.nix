@@ -9,6 +9,10 @@
     ungoogled-chromium
     snapcast
     # (callPackage ../pkgs/mpv-watch.nix)
+    tauon
+
+    streamlink
+    twitch-tui
   ];
 
   services.flatpak.enable = true;

@@ -9,5 +9,6 @@
   environment.systemPackages = with pkgs; [
     gh git
     jetbrains.pycharm-community-src vscode-with-extensions
+    zed-editor
   ];
 }

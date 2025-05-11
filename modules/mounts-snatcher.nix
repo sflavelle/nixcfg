@@ -9,4 +9,9 @@
     device = "/dev/HDD/games";
     fsType = "btrfs";
   };
+  fileSystems."/mnt/media" = {
+    fsType = "cifs";
+    device = "//10.0.0.69/media";
+    options = [ "credentials=/home/${config.hostSpec.mainUser}/.smb-nas" ];
+  };
 }
