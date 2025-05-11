@@ -88,7 +88,6 @@
       calibre
       bottles
       vial
-      gpu-screen-recorder
 
       # Media Production
       inkscape
@@ -138,6 +137,9 @@
     wineWowPackages.waylandFull
     wineasio
     coreutils
+
+    gpu-screen-recorder
+    gpu-screen-recorder-gtk
 
     # soundfonts
     soundfont-arachno
