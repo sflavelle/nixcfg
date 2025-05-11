@@ -88,9 +88,9 @@
       calibre
       bottles
       vial
+      gpu-screen-recorder
 
       # Media Production
-      # (davinci-resolve.override { studioVariant = true; } )
       inkscape
       reaper
       # Plugins
