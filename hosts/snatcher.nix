@@ -84,9 +84,12 @@
       steam-rom-manager
       protontricks
       filebot
-      calibre
       bottles
       vial
+
+      (calibre.overrideAttrs ({ propagatedBuildInputs ? [ ], ...}: {
+        propagatedBuildInputs = propagatedBuildInputs ++ [ pkgs.python3Packages.brotli ];
+      }))
 
       # Game Utils
       godot
