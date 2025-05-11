@@ -86,7 +86,7 @@
       godot_4
       filebot
       calibre
-      via
+      vial
 
       # Media Production
       # (davinci-resolve.override { studioVariant = true; } )
