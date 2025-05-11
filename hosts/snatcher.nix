@@ -90,7 +90,7 @@
 
       # Game Utils
       godot
-      slade
+      
 
       # Media Production
       inkscape
@@ -146,10 +146,6 @@
 
     # soundfonts
     soundfont-arachno
-  ];
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "freeimage-3.18.0-unstable-2024-04-18"
   ];
 
   # Open ports in the firewall.
