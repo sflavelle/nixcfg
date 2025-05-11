@@ -84,6 +84,8 @@
       steam-rom-manager
       protontricks
       godot_4
+      filebot
+      calibre
       via
 
       # Media Production
