@@ -86,6 +86,7 @@
       godot_4
       filebot
       calibre
+      bottles
       vial
 
       # Media Production
