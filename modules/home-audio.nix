@@ -16,6 +16,10 @@
     openFirewall = true;
   };
 
+  services.liquidsoap.streams = {
+    soundscapes = ./home-audio_soundscapes.liq;
+  };
+
   services.snapserver = {
     enable = true;
     tcp.enable = true;
@@ -31,19 +35,12 @@
         sampleFormat = "48000:16:2";
         codec = "pcm";
       };
-      # "Soundscapes" = {
-      #   type = "process";
-      #   location = "${pkgs.mpv}/bin/mpv";
-      #   sampleFormat = "48000:16:2";
-      #   query.logStderr = "true";
-      #   query.params = lib.strings.concatStringsSep " " [
-      #     "/mnt/media/soundscapes"
-      #     "--shuffle --volume=0.5"
-      #     "--no-terminal --audio-display=no --audio-channels=stereo"
-      #     "--audio-samplerate=48000 --audio-format=s16"
-      #     "--af=lavfi=[dynaudnorm=f=75:g=201:p=0.55:s=10]"
-      #     "--ao=pcm --ao-pcm-file=/dev/stdout"
-      #   ];
+     "Soundscapes" = {
+        type = "pipe";
+        location = "/run/snapserver/soundscapes";
+        sampleFormat = "48000:16:2";
+        codec = "pcm";
+      };
       # };
       # "ABC NewsRadio" = {
       #   type = "process";
