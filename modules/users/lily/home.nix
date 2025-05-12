@@ -21,6 +21,8 @@ let
 
   # effectiveConfig = if isNixOS then config else lib.mkMerge [ defaultConfig config ];
   effectiveConfig = config;
+
+  webapp-browser = "${pkgs.ungoogled-chromium}/bin/chromium";
 in
 {
   nixGL = nixGLConfig;
@@ -39,6 +41,16 @@ in
   };
 
   xdg.enable = true;
+
+  # Some quick webapp shortcuts
+  xdg.desktopEntries.tgc = {
+    name = "The General Chat";
+    exec = "${webapp-browser} --app=https://thegeneral.chat";
+  };
+  xdg.desktopEntries.bsky = {
+    name = "BlueSky";
+    exec = "${webapp-browser} --app=https://bsky.app";
+  };
 
   programs.eza.enable = true;
   programs.home-manager.enable = true;
