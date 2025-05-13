@@ -93,7 +93,7 @@
 
       # Game Utils
       godot
-      
+      stable.slade
 
       # Media Production
       inkscape
