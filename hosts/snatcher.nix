@@ -55,6 +55,10 @@
   # boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
   systemd.extraConfig = "DefaultLimitNOFILE=524288";
 
+  nixpkgs.config.permittedInsecurePackages = [
+      "freeimage-unstable-2021-11-01" # SLADE
+  ];
+
   networking.firewall.enable = false;
 
   services.beesd.filesystems = {
