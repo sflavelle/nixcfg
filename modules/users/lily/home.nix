@@ -32,11 +32,20 @@ in
     homeDirectory = "/home/${user}";
     shell.enableShellIntegration = true;
     stateVersion = "25.05";
-    packages = with pkgs; [
-      xwayland-satellite
-      # youtube-tui
-      pipe-viewer
-
+    packages = with pkgs; lib.mkMerge [
+      [ # All systems
+        mpc
+        fuzzel
+        pipe-viewer
+      ]
+      (lib.mkIf (!config.hostSpec.isServer && config.hostSpec.hasPhysicalKeyboard) [
+        ghostty
+      ])
+      (lib.mkIf (!config.hostSpec.isServer) [
+        xwayland-satellite
+        jellyfin-media-player
+        obsidian
+      ])
     ];
   };
 
