@@ -166,6 +166,10 @@
       Restart = lib.mkForce "on-success";
     };
   };
+  services.paperless = {
+    enable = true;
+    database.createLocally = true;
+  };
 
   # Networking Containers
 
@@ -192,6 +196,16 @@
         TZ = "Australia/Melbourne";
       };
       ports = [ "8083:80" ];
+    };
+    actual-budgeting = {
+      image = "ghcr.io/actualbudget/actual-server:latest";
+      volumes = [ "/srv/actual-budget:/data" ];
+      environment = {
+        PUID = "1001";
+        PGID = "100";
+        TZ = "Australia/Melbourne";
+      };
+      ports = [ "5006:5006" ];
     };
   };
 
