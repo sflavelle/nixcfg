@@ -37,6 +37,7 @@ in
         mpc
         fuzzel
         pipe-viewer
+        mosh
       ]
       (lib.mkIf (!config.hostSpec.isServer && config.hostSpec.hasPhysicalKeyboard) [
         ghostty
