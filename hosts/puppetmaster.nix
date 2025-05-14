@@ -169,6 +169,7 @@
   services.paperless = {
     enable = true;
     database.createLocally = true;
+    address = "0.0.0.0";
   };
 
   # Networking Containers
