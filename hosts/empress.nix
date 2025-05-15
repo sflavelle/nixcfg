@@ -44,7 +44,7 @@
   };
   
   # Enable the KDE Plasma Desktop Environment.
-  # services.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -86,17 +86,7 @@
 
   # Jovian currently conflicts with Flatpak because of XDG Portals
   # I'll have to figure this out eventually, but for now
-  services.flatpak.enable = lib.mkForce false;
-
-  jovian = {
-    steam = {
-      enable = true;
-      user = config.hostSpec.userName;
-      desktopSession = "gamescope-wayland";
-      autoStart = true;
-    };
-    decky-loader.enable = true;
-  };
+  # services.flatpak.enable = lib.mkForce false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
