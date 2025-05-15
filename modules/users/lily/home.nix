@@ -46,6 +46,7 @@ in
         xwayland-satellite
         jellyfin-media-player
         obsidian
+        webcord-vencord
       ])
     ];
   };

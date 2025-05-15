@@ -14,15 +14,6 @@ in
       "wheel"
       "pipewire"
     ];
-    packages = with pkgs; lib.mkMerge [
-      ([ # All systems
-        mpc
-        fuzzel
-      ])
-      (lib.mkIf config.hostSpec.hasPhysicalKeyboard [
-        ghostty
-      ])
-    ];
   };
 
   home-manager.sharedModules = [
