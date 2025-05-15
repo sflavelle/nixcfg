@@ -49,19 +49,22 @@
     let
       inherit (self) outputs;
       system = "x86_64-linux";
+
+      permittedInsecurePackages = [
+      ];
+
       overlay-stable = final: prev: {
         stable = import nix-stable {
           inherit system;
           config.allowUnfree = true;
+          config.permittedInsecurePackages = permittedInsecurePackages;
         };
       };
-      pkgs = (import nixpkgs {
+      pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        config.permittedInsecurePackages = [
-          "freeimage-3.18.0-unstable-2024-04-18"
-        ];
-      });
+        config.permittedInsecurePackages = permittedInsecurePackages;
+      };
     in
     {
       homeConfigurations.lily = inputs.home-manager.lib.homeManagerConfiguration {
@@ -134,7 +137,6 @@
           };
 
           nixpkgs.overlays = [ overlay-stable inputs.niri.overlays.niri ];
-          nixpkgs.config.allowUnfree = true;
 
           nix.settings = {
             experimental-features = [
@@ -142,8 +144,6 @@
               "flakes"
             ];
           };
-          nixpkgs.config.permittedInsecurePackages = [
-          ];
 
         };
       nixosConfigurations = {
