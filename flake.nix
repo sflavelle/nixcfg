@@ -55,7 +55,13 @@
           config.allowUnfree = true;
         };
       };
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = (import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        config.permittedInsecurePackages = [
+          "freeimage-3.18.0-unstable-2024-04-18"
+        ];
+      });
     in
     {
       homeConfigurations.lily = inputs.home-manager.lib.homeManagerConfiguration {
@@ -90,6 +96,7 @@
           virtualisation.diskSize = 32 * 1024;
 
           programs.fish.enable = true;
+          programs.kdeconnect.enable = !config.hostSpec.isServer;
 
           services.openssh.enable = true;
           services.tailscale.enable = true;
