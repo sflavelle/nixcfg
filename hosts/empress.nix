@@ -95,6 +95,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     maliit-keyboard maliit-framework
+    kdePackages.qtvirtualkeyboard
+    wvkbd squeekboard
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
