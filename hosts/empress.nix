@@ -18,6 +18,8 @@
       ../hardware/empress.nix
     ];
 
+  services.displayManager.autoLogin.user = config.hostSpec.mainUser;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
