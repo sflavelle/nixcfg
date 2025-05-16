@@ -18,7 +18,7 @@
       ../hardware/empress.nix
     ];
 
-  services.displayManager.autoLogin.user = config.hostSpec.mainUser;
+  services.displayManager.autoLogin.user = config.hostSpec.userName;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
