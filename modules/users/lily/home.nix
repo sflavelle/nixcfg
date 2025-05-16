@@ -65,11 +65,19 @@ in
 
   programs.eza.enable = true;
   programs.home-manager.enable = true;
-  programs.mpv.enable = true;
-  programs.mpv.package = if nixGLConfig != null && effectiveConfig.lib ? nixGL then effectiveConfig.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
   programs.yazi.enable = true;
 
   # Configs
+  programs.mpv = {
+    enable = true;
+    package = if nixGLConfig != null && effectiveConfig.lib ? nixGL then effectiveConfig.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
+    config = {
+      fs = true;
+      ytdl-format = if config.hostSpec.isMinimal then
+        "bestvideo[height<=?720]+bestaudio/best"
+        else "bestvideo+bestaudio";
+    };
+  };
   programs.rclone = {
     enable = true;
   };
