@@ -190,7 +190,7 @@
             
             ./hosts/badgeseller.nix
             ./modules/users/lily
-            ./modules/desktop-games.nix
+#             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
             ./modules/dev.nix
             ./modules/chat.nix

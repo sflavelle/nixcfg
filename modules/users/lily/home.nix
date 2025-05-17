@@ -81,7 +81,7 @@ in
         "bestvideo[height<=?720]+bestaudio/best"
         else "bestvideo[height<=?1440][fps<=?30]+bestaudio/best";
       ytdl-raw-options = [
-        "cookies-from-browser=firefox"
+        (lib.mkIf config.programs.firefox.enable "cookies-from-browser=firefox")
         "mark-watched="
         "match-filter=original_url!*=/shorts & url!*=/shorts/"
       ];
