@@ -1,6 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
+  hostSpec = {
+    hostName = "badgeseller";
+    isPublic = true;
+    
+  };
+
   imports =
     [ # Include the results of the hardware scan.
       ../hardware/badgeseller.nix
@@ -18,13 +24,14 @@
 
   hardware.bluetooth.enable = true;
   hardware.facetimehd.enable = true;
-  programs.light.enable = true;
-  hardware.brillo.enable = true;
-  #  services.hardware.pommed.enable = true; # MacBookAir9,1 is unknown???
-  services.mbpfan.enable = true;
-  hardware.apple-t2.enableAppleSetOsLoader = true;
 
-  system.stateVersion = "24.05"; # Did you read the comment?
+  hardware.apple-t2 = {
+    enableIGPU = true;
+    firmware.enable = true;
+    
+  };
+
+  system.stateVersion = "25.05"; # Did you read the comment?
 
 }
 

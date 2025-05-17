@@ -12,18 +12,6 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
 
-  hardware.firmware = [
-  (pkgs.stdenvNoCC.mkDerivation {
-    name = "brcm-firmware";
-
-    buildCommand = ''
-      dir="$out"
-      mkdir -p "$dir"
-      cp -r ${inputs.mac-brcm-fw}/lib "$dir"
-    '';
-  })
-];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
@@ -31,8 +19,6 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp0s20f0u1u2c2.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp116s0f1u1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.ztnfafiln3.useDHCP = lib.mkDefault true;
-  # networking.interfaces.ztwfujyfp5.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

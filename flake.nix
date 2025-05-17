@@ -178,6 +178,22 @@
             ./modules/chat.nix
           ];
         };
+        "badgeseller" = nixpkgs.lib.nixosSystem {
+          # Apple MacBook Air (2019)
+          system = system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            self.nixosModules.commonModules
+            inputs.nixos-hardware.nixosModules.apple-t2
+            
+            ./hosts/badgeseller.nix
+            ./modules/users/lily
+            ./modules/desktop-games.nix
+            ./modules/desktop-software.nix
+            ./modules/dev.nix
+            ./modules/chat.nix
+          ];
+        };
         "dweller" = nixpkgs.lib.nixosSystem {
           # Acer Chromebook C720
           system = system;
