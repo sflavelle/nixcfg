@@ -71,6 +71,9 @@ in
   programs.mpv = {
     enable = true;
     package = if nixGLConfig != null && effectiveConfig.lib ? nixGL then effectiveConfig.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
+    scripts = with pkgs.mpvScripts; [
+      sponsorblock acompressor mpris
+    ];
     config = {
       fs = true;
       osd-playing-msg="Now Playing: \${media-title}";
