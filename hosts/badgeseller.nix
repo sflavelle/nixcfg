@@ -17,6 +17,12 @@
       "mem_sleep_default=s2idle"
   ];
 
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
+
   networking.hostName = "badgeseller"; # Define your hostname.
   networking.networkmanager.wifi.macAddress = "permanent";
   networking.networkmanager.wifi.scanRandMacAddress = false;
