@@ -73,9 +73,15 @@ in
     package = if nixGLConfig != null && effectiveConfig.lib ? nixGL then effectiveConfig.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
     config = {
       fs = true;
+      osd-playing-msg="Now Playing: ''${media-title}";
       ytdl-format = if config.hostSpec.isMinimal then
         "bestvideo[height<=?720]+bestaudio/best"
-        else "bestvideo+bestaudio";
+        else "bestvideo[height<=?1440][fps<=?30]+bestaudio/best";
+      ytdl-raw-options = [
+        "cookies-from-browser=firefox"
+        "mark-watched="
+        "match-filter=original_url!*=/shorts & url!*=/shorts/"
+      ];
     };
   };
   programs.rclone = {
@@ -83,7 +89,7 @@ in
   };
   programs.zoxide = {
     enable = true;
-    options = ["--cmd cd"];
+#     options = ["--cmd cd"];
   };
 
   # Services
