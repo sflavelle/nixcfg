@@ -73,7 +73,7 @@ in
     package = if nixGLConfig != null && effectiveConfig.lib ? nixGL then effectiveConfig.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
     config = {
       fs = true;
-      osd-playing-msg="Now Playing: ''${media-title}";
+      osd-playing-msg="Now Playing: \${media-title}";
       ytdl-format = if config.hostSpec.isMinimal then
         "bestvideo[height<=?720]+bestaudio/best"
         else "bestvideo[height<=?1440][fps<=?30]+bestaudio/best";
