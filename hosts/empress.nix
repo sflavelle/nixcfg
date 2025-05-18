@@ -90,6 +90,13 @@
   # I'll have to figure this out eventually, but for now
   # services.flatpak.enable = lib.mkForce false;
 
+  jovian = {
+    steam.enable = true;
+    steam.autoStart = true;
+    steam.desktopSession = "plasma";
+    steam.user = config.hostSpec.userName;
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
