@@ -144,6 +144,7 @@
               "nix-command"
               "flakes"
             ];
+            trusted-users = [ config.hostSpec.userName ];
           };
 
         };
