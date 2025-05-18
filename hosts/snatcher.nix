@@ -97,6 +97,7 @@
       # Media Production
       inkscape
       reaper
+      bitwig-studio
       # Plugins
       yabridge
 
@@ -121,6 +122,24 @@
   programs.gamescope = {
       enable = true;
       args = [ "--fullscreen" ];
+  };
+
+    programs.opengamepadui = {
+    enable = true;
+    gamescopeSession.enable = true;
+    inputplumber.enable = true;
+    powerstation.enable = true;
+  };
+
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs obs-ndi obs-teleport input-overlay
+      obs-text-pthread obs-source-clone
+      obs-shaderfilter obs-source-record
+      obs-composite-blur obs-pipewire-audio-capture
+    ];
   };
 
   virtualisation.containers.enable = true;
