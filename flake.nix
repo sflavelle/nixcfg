@@ -107,7 +107,7 @@
           services.avahi.nssmdns4 = true;
 
           services.displayManager.ly.enable = config.hostSpec.isMinimal && !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
-          services.desktopManager.cosmic.enable = !config.hostSpec.isServer;
+          services.xserver.desktopManager.cinnamon.enable = !config.hostSpec.isServer;
           services.displayManager.sddm.enable = !config.hostSpec.isMinimal && !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
           services.desktopManager.plasma6.enable = !config.hostSpec.isMinimal && !config.hostSpec.isServer;
 
