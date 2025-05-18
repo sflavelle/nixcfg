@@ -9,7 +9,7 @@
   environment.systemPackages = with pkgs; [
     gh git
     nixd nil
-    jetbrains.pycharm-community-src vscode-with-extensions
+    jetbrains.pycharm-community-src vscode-fhs
     zed-editor
 
     yaml-language-server
