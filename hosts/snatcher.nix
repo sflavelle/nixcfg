@@ -97,7 +97,7 @@
       # Media Production
       inkscape
       reaper
-      bitwig-studio
+      stable.bitwig-studio
       # Plugins
       yabridge
 
