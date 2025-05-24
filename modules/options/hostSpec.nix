@@ -15,36 +15,10 @@
       type = lib.types.str;
       description = "The hostname of the host";
     };
-    email = lib.mkOption {
-      type = lib.types.attrsOf lib.types.str;
-      description = "The email of the user";
-    };
-    work = lib.mkOption {
-      default = { };
-      type = lib.types.attrsOf lib.types.anything;
-      description = "An attribute set of work-related information if isWork is true";
-    };
-    networking = lib.mkOption {
-      default = { };
-      type = lib.types.attrsOf lib.types.anything;
-      description = "An attribute set of networking information";
-    };
-    wifi = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Used to indicate if a host has wifi";
-    };
-    domain = lib.mkOption {
-      type = lib.types.str;
-      description = "The domain of the host";
-    };
-    userFullName = lib.mkOption {
-      type = lib.types.str;
-      description = "The full name of the user";
-    };
-    handle = lib.mkOption {
-      type = lib.types.str;
-      description = "The handle of the user (eg: github user)";
+    timeZone = lib.mkOption {
+      type - lib.types.str;
+      default = "Australia/Melbourne";
+      description = "The geographical timezone the host resides in.";
     };
     home = lib.mkOption {
       type = lib.types.str;
@@ -91,6 +65,7 @@
 
   config = {
     networking.hostName = config.hostSpec.hostName;
+    time.timeZone = config.hostSpec.timeZone;
 
     environment.enableAllTerminfo = true;
   };
