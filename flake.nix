@@ -106,8 +106,8 @@
           services.avahi.enable = true;
           services.avahi.nssmdns4 = true;
 
-          services.xserver.displayManager.gdm.enable = config.hostSpec.isMinimal && !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
-          services.displayManager.sddm.enable = !config.hostSpec.isMinimal && !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
+          services.xserver.displayManager.gdm.enable = (config.services.xserver.desktopManager.gnome.enable || config.hostSpec.isMinimal) && !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
+          services.displayManager.sddm.enable = !config.services.xserver.desktopManager.gnome.enable && !config.hostSpec.isMinimal && !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
           services.desktopManager.plasma6.enable = !config.hostSpec.isMinimal && !config.hostSpec.isServer;
           services.xserver.desktopManager.gnome.enable = !config.hostSpec.isServer;
 
@@ -151,6 +151,10 @@
               "flakes"
             ];
             trusted-users = [ config.hostSpec.userName ];
+          };
+
+          services.gnome = lib.mkIf config.services.xserver.desktopManager.gnome.enable {
+            gnome-browser-connector.enable = true;
           };
 
         };
