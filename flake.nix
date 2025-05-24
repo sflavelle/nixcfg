@@ -123,17 +123,20 @@
             extraSpecialArgs = { inherit inputs; };
           };
 
-          environment.systemPackages = with pkgs; [
-            duf dust fd eza
-            curl wget
-            fzf
-            btop
-            helix
-            oh-my-posh
-            zellij
-          ] ++ lib.mkIf config.xserver.desktopManager.gnome.enable [
-            gnomeExtensions.tweaks-in-system-menu
-            gnome-tweaks
+          environment.systemPackages = lib.mkMerge [
+            (with pkgs; [
+                duf dust fd eza
+                curl wget
+                fzf
+                btop
+                helix
+                oh-my-posh
+                zellij
+            ])
+            (lib.mkIf config.xserver.desktopManager.gnome.enable [
+                gnomeExtensions.tweaks-in-system-menu
+                gnome-tweaks
+            ])
           ];
           environment.variables = {
             EDITOR = "hx";
