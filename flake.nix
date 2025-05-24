@@ -106,7 +106,7 @@
           services.avahi.enable = true;
           services.avahi.nssmdns4 = true;
 
-          services.displayManager.ly.enable = config.hostSpec.isMinimal && !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
+          services.displayManager.gdm.enable = config.hostSpec.isMinimal && !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
           services.displayManager.sddm.enable = !config.hostSpec.isMinimal && !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
           services.desktopManager.plasma6.enable = !config.hostSpec.isMinimal && !config.hostSpec.isServer;
           services.xserver.desktopManager.gnome.enable = !config.hostSpec.isServer;
@@ -131,7 +131,10 @@
             helix
             oh-my-posh
             zellij
-          ];
+          ] ++ (lib.mkIf config.xserver.desktopManager.gnome.enable [
+            gnomeExtensions.tweaks-in-system-menu
+            gnome-tweaks
+          ]);
           environment.variables = {
             EDITOR = "hx";
           };
