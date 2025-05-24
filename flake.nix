@@ -188,7 +188,7 @@
             inputs.nixos-hardware.nixosModules.apple-t2
             inputs.disko.nixosModules.disko
             ./modules/disko-badgeseller.nix
-            
+
             ./hosts/badgeseller.nix
             ./modules/users/lily
 #             ./modules/desktop-games.nix
@@ -245,6 +245,7 @@
 
             ./modules/home-audio.nix
             ./modules/snapclient.nix
+            ./modules/srv-arr.nix
           ];
         };
       };

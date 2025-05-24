@@ -1,7 +1,7 @@
 {
   config, pkgs, lib, inputs, ...
 }:
-# This module adapted from 
+# This module adapted from
 # https://unmovedcentre.com/posts/managing-nix-config-host-variables/
 {
   options.hostSpec = {
@@ -91,5 +91,7 @@
 
   config = {
     networking.hostName = config.hostSpec.hostName;
+
+    environment.enableAllTerminfo = true;
   };
 }
