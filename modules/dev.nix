@@ -11,6 +11,7 @@
     nixd nil
     jetbrains.pycharm-community-src vscode-fhs
     zed-editor
+    pgadmin4
 
     yaml-language-server
     python3Packages.python-lsp-server
