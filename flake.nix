@@ -197,7 +197,7 @@
             self.nixosModules.commonModules
             inputs.nixos-hardware.nixosModules.apple-t2
             inputs.disko.nixosModules.disko
-            ./modules/disko-badgeseller.nix
+            ./modules/disko/badgeseller.nix
 
             ./hosts/badgeseller.nix
             ./modules/users/lily
@@ -221,7 +221,7 @@
             ./modules/chat.nix
 
             # inputs.disko.nixosModules.disko
-            # ./modules/disko-dweller.nix
+            # ./modules/disko/dweller.nix
           ];
         };
         "empress" = nixpkgs.lib.nixosSystem {
@@ -249,7 +249,7 @@
             self.nixosModules.commonModules
             ./hosts/puppetmaster.nix
             inputs.disko.nixosModules.disko
-            ./modules/disko-puppetmaster.nix
+            ./modules/disko/puppetmaster.nix
             ./modules/users/lily
             ./modules/users/juno
 
