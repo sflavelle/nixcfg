@@ -131,10 +131,10 @@
             helix
             oh-my-posh
             zellij
-          ] ++ (lib.mkIf config.xserver.desktopManager.gnome.enable [
+          ]) ++ lib.mkIf config.xserver.desktopManager.gnome.enable [
             gnomeExtensions.tweaks-in-system-menu
             gnome-tweaks
-          ]);
+          ];
           environment.variables = {
             EDITOR = "hx";
           };
