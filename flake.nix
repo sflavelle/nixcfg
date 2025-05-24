@@ -133,7 +133,7 @@
                 oh-my-posh
                 zellij
             ])
-            (lib.mkIf config.xserver.desktopManager.gnome.enable [
+            (with pkgs; lib.mkIf config.xserver.desktopManager.gnome.enable [
                 gnomeExtensions.tweaks-in-system-menu
                 gnome-tweaks
             ])
