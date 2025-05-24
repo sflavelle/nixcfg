@@ -97,6 +97,11 @@
     steam.user = config.hostSpec.userName;
   };
 
+  programs.opengamepadui = {
+    enable = true;
+    
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
