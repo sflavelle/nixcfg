@@ -94,7 +94,6 @@
     gallery-dl
     ympd
   ];
-  environment.enableAllTerminfo = true;
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -107,19 +106,6 @@
     pulse.enable = true;
   };
 
-  services.transmission = {
-    enable = true;
-    openFirewall = true;
-    openRPCPort = true;
-    settings = {
-      rpc-bind-address = "0.0.0.0";
-      rpc-whitelist = "127.0.0.1,10.0.*.*,192.168.192.*";
-      rpc-port = 8100;
-      download-dir = "/mnt/media/Downloads/Torrents";
-    };
-    downloadDirPermissions = "777";
-  };
-
   services.mosquitto = {
     enable = true;
     listeners = [{
@@ -128,6 +114,8 @@
       settings.allow_anonymous = true;
     }];
   };
+
+
 
   # Smart Home
 
@@ -198,15 +186,15 @@
       };
       ports = [ "8083:80" ];
     };
-    actual-budgeting = {
-      image = "ghcr.io/actualbudget/actual-server:latest";
-      volumes = [ "/srv/actual-budget:/data" ];
+    whisper-subtitles = {
+      image = "docker.io/absadiki/subsai:main";
+      volumes = [ "/home/lily:/media_files/lily" "/mnt/media:/media_files/media" ];
       environment = {
         PUID = "1001";
         PGID = "100";
         TZ = "Australia/Melbourne";
       };
-      ports = [ "5006:5006" ];
+      ports = [ "8051:8051" ];
     };
   };
 
