@@ -16,7 +16,7 @@
       description = "The hostname of the host";
     };
     timeZone = lib.mkOption {
-      type - lib.types.str;
+      type = lib.types.str;
       default = "Australia/Melbourne";
       description = "The geographical timezone the host resides in.";
     };
