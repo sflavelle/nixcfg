@@ -258,6 +258,16 @@
             ./modules/srv-arr.nix
           ];
         };
+        "ndc" = nixpkgs.lib.nixosSystem {
+          # Neurario.com VPS
+          system = system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            self.nixosModules.commonModules
+            ./hosts/puppetmaster.nix
+            ./modules/users/lily
+          ];
+        };
       };
       packages.x86_64-linux = {
         link-steamscreenshots = pkgs.callPackage ./pkgs/link-steamscreenshots {};
