@@ -266,6 +266,8 @@
             self.nixosModules.commonModules
             ./hosts/puppetmaster.nix
             ./modules/users/lily
+
+            ./modules/dev.nix
           ];
         };
       };
