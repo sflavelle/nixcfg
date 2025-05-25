@@ -144,6 +144,8 @@
                 helix
                 oh-my-posh
                 zellij
+
+                nvd nix-output-monitor
             ])
             (with pkgs; lib.mkIf config.services.xserver.desktopManager.gnome.enable [
                 gnomeExtensions.tweaks-in-system-menu
@@ -167,6 +169,16 @@
             trusted-public-keys = [
               "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
             ];
+          };
+
+          services.nixos-cli = {
+            enable = true;
+            prebuildOptionCache = config.hostSpec.hostName = "snatcher"; # build option index on main pc
+            settings = {
+              use_nvd = true;
+
+              apply.use_nom = true;
+            };
           };
 
           services.gnome = lib.mkIf config.services.xserver.desktopManager.gnome.enable {
