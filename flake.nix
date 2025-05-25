@@ -15,6 +15,7 @@
     nix-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
+    nixos-cli.url = "github:nix-community/nixos-cli";
 
 
     niri.url = "github:sodiboo/niri-flake";
@@ -101,6 +102,7 @@
             inputs.nixos-generators.nixosModules.all-formats
             inputs.home-manager.nixosModules.home-manager
             inputs.niri.nixosModules.niri
+            inputs.nixos-cli.nixosModules.nixos-cli
             
             ./modules/options
           ];
@@ -161,6 +163,10 @@
               "flakes"
             ];
             trusted-users = [ config.hostSpec.userName ];
+            substituters = [ "https://watersucks.cachix.org" ];
+            trusted-public-keys = [
+              "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
+            ];
           };
 
           services.gnome = lib.mkIf config.services.xserver.desktopManager.gnome.enable {
