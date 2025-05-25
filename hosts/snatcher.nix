@@ -169,6 +169,22 @@
     soundfont-arachno
   ];
 
+  # Postgres dev
+  services.postgresql = {
+    enable = true;
+    ensureUsers = [
+      {
+        name = "lily";
+        ensureDBOwnership = true;
+        ensureClauses.login = true;
+        ensureClauses.createdb = true;
+      }
+    ];
+    ensureDatabases = [
+      "lily"
+    ];
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
