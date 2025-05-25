@@ -117,7 +117,7 @@
           services.avahi.enable = true;
           services.avahi.nssmdns4 = true;
 
-          services.displayManager.sddm.enable = !config.services.xserver.desktopManager.gnome.enable && !config.hostSpec.isMinimal && !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
+          services.displayManager.sddm.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
           services.desktopManager.plasma6.enable = !config.hostSpec.isServer;
 
           users.defaultUserShell = pkgs.fish;
