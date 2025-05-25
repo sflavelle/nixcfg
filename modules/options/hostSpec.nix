@@ -25,7 +25,7 @@
       description = "The home directory of the user";
       default =
         let
-          user = config.hostSpec.username;
+          user = config.hostSpec.userName;
         in
         if pkgs.stdenv.isLinux then "/home/${user}" else "/Users/${user}";
     };
