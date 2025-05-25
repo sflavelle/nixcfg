@@ -19,4 +19,8 @@
     systemd-language-server
     marksman
   ];
+
+  environment.variables = {
+    EDITOR = "hx";
+  };
 }

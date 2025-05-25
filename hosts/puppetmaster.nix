@@ -93,6 +93,7 @@
     yt-dlp
     gallery-dl
     ympd
+    filebot
   ];
 
   security.rtkit.enable = true;
