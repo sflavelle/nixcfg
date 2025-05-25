@@ -26,7 +26,7 @@ in
     openFirewall = true;
     settings = {
       server.bindaddress = "*";
-      server.port = 7878;
+      server.port = 8787;
     };
   };
 
