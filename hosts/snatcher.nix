@@ -172,6 +172,7 @@
   # Postgres dev
   services.postgresql = {
     enable = true;
+    package = pkgs.postgresql_17_jit;
     ensureUsers = [
       {
         name = "lily";
