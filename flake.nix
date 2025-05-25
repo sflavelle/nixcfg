@@ -21,6 +21,11 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixgl.url   = "github:nix-community/nixGL";
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -96,6 +101,7 @@
             inputs.nixos-generators.nixosModules.all-formats
             inputs.home-manager.nixosModules.home-manager
             inputs.niri.nixosModules.niri
+            
             ./modules/options
           ];
 
@@ -122,6 +128,9 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = { inherit inputs; };
+            sharedModules = [
+              inputs.plasma-manager.homeManagerModules.plasma-manager
+            ];
           };
 
           environment.systemPackages = lib.mkMerge [
