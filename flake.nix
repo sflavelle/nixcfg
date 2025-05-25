@@ -14,6 +14,9 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
+
+
     niri.url = "github:sodiboo/niri-flake";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -106,10 +109,8 @@
           services.avahi.enable = true;
           services.avahi.nssmdns4 = true;
 
-          services.xserver.displayManager.gdm.enable = (config.services.xserver.desktopManager.gnome.enable || config.hostSpec.isMinimal) && !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
           services.displayManager.sddm.enable = !config.services.xserver.desktopManager.gnome.enable && !config.hostSpec.isMinimal && !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
-          services.desktopManager.plasma6.enable = !config.hostSpec.isMinimal && !config.hostSpec.isServer;
-          services.xserver.desktopManager.gnome.enable = !config.hostSpec.isServer;
+          services.desktopManager.plasma6.enable = !config.hostSpec.isServer;
 
           users.defaultUserShell = pkgs.fish;
           security.sudo.wheelNeedsPassword = lib.mkDefault false;
@@ -169,7 +170,10 @@
             ./hardware/snatcher.nix
             ./modules/mounts-snatcher.nix
             ./modules/users/lily
+
+
             ./modules/desktop-games.nix
+            ./modules/desktop-vr.nix
             ./modules/desktop-software.nix
             ./modules/dev.nix
             ./modules/chat.nix
