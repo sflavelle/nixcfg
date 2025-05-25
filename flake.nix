@@ -174,7 +174,7 @@
           services.nixos-cli = {
             enable = true;
             prebuildOptionCache = config.hostSpec.hostName == "snatcher"; # build option index on main pc
-            settings = {
+            config = {
               use_nvd = true;
 
               apply.use_nom = true;
