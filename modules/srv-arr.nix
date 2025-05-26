@@ -21,12 +21,10 @@ in
     downloadDirPermissions = "777";
   };
 
-  services.prowlarr = { # Indexer manager/proxy
+  services.jackett = { # Indexer manager/proxy
     enable = true;
     openFirewall = true;
-    settings = {
-      server.bindaddress = "*";
-      server.port = 8787;
+    port = 8787;
     };
   };
 
