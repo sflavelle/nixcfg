@@ -25,7 +25,6 @@ in
     enable = true;
     openFirewall = true;
     port = 8787;
-    };
   };
 
   services.bazarr = {
