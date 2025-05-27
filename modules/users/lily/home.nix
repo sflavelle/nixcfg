@@ -91,6 +91,8 @@ in
     settings = {
       preset = "genderfluid";
       mode = "rgb";
+      brightness = "50%";
+      color_align.mode = "horizontal";
     };
   };
   programs.mpv = {
