@@ -17,6 +17,7 @@
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
     nixos-cli.url = "github:nix-community/nixos-cli";
 
+    erosanix.url = "github:emmanuelrosa/erosanix"; # mkWindowsApp
 
     niri.url = "github:sodiboo/niri-flake";
     home-manager.url = "github:nix-community/home-manager";
@@ -107,7 +108,7 @@
             ./modules/options
           ];
 
-          virtualisation.diskSize = 32 * 1024;
+          virtualisation.diskSize = 6 * 1024;
 
           programs.fish.enable = true;
           programs.kdeconnect.enable = !config.hostSpec.isServer;
