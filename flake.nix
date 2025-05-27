@@ -119,6 +119,8 @@
 
           services.displayManager.sddm.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
           services.desktopManager.plasma6.enable = !config.hostSpec.isServer;
+          programs.niri.enable = !config.hostSpec.isServer;
+          programs.niri.package = pkgs.niri-unstable;
 
           users.defaultUserShell = pkgs.fish;
           security.sudo.wheelNeedsPassword = lib.mkDefault false;
@@ -132,6 +134,7 @@
             extraSpecialArgs = { inherit inputs; };
             sharedModules = [
               inputs.plasma-manager.homeManagerModules.plasma-manager
+              # inputs.niri.homeModules.niri
             ];
           };
 
@@ -295,7 +298,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             self.nixosModules.commonModules
-            ./hosts/puppetmaster.nix
+            ./hosts/neurariodotcom.nix
             ./modules/users/lily
 
             ./modules/dev.nix

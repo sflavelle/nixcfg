@@ -1,4 +1,4 @@
-{ config, lib, pkgs, mainUser, inputs, nixgl ? null, ... }:
+{ config, lib, pkgs, mainUser, name, inputs, nixgl ? null, ... }:
 let
   isNixOS = config ? hostSpec;
   user = if !isNixOS then "lily" else mainUser;
@@ -47,6 +47,11 @@ in
         jellyfin-media-player
         obsidian
         webcord-vencord
+
+        # Fonts
+        glasstty-ttf ultimate-oldschool-pc-font-pack nerd-fonts.ubuntu-sans ubuntu-sans-mono
+        minecraftia monocraft pixel-code nerd-fonts.monaspace mona-sans hubot-sans aileron
+        dinish comic-relief anakron tt2020 nerd-fonts.jetbrains-mono nerd-fonts.im-writing
       ])
     ];
   };
@@ -63,22 +68,45 @@ in
     exec = "${webapp-browser} --app=https://bsky.app";
   };
 
+  # Fonts
+  fonts.fontconfig.enable = true;
+
   programs.eza.enable = true;
   programs.home-manager.enable = true;
   programs.yazi.enable = true;
 
   # Configs
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+    userEmail = "me@neurario.com";
+    userName = name;
+  };
+  programs.helix = {
+    enable = true;
+    defaultEditor = true;
+  };
+  programs.hyfetch = {
+    enable = true;
+    settings = {
+      preset = "genderfluid";
+      mode = "rgb";
+    };
+  };
   programs.mpv = {
     enable = true;
     package = if nixGLConfig != null && effectiveConfig.lib ? nixGL then effectiveConfig.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
     scripts = with pkgs.mpvScripts; [
       sponsorblock acompressor mpris
     ];
+    defaultProfiles = if config.hostSpec.isMinimal then
+      [ "fast" ]
+      else [ "gpu-hq" ];
     config = {
       fs = true;
       osd-playing-msg="Now Playing: \${media-title}";
       ytdl-format = if config.hostSpec.isMinimal then
-        "bestvideo[height<=?720]+bestaudio/best"
+        "bestvideo[height<=?720][fps<=?30]+bestaudio/best"
         else "bestvideo[height<=?1440][fps<=?30]+bestaudio/best";
       ytdl-raw-options = [
         (lib.mkIf config.programs.firefox.enable "cookies-from-browser=firefox")
@@ -89,6 +117,15 @@ in
   };
   programs.rclone = {
     enable = true;
+    remotes = {
+
+    };
+  };
+  programs.thunderbird = {
+    enable = !config.hostSpec.isServer;
+    profiles = {
+      "main".isDefault = true;
+    };
   };
   programs.zoxide = {
     enable = true;
@@ -120,8 +157,7 @@ in
 
   # Environments
   # programs.niri = {
-  #   enable = isNixOS && !effectiveConfig.hostSpec.isServer;
-  #   package = pkgs.niri-unstable;
+  #   # enable = isNixOS && !effectiveConfig.hostSpec.isServer;
   #   settings = import ./cfg/niri.nix {
   #     inherit lib pkgs isNixOS mainUser inputs;
   #     config = effectiveConfig;

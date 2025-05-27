@@ -21,7 +21,7 @@ in
   ];
   home-manager.users."${mainUser}" = import ./home.nix {
     inherit config lib pkgs inputs;
-    inherit mainUser;
+    inherit mainUser name;
   };
 
 }
