@@ -108,7 +108,7 @@
             ./modules/options
           ];
 
-          virtualisation.diskSize = 6 * 1024;
+          virtualisation.diskSize = 32 * 1024;
 
           programs.fish.enable = true;
           programs.kdeconnect.enable = !config.hostSpec.isServer;
