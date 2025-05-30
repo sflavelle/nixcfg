@@ -241,19 +241,19 @@ lib.mkMerge [
     };
 
     window-rules = [
-      {
-        matches = [
-          { app-id = "firefox"; }
-        ];
-        open-on-workspace = "main-browser";
-      }
+      # {
+      #   matches = [
+      #     { app-id = "firefox"; }
+      #   ];
+      #   open-on-workspace = "Browser";
+      # }
       {
         matches = [
           { app-id = "steam"; }
           { app-id = "steam-native"; }
           { app-id = "steam_app_"; }
         ];
-        open-on-workspace = "main-games";
+        open-on-workspace = "Games";
       }
       {
         matches = [
@@ -261,7 +261,7 @@ lib.mkMerge [
           { app-id = "webcord"; }
           { app-id = "element"; }
         ];
-        open-on-workspace = "right-communication";
+        open-on-workspace = "Communication";
       }
       {
         matches = [
@@ -269,7 +269,7 @@ lib.mkMerge [
           { app-id = "mpv"; }
           { app-id = "obs-studio"; }
         ];
-        open-on-workspace = "left-video";
+        open-on-workspace = "Video";
       }
     ];
   })
