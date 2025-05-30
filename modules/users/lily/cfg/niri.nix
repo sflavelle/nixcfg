@@ -25,6 +25,7 @@ lib.mkMerge [
   {
     input.touchpad.tap = true;
     input.touchpad.natural-scroll = true;
+    input.focus-follows-mouse.enable = true;
     input.focus-follows-mouse.max-scroll-amount = "20%";
 
     prefer-no-csd = true;
@@ -74,6 +75,28 @@ lib.mkMerge [
       QT_QPA_PLATFORM = "wayland";
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };
+
+    window-rules = [
+      {
+        matches = [
+          { 
+            app-id = "firefox";
+            title = "Picture-in-Picture";
+          }
+        ];
+        open-floating = true;
+        default-floating-position = {
+          relative-to = "bottom-right";
+          x = 0;
+          y = 0;
+        };
+      }
+    ];
+
+    spawn-at-startup = [
+      { command = ["${pkgs.waybar}/bin/waybar"]; }
+      { command = ["${pkgs.mako}/bin/mako"]; }
+    ];
 
     binds = 
       # with config.lib.niri.actions; 
@@ -183,4 +206,71 @@ lib.mkMerge [
   {
     outputs = mappedMonitors;
   }
+
+  # Per-host workspace config
+  (lib.mkIf (config.hostSpec.hostName == "snatcher") {
+    workspaces = {
+      "main-browser" = {
+        open-on-output = "DP-2";
+        name = "Browser";
+      };
+      "main-games" = {
+        open-on-output = "DP-2";
+        name = "Games";
+      };
+      "main-audio" = {
+        open-on-output = "DP-2";
+        name = "Audio";
+      };
+      "left-browser-alt" = {
+        open-on-output = "DP-1";
+        name = "Browser (alt)";
+      };
+      "left-video" = {
+        open-on-output = "DP-1";
+        name = "Video";
+      };
+      "right-communication" = {
+        open-on-output = "HDMI-A-2";
+        name = "Communication";
+      };
+      "down-utility" = {
+        open-on-output = "HDMI-A-1";
+        name = "Utility";
+      };
+    };
+
+    window-rules = [
+      {
+        matches = [
+          { app-id = "firefox"; }
+        ];
+        open-on-workspace = "main-browser";
+      }
+      {
+        matches = [
+          { app-id = "steam"; }
+          { app-id = "steam-native"; }
+          { app-id = "steam_app_"; }
+        ];
+        open-on-workspace = "main-games";
+      }
+      {
+        matches = [
+          { app-id = "discord"; }
+          { app-id = "webcord"; }
+          { app-id = "element"; }
+        ];
+        open-on-workspace = "right-communication";
+      }
+      {
+        matches = [
+          { app-id = "vlc"; }
+          { app-id = "mpv"; }
+          { app-id = "obs-studio"; }
+        ];
+        open-on-workspace = "left-video";
+      }
+    ];
+  })
 ]
