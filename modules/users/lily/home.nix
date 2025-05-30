@@ -160,6 +160,7 @@ in
   # Environments
   programs.niri = {
     # enable = isNixOS && !effectiveConfig.hostSpec.isServer;
+    package = pkgs.niri-unstable;
     settings = import ./cfg/niri.nix {
       inherit lib pkgs isNixOS mainUser inputs;
       config = effectiveConfig;

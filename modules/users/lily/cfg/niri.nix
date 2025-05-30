@@ -148,7 +148,7 @@ lib.mkMerge [
       "Mod+BracketRight".action.consume-or-expel-window-right = [];
 
       "Mod+R".action.switch-preset-column-width = [];
-      # "Mod+Shift+R".action.switch-preset-column-height = [];
+      "Mod+Shift+R".action.switch-preset-column-height = [];
       "Mod+Ctrl+R".action.reset-window-height = [];
       "Mod+F".action.maximize-column = [];
       "Mod+Shift+F".action.fullscreen-window = [];
