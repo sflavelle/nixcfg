@@ -4,10 +4,12 @@
   fileSystems."/home/lily/mnt/extra" = {
     device = "/dev/HDD/lily";
     fsType = "btrfs";
+    options = [ "defaults" "noatime" "compress=zstd" "x-systemd.automount" ];
   };
   fileSystems."/mnt/games" = {
     device = "/dev/HDD/games";
     fsType = "btrfs";
+    options = [ "defaults" "noatime" "compress=zstd" "x-systemd.automount" ];
   };
   fileSystems."/mnt/media" = {
     fsType = "cifs";
