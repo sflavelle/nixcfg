@@ -158,11 +158,11 @@ in
   };
 
   # Environments
-  # programs.niri = {
-  #   # enable = isNixOS && !effectiveConfig.hostSpec.isServer;
-  #   settings = import ./cfg/niri.nix {
-  #     inherit lib pkgs isNixOS mainUser inputs;
-  #     config = effectiveConfig;
-  #   };
-  # };
+  programs.niri = {
+    # enable = isNixOS && !effectiveConfig.hostSpec.isServer;
+    settings = import ./cfg/niri.nix {
+      inherit lib pkgs isNixOS mainUser inputs;
+      config = effectiveConfig;
+    };
+  };
 }

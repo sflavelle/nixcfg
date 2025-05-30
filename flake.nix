@@ -81,7 +81,7 @@
         inherit pkgs;
         modules = [
           modules/users/lily/home.nix
-          inputs.niri.homeModules.niri
+          # inputs.niri.homeModules.niri
           ];
         extraSpecialArgs = {
           inherit inputs;
@@ -120,8 +120,8 @@
 
           services.displayManager.sddm.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
           services.desktopManager.plasma6.enable = !config.hostSpec.isServer;
-          programs.niri.enable = !config.hostSpec.isServer;
-          programs.niri.package = pkgs.niri-unstable;
+          # programs.niri.enable = !config.hostSpec.isServer;
+          # programs.niri.package = pkgs.niri-unstable;
 
           users.defaultUserShell = pkgs.fish;
           security.sudo.wheelNeedsPassword = lib.mkDefault false;
@@ -155,6 +155,7 @@
                 gnomeExtensions.tweaks-in-system-menu
                 gnome-tweaks
             ])
+            # (lib.mkIf config.programs.niri.enable [ inputs.xwayland-satellite.packages.${system}.xwayland-satellite ])
           ];
           environment.variables = {
             EDITOR = "hx";

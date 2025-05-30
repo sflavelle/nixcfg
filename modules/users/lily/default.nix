@@ -16,9 +16,6 @@ in
     ];
   };
 
-  home-manager.sharedModules = [
-    # inputs.niri.homeModules.niri
-  ];
   home-manager.users."${mainUser}" = import ./home.nix {
     inherit config lib pkgs inputs;
     inherit mainUser name;
