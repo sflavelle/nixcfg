@@ -165,6 +165,8 @@
     gpu-screen-recorder
     gpu-screen-recorder-gtk
 
+    winetricks q4wine protontricks
+
     # soundfonts
     soundfont-arachno
   ];

@@ -20,6 +20,7 @@
     erosanix.url = "github:emmanuelrosa/erosanix"; # mkWindowsApp
 
     niri.url = "github:sodiboo/niri-flake";
+    xwayland-satellite.url = "github:Supreeeme/xwayland-satellite";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixgl.url   = "github:nix-community/nixGL";
@@ -148,6 +149,7 @@
                 helix
                 oh-my-posh
                 zellij
+                cameractrls
 
                 nvd nix-output-monitor
             ])
