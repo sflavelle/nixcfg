@@ -121,8 +121,8 @@
 
           services.displayManager.sddm.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
           services.desktopManager.plasma6.enable = !config.hostSpec.isServer;
-          # programs.niri.enable = !config.hostSpec.isServer;
-          # programs.niri.package = pkgs.niri-unstable;
+          programs.niri.enable = !config.hostSpec.isServer;
+          programs.niri.package = pkgs.niri-unstable;
 
           users.defaultUserShell = pkgs.fish;
           security.sudo.wheelNeedsPassword = lib.mkDefault false;
