@@ -148,7 +148,6 @@ lib.mkMerge [
       "Mod+BracketRight".action.consume-or-expel-window-right = [];
 
       "Mod+R".action.switch-preset-column-width = [];
-      "Mod+Shift+R".action.switch-preset-column-height = [];
       "Mod+Ctrl+R".action.reset-window-height = [];
       "Mod+F".action.maximize-column = [];
       "Mod+Shift+F".action.fullscreen-window = [];
@@ -170,6 +169,8 @@ lib.mkMerge [
       "Mod+Period".action.clear-dynamic-cast-target = [];
       "Mod+Shift+Period".action.set-dynamic-cast-window = [];
       "Mod+Ctrl+Period".action.set-dynamic-cast-monitor = [];
+
+      "Mod+Backslash".action.toggle-overview = [];
 
       "Ctrl+Alt+Delete".action.quit = [];
       "Mod+F4".action.quit = [];
