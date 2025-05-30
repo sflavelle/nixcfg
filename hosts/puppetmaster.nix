@@ -133,7 +133,7 @@
   services.esphome = {
       enable = true;
       port = 8122;
-      address = "10.0.0.3";
+      address = "10.0.0.69";
       openFirewall = true;
   };
 
@@ -155,11 +155,11 @@
       Restart = lib.mkForce "on-success";
     };
   };
-  services.paperless = {
-    enable = true;
-    database.createLocally = true;
-    address = "0.0.0.0";
-  };
+  # services.paperless = {
+  #   enable = true;
+  #   database.createLocally = true;
+  #   address = "0.0.0.0";
+  # };
 
   # Networking Containers
 
@@ -186,16 +186,6 @@
         TZ = "Australia/Melbourne";
       };
       ports = [ "8083:80" ];
-    };
-    whisper-subtitles = {
-      image = "docker.io/absadiki/subsai:main";
-      volumes = [ "/home/lily:/media_files/lily" "/mnt/media:/media_files/media" ];
-      environment = {
-        PUID = "1001";
-        PGID = "100";
-        TZ = "Australia/Melbourne";
-      };
-      ports = [ "8051:8051" ];
     };
   };
 
