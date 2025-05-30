@@ -96,32 +96,32 @@ lib.mkMerge [
       "XF86MonBrightnessUp".action.spawn = [ "pkexec" "${pkgs.brillo}/bin/brillo" "-A" "10" ];
       "XF86MonBrightnessDown".action.spawn = [ "pkexec" "${pkgs.brillo}/bin/brillo" "-U" "10" ];
 
-      "Mod+Q".action.close-window = true;
+      "Mod+Q".action.close-window = [];
 
-      "Mod+Left".action.focus-column-left = true;
-      "Mod+Right".action.focus-column-right = true;
-      "Mod+Up".action.focus-window-up = true;
-      "Mod+Down".action.focus-window-down = true;
+      "Mod+Left".action.focus-column-left = [];
+      "Mod+Right".action.focus-column-right = [];
+      "Mod+Up".action.focus-window-up = [];
+      "Mod+Down".action.focus-window-down = [];
 
-      "Mod+Shift+Left".action.move-column-left = true;
-      "Mod+Shift+Right".action.move-column-right = true;
-      "Mod+Shift+Up".action.move-window-up = true;
-      "Mod+Shift+Down".action.move-window-down = true;
+      "Mod+Shift+Left".action.move-column-left = [];
+      "Mod+Shift+Right".action.move-column-right = [];
+      "Mod+Shift+Up".action.move-window-up = [];
+      "Mod+Shift+Down".action.move-window-down = [];
 
-      "Mod+Ctrl+Left".action.focus-monitor-left = true;
-      "Mod+Ctrl+Right".action.focus-monitor-right = true;
-      "Mod+Ctrl+Up".action.focus-monitor-up = true;
-      "Mod+Ctrl+Down".action.focus-monitor-down = true;
+      "Mod+Ctrl+Left".action.focus-monitor-left = [];
+      "Mod+Ctrl+Right".action.focus-monitor-right = [];
+      "Mod+Ctrl+Up".action.focus-monitor-up = [];
+      "Mod+Ctrl+Down".action.focus-monitor-down = [];
 
-      "Mod+Shift+Ctrl+Left".action.move-column-to-monitor-left = true;
-      "Mod+Shift+Ctrl+Right".action.move-column-to-monitor-right = true;
-      "Mod+Shift+Ctrl+Up".action.move-window-to-monitor-up = true;
-      "Mod+Shift+Ctrl+Down".action.move-window-to-monitor-down = true;
+      "Mod+Shift+Ctrl+Left".action.move-column-to-monitor-left = [];
+      "Mod+Shift+Ctrl+Right".action.move-column-to-monitor-right = [];
+      "Mod+Shift+Ctrl+Up".action.move-window-to-monitor-up = [];
+      "Mod+Shift+Ctrl+Down".action.move-window-to-monitor-down = [];
 
-      "Mod+Ctrl+Alt+Left".action.move-workspace-to-monitor-left = true;
-      "Mod+Ctrl+Alt+Right".action.move-workspace-to-monitor-right = true;
-      "Mod+Ctrl+Alt+Up".action.move-workspace-to-monitor-up = true;
-      "Mod+Ctrl+Alt+Down".action.move-workspace-to-monitor-down = true;
+      "Mod+Ctrl+Alt+Left".action.move-workspace-to-monitor-left = [];
+      "Mod+Ctrl+Alt+Right".action.move-workspace-to-monitor-right = [];
+      "Mod+Ctrl+Alt+Up".action.move-workspace-to-monitor-up = [];
+      "Mod+Ctrl+Alt+Down".action.move-workspace-to-monitor-down = [];
 
       "Mod+1".action.focus-workspace = 1;
       "Mod+2".action.focus-workspace = 2;
@@ -144,36 +144,36 @@ lib.mkMerge [
       "Mod+Shift+9".action.move-window-to-workspace = 9;
       "Mod+Shift+0".action.move-window-to-workspace = 10;
 
-      "Mod+BracketLeft".action.consume-or-expel-window-left = true;
-      "Mod+BracketRight".action.consume-or-expel-window-right = true;
+      "Mod+BracketLeft".action.consume-or-expel-window-left = [];
+      "Mod+BracketRight".action.consume-or-expel-window-right = [];
 
-      "Mod+R".action.switch-preset-column-width = true;
-      "Mod+Shift+R".action.switch-preset-column-height = true;
-      "Mod+Ctrl+R".action.reset-window-height = true;
-      "Mod+F".action.maximize-column = true;
-      "Mod+Shift+F".action.fullscreen-window = true;
-      "Mod+Alt+F".action.toggle-windowed-fullscreen = true;
-      "Mod+C".action.center-column = true;
+      "Mod+R".action.switch-preset-column-width = [];
+      "Mod+Shift+R".action.switch-preset-column-height = [];
+      "Mod+Ctrl+R".action.reset-window-height = [];
+      "Mod+F".action.maximize-column = [];
+      "Mod+Shift+F".action.fullscreen-window = [];
+      "Mod+Alt+F".action.toggle-windowed-fullscreen = [];
+      "Mod+C".action.center-column = [];
       "Mod+Minus".action.set-column-width = "-10%";
       "Mod+Equal".action.set-column-width = "+10%";
       "Mod+Shift+Minus".action.set-window-height = "-10%";
       "Mod+Shift+Equal".action.set-window-height = "+10%";
 
-      "Mod+Tab".action.switch-focus-between-floating-and-tiling = true;
-      "Mod+Shift+Tab".action.toggle-window-floating = true;
-      "Mod+Alt+Tab".action.toggle-column-tabbed-display = true;
+      "Mod+Tab".action.switch-focus-between-floating-and-tiling = [];
+      "Mod+Shift+Tab".action.toggle-window-floating = [];
+      "Mod+Alt+Tab".action.toggle-column-tabbed-display = [];
 
-      "Print".action.screenshot = true;
-      "Ctrl+Print".action.screenshot-screen = true;
-      "Alt+Print".action.screenshot-window = true;
+      "Print".action.screenshot = [];
+      "Ctrl+Print".action.screenshot-screen = [];
+      "Alt+Print".action.screenshot-window = [];
 
-      "Mod+Period".action.clear-dynamic-cast-target = true;
-      "Mod+Shift+Period".action.set-dynamic-cast-window = true;
-      "Mod+Ctrl+Period".action.set-dynamic-cast-monitor = true;
+      "Mod+Period".action.clear-dynamic-cast-target = [];
+      "Mod+Shift+Period".action.set-dynamic-cast-window = [];
+      "Mod+Ctrl+Period".action.set-dynamic-cast-monitor = [];
 
-      "Ctrl+Alt+Delete".action.quit = true;
-      "Mod+F4".action.quit = true;
-      "Mod+Shift+Return".action.power-off-monitors = true;
+      "Ctrl+Alt+Delete".action.quit = [];
+      "Mod+F4".action.quit = [];
+      "Mod+Shift+Return".action.power-off-monitors = [];
 
     };
   }
