@@ -193,7 +193,7 @@ lib.mkMerge [
       "Mod+Shift+Period".action.set-dynamic-cast-window = [];
       "Mod+Ctrl+Period".action.set-dynamic-cast-monitor = [];
 
-      "Mod+Backslash".action.toggle-overview = [];
+      "Mod+Slash".action.toggle-overview = [];
 
       "Ctrl+Alt+Delete".action.quit = [];
       "Mod+F4".action.quit = [];
