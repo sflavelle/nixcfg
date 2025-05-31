@@ -108,16 +108,25 @@ lib.mkMerge [
     in {
       "Mod+T".action.spawn = terminal;
       "Mod+Space".action.spawn = [ "${pkgs.fuzzel}/bin/fuzzel" "--match-mode=fzf" ];
+      "Mod+Space".hotkey-overlay.title = "Run Command";
       "Mod+E".action.spawn = [ terminal "-e" "${pkgs.yazi}/bin/yazi" ];
+      "Mod+E".hotkey-overlay.title = "File Manager";
       "Mod+B".action.spawn = [ browser ];
       "Mod+Escape".action.spawn = [ terminal "-e" "${pkgs.btop}/bin/btop" ];
+      "Mod+Escape".hotkey-overlay.title = "System Monitor";
+      "Mod+F1".action.show-hotkey-overlay = [];
 
       "XF86AudioRaiseVolume".action.spawn = [ wpctl "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"];
+      "XF86AudioRaiseVolume".hotkey-overlay.title = "Volume Up";
       "XF86AudioLowerVolume".action.spawn = [ wpctl "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"];
+      "XF86AudioLowerVolume".hotkey-overlay.title = "Volume Down";
       "XF86AudioMute".action.spawn = [ wpctl "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
+      "XF86AudioMute".hotkey-overlay.title = "Mute Audio";
       "XF86AudioMicMute".action.spawn = [ wpctl "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
       "XF86MonBrightnessUp".action.spawn = [ "pkexec" "${pkgs.brillo}/bin/brillo" "-A" "10" ];
+      "XF86MonBrightnessUp".hotkey-overlay.title = "Brightness Up";
       "XF86MonBrightnessDown".action.spawn = [ "pkexec" "${pkgs.brillo}/bin/brillo" "-U" "10" ];
+      "XF86MonBrightnessDown".hotkey-overlay.title = "Brightness Down";
 
       "Mod+Q".action.close-window = [];
 
@@ -249,16 +258,23 @@ lib.mkMerge [
       # }
       {
         matches = [
-          { app-id = "steam"; }
-          { app-id = "steam-native"; }
-          { app-id = "steam_app_"; }
+          { app-id = "^steam$"; }
         ];
         open-on-workspace = "Games";
+
+      }
+      {
+        matches = [
+          { app-id = "^steam_app_"; }
+        ];
+        open-on-workspace = "Games";
+        default-column-width = {};
+
       }
       {
         matches = [
           { app-id = "discord"; }
-          { app-id = "webcord"; }
+          { app-id = "WebCord"; }
           { app-id = "element"; }
         ];
         open-on-workspace = "Communication";
