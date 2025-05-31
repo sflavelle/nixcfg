@@ -210,31 +210,31 @@ lib.mkMerge [
   # Per-host workspace config
   (lib.mkIf (config.hostSpec.hostName == "snatcher") {
     workspaces = {
-      "main-browser" = {
+      "main-01-browser" = {
         open-on-output = "DP-2";
         name = "Browser";
       };
-      "main-games" = {
+      "main-02-games" = {
         open-on-output = "DP-2";
         name = "Games";
       };
-      "main-audio" = {
+      "main-03-audio" = {
         open-on-output = "DP-2";
         name = "Audio";
       };
-      "left-browser-alt" = {
+      "left-01-browser-alt" = {
         open-on-output = "DP-1";
         name = "Browser (alt)";
       };
-      "left-video" = {
+      "left-02-video" = {
         open-on-output = "DP-1";
         name = "Video";
       };
-      "right-communication" = {
+      "right-01-communication" = {
         open-on-output = "HDMI-A-2";
         name = "Communication";
       };
-      "down-utility" = {
+      "down-01-utility" = {
         open-on-output = "HDMI-A-1";
         name = "Utility";
       };
