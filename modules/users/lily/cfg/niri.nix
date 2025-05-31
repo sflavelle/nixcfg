@@ -96,6 +96,7 @@ lib.mkMerge [
     spawn-at-startup = [
       { command = ["${pkgs.waybar}/bin/waybar"]; }
       { command = ["${pkgs.mako}/bin/mako"]; }
+      { command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite" ":1"]; }
     ];
 
     binds = 
