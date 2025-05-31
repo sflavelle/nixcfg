@@ -38,6 +38,7 @@ in
         fuzzel
         pipe-viewer
         mosh
+        yt-dlp
       ]
       (lib.mkIf (!config.hostSpec.isServer && config.hostSpec.hasPhysicalKeyboard) [
         ghostty
