@@ -184,7 +184,7 @@ mkWindowsAppNoCC rec {
 
     src = fetchurl {
       url = "https://upload.wikimedia.org/wikipedia/commons/b/bf/Ableton_Live_logo.png";
-      sha256 = "";
+      sha256 = "f2WwWdTkl7oF10CJOjFebGJhQoamyyq6L7Yqr9uiTD0=";
     };
   };
 
