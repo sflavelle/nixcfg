@@ -10,7 +10,7 @@
     gh git
     nixd nil
     jetbrains.pycharm-community-src vscode-fhs
-    zed-editor helix
+    helix
     pgadmin4-desktopmode dbeaver-bin
 
     yaml-language-server

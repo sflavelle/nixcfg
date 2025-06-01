@@ -18,6 +18,10 @@
     nixos-cli.url = "github:nix-community/nixos-cli";
 
     erosanix.url = "github:emmanuelrosa/erosanix"; # mkWindowsApp
+    audio = {
+      url = "github:polygon/audio.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     niri.url = "github:sodiboo/niri-flake";
     xwayland-satellite.url = "github:Supreeeme/xwayland-satellite";
@@ -168,7 +172,7 @@
             EDITOR = "hx";
           };
 
-          nixpkgs.overlays = [ overlay-stable inputs.niri.overlays.niri ];
+          nixpkgs.overlays = [ overlay-stable inputs.niri.overlays.niri inputs.audio.overlays.default ];
           nixpkgs.config.allowUnfree = true;
 
           nix.settings = {
