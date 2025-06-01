@@ -161,6 +161,17 @@ in
     guiAddress = "0.0.0.0:8385";
   };
 
+  services.wpaperd = {
+    enable = true;
+    settings = {
+      default = {
+        path = "/home/${user}/Pictures/Wallpapers";
+        duration = "3h";
+        mode = "center";
+      };
+    };
+  };
+
   # Environments
   programs.niri = {
     # enable = isNixOS && !effectiveConfig.hostSpec.isServer;
