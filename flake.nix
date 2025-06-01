@@ -317,7 +317,11 @@
       };
       packages.x86_64-linux = {
         link-steamscreenshots = pkgs.callPackage ./pkgs/link-steamscreenshots {};
-        ableton-live = pkgs.callPackage ./pkgs/ableton.nix {};
+        ableton-live = pkgs.callPackage ./pkgs/ableton.nix {
+          inherit (inputs.erosanix.lib.${system}) mkWindowsAppNoCC copyDesktopIcons makeDesktopIcon;
+          wine = pkgs.wineWow64Packages.stableFull;
+          # wineArch = "win64";
+        };
       };
     };
 }

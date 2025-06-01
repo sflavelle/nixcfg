@@ -1,6 +1,6 @@
 { stdenv
 , lib
-, mkWindowsApp
+, mkWindowsAppNoCC
 , wine
 , fetchurl
 , makeDesktopItem
@@ -9,7 +9,7 @@
 , copyDesktopIcons  # This comes with erosanix. It's a handy way to generate desktop icons.
 , unzip }:
 
-mkWindowsApp rec {
+mkWindowsAppNoCC rec {
   inherit wine;
 
   pname = "ableton-live-suite";
@@ -17,7 +17,7 @@ mkWindowsApp rec {
 
   src = builtins.fetchurl {
     url = "https://cdn-downloads.ableton.com/channels/${version}/ableton_live_suite_${version}_64.zip";
-    sha256 = "";
+    sha256 = "0sm8hgfackxrkxp694wh4gz9wffp233ybj8v34z6jwnfgqb6qcy7";
   };
 
   # By default, when a Wine prefix is first created Wine will produce a warning prompt if Mono is not installed.
@@ -97,7 +97,9 @@ mkWindowsApp rec {
   # When a symlink is disabled, it's replaced with a directory. That way anything written to it remains in a mkWindowsApp layer.
   # Acceptable attributes, all of which default to the boolean value 'true', are:
   # desktop, documents, downloads, music, pictures, and videos.
-  enabledWineSymlinks = { };
+  enabledWineSymlinks = {
+
+  };
 
   # Starting with version 10, Wine uses Wayland if it's available. But, usually Wayland compositors enable xwayland,
   # which causes Wine to default to X11.
@@ -163,33 +165,10 @@ mkWindowsApp rec {
   '';
 
   desktopItems = let
-    mimeTypes = ["application/pdf"
-                 "application/epub+zip"
-                 "application/x-mobipocket-ebook"
-                 "application/vnd.amazon.mobi8-ebook"
-                 "application/x-zip-compressed-fb2"
-                 "application/x-cbt"
-                 "application/x-cb7"
-                 "application/x-7z-compressed"
-                 "application/vnd.rar"
-                 "application/x-tar"
-                 "application/zip"
-                 "image/vnd.djvu"
-                 "image/vnd.djvu+multipage"
-                 "application/vnd.ms-xpsdocument"
-                 "application/oxps"
-                 "image/jpeg"
-                 "image/png"
-                 "image/gif"
-                 "image/webp"
-                 "image/tiff"
-                 "image/tiff-multipage"
-                 "image/x-tga"
-                 "image/bmp"
-                 "image/x-dib" ];
+    # mimeTypes = [ ];
   in [
     (makeDesktopItem {
-      inherit mimeTypes;
+      # inherit mimeTypes;
 
       name = pname;
       exec = pname;
@@ -210,7 +189,7 @@ mkWindowsApp rec {
   };
 
   meta = with lib; {
-    description = "A free PDF, eBook (ePub, Mobi), XPS, DjVu, CHM, Comic Book (CBZ and CBR) viewer for Windows.";
+    description = "Digital Audio Workstation for Windows.";
     homepage = "https://www.ableton.com/en/live/";
     license = licenses.unfree;
     # maintainers = with maintainers; [ emmanuelrosa ];
