@@ -143,7 +143,7 @@
           environment.systemPackages = lib.mkMerge [
             (with pkgs; [
                 duf dust fd eza
-                curl wget
+                curl wget unzip
                 fzf
                 btop
                 helix
