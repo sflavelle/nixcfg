@@ -112,7 +112,7 @@ in
       fs = true;
       osd-playing-msg="Now Playing: \${media-title}";
       ytdl-format = if config.hostSpec.isMinimal then
-        "bestvideo[height<=?720][fps<=?30]+bestaudio/best"
+        "bestvideo[height<=?480][fps<=?30]+bestaudio/best"
         else "bestvideo[height<=?1440][fps<=?30]+bestaudio/best";
       ytdl-raw-options = [
         (lib.mkIf config.programs.firefox.enable "cookies-from-browser=firefox")
