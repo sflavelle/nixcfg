@@ -319,7 +319,7 @@
         link-steamscreenshots = pkgs.callPackage ./pkgs/link-steamscreenshots {};
         ableton-live = pkgs.callPackage ./pkgs/ableton.nix {
           inherit (inputs.erosanix.lib.${system}) mkWindowsAppNoCC copyDesktopIcons makeDesktopIcon;
-          wine = pkgs.wineWow64Packages.stableFull;
+          wine = pkgs.wine64Packages.stagingFull;
           # wineArch = "win64";
         };
       };
