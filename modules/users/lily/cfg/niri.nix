@@ -267,6 +267,7 @@ lib.mkMerge [
       {
         matches = [
           { app-id = "^steam_app_"; }
+          { app-id = "gzdoom"; }
         ];
         open-on-workspace = "Games";
         default-column-width = {};
