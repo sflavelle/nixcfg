@@ -15,6 +15,11 @@ mkWindowsAppNoCC rec {
   pname = "ableton-live-suite";
   version = "12.1.11";
 
+  # THIS PACKAGE CURRENTLY DOESN'T WORK CORRECTLY.
+  # Fails to install with the embedded vc_redist.exe unable to start/not found.
+  # The rest of it looks okay for the moment, but I can't test it properly without it installing.
+  # If you try to use this package, feel free to PR if you can improve on this.
+
   src = builtins.fetchurl {
     url = "https://cdn-downloads.ableton.com/channels/${version}/ableton_live_suite_${version}_64.zip";
     sha256 = "0sm8hgfackxrkxp694wh4gz9wffp233ybj8v34z6jwnfgqb6qcy7";
