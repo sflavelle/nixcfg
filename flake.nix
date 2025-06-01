@@ -46,6 +46,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
+    # aagl.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
   outputs =
@@ -105,7 +108,7 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.niri.nixosModules.niri
             inputs.nixos-cli.nixosModules.nixos-cli
-            
+
             ./modules/options
           ];
 
@@ -174,9 +177,10 @@
               "flakes"
             ];
             trusted-users = [ config.hostSpec.userName ];
-            substituters = [ "https://watersucks.cachix.org" ];
+            substituters = [ "https://watersucks.cachix.org" "https://ezkea.cachix.org" ];
             trusted-public-keys = [
               "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
+              "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
             ];
           };
 
@@ -313,6 +317,7 @@
       };
       packages.x86_64-linux = {
         link-steamscreenshots = pkgs.callPackage ./pkgs/link-steamscreenshots {};
+        ableton-live = pkgs.callPackage ./pkgs/ableton.nix {};
       };
     };
 }
