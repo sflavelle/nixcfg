@@ -97,6 +97,7 @@ lib.mkMerge [
       { command = ["${pkgs.waybar}/bin/waybar"]; }
       { command = ["${pkgs.mako}/bin/mako"]; }
       { command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite" ":1"]; }
+      { command = ["${pkgs.wpaperd}/bin/wpaperd" "-d"]}
     ];
 
     binds = 

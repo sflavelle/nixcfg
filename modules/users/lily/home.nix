@@ -49,6 +49,9 @@ in
         obsidian
         webcord-vencord
 
+        # WM Utilities
+        wpaperd rwpspread
+
         # Fonts
         glasstty-ttf ultimate-oldschool-pc-font-pack nerd-fonts.ubuntu-sans ubuntu-sans-mono
         minecraftia monocraft pixel-code nerd-fonts.monaspace mona-sans hubot-sans aileron
