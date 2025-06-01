@@ -119,8 +119,8 @@ lib.mkMerge [
       "Mod+Escape".hotkey-overlay.title = "System Monitor";
       "Mod+F1".action.show-hotkey-overlay = [];
 
-      "Mod+Tilde".action.spawn = [ pwvucontrol ];
-      "Mod+Tilde".hotkey-overlay.title = "PulseAudio Volume Control";
+      "Mod+Grave".action.spawn = [ pwvucontrol ];
+      "Mod+Grave".hotkey-overlay.title = "PulseAudio Volume Control";
       "XF86AudioRaiseVolume".action.spawn = [ wpctl "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"];
       "XF86AudioRaiseVolume".hotkey-overlay.title = "Volume Up";
       "XF86AudioLowerVolume".action.spawn = [ wpctl "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"];
