@@ -228,7 +228,11 @@ lib.mkMerge [
         open-on-output = "DP-2";
         name = "Games";
       };
-      "main-03-audio" = {
+      "main-03-dev" = {
+        open-on-output = "DP-2";
+        name = "Code";
+      };
+      "main-04-audio" = {
         open-on-output = "DP-2";
         name = "Audio";
       };
@@ -271,6 +275,13 @@ lib.mkMerge [
         ];
         open-on-workspace = "Games";
         default-column-width = {};
+
+      }
+      {
+        matches = [
+          { app-id = "^code$"; title = "Visual Studio Code";}
+        ];
+        open-on-workspace = "Code";
 
       }
       {
