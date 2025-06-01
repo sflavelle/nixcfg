@@ -10,7 +10,7 @@
     gh git
     nixd nil
     jetbrains.pycharm-community-src vscode-fhs
-    zed-editor
+    zed-editor helix
     pgadmin4-desktopmode dbeaver-bin
 
     yaml-language-server
@@ -18,6 +18,8 @@
     bash-language-server
     systemd-language-server
     marksman
+
+    jq yq
   ];
 
   environment.variables = {

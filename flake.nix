@@ -151,6 +151,8 @@
                 zellij
                 cameractrls
 
+                wl-clipboard-rs
+
                 nvd nix-output-monitor
             ])
             (with pkgs; lib.mkIf config.services.xserver.desktopManager.gnome.enable [
