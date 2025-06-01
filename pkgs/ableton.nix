@@ -175,7 +175,7 @@ mkWindowsAppNoCC rec {
       icon = pname;
       desktopName = "Ableton Live";
       genericName = "Digital Audio Workstation";
-      categories = ["Multimedia"];
+      categories = ["AudioVideo" "Audio" "Sequencer" "AudioVideoEditing" ];
     })
   ];
 
