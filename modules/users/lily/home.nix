@@ -162,7 +162,7 @@ in
   };
 
   services.wpaperd = {
-    enable = true;
+    enable = !config.hostSpec.isServer;
     settings = {
       default = {
         path = "/home/${user}/Pictures/Wallpapers";
