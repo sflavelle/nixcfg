@@ -163,6 +163,8 @@
     wineasio
     coreutils
 
+    labwc # Some programs don't play nicely with Niri, so we can nest them inside labwc
+
     gpu-screen-recorder
     gpu-screen-recorder-gtk
 
