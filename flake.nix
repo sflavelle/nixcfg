@@ -130,6 +130,7 @@
           services.desktopManager.plasma6.enable = !config.hostSpec.isServer;
           programs.niri.enable = !config.hostSpec.isServer;
           programs.niri.package = pkgs.niri-unstable;
+          programs.labwc.enable = !config.hostSpec.isServer;
 
           users.defaultUserShell = pkgs.fish;
           security.sudo.wheelNeedsPassword = lib.mkDefault false;
