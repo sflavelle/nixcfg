@@ -105,12 +105,13 @@ lib.mkMerge [
     let
       browser = "firefox";
       terminal = "${pkgs.ghostty}/bin/ghostty";
+      launcher = [ "${pkgs.rofi-wayland}/bin/rofi" "-show" "drun" ];
 
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
       pwvucontrol = "${pkgs.pwvucontrol}/bin/pwvucontrol";
     in {
       "Mod+T".action.spawn = terminal;
-      "Mod+Space".action.spawn = [ "${pkgs.fuzzel}/bin/fuzzel" "--match-mode=fzf" ];
+      "Mod+Space".action.spawn = launcher;
       "Mod+Space".hotkey-overlay.title = "Run Command";
       "Mod+E".action.spawn = [ terminal "-e" "${pkgs.yazi}/bin/yazi" ];
       "Mod+E".hotkey-overlay.title = "File Manager";
@@ -209,7 +210,8 @@ lib.mkMerge [
 
       "Mod+Slash".action.toggle-overview = [];
 
-      "Ctrl+Alt+Delete".action.quit = [];
+      "Ctrl+Alt+Delete".action.spawn = [ "${pkgs.wlogout}/bin/wlogout" ];
+      "Ctrl+Alt+Delete".hotkey-overlay.title = "Power Menu";
       "Mod+F4".action.quit = [];
       "Mod+Shift+Return".action.power-off-monitors = [];
 
