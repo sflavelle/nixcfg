@@ -45,7 +45,7 @@
       refreshRate = 60;
       x = 2780;
       y = 1440;
-      scale = 1.5;
+      scale = 1.25;
     }
   ];
 
