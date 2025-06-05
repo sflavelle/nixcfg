@@ -11,7 +11,7 @@ let
 
   # defaultConfig = {
   #   hostSpec = {
-  #     hostName = "noHost";
+  #     hostName = "noHst";
   #     isServer = false;
   #     isMinimal = false;
   #     isHandheld = false;
@@ -62,7 +62,7 @@ in
   };
 
   accounts = import ./accounts.nix {
-      inherit lib pkgs isNixOS mainUser inputs;
+      inherit lib pkgs inputs;
       config = effectiveConfig;
     };
 
@@ -197,7 +197,7 @@ in
     # enable = isNixOS && !effectiveConfig.hostSpec.isServer;
     # package = pkgs.niri-unstable;
     settings = import ./cfg/niri.nix {
-      inherit lib pkgs inputs;
+      inherit lib pkgs isNixOS mainUser inputs;
       config = effectiveConfig;
     };
   };
