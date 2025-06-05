@@ -114,7 +114,9 @@ lib.mkMerge [
       "Mod+Space".action.spawn = launcher;
       "Mod+Space".hotkey-overlay.title = "Run Command";
       "Mod+E".action.spawn = [ terminal "-e" "${pkgs.yazi}/bin/yazi" ];
-      "Mod+E".hotkey-overlay.title = "File Manager";
+      "Mod+E".hotkey-overlay.title = "File Manager (Yazi)";
+      "Mod+Shift+E".action.spawn = [ terminal "-e" "${pkgs.cosmic-files}/bin/cosmic-files" ];
+      "Mod+Shift+E".hotkey-overlay.title = "File Manager (COSMIC Files)";
       "Mod+B".action.spawn = [ browser ];
       "Mod+Escape".action.spawn = [ terminal "-e" "${pkgs.btop}/bin/btop" ];
       "Mod+Escape".hotkey-overlay.title = "System Monitor";
