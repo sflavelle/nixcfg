@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, outputs, config, lib, pkgs, ... }:
 let
   mainUser = config.hostSpec.userName;
   name = if config.hostSpec.isPublic then "Simon Flavelle" else "Lily Flavelle"; # yes i'm not out yet
@@ -17,7 +17,7 @@ in
   };
 
   home-manager.users."${mainUser}" = import ./home.nix {
-    inherit config lib pkgs inputs;
+    inherit config lib pkgs inputs outputs;
     inherit mainUser name;
   };
 

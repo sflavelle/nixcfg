@@ -1,4 +1,4 @@
-{ config, lib, pkgs, mainUser, name, inputs, nixgl ? null, ... }:
+{ config, lib, pkgs, mainUser, name, inputs, outputs ? null, nixgl ? null, ... }:
 let
   isNixOS = config ? hostSpec;
   user = if !isNixOS then "lily" else mainUser;
@@ -47,6 +47,7 @@ in
       (lib.mkIf (!config.hostSpec.isServer) [
         xwayland-satellite
         jellyfin-media-player
+        outputs.packages.${system}.vacuumtube
         obsidian
         webcord-vencord
 

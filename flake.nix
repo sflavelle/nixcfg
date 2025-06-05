@@ -186,7 +186,7 @@
         "snatcher" = nixpkgs.lib.nixosSystem {
           # Primary Desktop PC
           system = system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs outputs; };
           modules = [
             self.nixosModules.commonModules
             ./hosts/snatcher.nix
@@ -205,7 +205,7 @@
         "minion" = nixpkgs.lib.nixosSystem {
           # Infinity Gaming laptop
           system = system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs outputs; };
           modules = [
             self.nixosModules.commonModules
             ./hosts/minion.nix
@@ -219,7 +219,7 @@
         "badgeseller" = nixpkgs.lib.nixosSystem {
           # Apple MacBook Air (2019)
           system = system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs outputs; };
           modules = [
             self.nixosModules.commonModules
             inputs.nixos-hardware.nixosModules.apple-t2
@@ -237,7 +237,7 @@
         "dweller" = nixpkgs.lib.nixosSystem {
           # Acer Chromebook C720
           system = system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs outputs; };
           modules = [
             self.nixosModules.commonModules
 
@@ -254,7 +254,7 @@
         "empress" = nixpkgs.lib.nixosSystem {
           # Lenovo Legion Go
           system = system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs outputs; };
           modules = [
             self.nixosModules.commonModules
             inputs.jovian.nixosModules.default
@@ -271,7 +271,7 @@
         "puppetmaster" = nixpkgs.lib.nixosSystem {
           # Home Lab
           system = system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs outputs; };
           modules = [
             self.nixosModules.commonModules
             ./hosts/puppetmaster.nix
@@ -288,7 +288,7 @@
         "ndc" = nixpkgs.lib.nixosSystem {
           # Neurario.com VPS
           system = system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs outputs; };
           modules = [
             self.nixosModules.commonModules
             ./hosts/neurariodotcom.nix
