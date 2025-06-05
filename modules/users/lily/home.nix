@@ -39,6 +39,7 @@ in
         pipe-viewer
         mosh
         yt-dlp
+        uair
       ]
       (lib.mkIf (!config.hostSpec.isServer && config.hostSpec.hasPhysicalKeyboard) [
         ghostty
@@ -125,6 +126,15 @@ in
     enable = true;
     remotes = {
 
+    };
+  };
+  programs.rofi = {
+    enable = true;
+    terminal = "${pkgs.ghostty}/bin/ghostty";
+    package = pkgs.rofi-wayland;
+    modes = [
+      "drun" "ssh" "window"
+    ]
     };
   };
   programs.thunderbird = {
