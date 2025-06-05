@@ -15,7 +15,6 @@
     nix-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
-    nixos-cli.url = "github:nix-community/nixos-cli";
 
     erosanix.url = "github:emmanuelrosa/erosanix"; # mkWindowsApp
     audio = {
@@ -24,15 +23,9 @@
     };
 
     niri.url = "github:sodiboo/niri-flake";
-    xwayland-satellite.url = "github:Supreeeme/xwayland-satellite";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixgl.url   = "github:nix-community/nixGL";
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -163,7 +156,7 @@
 
                 nvd nix-output-monitor
             ])
-            (with pkgs; lib.mkIf config.services.xserver.desktopManager.gnome.enable [
+            (with pkgs; lib.mkIf config.services.desktopManager.gnome.enable [
                 gnomeExtensions.tweaks-in-system-menu
                 gnome-tweaks
             ])
@@ -187,20 +180,6 @@
               "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
               "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
             ];
-          };
-
-          services.nixos-cli = {
-            enable = true;
-            prebuildOptionCache = config.hostSpec.hostName == "snatcher"; # build option index on main pc
-            config = {
-              use_nvd = true;
-
-              apply.use_nom = true;
-            };
-          };
-
-          services.gnome = lib.mkIf config.services.xserver.desktopManager.gnome.enable {
-            gnome-browser-connector.enable = true;
           };
 
         };
