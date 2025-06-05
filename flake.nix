@@ -305,6 +305,7 @@
           wine = pkgs.wine64Packages.stagingFull;
           # wineArch = "win64";
         };
+        vacuumtube = pkgs.callPackage ./pkgs/vacuumtube.nix { };
       };
     };
 }
