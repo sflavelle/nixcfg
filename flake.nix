@@ -104,7 +104,6 @@
             inputs.nixos-generators.nixosModules.all-formats
             inputs.home-manager.nixosModules.home-manager
             inputs.niri.nixosModules.niri
-            inputs.nixos-cli.nixosModules.nixos-cli
 
             ./modules/options
           ];
@@ -136,8 +135,6 @@
             useUserPackages = true;
             extraSpecialArgs = { inherit inputs; };
             sharedModules = [
-              inputs.plasma-manager.homeManagerModules.plasma-manager
-              # inputs.niri.homeModules.niri
             ];
           };
 
