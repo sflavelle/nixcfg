@@ -2,6 +2,7 @@
   lib,
   appimageTools,
   fetchurl,
+  copyDesktopItems,
   makeDesktopItem,
 }:
 
@@ -18,7 +19,7 @@ in
 appimageTools.wrapType2 rec {
   inherit pname version src;
 
-  nativeBuildInputs = [ makeDesktopItem ];
+  nativeBuildInputs = [ copyDesktopItems ];
 
   desktopItems = [
     (makeDesktopItem {
