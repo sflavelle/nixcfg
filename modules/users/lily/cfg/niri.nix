@@ -280,6 +280,8 @@ lib.mkMerge [
         matches = [
           { app-id = "^steam_app_"; }
           { app-id = "gzdoom"; }
+          { app-id = "SpaceIdle"; }
+          { title = "Ship of Harkinian"; }
         ];
         open-on-workspace = "Games";
         default-column-width = {};
@@ -305,6 +307,7 @@ lib.mkMerge [
           { app-id = "vlc"; }
           { app-id = "mpv"; }
           { app-id = "obs-studio"; }
+          { app-id = "jellyfin-media-player"; }
         ];
         open-on-workspace = "Video";
       }
