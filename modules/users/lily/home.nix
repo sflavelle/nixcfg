@@ -102,6 +102,9 @@ in
     enable = true;
     defaultEditor = true;
   };
+  programs.himalaya = {
+    enable = true;
+  };
   programs.hyfetch = {
     enable = true;
     settings = {

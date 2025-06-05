@@ -1,6 +1,10 @@
 { inputs, config, lib, pkgs, ... }:
 let
   name = "Simon Flavelle";
+  himsettings = {
+    envelope.list.datetime-fmt = "%v %r";
+    envelope.list.datetime-local-tz = true;
+  };
 in
 {
   calendar = {};
@@ -12,6 +16,7 @@ in
       primary = true;
       realName = name;
       himalaya.enable = true;
+      himalaya.settings = himsettings;
       thunderbird.enable = true;
     };
     "professional" = {
@@ -19,6 +24,7 @@ in
       flavor = "migadu.com";
       realName = name;
       himalaya.enable = true;
+      himalaya.settings = himsettings;
       thunderbird.enable = true;
     };
   };
