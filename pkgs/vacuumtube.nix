@@ -2,6 +2,7 @@
   lib,
   appimageTools,
   fetchurl,
+  makeDesktopItem,
 }:
 
 let
@@ -16,6 +17,19 @@ let
 in
 appimageTools.wrapType2 rec {
   inherit pname version src;
+
+  nativeBuildInputs = [ makeDesktopItem ];
+
+  desktopItems = [
+    (makeDesktopItem {
+      name = pname;
+      exec = pname;
+      icon = pname;
+      desktopName = "VacuumTube";
+      categories = [ "AudioVideo" "Player" "Video" ];
+      comment = "YouTube Leanback wrapper for the desktop";
+    })
+  ];
 
   meta = {
     description = "YouTube Leanback wrapper for the desktop";
