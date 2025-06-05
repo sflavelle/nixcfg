@@ -61,6 +61,11 @@ in
     ];
   };
 
+  accounts = import ./accounts.nix {
+      inherit lib pkgs isNixOS mainUser inputs;
+      config = effectiveConfig;
+    };
+
   xdg.enable = true;
   xdg.portal.enable = true;
   xdg.portal.xdgOpenUsePortal = true;
@@ -192,7 +197,7 @@ in
     # enable = isNixOS && !effectiveConfig.hostSpec.isServer;
     # package = pkgs.niri-unstable;
     settings = import ./cfg/niri.nix {
-      inherit lib pkgs isNixOS mainUser inputs;
+      inherit lib pkgs inputs;
       config = effectiveConfig;
     };
   };
