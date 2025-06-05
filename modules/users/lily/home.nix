@@ -64,9 +64,9 @@ in
   xdg.enable = true;
   xdg.portal.enable = true;
   xdg.portal.xdgOpenUsePortal = true;
-  xdg.portal.extraPortals = [
-    "xdg-desktop-portal-gtk"
-    "xdg-desktop-portal-wlr"
+  xdg.portal.extraPortals = with pkgs; [
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-wlr
   ];
 
   # Some quick webapp shortcuts

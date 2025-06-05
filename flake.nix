@@ -138,6 +138,8 @@
             ];
           };
 
+          environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
+
           environment.systemPackages = lib.mkMerge [
             (with pkgs; [
                 duf dust fd eza
