@@ -12,6 +12,7 @@ in
   email.accounts = {
     "personal" = {
       address = "me@neurario.com";
+      passwordCommand = "rbw get webmail.migadu.com me@neurario.com";
       flavor = "migadu.com";
       primary = true;
       realName = name;
@@ -21,6 +22,7 @@ in
     };
     "professional" = {
       address = "simon@simonflavelle.me";
+      passwordCommand = "rbw get webmail.migadu.com simon@simonflavelle.me";
       flavor = "migadu.com";
       realName = name;
       himalaya.enable = true;

@@ -104,6 +104,9 @@ in
   };
   programs.himalaya = {
     enable = true;
+    settings = {
+      downloads-dir = "/home/${user}/Downloads/Mail";
+    };
   };
   programs.hyfetch = {
     enable = true;
@@ -134,6 +137,14 @@ in
         "mark-watched="
         "match-filter=original_url!*=/shorts & url!*=/shorts/"
       ];
+    };
+  };
+  programs.rbw = {
+    enable = true;
+    settings = {
+      base_url = "https://vault.thegeneral.chat";
+      email = "me@neurario.com";
+      pinentry = pkgs.pinentry-qt;
     };
   };
   programs.rclone = {
