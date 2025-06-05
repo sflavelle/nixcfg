@@ -134,8 +134,7 @@ in
     package = pkgs.rofi-wayland;
     modes = [
       "drun" "ssh" "window"
-    ]
-    };
+    ];
   };
   programs.thunderbird = {
     enable = !config.hostSpec.isServer;
