@@ -68,12 +68,15 @@ in
     };
 
   xdg.enable = true;
-  xdg.portal.enable = true;
-  xdg.portal.xdgOpenUsePortal = true;
-  xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-wlr
-  ];
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    config.common.default = "gtk";
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
+    ];
+  };
 
   # Some quick webapp shortcuts
   xdg.desktopEntries.tgc = {
