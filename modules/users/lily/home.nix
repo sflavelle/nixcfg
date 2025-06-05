@@ -62,6 +62,8 @@ in
   };
 
   xdg.enable = true;
+  xdg.portal.enable = true;
+  xdg.portal.xdgOpenUsePortal = true;
 
   # Some quick webapp shortcuts
   xdg.desktopEntries.tgc = {
