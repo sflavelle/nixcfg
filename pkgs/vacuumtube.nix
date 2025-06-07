@@ -21,20 +21,18 @@ appimageTools.wrapType2 rec {
 
   nativeBuildInputs = [ copyDesktopItems ];
 
-  desktopItems = [
-    (makeDesktopItem {
+  desktopItem = makeDesktopItem {
       name = pname;
       exec = pname;
       icon = pname;
       desktopName = "VacuumTube";
       categories = [ "AudioVideo" "Player" "Video" ];
       comment = "YouTube Leanback wrapper for the desktop";
-    })
-  ];
+    };
 
   extraInstallCommands = ''
     mkdir -p $out/share/applications
-    cp -r ${desktopItems}/share/applications/* $out/share/applications/
+    cp -r ${desktopItem}/share/applications/* $out/share/applications/
     '';
 
   meta = {
