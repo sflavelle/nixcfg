@@ -95,8 +95,9 @@ lib.mkMerge [
     ];
 
     spawn-at-startup = [
-      { command = ["${pkgs.waybar}/bin/waybar"]; }
-      { command = ["${pkgs.mako}/bin/mako"]; }
+      # { command = ["${pkgs.waybar}/bin/waybar"]; }
+      # { command = ["${pkgs.mako}/bin/mako"]; }
+      { command = ["ignis" "init"]; }
       { command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite" ":1"]; }
     ];
 
@@ -104,8 +105,8 @@ lib.mkMerge [
       # with config.lib.niri.actions; 
     let
       browser = "firefox";
-      terminal = "${pkgs.ghostty}/bin/ghostty";
-      launcher = [ "${pkgs.rofi-wayland}/bin/rofi" "-show" "drun" ];
+      terminal = "${pkgs.alacritty}/bin/alacritty";
+      launcher = [ "${pkgs.bemenu}/bin/bemenu-run" "-ib" "--fn" "Determination Sans 14" ];
 
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
       pwvucontrol = "${pkgs.pwvucontrol}/bin/pwvucontrol";

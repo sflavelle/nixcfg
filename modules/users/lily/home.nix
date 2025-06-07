@@ -42,7 +42,7 @@ in
         uair
       ]
       (lib.mkIf (!config.hostSpec.isServer && config.hostSpec.hasPhysicalKeyboard) [
-        ghostty
+        alacritty
       ])
       (lib.mkIf (!config.hostSpec.isServer) [
         xwayland-satellite
@@ -50,15 +50,15 @@ in
         outputs.packages.${system}.vacuumtube
         obsidian
         webcord-vencord
-        inputs.ignis.packages.${system}.ignis
 
         # WM Utilities
-        wpaperd rwpspread
+        inputs.ignis.packages.${system}.ignis
 
         # Fonts
         glasstty-ttf ultimate-oldschool-pc-font-pack nerd-fonts.ubuntu-sans ubuntu-sans-mono
         minecraftia monocraft pixel-code nerd-fonts.monaspace mona-sans hubot-sans aileron
-        dinish comic-relief anakron tt2020 nerd-fonts.jetbrains-mono nerd-fonts.im-writing
+        dinish comic-relief tt2020 nerd-fonts.jetbrains-mono nerd-fonts.im-writing
+        nerd-fonts.symbols-only
       ])
     ];
   };
