@@ -137,7 +137,7 @@
     enable = true;
     enableVirtualCamera = true;
     plugins = with pkgs.obs-studio-plugins; [
-      wlrobs obs-ndi obs-teleport input-overlay
+      wlrobs obs-ndi obs-vkcapture obs-teleport input-overlay
       obs-text-pthread obs-source-clone
       obs-shaderfilter obs-source-record
       obs-composite-blur obs-pipewire-audio-capture

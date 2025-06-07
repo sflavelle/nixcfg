@@ -23,6 +23,8 @@
     };
 
     niri.url = "github:sodiboo/niri-flake";
+    ignis.url = "github:ignis-sh/ignis";
+    ignis.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixgl.url   = "github:nix-community/nixGL";
@@ -44,7 +46,7 @@
     };
 
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
-    # aagl.inputs.nixpkgs.follows = "nixpkgs";
+    aagl.inputs.nixpkgs.follows = "nixpkgs";
 
   };
 

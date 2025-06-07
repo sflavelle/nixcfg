@@ -50,6 +50,7 @@ in
         outputs.packages.${system}.vacuumtube
         obsidian
         webcord-vencord
+        inputs.ignis.packages.${system}.ignis
 
         # WM Utilities
         wpaperd rwpspread
@@ -74,7 +75,9 @@ in
     config.common.default = "gtk";
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gnome
+      gnome-keyring
+      # xdg-desktop-portal-wlr
     ];
   };
 
