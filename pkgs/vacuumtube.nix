@@ -32,6 +32,11 @@ appimageTools.wrapType2 rec {
     })
   ];
 
+  extraInstallCommands = ''
+    mkdir -p $out/share/applications
+    cp -r ${desktopItems}/share/applications/* $out/share/applications/
+    '';
+
   meta = {
     description = "YouTube Leanback wrapper for the desktop";
     homepage = "https://github.com/shy1132/VacuumTube";
