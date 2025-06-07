@@ -85,12 +85,12 @@ in
   xdg.desktopEntries.tgc = {
     name = "The General Chat";
     exec = "${webapp-browser} --app=https://thegeneral.chat";
-    categories = [ "Network" "SocialNetworking" ];
+    categories = [ "Network" "Feed" ];
   };
   xdg.desktopEntries.bsky = {
     name = "BlueSky";
     exec = "${webapp-browser} --app=https://bsky.app";
-    categories = [ "Network" "SocialNetworking" ];
+    categories = [ "Network" "Feed" ];
   };
 
   # Fonts
