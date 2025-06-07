@@ -98,7 +98,6 @@ lib.mkMerge [
       { command = ["${pkgs.waybar}/bin/waybar"]; }
       { command = ["${pkgs.mako}/bin/mako"]; }
       { command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite" ":1"]; }
-      { command = ["${pkgs.wpaperd}/bin/wpaperd" "-d"]; }
     ];
 
     binds = 
@@ -230,6 +229,11 @@ lib.mkMerge [
   (lib.mkIf (config.hostSpec.hostName == "snatcher") {
     input.touch.map-to-output = "HDMI-A-1";
 
+    spawn-at-startup = [
+      { command = ["steam"]; }
+      { command = ["webcord"]; }
+    ];
+
     workspaces = {
       "main-01-browser" = {
         open-on-output = "DP-2";
@@ -314,6 +318,7 @@ lib.mkMerge [
           { app-id = "jellyfin-media-player"; }
         ];
         open-on-workspace = "Video";
+        open-fullscreen = true;
       }
     ];
   })
