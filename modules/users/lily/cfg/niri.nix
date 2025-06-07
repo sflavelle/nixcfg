@@ -27,6 +27,7 @@ lib.mkMerge [
     input.touchpad.natural-scroll = true;
     input.focus-follows-mouse.enable = true;
     input.focus-follows-mouse.max-scroll-amount = "20%";
+    input.power-key-handling.enable = false; # Too many accidental sleeps on laptops...
 
     prefer-no-csd = true;
 
@@ -227,6 +228,8 @@ lib.mkMerge [
 
   # Per-host workspace config
   (lib.mkIf (config.hostSpec.hostName == "snatcher") {
+    input.touch.map-to-output = "HDMI-A-1";
+
     workspaces = {
       "main-01-browser" = {
         open-on-output = "DP-2";
@@ -282,6 +285,7 @@ lib.mkMerge [
           { app-id = "gzdoom"; }
           { app-id = "SpaceIdle"; }
           { title = "Ship of Harkinian"; }
+          { app-id = "Celeste"; }
         ];
         open-on-workspace = "Games";
         default-column-width = {};
