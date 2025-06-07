@@ -85,10 +85,12 @@ in
   xdg.desktopEntries.tgc = {
     name = "The General Chat";
     exec = "${webapp-browser} --app=https://thegeneral.chat";
+    categories = [ "Network" "SocialNetworking" ];
   };
   xdg.desktopEntries.bsky = {
     name = "BlueSky";
     exec = "${webapp-browser} --app=https://bsky.app";
+    categories = [ "Network" "SocialNetworking" ];
   };
 
   # Fonts
@@ -202,15 +204,8 @@ in
     guiAddress = "0.0.0.0:8385";
   };
 
-  services.wpaperd = {
+  services.swww = {
     enable = !config.hostSpec.isServer;
-    settings = {
-      default = {
-        path = "/home/${user}/Pictures/Wallpapers";
-        duration = "3h";
-        mode = "center";
-      };
-    };
   };
 
   # Environments
