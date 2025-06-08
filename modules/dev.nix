@@ -11,7 +11,7 @@
     nixd nil
     jetbrains.pycharm-community-src vscode-fhs
     helix
-    pgadmin4-desktopmode dbeaver-bin
+    pgadmin4-desktopmode beekeeper-studio
 
     yaml-language-server
     python3Packages.python-lsp-server
