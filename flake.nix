@@ -64,6 +64,7 @@
       system = "x86_64-linux";
 
       permittedInsecurePackages = [
+        "freeimage-3.18.0-unstable-2024-04-18"
       ];
 
       overlay-stable = final: prev: {
@@ -78,6 +79,7 @@
         config.allowUnfree = true;
         config.permittedInsecurePackages = permittedInsecurePackages;
       };
+      nixpkgs.pkgs = pkgs;
     in
     {
       homeConfigurations.lily = inputs.home-manager.lib.homeManagerConfiguration {
