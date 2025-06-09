@@ -146,8 +146,8 @@
             (with pkgs; [
                 duf dust fd eza
                 curl wget unzip
-                fzf
-                btop
+                fzf 
+                btop psmisc
                 helix
                 oh-my-posh
                 zellij
