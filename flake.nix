@@ -79,7 +79,6 @@
         config.allowUnfree = true;
         config.permittedInsecurePackages = permittedInsecurePackages;
       };
-      nixpkgs.pkgs = pkgs;
     in
     {
       homeConfigurations.lily = inputs.home-manager.lib.homeManagerConfiguration {
@@ -169,8 +168,11 @@
             EDITOR = "hx";
           };
 
-          nixpkgs.overlays = [ overlay-stable inputs.niri.overlays.niri inputs.audio.overlays.default ];
-          nixpkgs.config.allowUnfree = true;
+          nixpkgs = {
+            overlays = [ overlay-stable inputs.niri.overlays.niri inputs.audio.overlays.default ];
+            config.allowUnfree = true;
+            config.permittedInsecurePackages = permittedInsecurePackages;
+          };
 
           nix.settings = {
             experimental-features = [
