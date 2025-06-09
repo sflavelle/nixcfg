@@ -94,6 +94,12 @@ lib.mkMerge [
       }
     ];
 
+    layer-rules = [
+      { matches = [{ namespace = "swww-daemon"; }];
+        place-within-backdrop = true;
+        }
+    ]
+
     spawn-at-startup = [
       # { command = ["${pkgs.waybar}/bin/waybar"]; }
       # { command = ["${pkgs.mako}/bin/mako"]; }
