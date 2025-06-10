@@ -12,7 +12,7 @@ let
 
   src = fetchurl {
     url = "https://github.com/shy1132/VacuumTube/releases/download/v${version}/VacuumTube-x86_64.AppImage";
-    hash = "sha256-21793cbecc610e7d756b0478309c5b67abead9a74989bd5ad128c3902e828247";
+    hash = "sha256-IXk8vsxhDn11awR4MJxbZ6vq2adJib1a0SjDkC6Cgkc=";
   };
 
 in
