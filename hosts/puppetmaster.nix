@@ -123,7 +123,7 @@
   virtualisation.oci-containers.containers.homeassistant = {
       volumes = [ "/srv/home-assistant:/config" ];
       environment.TZ = "Australia/Melbourne";
-      image = "ghcr.io/home-assistant/home-assistant:2025.5.3";
+      image = "ghcr.io/home-assistant/home-assistant:2025.6.0";
       extraOptions = [
           "--network=host"
           "--device=/dev/ttyACM0"
