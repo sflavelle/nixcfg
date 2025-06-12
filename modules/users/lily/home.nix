@@ -41,6 +41,7 @@ in
         yt-dlp
         uair
         musikcube
+        clipboard-jh
       ]
       (lib.mkIf (!config.hostSpec.isServer && config.hostSpec.hasPhysicalKeyboard) [
         alacritty
