@@ -40,6 +40,7 @@ in
         mosh
         yt-dlp
         uair
+        musikcube
       ]
       (lib.mkIf (!config.hostSpec.isServer && config.hostSpec.hasPhysicalKeyboard) [
         alacritty
@@ -50,6 +51,8 @@ in
         outputs.packages.${system}.vacuumtube
         obsidian
         webcord-vencord
+
+        quodlibet
 
         # WM Utilities
         inputs.ignis.packages.${system}.ignis
