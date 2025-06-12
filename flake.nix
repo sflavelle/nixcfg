@@ -186,6 +186,7 @@
               "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
             ];
           };
+          system.rebuild.enableNg = true; # enable the new NixOS rebuild system
 
         };
       nixosConfigurations = {
