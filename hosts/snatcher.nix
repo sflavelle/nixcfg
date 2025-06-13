@@ -107,26 +107,27 @@
 
   services.xserver.videoDrivers = [ "amdgpu" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    amdgpu.amdvlk = {
+
+  hardware = {
+    keyboard.qmk.enable = true;
+    bluetooth.enable = true;
+
+    graphics = {
       enable = true;
-      support32Bit.enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        rocmPackages.clr.icd amdvlk driversi686Linux.amdvlk
+      ];
+      amdgpu.amdvlk = {
+        enable = true;
+        support32Bit.enable = true;
+      };
     };
   };
-
-  hardware.graphics.extraPackages = with pkgs; [
-	  rocmPackages.clr.icd amdvlk driversi686Linux.amdvlk
-	];
 
 	systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
-
-
-  hardware.keyboard.qmk.enable = true;
-  hardware.bluetooth.enable = true;
 
   programs.gamescope = {
       enable = true;
