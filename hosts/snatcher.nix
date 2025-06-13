@@ -107,7 +107,14 @@
 
   services.xserver.videoDrivers = [ "amdgpu" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
-  hardware.graphics.enable32Bit = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    amdgpu.amdvlk = {
+      enable = true;
+      support32Bit.enable = true;
+    };
+  };
 
   hardware.graphics.extraPackages = with pkgs; [
 	  rocmPackages.clr.icd amdvlk driversi686Linux.amdvlk
