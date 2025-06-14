@@ -31,4 +31,6 @@
   programs.gamescope.enable = true;
 
   hardware.graphics.enable = true;
+
+  hardware.xone.enable = true;
 }
