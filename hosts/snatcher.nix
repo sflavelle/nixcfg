@@ -57,17 +57,17 @@
 
   networking.firewall.enable = false;
 
-  services.beesd.filesystems = {
-      home = {
-          spec = "/dev/SSD/home";
-          hashTableSizeMB = 8096;
-          verbosity = "crit";
-          extraOptions = [
-              "--thread-count" "8"
-              "--loadavg-target" "5.0"
-          ];
-		  };
-  };
+  # services.beesd.filesystems = {
+  #     home = {
+  #         spec = "/dev/SSD/home";
+  #         hashTableSizeMB = 8096;
+  #         verbosity = "crit";
+  #         extraOptions = [
+  #             "--thread-count" "8"
+  #             "--loadavg-target" "5.0"
+  #         ];
+	# 	  };
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
