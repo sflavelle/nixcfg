@@ -53,6 +53,8 @@ in
         obsidian
         webcord-vencord
 
+        floorp
+
         quodlibet
 
         # WM Utilities
