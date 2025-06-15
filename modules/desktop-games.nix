@@ -6,6 +6,10 @@
 }:
 
 {
+  imports = [
+    inputs.aagl.nixosModules.default
+  ];
+
   environment.systemPackages = with pkgs; [
     gamemode mangohud ludusavi
     archipelago stable.poptracker steam-devices-udev-rules
@@ -29,6 +33,8 @@
 
   };
   programs.gamescope.enable = true;
+
+  programs.anime-games-launcher.enable = true;
 
   hardware.graphics.enable = true;
 
