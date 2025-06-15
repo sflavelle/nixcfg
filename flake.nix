@@ -149,6 +149,7 @@
                 curl wget unzip
                 fzf 
                 btop psmisc
+                trickle 
                 helix
                 oh-my-posh
                 zellij
