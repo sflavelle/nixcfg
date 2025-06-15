@@ -149,7 +149,11 @@
                 curl wget unzip
                 fzf 
                 btop psmisc
-                trickle 
+                
+                (trickle.overrideAttrs ({ buildInputs ? [ ], ...}: {
+                  buildInputs = buildInputs ++ [ pkgs.glibc ];
+                }))
+
                 helix
                 oh-my-posh
                 zellij
