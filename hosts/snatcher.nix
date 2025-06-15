@@ -97,7 +97,7 @@
       # Media Production
       inkscape
       reaper
-      neuralnote
+      # neuralnote
       bitwig-studio5-latest
       # Plugins
       yabridge
