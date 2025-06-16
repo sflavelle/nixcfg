@@ -79,7 +79,7 @@ in
     enable = true;
     xdgOpenUsePortal = true;
     config.common = {
-      default = ["gtk"];
+      default = ["gnome" "gtk"];
       "org.freedesktop.portal.ScreenCast" = ["gnome"];
       "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
     };
