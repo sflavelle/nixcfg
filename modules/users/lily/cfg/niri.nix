@@ -32,6 +32,7 @@ lib.mkMerge [
     prefer-no-csd = true;
 
     layout = {
+      background-color = "transparent";
       gaps = 2;
       center-focused-column = "never";
       preset-column-widths = [
@@ -101,11 +102,13 @@ lib.mkMerge [
 
     layer-rules = [
       { matches = [{ namespace = "swww-daemon"; }];
-        # place-within-backdrop = true;
+        place-within-backdrop = true;
         }
       { matches = [{ namespace = "waybar"; }];
         shadow = {
           enable = true;
+          draw-behind-window = true;
+          spread = 3;
         };
       }
     ];
