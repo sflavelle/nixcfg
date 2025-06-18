@@ -60,7 +60,7 @@ in
         # Fonts
         outputs.packages.${system}.ttf-determination outputs.packages.${system}.ttf-utpapyrus
         outputs.packages.${system}.ttf-utsans
-        
+
         glasstty-ttf ultimate-oldschool-pc-font-pack nerd-fonts.ubuntu-sans ubuntu-sans-mono
         minecraftia monocraft pixel-code nerd-fonts.monaspace mona-sans hubot-sans aileron
         dinish comic-relief tt2020 nerd-fonts.jetbrains-mono nerd-fonts.im-writing
@@ -171,14 +171,6 @@ in
     remotes = {
 
     };
-  };
-  programs.rofi = {
-    enable = true;
-    terminal = "${pkgs.ghostty}/bin/ghostty";
-    package = pkgs.rofi-wayland;
-    modes = [
-      "drun" "ssh" "window"
-    ];
   };
   programs.thunderbird = {
     enable = !config.hostSpec.isServer;
