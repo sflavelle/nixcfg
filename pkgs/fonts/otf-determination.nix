@@ -1,7 +1,8 @@
 {
   lib,
   stdenvNoCC,
-  fetchzip,
+  fetchurl,
+  unzip,
   # python3
 }:
 
@@ -9,9 +10,9 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "otf-determination";
   version = "2015-11-16";
 
-  src = fetchzip {
-    url = ./DTM.ZIP;
-    hash = "";
+  src = fetchurl {
+    url = "https://github.com/sflavelle/nixcfg/raw/5d7c9553b01ef310861e3b7ea4d6eb5f02a46709/pkgs/fonts/DTM.ZIP";
+    hash = "sha256-DWGMpT4j5kKwfRbiFelXNRURmSrPC+aenlXShEZZ3Nk=";
   };
 
   # Please note that the official download link for the fonts
@@ -19,6 +20,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   # the zip is bundled directly in this repository.
 
   nativeBuildInputs = [
+    unzip
     # (python3.withPackages (
     #   pp: with pp; [
     #     mediafire-dl
@@ -26,9 +28,13 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     # ))
   ];
 
+  unpackPhase = ''
+    unzip $src
+  '';
+
   buildPhase = ''
     runHook preBuild
-    # ./build.sh
+    # nothing
     runHook postBuild
   '';
 
