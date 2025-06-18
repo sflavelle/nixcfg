@@ -43,12 +43,17 @@ lib.mkMerge [
         # { fixed = 1080; }
       ];
       default-column-width.proportion = 1. / 3.;
-      focus-ring = {
-        width = 4;
-        active.color = "rgb(255 0 255)";
-        inactive.color = "rgb(0 0 0)";
+
+      struts.left = 8;
+      struts.right = 8;
+
+      focus-ring.enable = false;
+
+      border = {
+        enable = true;
+        urgent.color = "rgb(255 0 0)";
       };
-      border.enable = false;
+
       shadow = {
         enable = true;
         color = "#00000070";
@@ -56,6 +61,7 @@ lib.mkMerge [
         spread = 5;
         draw-behind-window = true;
       };
+
       tab-indicator = {
         enable = true;
         hide-when-single-tab = true;
@@ -92,6 +98,10 @@ lib.mkMerge [
         matches = [
           { 
             app-id = "firefox";
+            title = "Picture-in-Picture";
+          }
+          { 
+            app-id = "floorp";
             title = "Picture-in-Picture";
           }
         ];
