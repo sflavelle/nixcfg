@@ -76,7 +76,7 @@ lib.mkMerge [
     };
 
     environment = {
-      # DISPLAY = ":1";
+      DISPLAY = ":0";
       NIXOS_OZONE_WL = "1";
       QT_QPA_PLATFORM = "wayland";
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
