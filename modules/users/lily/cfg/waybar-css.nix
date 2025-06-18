@@ -1,6 +1,12 @@
 { inputs, config, lib, isNixOS, mainUser, ... }:
 let
   hostName = config.hostSpec.hostName;
+
+  bg = "#150923ee";
+  bg-light = "#261d1e";
+  fg = "#f0dedf";
+  active = "#ffb2bc";
+  inactive = "#d7c1c3";
 in
   ''
     * {
@@ -10,31 +16,25 @@ in
       border-radius: 1rem;
     }
 
-    $bg: #150923ee;
-    $bg-light: #261d1e;
-    $fg: #f0dedf;
-    $active: #ffb2bc;
-    $inactive: #d7c1c3;
-
     #workspaces button {
-      background-color: $bg; 
-      color: $fg;
+      background-color: ${bg}; 
+      color: ${fg};
       border-radius: 1rem;
       padding: 0 0.75rem;
       transition: 0.3s;
     }
 
     #workspaces button.empty {
-      color: darken($fg, 30%);
+      color: darken(${fg}, 30%);
     }
 
     #workspaces button:hover {
-      background-color: lighten($bg, 10%);
+      background-color: lighten(${bg}, 10%);
     }
 
     #workspaces button.active {
       background-color: $active;
-      color: $bg;
+      color: ${bg};
     }
 
     #clock {
