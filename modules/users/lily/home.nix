@@ -58,7 +58,7 @@ in
         quodlibet
 
         # Fonts
-        outputs.packages.${system}.ttf-determination outputs.packages.${system}.ttf-utpapyrus
+        outputs.packages.${system}.otf-determination outputs.packages.${system}.ttf-utpapyrus
         outputs.packages.${system}.ttf-utsans
 
         glasstty-ttf ultimate-oldschool-pc-font-pack nerd-fonts.ubuntu-sans ubuntu-sans-mono

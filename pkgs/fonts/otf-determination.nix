@@ -1,7 +1,7 @@
 {
   lib,
   stdenvNoCC,
-  fetchFromGitLab,
+  fetchzip,
   # python3
 }:
 
@@ -9,16 +9,14 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "otf-determination";
   version = "2015-11-16";
 
-  src = fetchFromGitLab {
-    owner = "cartr";
-    repo = "undertale-fonts";
-    rev = "master";
-    hash = "sha256-TnFVA4441yujp4LN3gD4EaqptH6MfxOBqq5m9LrZZFE=";
+  src = fetchzip {
+    url = ./DTM.ZIP;
+    hash = "";
   };
 
   # Please note that the official download link for the fonts
-  # is a MediaFire page.
-  # The Gitlab source seems the most 'stable' source for now
+  # is a MediaFire page. For reproducibility, this is why
+  # the zip is bundled directly in this repository.
 
   nativeBuildInputs = [
     # (python3.withPackages (
@@ -36,7 +34,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   installPhase = ''
     runHook preInstall
-    install -m444 -Dt $out/share/fonts/truetype ttf/Determination*.ttf
+    install -m444 -Dt $out/share/fonts/opentype *.otf
     runHook postInstall
   '';
 
