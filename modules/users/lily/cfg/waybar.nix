@@ -35,8 +35,7 @@ let
 in
 lib.mkMerge [
   {
-    primary = {
-      inherit commonOptions;
+    primary = commonOptions // {
       modules-left = [
         "niri/workspaces"
         "niri/window"
