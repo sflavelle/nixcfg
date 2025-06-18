@@ -6,7 +6,7 @@
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: Determination Sans, Symbols Nerd Font Mono;
-    font-size: 14px;
+    font-size: 16px;
     min-height: 20px;
   }
 
@@ -17,6 +17,10 @@
 
   window#waybar.hidden {
       opacity: 0.2;
+  }
+
+  #window {
+    text-shadow: 1px 1px 6px black;
   }
 
   #workspaces {
