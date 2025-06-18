@@ -77,6 +77,11 @@ lib.mkMerge [
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };
 
+    xwayland-satellite = {
+      enable = true;
+      path = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+    };
+
     window-rules = [
       {
         matches = [
@@ -94,23 +99,20 @@ lib.mkMerge [
       }
     ];
 
-    # layer-rules = [
-    #   { matches = [{ namespace = "swww-daemon"; }];
-    #     place-within-backdrop = true;
-    #     }
-    # ];
+    layer-rules = [
+      { matches = [{ namespace = "swww-daemon"; }];
+        place-within-backdrop = true;
+        }
+    ];
 
     spawn-at-startup = [
-      # { command = ["${pkgs.waybar}/bin/waybar"]; }
-      # { command = ["${pkgs.mako}/bin/mako"]; }
-      { command = ["ignis" "init"]; }
-      { command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite" ":1"]; }
+      # { command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite" ":1"]; } # No longer necessary?
     ];
 
     binds = 
       # with config.lib.niri.actions; 
     let
-      browser = "firefox";
+      browser = "floorp";
       terminal = "${pkgs.alacritty}/bin/alacritty";
       launcher = [ "${pkgs.bemenu}/bin/bemenu-run" "-ib" "--fn" "Determination Sans 14" ];
 
@@ -118,6 +120,7 @@ lib.mkMerge [
       pwvucontrol = "${pkgs.pwvucontrol}/bin/pwvucontrol";
     in {
       "Mod+T".action.spawn = terminal;
+      "Mod+T".hotkey-overlay.title = "Open Terminal";
       "Mod+Space".action.spawn = launcher;
       "Mod+Space".hotkey-overlay.title = "Run Command";
       "Mod+E".action.spawn = [ terminal "-e" "${pkgs.yazi}/bin/yazi" ];
@@ -299,7 +302,6 @@ lib.mkMerge [
           { app-id = "Celeste"; }
         ];
         open-on-workspace = "Games";
-        default-column-width = {};
 
       }
       {
