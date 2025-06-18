@@ -101,7 +101,7 @@ lib.mkMerge [
 
     layer-rules = [
       { matches = [{ namespace = "swww-daemon"; }];
-        place-within-backdrop = true;
+        # place-within-backdrop = true;
         }
       { matches = [{ namespace = "waybar"; }];
         shadow = {
