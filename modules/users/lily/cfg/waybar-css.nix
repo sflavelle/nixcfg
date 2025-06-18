@@ -204,6 +204,7 @@
   #custom-power {
     background: transparent;
     color: #f53c3c;
+    padding-right: 16px;
   }
 
   @keyframes blink {
