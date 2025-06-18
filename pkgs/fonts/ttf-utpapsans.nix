@@ -13,8 +13,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   src = fetchFromGitLab {
     owner = "cartr";
     repo = "undertale-fonts";
-    tag = "master";
-    hash = "";
+    rev = "master";
+    hash = "sha256-TnFVA4441yujp4LN3gD4EaqptH6MfxOBqq5m9LrZZFE=";
   };
 
   # Please note that the official download link for the fonts
