@@ -58,6 +58,7 @@ in
         quodlibet
 
         # Fonts
+        outputs.packages.${system}.otf-determination
         glasstty-ttf ultimate-oldschool-pc-font-pack nerd-fonts.ubuntu-sans ubuntu-sans-mono
         minecraftia monocraft pixel-code nerd-fonts.monaspace mona-sans hubot-sans aileron
         dinish comic-relief tt2020 nerd-fonts.jetbrains-mono nerd-fonts.im-writing
