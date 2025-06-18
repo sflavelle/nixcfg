@@ -71,6 +71,10 @@ lib.mkMerge [
 
     };
 
+    overview = {
+      workspace-shadow.enable = false;
+    };
+
     environment = {
       # DISPLAY = ":1";
       NIXOS_OZONE_WL = "1";
