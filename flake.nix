@@ -316,7 +316,9 @@
         vacuumtube = pkgs.callPackage ./pkgs/vacuumtube.nix { };
 
         # Fonts
-        otf-determination = pkgs.callPackage ./pkgs/fonts/otf-determination.nix {};
+        ttf-determination = pkgs.callPackage ./pkgs/fonts/ttf-determination.nix {};
+        ttf-utpapyrus = pkgs.callPackage ./pkgs/fonts/otf-utpapsans.nix { fontVariant = "Papyrus" };
+        ttf-utsans = pkgs.callPackage ./pkgs/fonts/otf-utpapsans.nix { fontVariant = "Sans" };
       };
     };
 }

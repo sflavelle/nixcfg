@@ -2,7 +2,7 @@
   lib,
   stdenvNoCC,
   fetchFromGitLab,
-  python3,
+  # python3
 }:
 
 stdenvNoCC.mkDerivation (finalAttrs: {
