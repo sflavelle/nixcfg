@@ -132,7 +132,7 @@ lib.mkMerge [
     let
       browser = "floorp";
       terminal = "${pkgs.alacritty}/bin/alacritty";
-      launcher = [ "${pkgs.bemenu}/bin/bemenu-run" "-ib" "--fn" "Determination Sans Web 14" ];
+      launcher = [ "${pkgs.bemenu}/bin/bemenu-run" "-ib" "--fn" "Determination Sans Web 17" ];
 
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
       pwvucontrol = "${pkgs.pwvucontrol}/bin/pwvucontrol";

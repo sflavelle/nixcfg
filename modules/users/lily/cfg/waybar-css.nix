@@ -6,6 +6,7 @@
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: Determination Sans Web, Symbols Nerd Font Mono;
+    font-size: 17px;
     min-height: 20px;
   }
 
