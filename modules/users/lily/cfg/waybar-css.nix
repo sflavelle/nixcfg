@@ -11,6 +11,7 @@
 
   window#waybar {
       background: transparent;
+      color:  #ffffff;
   }
 
   window#waybar.hidden {
