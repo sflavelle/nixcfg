@@ -218,7 +218,7 @@ in
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-    systemd.target = "niri-session.target";
+    systemd.target = "graphical-session.target";
     settings = import ./cfg/waybar.nix {
       inherit config lib pkgs inputs mainUser isNixOS;
     };

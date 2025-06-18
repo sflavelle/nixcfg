@@ -103,6 +103,11 @@ lib.mkMerge [
       { matches = [{ namespace = "swww-daemon"; }];
         place-within-backdrop = true;
         }
+      { matches = [{ namespace = "waybar; "}];
+        shadow = {
+          enable = true;
+        };
+      }
     ];
 
     spawn-at-startup = [
