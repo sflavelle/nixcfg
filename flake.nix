@@ -317,8 +317,8 @@
 
         # Fonts
         ttf-determination = pkgs.callPackage ./pkgs/fonts/ttf-determination.nix {};
-        ttf-utpapyrus = pkgs.callPackage ./pkgs/fonts/otf-utpapsans.nix { fontVariant = "Papyrus"; };
-        ttf-utsans = pkgs.callPackage ./pkgs/fonts/otf-utpapsans.nix { fontVariant = "Sans"; };
+        ttf-utpapyrus = pkgs.callPackage ./pkgs/fonts/ttf-utpapsans.nix { fontVariant = "Papyrus"; };
+        ttf-utsans = pkgs.callPackage ./pkgs/fonts/ttf-utpapsans.nix { fontVariant = "Sans"; };
       };
     };
 }
