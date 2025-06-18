@@ -2,7 +2,7 @@
 let
   hostName = config.hostSpec.hostName;
 
-  bg = "#150923ee";
+  bg = "#150923";
   bg-light = "#261d1e";
   fg = "#f0dedf";
   active = "#ffb2bc";
@@ -33,7 +33,7 @@ in
     }
 
     #workspaces button.active {
-      background-color: $active;
+      background-color: ${active};
       color: ${bg};
     }
 
