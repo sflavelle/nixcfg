@@ -57,9 +57,6 @@ in
 
         quodlibet
 
-        # WM Utilities
-        inputs.ignis.packages.${system}.ignis
-
         # Fonts
         glasstty-ttf ultimate-oldschool-pc-font-pack nerd-fonts.ubuntu-sans ubuntu-sans-mono
         minecraftia monocraft pixel-code nerd-fonts.monaspace mona-sans hubot-sans aileron
@@ -216,6 +213,23 @@ in
 
   services.swww = {
     enable = !config.hostSpec.isServer;
+  };
+
+  programs.waybar = {
+    enable = true;
+    systemd.enable = true;
+    systemd.target = "niri-session.target";
+    settings = import ./cfg/waybar.nix {
+      inherit lib inputs mainUser isNixOS;
+    };
+    style = import ./cfg/waybar-css.nix {
+      inherit lib inputs mainUser isNixOS;
+    };
+  };
+
+  services.fnott = {
+    enable = true;
+    # settings = {}; # later
   };
 
   # Environments
