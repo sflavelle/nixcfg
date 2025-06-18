@@ -5,7 +5,7 @@
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Liberation Mono;
+    font-family: Determination Sans, Symbols Nerd Font Mono;
     min-height: 20px;
   }
 
@@ -199,6 +199,11 @@
       transition: none;
       color: #ffffff;
       background: #383c4a;
+  }
+
+  #custom-power {
+    background: transparent;
+    color: #f53c3c;
   }
 
   @keyframes blink {

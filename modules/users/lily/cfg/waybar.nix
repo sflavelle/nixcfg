@@ -17,6 +17,11 @@ let
       format = "{}";
       separate-ouptuts = true;
     };
+    "custom/power" = {
+      on-click = "${pkgs.wlogout}/bin/wlogout";
+      format = "⏻";
+      tooltip = false;
+    };
   };
 
   workspaceIcons = {
@@ -44,6 +49,7 @@ lib.mkMerge [
         "tray"
         "wireplumber"
         "clock"
+        "custom/power"
       ];
     };
   }
