@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, isNixOS, mainUser, ... }:
+{ inputs, config, lib, isNixOS, mainUser, ... }:
 let
   hostName = config.hostSpec.hostName;
 in

@@ -220,7 +220,7 @@ in
     systemd.enable = true;
     systemd.target = "niri-session.target";
     settings = import ./cfg/waybar.nix {
-      inherit config lib inputs mainUser isNixOS;
+      inherit config lib pkgs inputs mainUser isNixOS;
     };
     style = import ./cfg/waybar-css.nix {
       inherit config lib inputs mainUser isNixOS;
