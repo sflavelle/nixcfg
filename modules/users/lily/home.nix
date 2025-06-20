@@ -52,6 +52,7 @@ in
         outputs.packages.${system}.vacuumtube
         obsidian
         webcord-vencord
+        zathura
 
         floorp
 
