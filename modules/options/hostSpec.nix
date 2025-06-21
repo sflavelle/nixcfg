@@ -85,6 +85,7 @@
           governor = "performance";
           turbo = "auto";
         };
+      };
     };
   };
 }
