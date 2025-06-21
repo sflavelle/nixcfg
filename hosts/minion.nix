@@ -16,7 +16,7 @@
     isAutoStyled = true;
     wallpaper = pkgs.fetchurl {
       url = "https://w.wallhaven.cc/full/9o/wallhaven-9o59z8.jpg"; # Nature photograph, shaded road through forest
-      hash = "";
+      hash = "sha256-P1jo4hJn6ajsl6EHRBioj8qE5f1Pas6YzzxRSNbcjvw=";
     };
   };
 
