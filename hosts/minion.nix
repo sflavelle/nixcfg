@@ -13,6 +13,10 @@
   hostSpec = {
     hostName = "minion";
     isPublic = true;
+    wallpaper = pkgs.fetchurl {
+      url = "https://w.wallhaven.cc/full/9o/wallhaven-9o59z8.jpg"; # Nature photograph, shaded road through forest
+      hash = "";
+    };
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

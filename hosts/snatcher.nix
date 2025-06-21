@@ -8,6 +8,11 @@
 
   hostSpec = {
     hostName = "snatcher";
+    isAutoStyled = true;
+    wallpaper = pkgs.fetchurl {
+      url = "https://w.wallhaven.cc/full/9d/wallhaven-9dzz7x.png"; # Celeste, The Summit Complete Screen
+      hash = "";
+    };
   };
   monitors = [
     {

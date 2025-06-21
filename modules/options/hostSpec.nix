@@ -29,6 +29,14 @@
         in
         if pkgs.stdenv.isLinux then "/home/${user}" else "/Users/${user}";
     };
+    wallpaper = lib.mkOption {
+      type = with lib.types; either path package;
+      description = "The main wallpaper for this device";
+      default = pkgs.fetchurl {
+        url = "https://w.wallhaven.cc/full/1q/wallhaven-1q83qg.jpg"; #retro/vaporwave digital artwork (creatiflux)
+        hash = "";
+      };
+    };
 
     # Configurations
     isMinimal = lib.mkOption {
