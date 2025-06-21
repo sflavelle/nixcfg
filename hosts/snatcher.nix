@@ -11,7 +11,7 @@
     isAutoStyled = true;
     wallpaper = pkgs.fetchurl {
       url = "https://w.wallhaven.cc/full/9d/wallhaven-9dzz7x.png"; # Celeste, The Summit Complete Screen
-      hash = "";
+      hash = "sha256-5F8ovJQOj6xVu5aiKufDtQH7J4ZJufXstphUhqsN9X4=";
     };
   };
   monitors = [

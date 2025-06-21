@@ -108,7 +108,7 @@
             inputs.nixos-generators.nixosModules.all-formats
             inputs.home-manager.nixosModules.home-manager
             inputs.niri.nixosModules.niri
-            (lib.mkIf config.hostSpec.isAutoStyled inputs.stylix.nixosModules.stylix)
+            inputs.stylix.nixosModules.stylix
 
             ./modules/options
           ];
@@ -123,11 +123,9 @@
           services.avahi.enable = true;
           services.avahi.nssmdns4 = true;
 
-          services.displayManager.sddm.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
-          services.desktopManager.plasma6.enable = !config.hostSpec.isServer;
+          services.displayManager.ly.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
           programs.niri.enable = !config.hostSpec.isServer;
           programs.niri.package = pkgs.niri-unstable;
-          programs.labwc.enable = !config.hostSpec.isServer;
 
           users.defaultUserShell = pkgs.fish;
           security.sudo.wheelNeedsPassword = lib.mkDefault false;
@@ -140,6 +138,7 @@
             useUserPackages = true;
             extraSpecialArgs = { inherit inputs; };
             sharedModules = [
+              inputs.stylix.homeModules.stylix
             ];
           };
 
