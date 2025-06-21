@@ -131,7 +131,7 @@ lib.mkMerge [
       # with config.lib.niri.actions; 
     let
       browser = "floorp";
-      terminal = "${pkgs.alacritty}/bin/alacritty";
+      terminal = "${pkgs.wezterm}/bin/wezterm";
       launcher = [ "${pkgs.bemenu}/bin/bemenu-run" "-ib" "--fn" "Determination Sans 14" ];
 
       wpctl = "${pkgs.wireplumber}/bin/wpctl";

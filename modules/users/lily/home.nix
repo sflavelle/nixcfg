@@ -43,9 +43,6 @@ in
         musikcube
         clipboard-jh
       ]
-      (lib.mkIf (!config.hostSpec.isServer && config.hostSpec.hasPhysicalKeyboard) [
-        alacritty
-      ])
       (lib.mkIf (!config.hostSpec.isServer) [
         xwayland-satellite
         jellyfin-media-player
@@ -179,6 +176,21 @@ in
       "main".isDefault = true;
     };
   };
+
+  programs.wezterm = {
+    enable = (!config.hostSpec.isServer && config.hostSpec.hasPhysicalKeyboard);
+    extraConfig = ''
+      return {
+        font_size = 12.0,
+        font = wezterm.font_with_fallback {
+          'Determination Mono',
+        },
+        color_scheme = 'Everforest Dark Soft (Gogh)',
+        hide_tab_bar_if_only_one_tab = true,
+      }
+    '';
+  };
+
   programs.zoxide = {
     enable = true;
 #     options = ["--cmd cd"];
