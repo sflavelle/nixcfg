@@ -106,9 +106,24 @@
   #  wget
   ];
 
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia.open = true;
-  hardware.nvidia.modesetting.enable = true;
+  specialisation = { 
+    nvidia.configuration = { 
+      # Nvidia Configuration 
+      services.xserver.videoDrivers = [ "nvidia" ]; 
+      hardware.graphics.enable = true; 
+      hardware.nvidia.open = true;
+    
+      # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway 
+      hardware.nvidia.modesetting.enable = true; 
+    
+      hardware.nvidia.prime = { 
+        sync.enable = true; 
+    
+        nvidiaBusId = "PCI:1:0:0"; 
+        amdgpuBusId = "PCI:5:0:0"; 
+      };
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
