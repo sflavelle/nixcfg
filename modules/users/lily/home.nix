@@ -65,6 +65,10 @@ in
         nerd-fonts.symbols-only
       ])
     ];
+    shellAliases = {
+      mpro = "himalaya --account professional";
+      mper = "himalaya --account personal";
+    };
   };
 
   accounts = import ./accounts.nix {
