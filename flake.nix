@@ -28,13 +28,14 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixgl.url   = "github:nix-community/nixGL";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    mac-brcm-fw = {
-      url = "github:AdityaGarg8/Apple-Firmware";
-      flake = false;
     };
     jovian = {
       url = "github:Jovian-Experiments/Jovian-NixOS";
@@ -107,6 +108,7 @@
             inputs.nixos-generators.nixosModules.all-formats
             inputs.home-manager.nixosModules.home-manager
             inputs.niri.nixosModules.niri
+            (lib.mkIf config.hostSpec.isAutoStyled inputs.stylix.nixosModules.stylix)
 
             ./modules/options
           ];

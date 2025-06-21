@@ -88,5 +88,12 @@
         };
       };
     };
+
+    stylix = {
+      enable = config.hostSpec.isAutoStyled;
+      # base16Scheme = "${pkgs.base16-schemes}/share/themes/tarot.yaml";
+      wallpaper = config.hostSpec.wallpaper;
+    };
+
   };
 }
