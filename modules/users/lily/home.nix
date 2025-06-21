@@ -181,7 +181,7 @@ in
     enable = (!config.hostSpec.isServer && config.hostSpec.hasPhysicalKeyboard);
     extraConfig = ''
       return {
-        font_size = 12.0,
+        font_size = 10.0,
         font = wezterm.font_with_fallback {
           'Determination Mono',
         },
