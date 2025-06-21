@@ -74,6 +74,7 @@
 
     environment.enableAllTerminfo = true;
 
+    services.power-profiles-daemon.enable = !config.hostSpec.hasBattery;
     services.auto-cpufreq = {
       enable = config.hostSpec.hasBattery;
       settings = {
