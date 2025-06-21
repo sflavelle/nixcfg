@@ -138,7 +138,7 @@
             useUserPackages = true;
             extraSpecialArgs = { inherit inputs; };
             sharedModules = [
-              inputs.stylix.homeModules.stylix
+              # inputs.stylix.homeModules.stylix
             ];
           };
 
