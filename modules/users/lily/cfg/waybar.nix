@@ -7,6 +7,17 @@ let
     position = "top";
     height = 24;
 
+    "battery" = {
+      format = "{icon} {capacity}";
+      format-icons = ["" "" "" "" ""];
+      tooltip-format = ''
+        {capacity}
+        
+        Current Draw: {power}
+        Battery Capacity: {health}
+      '';
+    };
+
     "niri/workspaces" = {
       all-outputs = false;
       format = "{icon}";
@@ -48,6 +59,7 @@ lib.mkMerge [
       modules-right = [
         "tray"
         "wireplumber"
+        (lib.mkIf config.hostSpec.hasBattery "battery")
         "clock"
         "custom/power"
       ];

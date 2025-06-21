@@ -59,7 +59,12 @@
     hasPhysicalKeyboard = lib.mkOption {
       type = lib.types.bool;
       default = true;
-      description = "Whether a device has a usable physical keyboard - set false to indicate tablets or gaming handhelds";
+      description = "Whether this device has a usable physical keyboard - set false to indicate tablets or gaming handhelds";
+    };
+    hasBattery = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Whether this device has a battery";
     };
   };
 
@@ -68,5 +73,18 @@
     time.timeZone = config.hostSpec.timeZone;
 
     environment.enableAllTerminfo = true;
+
+    services.auto-cpufreq = {
+      enable = config.hostSpec.hasBattery;
+      settings = {
+        battery = {
+          governor = "powersave";
+          turbo = "never";
+        };
+        charger = {
+          governor = "performance";
+          turbo = "auto";
+        };
+    };
   };
 }
