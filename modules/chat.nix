@@ -8,7 +8,7 @@
 {
   environment.systemPackages = with pkgs; [
     (discord.override {
-      withOpenASAR = true;
+      # withOpenASAR = true;
       withVencord = true;
     })
     element-desktop
