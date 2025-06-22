@@ -12,7 +12,7 @@
 
   window#waybar {
       background: transparent;
-      color:  #ffffff;
+      color: @base05;
   }
 
   window#waybar.hidden {
@@ -27,7 +27,7 @@
       margin-right: 8px;
       border-radius: 10px;
       transition: none;
-      background: #383c4a;
+      background: @base00;
   }
 
   #workspaces button {
@@ -54,6 +54,7 @@
   }
 
   #workspaces button.focused {
+      background: @base02;
       color: white;
   }
 
@@ -130,6 +131,10 @@
   }
 
   #wireplumber.muted {
+      margin-right: 8px;
+      padding-left: 16px;
+      padding-right: 16px;
+      border-radius: 10px;
       background-color: #90b1b1;
       color: #2a5c45;
   }
@@ -155,7 +160,7 @@
   }
 
   #temperature.critical {
-      background-color: #eb4d4b;
+      background-color: @base09;
   }
 
   #backlight {
