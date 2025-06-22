@@ -21,6 +21,7 @@
 
   #window {
     text-shadow: 1px 1px 6px black;
+    color: #ffffff;
   }
 
   #workspaces {
@@ -50,7 +51,7 @@
       text-shadow: inherit;
       border-radius: inherit;
       color: #383c4a;
-      background: #7c818c;
+      background: @base01;
   }
 
   #workspaces button.focused {
@@ -108,16 +109,16 @@
       padding-right: 16px;
       border-radius: 10px;
       transition: none;
-      color: #ffffff;
-      background: #383c4a;
+      color: @base05;
+      background: @base00;
   }
 
   #custom-weather {
       padding-right: 16px;
       border-radius: 0px 10px 10px 0px;
       transition: none;
-      color: #ffffff;
-      background: #383c4a;
+      color: @base05;
+      background: @base01;
   }
 
   #wireplumber {
@@ -126,8 +127,8 @@
       padding-right: 16px;
       border-radius: 10px;
       transition: none;
-      color: #ffffff;
-      background: #383c4a;
+      color: @base05;
+      background: @base01;
   }
 
   #wireplumber.muted {
@@ -135,8 +136,8 @@
       padding-left: 16px;
       padding-right: 16px;
       border-radius: 10px;
-      background-color: #90b1b1;
-      color: #2a5c45;
+      background-color: @base09;
+      color: @base05;
   }
 
   #custom-mem {
@@ -145,8 +146,8 @@
       padding-right: 16px;
       border-radius: 10px;
       transition: none;
-      color: #ffffff;
-      background: #383c4a;
+      color: @base05;
+      background: @base01;
   }
 
   #temperature {
@@ -155,8 +156,8 @@
       padding-right: 16px;
       border-radius: 10px;
       transition: none;
-      color: #ffffff;
-      background: #383c4a;
+      color: @base05;
+      background: @base01;
   }
 
   #temperature.critical {
@@ -169,8 +170,8 @@
       padding-right: 16px;
       border-radius: 10px;
       transition: none;
-      color: #ffffff;
-      background: #383c4a;
+      color: @base05;
+      background: @base01;
   }
 
   #battery {
@@ -179,12 +180,12 @@
       padding-right: 16px;
       border-radius: 10px;
       transition: none;
-      color: #ffffff;
-      background: #383c4a;
+      color: @base05;
+      background: @base01;
   }
 
   #battery.charging {
-      color: #ffffff;
+      color: @base05;
       background-color: #26A65B;
   }
 
@@ -209,7 +210,7 @@
       border-radius: 10px;
       transition: none;
       color: #ffffff;
-      background: #383c4a;
+      background: @base01;
   }
 
   #custom-power {
