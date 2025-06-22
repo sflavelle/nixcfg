@@ -72,9 +72,9 @@ in
   };
 
   accounts = import ./accounts.nix {
-      inherit lib pkgs inputs;
-      config = effectiveConfig;
-    };
+    inherit lib pkgs inputs;
+    config = effectiveConfig;
+  };
 
   xdg.enable = true;
   xdg.portal = {
@@ -91,6 +91,10 @@ in
       gnome-keyring
       # xdg-desktop-portal-wlr
     ];
+  };
+
+  stylix.targets = {
+    waybar.addCss = false;
   };
 
   # Some quick webapp shortcuts
