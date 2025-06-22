@@ -84,6 +84,7 @@ lib.mkMerge [
     environment = {
       DISPLAY = ":0";
       NIXOS_OZONE_WL = "1";
+      ELECTRON_DISABLE_GPU = "1"; # https://github.com/NixOS/nixpkgs/issues/382612
       QT_QPA_PLATFORM = "wayland";
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     };
