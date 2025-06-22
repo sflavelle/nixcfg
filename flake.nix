@@ -127,6 +127,11 @@
           programs.niri.enable = !config.hostSpec.isServer;
           programs.niri.package = pkgs.niri-unstable;
 
+          programs.appimage = {
+            enable = true;
+            binfmt = true;
+          };
+
           users.defaultUserShell = pkgs.fish;
           security.sudo.wheelNeedsPassword = lib.mkDefault false;
 
