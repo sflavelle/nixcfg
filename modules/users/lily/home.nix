@@ -96,6 +96,7 @@ in
   stylix.targets = {
     waybar.addCss = false;
     vencord.enable = true; # I'm using Webcord but it has vencord support so w/e
+    vscode.enable = true; 
   };
 
   # Some quick webapp shortcuts
