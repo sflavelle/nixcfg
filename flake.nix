@@ -123,8 +123,11 @@
           services.avahi.enable = true;
           services.avahi.nssmdns4 = true;
 
-          services.xserver.displayManager.lightdm.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
-          services.xserver.displayManager.lightdm.greeters.gtk.enable = true;
+          services.greetd.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
+          services.greetd = {
+            package = pkgs.greetd.gtkgreet;
+            settings.default_session.command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.gtkgreet}/bin/gtkgreet";
+          };
           programs.niri.enable = !config.hostSpec.isServer;
           programs.niri.package = pkgs.niri-unstable;
 
