@@ -123,7 +123,8 @@
           services.avahi.enable = true;
           services.avahi.nssmdns4 = true;
 
-          services.displayManager.ly.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
+          services.xserver.displayManager.lightdm.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
+          services.xserver.displayManager.lightdm.greeters.gtk.enable = true;
           programs.niri.enable = !config.hostSpec.isServer;
           programs.niri.package = pkgs.niri-unstable;
 
