@@ -116,6 +116,8 @@ in
 
   programs.eza.enable = true;
   programs.home-manager.enable = true;
+  programs.vscode.enable = true;
+  programs.vscode.package = pkgs.vscode-fhs;
   programs.yazi.enable = true;
 
   # Configs

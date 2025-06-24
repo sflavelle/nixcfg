@@ -9,7 +9,6 @@
   environment.systemPackages = with pkgs; [
     gh git
     nixd nil
-    jetbrains.pycharm-community-src vscode-fhs
     helix
     pgadmin4-desktopmode
 
