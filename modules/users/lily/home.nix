@@ -83,6 +83,7 @@ in
     config.common = {
       default = ["gnome" "gtk"];
       "org.freedesktop.portal.ScreenCast" = ["gnome"];
+      "org.freedesktop.portal.FileChooser" = [ "gnome" ];
       "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
     };
     extraPortals = with pkgs; [
