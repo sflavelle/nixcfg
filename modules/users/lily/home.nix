@@ -116,7 +116,7 @@ in
 
   programs.eza.enable = true;
   programs.home-manager.enable = true;
-  programs.vscode.enable = true;
+  programs.vscode.enable = !config.hostSpec.isServer;
   programs.vscode.package = pkgs.vscode-fhs;
   programs.yazi.enable = true;
 
@@ -240,7 +240,7 @@ in
   };
 
   programs.waybar = {
-    enable = true;
+    enable = !config.hostSpec.isServer;
     systemd.enable = true;
     systemd.target = "graphical-session.target";
     settings = import ./cfg/waybar.nix {
@@ -252,7 +252,7 @@ in
   };
 
   services.fnott = {
-    enable = true;
+    enable = !config.hostSpec.isServer;
     # settings = {}; # later
   };
 
