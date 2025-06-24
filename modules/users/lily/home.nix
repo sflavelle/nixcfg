@@ -51,6 +51,8 @@ in
         webcord-vencord
         zathura
 
+        nautilus
+
         floorp
 
         quodlibet
