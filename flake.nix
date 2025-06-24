@@ -154,7 +154,9 @@
                 duf dust fd eza
                 curl wget unzip
                 fzf 
-                btop psmisc
+                btop psmisc pciutils
+                blueman
+                bluetui
 
                 helix
                 oh-my-posh
