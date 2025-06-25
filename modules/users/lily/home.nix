@@ -119,8 +119,13 @@ in
 
   programs.eza.enable = true;
   programs.home-manager.enable = true;
-  programs.vscode.enable = !config.hostSpec.isServer;
-  programs.vscode.package = pkgs.vscode-fhs;
+  programs.vscode = {
+    enable = !config.hostSpec.isServer;
+    package = pkgs.vscode-fhs;
+    profiles."Default".userSettings = {
+      "git.confirmSync" = false;
+    };
+  };
   programs.yazi.enable = true;
 
   # Configs
