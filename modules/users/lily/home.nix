@@ -122,9 +122,6 @@ in
   programs.vscode = {
     enable = !config.hostSpec.isServer;
     package = pkgs.vscode-fhs;
-    profiles."Default".userSettings = {
-      "git.confirmSync" = false;
-    };
   };
   programs.yazi.enable = true;
 
