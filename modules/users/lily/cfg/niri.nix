@@ -262,7 +262,7 @@ lib.mkMerge [
 
     spawn-at-startup = [
       { command = ["steam"]; }
-      { command = ["webcord"]; }
+      { command = ["Discord"]; }
     ];
 
     workspaces = {
@@ -298,6 +298,10 @@ lib.mkMerge [
         open-on-output = "HDMI-A-1";
         name = "Utility";
       };
+      "down-02-archipelago" = {
+        open-on-output = "HDMI-A-1";
+        name = "Archipelago";
+      };
     };
 
     window-rules = [
@@ -323,6 +327,15 @@ lib.mkMerge [
           { app-id = "Celeste"; }
         ];
         open-on-workspace = "Games";
+        open-floating = false;
+        default-column-width = { proportion = 2. / 3.; };
+
+      }
+      {
+        matches = [
+          { app-id = "ArchipelagoLauncher"; }
+        ];
+        open-on-workspace = "Archipelago";
 
       }
       {
