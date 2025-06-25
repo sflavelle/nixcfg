@@ -270,15 +270,19 @@ lib.mkMerge [
         open-on-output = "DP-2";
         name = "Browser";
       };
-      "main-02-games" = {
+      "main-02-work" = {
+        open-on-output = "DP-2";
+        name = "Work";
+      };
+      "main-03-games" = {
         open-on-output = "DP-2";
         name = "Games";
       };
-      "main-03-dev" = {
+      "main-04-dev" = {
         open-on-output = "DP-2";
         name = "Code";
       };
-      "main-04-audio" = {
+      "main-05-audio" = {
         open-on-output = "DP-2";
         name = "Audio";
       };
@@ -301,6 +305,10 @@ lib.mkMerge [
       "down-02-archipelago" = {
         open-on-output = "HDMI-A-1";
         name = "Archipelago";
+      };
+      "down-03-obs" = {
+        open-on-output = "HDMI-A-1";
+        name = "OBS";
       };
     };
 
@@ -339,6 +347,11 @@ lib.mkMerge [
 
       }
       {
+        matches = [ { app-id = "com.obsproject.Studio"; is-floating = false; }];
+        open-on-workspace = "OBS";
+        open-fullscreen = true;
+      }
+      {
         matches = [
           { app-id = "^code$"; title = "Visual Studio Code";}
         ];
@@ -352,6 +365,7 @@ lib.mkMerge [
           { app-id = "element"; }
         ];
         open-on-workspace = "Communication";
+        open-maximized = true;
       }
       {
         matches = [

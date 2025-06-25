@@ -38,11 +38,14 @@ let
   workspaceIcons = {
     "Browser" = "";
     "Browser (alt)" = "";
+    "Work" = "";
     "Games" = "";
     "Code" = "";
     "Audio" = "󱡬";
     "Video" = "󰃽";
     "Communication" = "󰭻";
+    "Utility" = "󰧨";
+    "Archipelago" = "󱥸";
     "OBS" = "󰑋";
 
     "default" = "";
