@@ -50,6 +50,7 @@ in
         obsidian
         webcord-vencord
         zathura
+        libreoffice-qt6-fresh
 
         nautilus
 
