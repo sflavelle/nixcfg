@@ -119,6 +119,7 @@ in
   fonts.fontconfig.enable = true;
 
   programs.eza.enable = true;
+  programs.fish.enable = true;
   programs.home-manager.enable = true;
   programs.vscode = {
     enable = !config.hostSpec.isServer;
@@ -215,7 +216,7 @@ in
 
   programs.zoxide = {
     enable = true;
-#     options = ["--cmd cd"];
+    options = ["--cmd cd"];
   };
 
   # Services
