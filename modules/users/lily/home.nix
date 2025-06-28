@@ -2,6 +2,7 @@
 let
   isNixOS = config ? hostSpec;
   user = if !isNixOS then "lily" else mainUser;
+  primaryMonitor = lib.head (lib.filter (m: m.primary) config.monitors);
 
   nixGLConfig = if nixgl != null && !isNixOS then {
     packages = import nixgl { inherit pkgs; };
@@ -260,7 +261,9 @@ in
 
   services.fnott = {
     enable = !config.hostSpec.isServer;
-    # settings = {}; # later
+    settings = {
+      main.output = if config.monitors then primaryMonitor.name else null;
+    }; 
   };
 
   # Environments
