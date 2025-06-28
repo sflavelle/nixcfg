@@ -132,7 +132,7 @@ in
       beet-dlp = ''
         mkdir -p /tmp/beetdlp-$(id -u)
         pushd /tmp/beetdlp-$(id -u)
-        ${pkgs.ytdlp}/bin/yt-dlp -t mp3 --embed-metadata -o "%(extractor)s/%(album_artist)s - %(album)s/%(playlist_index)02d - %(title)s.%(ext)s" $argv
+        ${pkgs.yt-dlp}/bin/yt-dlp -t mp3 --embed-metadata -o "%(extractor)s/%(album_artist)s - %(album)s/%(playlist_index)02d - %(title)s.%(ext)s" $argv
         beet import .
         popd
       '';
@@ -273,6 +273,13 @@ in
     settings = {
       main.output = if config ? monitors then primaryMonitor.name else null;
     }; 
+  };
+
+  services.swayidle = {
+    enable = !config.hostSpec.isServer;
+    timeouts = [
+      
+    ];
   };
 
   # Environments
