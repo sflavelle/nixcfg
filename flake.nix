@@ -120,8 +120,15 @@
 
           services.openssh.enable = true;
           services.tailscale.enable = true;
-          services.avahi.enable = true;
-          services.avahi.nssmdns4 = true;
+          services.avahi = {
+            enable = true;
+            nssmdns4 = true;
+            publish = {
+              enable = true;
+              hinfo = true;
+              domain = true;
+            };
+          };
 
           services.displayManager.gdm.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
           programs.niri.enable = !config.hostSpec.isServer;
