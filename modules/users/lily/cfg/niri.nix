@@ -128,6 +128,7 @@ lib.mkMerge [
 
     spawn-at-startup = [
       # { command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite" ":1"]; } # No longer necessary?
+      { command = [ "wl-paste" "--watch" "cliphist" "store" ];}
     ];
 
     binds = 

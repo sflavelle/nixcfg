@@ -41,7 +41,7 @@ in
         yt-dlp
         uair
         musikcube
-        clipboard-jh
+        cliphist wl-clipboard-rs
       ]
       (lib.mkIf (!config.hostSpec.isServer) [
         xwayland-satellite
