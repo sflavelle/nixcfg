@@ -262,7 +262,7 @@ in
   services.fnott = {
     enable = !config.hostSpec.isServer;
     settings = {
-      main.output = if config.monitors then primaryMonitor.name else null;
+      main.output = if config ? monitors then primaryMonitor.name else null;
     }; 
   };
 
