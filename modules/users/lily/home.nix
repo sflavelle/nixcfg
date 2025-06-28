@@ -69,10 +69,6 @@ in
         nerd-fonts.symbols-only
       ])
     ];
-    shellAliases = {
-      mpro = "himalaya --account professional";
-      mper = "himalaya --account personal";
-    };
   };
 
   accounts = import ./accounts.nix {
@@ -120,7 +116,6 @@ in
   fonts.fontconfig.enable = true;
 
   programs.eza.enable = true;
-  programs.fish.enable = true;
   programs.home-manager.enable = true;
   programs.vscode = {
     enable = !config.hostSpec.isServer;
@@ -129,6 +124,20 @@ in
   programs.yazi.enable = true;
 
   # Configs
+  programs.fish = {
+    enable = true;
+    functions = {
+      mper = "himalaya $argv --account personal";
+      mpro = "himalaya $argv --account professional";
+      beet-dlp = ''
+        mkdir -p /tmp/beetdlp-$(id -u)
+        pushd /tmp/beetdlp-$(id -u)
+        ${pkgs.ytdlp}/bin/yt-dlp -t mp3 --embed-metadata -o "%(extractor)s/%(album_artist)s - %(album)s/%(playlist_index)02d - %(title)s.%(ext)s" $argv
+        beet import .
+        popd
+      '';
+    };
+  };
   programs.git = {
     enable = true;
     lfs.enable = true;
