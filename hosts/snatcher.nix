@@ -99,7 +99,8 @@
       }))
 
       # Game Utils
-      godot slade
+      godot 
+      # slade
 
       # Media Production
       inkscape
