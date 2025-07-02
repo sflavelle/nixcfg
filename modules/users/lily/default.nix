@@ -13,6 +13,7 @@ in
       "networkmanager"
       "wheel"
       "pipewire"
+      "dialout"
     ];
   };
 

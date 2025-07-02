@@ -130,13 +130,6 @@
       ];
   };
 
-  services.esphome = {
-      enable = true;
-      port = 8122;
-      address = "10.0.0.69";
-      openFirewall = true;
-  };
-
   # Containers
   virtualisation.oci-containers = { backend = "podman"; };
   virtualisation.podman = {
@@ -164,6 +157,17 @@
   # Networking Containers
 
   virtualisation.oci-containers.containers = {
+    esphome = {
+      image = "ghcr.io/esphome/esphome:2025.6.2";
+      volumes = [ 
+        "/srv/esphome:/config"
+        "/etc/localtime:/etc/localtime:ro"
+        ];
+      extraOptions = [
+        "--network=host"
+        "--device=/dev/ttyUSB0"
+      ];
+    };
     wyoming-whisper = {
       volumes = [ "/srv/ha-whisper:/data" ];
       image = "rhasspy/wyoming-whisper";
