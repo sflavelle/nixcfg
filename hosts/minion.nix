@@ -20,6 +20,18 @@
     };
   };
 
+  monitors = [
+    {
+      name = "eDP-1"; # BOE 0x090F Unknown (Built-in Display)
+      primary = true;
+      width = 1920;
+      height = 1080;
+      refreshRate = 144;
+      x = 0;
+      y = 0;
+      scale = 1.0;
+    }
+  ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
