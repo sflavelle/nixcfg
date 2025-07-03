@@ -151,7 +151,7 @@ lib.mkMerge [
       "Mod+E".action.spawn = [ terminal "-e" "${pkgs.yazi}/bin/yazi" ];
       "Mod+E".hotkey-overlay.title = "File Manager (Yazi)";
       "Mod+Shift+E".action.spawn = [ "${pkgs.nautilus}/bin/nautilus" ];
-      "Mod+Shift+E".hotkey-overlay.title = null;
+      "Mod+Shift+E".hotkey-overlay.title = "";
       "Mod+B".action.spawn = [ browser ];
       "Mod+B".hotkey-overlay.title = "Browser (Floorp)";
       "Mod+Shift+B".action.spawn = [ altbrowser ];
