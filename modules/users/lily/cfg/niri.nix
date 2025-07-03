@@ -171,7 +171,7 @@ lib.mkMerge [
       "XF86AudioMicMute".action.spawn = [ wpctl "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
       "XF86MonBrightnessUp".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" "intel_backlight" "s" "+10%" ];
       "XF86MonBrightnessUp".hotkey-overlay.title = "Brightness Up";
-      "XF86MonBrightnessDown".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" "intel_backlight" "s" "-10%" ];
+      "XF86MonBrightnessDown".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" "intel_backlight" "s" "10%-" ];
       "XF86MonBrightnessDown".hotkey-overlay.title = "Brightness Down";
 
       "Mod+Q".action.close-window = [];
