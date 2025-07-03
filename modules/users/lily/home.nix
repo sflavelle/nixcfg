@@ -35,14 +35,14 @@ in
     stateVersion = "25.05";
     packages = with pkgs; lib.mkMerge [
       [ # All systems
-        mpc
-        fuzzel
+        mpc epy
         pipe-viewer
         mosh
         yt-dlp
         uair
         musikcube
         cliphist wl-clipboard-rs
+        termdown
       ]
       (lib.mkIf (!config.hostSpec.isServer) [
         xwayland-satellite
