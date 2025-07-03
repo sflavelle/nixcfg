@@ -112,6 +112,16 @@ in
     categories = [ "Network" "Feed" ];
   };
 
+  systemd.user.services.wallpaper-apply = lib.mkIf (config.hostSpec.wallpaper != null) {
+    Unit = {
+      Description = "Apply wallpaper using swww";
+      After = [ "swww.service" ];
+      Wants = [ "swww.service" ];
+    };
+    Service.ExecStart = "${pkgs.swww}/bin/swww img ${config.hostSpec.wallpaper}";
+    Service.Type = "oneshot";
+  };
+
   # Fonts
   fonts.fontconfig.enable = true;
 
