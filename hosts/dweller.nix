@@ -9,6 +9,7 @@
     hostName = "dweller";
     isPublic = true;
     isMinimal = true;
+    hasWifi = true;
   };
   monitors = [
     {

@@ -11,6 +11,7 @@
     hostName = "empress";
     isPublic = true;
     isHandheld = true;
+    hasWifi = true;
   };
 
   imports =

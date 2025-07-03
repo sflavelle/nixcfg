@@ -29,6 +29,11 @@
         in
         if pkgs.stdenv.isLinux then "/home/${user}" else "/Users/${user}";
     };
+    locale = lib.mkOption {
+      type = lib.types.str;
+      default = "en_AU.UTF-8";
+      description = "The locale of the host";
+    };
     wallpaper = lib.mkOption {
       type = with lib.types; either path package;
       description = "The main wallpaper for this device";
@@ -74,11 +79,33 @@
       default = true;
       description = "Whether this device has a battery";
     };
+    hasWifi = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Whether this device has a wifi card";
+    };
   };
 
   config = {
     networking.hostName = config.hostSpec.hostName;
     time.timeZone = config.hostSpec.timeZone;
+
+    networking.networkmanager.enable = true;
+    networking.wireless.enable = config.hostSpec.hasWifi;
+
+    i18n.defaultLocale = config.hostSpec.locale;
+
+    i18n.extraLocaleSettings = {
+      LC_ADDRESS = config.hostSpec.locale;
+      LC_IDENTIFICATION = config.hostSpec.locale;
+      LC_MEASUREMENT = config.hostSpec.locale;
+      LC_MONETARY = config.hostSpec.locale;
+      LC_NAME = config.hostSpec.locale;
+      LC_NUMERIC = config.hostSpec.locale;
+      LC_PAPER = config.hostSpec.locale;
+      LC_TELEPHONE = config.hostSpec.locale;
+      LC_TIME = config.hostSpec.locale;
+    };
 
     environment.enableAllTerminfo = true;
 
