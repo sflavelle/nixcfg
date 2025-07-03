@@ -50,7 +50,7 @@ in
         outputs.packages.${system}.vacuumtube
         obsidian
         webcord-vencord
-        zathura
+        zathura bemenu
         libreoffice-qt6-fresh
 
         nautilus
@@ -130,6 +130,16 @@ in
   programs.vscode = {
     enable = !config.hostSpec.isServer;
     package = pkgs.vscode-fhs;
+    profiles.default.userSettings = {
+      "workbench.colorTheme" = "Stylix";
+      "workbench.iconTheme" = "vscode-icons";
+      "editor.lineHeight" = 20;
+      "editor.tabSize" = 2;
+      "editor.wordWrap" = "on";
+      "terminal.integrated.fontFamily" = "Determination Mono, monospace";
+      "update.channel" = "none"; # Disable updates
+      "[nix]"."editor.tabSize" = 2;
+    };
   };
   programs.yazi.enable = true;
 
@@ -224,7 +234,6 @@ in
         font = wezterm.font_with_fallback {
           'Determination Mono',
         },
-        color_scheme = 'Everforest Dark Soft (Gogh)',
         hide_tab_bar_if_only_one_tab = true,
       }
     '';
@@ -281,7 +290,7 @@ in
   services.fnott = {
     enable = !config.hostSpec.isServer;
     settings = {
-      main.output = if config ? monitors then primaryMonitor.name else null;
+      main.output = lib.mkIf (config.monitors != []) primaryMonitor.name;
     }; 
   };
 

@@ -138,7 +138,7 @@ lib.mkMerge [
     let
       browser = "floorp";
       terminal = "${pkgs.wezterm}/bin/wezterm";
-      launcher = [ "${pkgs.bemenu}/bin/bemenu-run" "-ib" "--fn" "Determination Sans 14" ];
+      launcher = [ "${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop" "--dmenu" "bemenu -ib --fn Determination Sans 14" "--term" "wezterm" ];
 
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
       pwvucontrol = "${pkgs.pwvucontrol}/bin/pwvucontrol";
