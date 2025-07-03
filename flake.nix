@@ -335,6 +335,16 @@
           wine = pkgs.wine64Packages.stagingFull;
           # wineArch = "win64";
         };
+        pidgin3 = pkgs.callPackage ./pkgs/pidgin/pidgin3.nix {
+          birb = self.packages.x86_64-linux.birb; 
+          seagull = self.packages.x86_64-linux.seagull;
+          gplugin = self.packages.x86_64-linux.gplugin;
+          };
+        # dependencies for pidgin3
+        birb = pkgs.callPackage ./pkgs/pidgin/birb.nix { };
+        seagull = pkgs.callPackage ./pkgs/pidgin/seagull.nix { };
+        gplugin = pkgs.callPackage ./pkgs/pidgin/gplugin.nix { };
+
         vacuumtube = pkgs.callPackage ./pkgs/vacuumtube.nix { };
 
         # Fonts
