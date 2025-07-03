@@ -10,6 +10,7 @@
     isPublic = true;
     isMinimal = true;
     hasWifi = true;
+    hasBattery = true;
   };
   monitors = [
     {

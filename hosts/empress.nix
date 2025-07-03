@@ -12,6 +12,7 @@
     isPublic = true;
     isHandheld = true;
     hasWifi = true;
+    hasBattery = true;
   };
 
   imports =

@@ -5,6 +5,7 @@
     hostName = "badgeseller";
     isPublic = true;
     hasWifi = true;
+    hasBattery = true;
   };
   monitors = [
     {
