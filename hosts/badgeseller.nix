@@ -9,7 +9,7 @@
     isAutoStyled = true;
     wallpaper = pkgs.fetchurl {
       url = "https://512pixels.net/downloads/macos-wallpapers/10-15-Day.jpg";
-      hash = "";
+      hash = "ha256-2UOi3YlxjD6Y0PPszKSlEsPMpyBCCW1aIOE34NuFFUk=";
     };
   };
   monitors = [
