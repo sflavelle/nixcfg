@@ -11,7 +11,9 @@
       url = "https://512pixels.net/downloads/macos-wallpapers/10-15-Day.jpg";
       hash = "sha256-2UOi3YlxjD6Y0PPszKSlEsPMpyBCCW1aIOE34NuFFUk=";
     };
+    backlights.monitors = [ "/sys/class/backlight/intel_backlight" ];
   };
+  
   monitors = [
     {
       name = "eDP-1";
