@@ -7,6 +7,11 @@ let
     position = "top";
     height = 24;
 
+    "backlight" = {
+      device = builtins.baseNameOf (builtins.head config.hostSpec.backlights.monitors);
+      format = "{percent}%";
+    };
+
     "battery" = {
       format = "{icon} {capacity}";
       format-icons = ["" "" "" "" ""];
@@ -15,6 +20,19 @@ let
         
         Current Draw: {power}
         Battery Capacity: {health}
+      '';
+    };
+
+    "network" = {
+      "format-wifi" = "{essid} ({signalStrength}%) ";
+      "format-ethernet" = "{ipaddr}/{cidr} 󰊗";
+      "format-disconnected" = "";
+      "tooltip-format" = ''
+        {ifname}: {ipaddr}
+        Gateway: {gwaddr}
+
+        Up: {bandwidthUpBytes}B/s
+        Down: {bandwidthDownBytes}B/s
       '';
     };
 
@@ -64,6 +82,7 @@ lib.mkMerge [
         "network"
         "wireplumber"
         (lib.mkIf config.hostSpec.hasBattery "battery")
+        (lib.mkIf (config.hostSpec.backlights.monitors != []) "backlight")
         "clock"
         "custom/power"
       ];

@@ -150,6 +150,16 @@
       background: @base01;
   }
 
+  #network {
+      margin-right: 8px;
+      padding-left: 16px;
+      padding-right: 16px;
+      border-radius: 10px;
+      transition: none;
+      color: @base05;
+      background: @base01;
+  }
+
   #temperature {
       margin-right: 8px;
       padding-left: 16px;
