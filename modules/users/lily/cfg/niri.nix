@@ -20,7 +20,7 @@ let
   };
 
   mappedMonitors = if config ? monitors then lib.attrsets.mergeAttrsList (map mapMonitors config.monitors) else {};
-  numMonitors = if config ? monitors then lib.list.length (config.monitors) else 0;
+  numMonitors = if config ? monitors then lib.lists.length (config.monitors) else 0;
 in
 lib.mkMerge [
   {
