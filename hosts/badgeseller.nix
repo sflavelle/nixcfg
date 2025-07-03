@@ -6,6 +6,11 @@
     isPublic = true;
     hasWifi = true;
     hasBattery = true;
+    isAutoStyled = true;
+    wallpaper = pkgs.fetchurl {
+      url = "https://512pixels.net/downloads/macos-wallpapers/10-15-Day.jpg";
+      hash = "";
+    };
   };
   monitors = [
     {
@@ -51,6 +56,8 @@
     firmware.enable = true;
     
   };
+
+  services.mbpfan.enable = true;
 
   system.stateVersion = "25.05"; # Did you read the comment?
 

@@ -61,6 +61,7 @@ lib.mkMerge [
       ];
       modules-right = [
         "tray"
+        "network"
         "wireplumber"
         (lib.mkIf config.hostSpec.hasBattery "battery")
         "clock"

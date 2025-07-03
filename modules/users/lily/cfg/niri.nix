@@ -20,6 +20,7 @@ let
   };
 
   mappedMonitors = if config ? monitors then lib.attrsets.mergeAttrsList (map mapMonitors config.monitors) else {};
+  numMonitors = if config ? monitors then lib.list.length (config.monitors) else 0;
 in
 lib.mkMerge [
   {
@@ -164,9 +165,9 @@ lib.mkMerge [
       "XF86AudioMute".action.spawn = [ wpctl "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
       "XF86AudioMute".hotkey-overlay.title = "Mute Audio";
       "XF86AudioMicMute".action.spawn = [ wpctl "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
-      "XF86MonBrightnessUp".action.spawn = [ "pkexec" "${pkgs.brillo}/bin/brillo" "-A" "10" ];
+      "XF86MonBrightnessUp".action.spawn = [ "pkexec" "${pkgs.brightnessctl}/bin/brightnessctl" "-d" "intel_backlight" "s" "+10%" ];
       "XF86MonBrightnessUp".hotkey-overlay.title = "Brightness Up";
-      "XF86MonBrightnessDown".action.spawn = [ "pkexec" "${pkgs.brillo}/bin/brillo" "-U" "10" ];
+      "XF86MonBrightnessDown".action.spawn = [ "pkexec" "${pkgs.brightnessctl}/bin/brightnessctl" "-d" "intel_backlight" "s" "-10%" ];
       "XF86MonBrightnessDown".hotkey-overlay.title = "Brightness Down";
 
       "Mod+Q".action.close-window = [];
@@ -378,6 +379,31 @@ lib.mkMerge [
         ];
         open-on-workspace = "Video";
         open-fullscreen = true;
+      }
+    ];
+  })
+  (lib.mkIf (numMonitors <= 1) {
+    workspaces = {
+      "01-browser" = {
+        name = "Browser";
+      };
+      "02-work" = {
+        name = "Work";
+      };
+      "01-communication" = {
+        name = "Communication";
+      };
+    };
+
+    window-rules = [
+      {
+        matches = [
+          { app-id = "discord"; }
+          { app-id = "WebCord"; }
+          { app-id = "element"; }
+        ];
+        open-on-workspace = "Communication";
+        # open-maximized = true;
       }
     ];
   })
