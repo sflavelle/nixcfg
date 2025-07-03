@@ -91,7 +91,7 @@
     time.timeZone = config.hostSpec.timeZone;
 
     networking.networkmanager.enable = true;
-    networking.wireless.enable = config.hostSpec.hasWifi;
+    # networking.wireless.enable = config.hostSpec.hasWifi;
 
     i18n.defaultLocale = config.hostSpec.locale;
 
