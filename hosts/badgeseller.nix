@@ -17,11 +17,11 @@
       y = 0;
       scale = 1.5;
     }
-  ]
+  ];
 
   boot.blacklistedKernelModules = [
     "hci_bcm4377" # Bluetooth module interferes with the wifi
-  ]
+  ];
 
   imports =
     [ # Include the results of the hardware scan.
