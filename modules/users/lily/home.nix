@@ -42,6 +42,7 @@ in
         uair
         musikcube
         cliphist wl-clipboard-rs
+        brightnessctl
         termdown
       ]
       (lib.mkIf (!config.hostSpec.isServer) [
