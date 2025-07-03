@@ -24,7 +24,7 @@
       transform = 90; 
       scale = 2; # Adjust scale for high DPI displays
     }
-  ]
+  ];
 
   imports =
     [ # Include the results of the hardware scan.
