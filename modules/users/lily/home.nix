@@ -49,7 +49,7 @@ in
         jellyfin-media-player
         outputs.packages.${system}.vacuumtube
         obsidian
-        webcord-vencord
+        webcord-vencord caprine overlayed
         zathura bemenu
         libreoffice-qt6-fresh
 
