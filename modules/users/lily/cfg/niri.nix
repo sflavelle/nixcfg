@@ -107,6 +107,7 @@ lib.mkMerge [
             app-id = "floorp";
             title = "Picture-in-Picture";
           }
+          { title = "Picture in picture"; }
         ];
         open-floating = true;
         default-floating-position = {
