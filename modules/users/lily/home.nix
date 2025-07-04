@@ -206,6 +206,14 @@ in
       ];
     };
   };
+  programs.pidgin = {
+    enable = !config.hostSpec.isServer;
+    plugins = with pkgs.pidginPlugins; [
+      purple-discord
+      purple-facebook
+      purple-plugin-pack
+    ];
+  };
   programs.rbw = {
     enable = true;
     settings = {
