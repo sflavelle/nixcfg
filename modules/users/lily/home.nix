@@ -140,6 +140,7 @@ in
       "terminal.integrated.fontFamily" = "Determination Mono, monospace";
       "update.channel" = "none"; # Disable updates
       "[nix]"."editor.tabSize" = 2;
+      "git.confirmSync" = false;
     };
   };
   programs.yazi.enable = true;
