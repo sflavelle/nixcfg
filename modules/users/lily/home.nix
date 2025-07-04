@@ -209,7 +209,7 @@ in
   };
   programs.pidgin = {
     enable = !config.hostSpec.isServer;
-    plugins = with pkgs.pidginPlugins; [
+    plugins = with pkgs.pidginPackages; [
       purple-discord
       purple-facebook
       purple-plugin-pack
