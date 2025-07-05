@@ -129,6 +129,7 @@
               domain = true;
             };
           };
+          services.speechd.enable = true;
 
           services.displayManager.gdm.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
           programs.niri.enable = !config.hostSpec.isServer;
@@ -162,8 +163,8 @@
                 curl wget unzip
                 fzf 
                 btop psmisc pciutils
-                blueman
-                bluetui
+                blueman bluetui
+                pied piper-tts
 
                 helix
                 oh-my-posh
