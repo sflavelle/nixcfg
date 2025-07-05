@@ -21,6 +21,7 @@ let
 
   mappedMonitors = if config ? monitors then lib.attrsets.mergeAttrsList (map mapMonitors config.monitors) else {};
   numMonitors = if config ? monitors then lib.lists.length (config.monitors) else 0;
+  primaryMonitor = if config ? monitors then lib.head (lib.filter (m: m.primary) config.monitors) else null;
 in
 lib.mkMerge [
   {
@@ -111,11 +112,14 @@ lib.mkMerge [
           { title = "Picture in picture"; }
         ];
         open-floating = true;
+        open-on-output = primaryMonitor.name;
         default-floating-position = {
           relative-to = "bottom-right";
           x = 0;
           y = 0;
         };
+        default-column-width = { proportion = 1. / 5.; };
+        default-window-height = { proportion = 1. / 5.; };
       }
     ];
 
