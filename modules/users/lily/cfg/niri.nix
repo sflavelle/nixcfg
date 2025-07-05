@@ -140,10 +140,10 @@ lib.mkMerge [
     binds = 
       # with config.lib.niri.actions; 
     let
-      browser = "floorp";
+      browser = "firefox";
       altbrowser = "chromium";
       terminal = "${pkgs.wezterm}/bin/wezterm";
-      launcher = [ "${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop" "--dmenu" "bemenu -ib --fn Determination Sans 14" "--term" "wezterm" ];
+      launcher = [ "${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop" "--dmenu" "bemenu -ib --fn 'Determination Sans 14'" "--term" "wezterm" ];
 
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
       pwvucontrol = "${pkgs.pwvucontrol}/bin/pwvucontrol";
@@ -157,9 +157,9 @@ lib.mkMerge [
       "Mod+Shift+E".action.spawn = [ "${pkgs.nautilus}/bin/nautilus" ];
       "Mod+Shift+E".hotkey-overlay.title = "";
       "Mod+B".action.spawn = [ browser ];
-      "Mod+B".hotkey-overlay.title = "Browser (Floorp)";
+      "Mod+B".hotkey-overlay.title = "Browser";
       "Mod+Shift+B".action.spawn = [ altbrowser ];
-      "Mod+Shift+B".hotkey-overlay.title = "Browser (Chromium)";
+      "Mod+Shift+B".hotkey-overlay.title = "Alternate Browser (Chromium)";
       "Mod+Escape".action.spawn = [ terminal "-e" "${pkgs.btop}/bin/btop" ];
       "Mod+Escape".hotkey-overlay.title = "System Monitor";
       "Mod+F1".action.show-hotkey-overlay = [];
