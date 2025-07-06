@@ -39,7 +39,7 @@
       description = "The main wallpaper for this device";
       default = pkgs.fetchurl {
         url = "https://w.wallhaven.cc/full/1q/wallhaven-1q83qg.jpg"; #retro/vaporwave digital artwork (creatiflux)
-        hash = "";
+        hash = "sha256-QPmG4QTRvubuX6Fy5rmMwYKw4aQdBiH/zGL/PMmUZOk=";
       };
     };
 
