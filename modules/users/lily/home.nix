@@ -169,6 +169,9 @@ in
   programs.helix = {
     enable = true;
     defaultEditor = true;
+    settings = {
+      "soft-wrap.enable" = true;
+    };
   };
   programs.himalaya = {
     enable = true;
