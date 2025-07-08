@@ -347,6 +347,7 @@
         gplugin = pkgs.callPackage ./pkgs/pidgin/gplugin.nix { };
 
         vacuumtube = pkgs.callPackage ./pkgs/vacuumtube.nix { };
+        hydratextclient = pkgs.callPackage ./pkgs/aphydraclient.nix { };
 
         # Fonts
         otf-determination = pkgs.callPackage ./pkgs/fonts/otf-determination.nix {};
