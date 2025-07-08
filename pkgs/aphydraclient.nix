@@ -3,6 +3,7 @@
   stdenv,
   fetchFromGitHub,
   buildDotnetModule,
+  dotnetCorePackages,
 }:
 
 buildDotnetModule rec {
@@ -18,6 +19,13 @@ buildDotnetModule rec {
 
   projectFile = "ArchipelagoMultiTextClient.csproj";
   nugetDeps = ./aphydraclient-deps.nix;
+
+  dotnet-sdk = dotnetCorePackages.dotnet_8.sdk;
+  dotnet-runtime = dotnetCorePackages.runtime_8_0-bin;
+
+  executables = [ ];
+
+  
 
   meta = {
     homepage = "https://github.com/SWCreeperKing/HydraTextClient";

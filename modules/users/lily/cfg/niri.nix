@@ -353,6 +353,7 @@ lib.mkMerge [
       {
         matches = [
           { app-id = "ArchipelagoLauncher"; }
+          { app-id = "HydraTextClient"; }
         ];
         open-on-workspace = "Archipelago";
 
