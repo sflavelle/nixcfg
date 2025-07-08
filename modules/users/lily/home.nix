@@ -45,6 +45,8 @@ in
         brightnessctl
         termdown
 
+        gnumake
+
         (python3.withPackages (ps: with ps; 
         [
           pelican
@@ -175,7 +177,7 @@ in
   programs.helix = {
     enable = true;
     defaultEditor = true;
-    settings = {
+    settings.editor = {
       "soft-wrap.enable" = true;
     };
   };
