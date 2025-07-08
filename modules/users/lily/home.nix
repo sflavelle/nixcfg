@@ -178,7 +178,7 @@ in
     enable = true;
     defaultEditor = true;
     settings.editor = {
-      "soft-wrap.enable" = true;
+      "soft-wrap"."enable" = true;
     };
   };
   programs.himalaya = {
