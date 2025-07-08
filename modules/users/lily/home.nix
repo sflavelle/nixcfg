@@ -44,6 +44,12 @@ in
         cliphist wl-clipboard-rs
         brightnessctl
         termdown
+
+        (python3.withPackages (ps: with ps; 
+        [
+          pelican
+        ] 
+        ++ pelican.optional-dependencies.markdown))
       ]
       (lib.mkIf (!config.hostSpec.isServer) [
         xwayland-satellite
