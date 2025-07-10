@@ -61,7 +61,7 @@ in
         outputs.packages.${system}.vacuumtube
         obsidian
         webcord-vencord caprine overlayed
-        zathura bemenu file-roller
+        zathura bemenu file-roller feh
         libreoffice-qt6-fresh
 
         nautilus
