@@ -2,6 +2,8 @@
 let
   isNixOS = config ? hostSpec;
   user = if !isNixOS then "lily" else mainUser;
+  flakePackages = outputs.packages.${system};
+
   primaryMonitor = lib.head (lib.filter (m: m.primary) config.monitors);
 
   nixGLConfig = if nixgl != null && !isNixOS then {
@@ -58,7 +60,7 @@ in
       (lib.mkIf (!config.hostSpec.isServer) [
         xwayland-satellite
         jellyfin-media-player
-        outputs.packages.${system}.vacuumtube
+        flakePackages.vacuumtube
         obsidian
         webcord-vencord caprine overlayed
         zathura bemenu file-roller feh
@@ -70,9 +72,10 @@ in
 
         quodlibet
 
+        toot
+
         # Fonts
-        outputs.packages.${system}.otf-determination outputs.packages.${system}.ttf-utpapyrus
-        outputs.packages.${system}.ttf-utsans
+        flakePackages.otf-determination flakePackages.ttf-utpapyrus flakePackages.ttf-utsans
 
         glasstty-ttf ultimate-oldschool-pc-font-pack nerd-fonts.ubuntu-sans ubuntu-sans-mono
         minecraftia monocraft pixel-code nerd-fonts.monaspace mona-sans hubot-sans aileron

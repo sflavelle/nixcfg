@@ -4,7 +4,7 @@
   hostSpec = {
     hostName = "badgeseller";
     isPublic = true;
-    hasWifi = true;
+    wirelessInterface = "wlp115s0f0";
     hasBattery = true;
     isAutoStyled = true;
     wallpaper = pkgs.fetchurl {
@@ -12,6 +12,7 @@
       hash = "sha256-2UOi3YlxjD6Y0PPszKSlEsPMpyBCCW1aIOE34NuFFUk=";
     };
     backlights.monitors = [ "/sys/class/backlight/intel_backlight" ];
+    backlights.keyboard = "/sys/class/leds/:white:kbd_backlight";
   };
   
   monitors = [

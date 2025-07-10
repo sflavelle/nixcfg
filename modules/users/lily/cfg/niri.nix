@@ -147,6 +147,10 @@ lib.mkMerge [
 
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
       pwvucontrol = "${pkgs.pwvucontrol}/bin/pwvucontrol";
+
+      monitor_backlight = lib.head config.hostSpec.backlights.monitors or null;
+      keyboard_backlight = config.hostSpec.backlights.keyboard or null;
+
     in {
       "Mod+T".action.spawn = terminal;
       "Mod+T".hotkey-overlay.title = "Open Terminal";
@@ -173,10 +177,14 @@ lib.mkMerge [
       "XF86AudioMute".action.spawn = [ wpctl "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
       "XF86AudioMute".hotkey-overlay.title = "Mute Audio";
       "XF86AudioMicMute".action.spawn = [ wpctl "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
-      "XF86MonBrightnessUp".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" "intel_backlight" "s" "+10%" ];
+
+      "XF86MonBrightnessUp".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" monitor_backlight "s" "+10%" ];
       "XF86MonBrightnessUp".hotkey-overlay.title = "Brightness Up";
-      "XF86MonBrightnessDown".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" "intel_backlight" "s" "10%-" ];
+      "XF86MonBrightnessDown".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" monitor_backlight "s" "10%-" ];
       "XF86MonBrightnessDown".hotkey-overlay.title = "Brightness Down";
+
+      "XF86KbdBrightnessUp".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" kbd_backlight "s" "+10%" ];
+      "XF86KbdBrightnessDown".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" kbd_backlight "s" "10%-" ];
 
       "Mod+Q".action.close-window = [];
 

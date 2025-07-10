@@ -13,7 +13,7 @@
   hostSpec = {
     hostName = "minion";
     isPublic = true;
-    hasWifi = true;
+    wirelessInterface = "wlp3s0";
     hasBattery = true;
     isAutoStyled = true;
     wallpaper = pkgs.fetchurl {
