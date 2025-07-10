@@ -87,12 +87,12 @@
     backlights = {
       monitors = lib.mkOption {
         type = lib.types.listOf (lib.types.str);
-        default = [];
+        default = [ "/dev/null" ];
         description = "Sys paths to monitor backlights for which to enable brightness control";
       };
       keyboard = lib.mkOption {
         type = lib.types.str;
-        default = null;
+        default = "/dev/null";
         description = "Sys path to the keyboard backlight device, if any";
       };
     };
