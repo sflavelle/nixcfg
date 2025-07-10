@@ -16,7 +16,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
 
-    inputs.agenix.url = "github:ryantm/agenix";
+    agenix.url = "github:ryantm/agenix";
 
     audio = {
       url = "github:polygon/audio.nix";
@@ -110,6 +110,7 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.niri.nixosModules.niri
             inputs.stylix.nixosModules.stylix
+            inputs.agenix.nixosModules.default
 
             ./modules/options
           ];
@@ -153,6 +154,7 @@
             extraSpecialArgs = { inherit inputs; };
             sharedModules = [
               # inputs.stylix.homeModules.stylix
+              inputs.agenix.homeManagerModules.default
             ];
           };
 
