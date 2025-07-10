@@ -42,6 +42,11 @@
         hash = "sha256-QPmG4QTRvubuX6Fy5rmMwYKw4aQdBiH/zGL/PMmUZOk=";
       };
     };
+    wirelessInterface = lib.mkOption {
+      type = lib.types.str;
+      default = null;
+      description = "Name of the device's wireless interface, if any";
+    };
 
     # Configurations
     isMinimal = lib.mkOption {
@@ -78,11 +83,6 @@
       type = lib.types.bool;
       default = true;
       description = "Whether this device has a battery";
-    };
-    hasWifi = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Whether this device has a wifi card";
     };
     backlights = {
       monitors = lib.mkOption {

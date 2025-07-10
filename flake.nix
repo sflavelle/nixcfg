@@ -16,7 +16,8 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
 
-    erosanix.url = "github:emmanuelrosa/erosanix"; # mkWindowsApp
+    inputs.agenix.url = "github:ryantm/agenix";
+
     audio = {
       url = "github:polygon/audio.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -258,7 +259,7 @@
             ./modules/users/lily
 #             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
-            
+
             ./modules/desktop-prod-audio.nix
             ./modules/desktop-prod-video.nix
             ./modules/dev.nix
@@ -339,20 +340,12 @@
       };
       packages.x86_64-linux = {
         link-steamscreenshots = pkgs.callPackage ./pkgs/link-steamscreenshots {};
-        ableton-live = pkgs.callPackage ./pkgs/ableton.nix {
-          inherit (inputs.erosanix.lib.${system}) mkWindowsAppNoCC copyDesktopIcons makeDesktopIcon;
-          wine = pkgs.wine64Packages.stagingFull;
-          # wineArch = "win64";
-        };
+
         pidgin3 = pkgs.callPackage ./pkgs/pidgin/pidgin3.nix {
           birb = self.packages.x86_64-linux.birb; 
           seagull = self.packages.x86_64-linux.seagull;
           gplugin = self.packages.x86_64-linux.gplugin;
           };
-        # dependencies for pidgin3
-        birb = pkgs.callPackage ./pkgs/pidgin/birb.nix { };
-        seagull = pkgs.callPackage ./pkgs/pidgin/seagull.nix { };
-        gplugin = pkgs.callPackage ./pkgs/pidgin/gplugin.nix { };
 
         vacuumtube = pkgs.callPackage ./pkgs/vacuumtube.nix { };
         hydratextclient = pkgs.callPackage ./pkgs/aphydraclient.nix { };
