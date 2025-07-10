@@ -148,8 +148,8 @@ lib.mkMerge [
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
       pwvucontrol = "${pkgs.pwvucontrol}/bin/pwvucontrol";
 
-      monitor_backlight = lib.head config.hostSpec.backlights.monitors or null;
-      keyboard_backlight = config.hostSpec.backlights.keyboard or null;
+      monitor_backlight = lib.baseNameOf (lib.head config.hostSpec.backlights.monitors) or null;
+      keyboard_backlight = (lib.baseNameOf config.hostSpec.backlights.keyboard) or null;
 
     in {
       "Mod+T".action.spawn = terminal;
