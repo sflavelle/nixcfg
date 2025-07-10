@@ -9,6 +9,7 @@
     hostName = "dweller";
     isPublic = true;
     isMinimal = true;
+    isAutoStyled = true;
     wirelessInterface = "wlp1s0";
     hasBattery = true;
   };
