@@ -137,6 +137,10 @@ lib.mkMerge [
       { command = [ "wl-paste" "--watch" "cliphist" "store" ];}
     ];
 
+    switch-events = {
+      lid-close.action.spawn = ["systemctl" "suspend"];
+    };
+
     binds = 
       # with config.lib.niri.actions; 
     let
