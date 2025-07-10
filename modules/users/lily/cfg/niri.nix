@@ -183,8 +183,8 @@ lib.mkMerge [
       "XF86MonBrightnessDown".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" monitor_backlight "s" "10%-" ];
       "XF86MonBrightnessDown".hotkey-overlay.title = "Brightness Down";
 
-      "XF86KbdBrightnessUp".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" kbd_backlight "s" "+10%" ];
-      "XF86KbdBrightnessDown".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" kbd_backlight "s" "10%-" ];
+      "XF86KbdBrightnessUp".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" keyboard_backlight "s" "+10%" ];
+      "XF86KbdBrightnessDown".action.spawn = [ "${pkgs.brightnessctl}/bin/brightnessctl" "-d" keyboard_backlight "s" "10%-" ];
 
       "Mod+Q".action.close-window = [];
 

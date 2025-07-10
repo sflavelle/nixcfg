@@ -31,8 +31,8 @@ let
         {ifname}: {ipaddr}
         Gateway: {gwaddr}
 
-        Up: {bandwidthUpBytes}B/s
-        Down: {bandwidthDownBytes}B/s
+        Up: {bandwidthUpBytes}
+        Down: {bandwidthDownBytes}
       '';
     };
 
