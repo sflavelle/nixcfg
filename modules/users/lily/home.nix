@@ -1,4 +1,4 @@
-{ config, lib, pkgs, mainUser, name, inputs, outputs ? null, nixgl ? null, ... }:
+{ config, lib, system, pkgs, mainUser, name, inputs, outputs ? null, nixgl ? null, ... }:
 let
   isNixOS = config ? hostSpec;
   user = if !isNixOS then "lily" else mainUser;
