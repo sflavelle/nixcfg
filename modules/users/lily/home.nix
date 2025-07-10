@@ -108,9 +108,9 @@ in
     ];
   };
 
-  stylix.targets = {
+  stylix.targets = lib.mkIf config.hostSpec.isAutoStyled {
     waybar.addCss = false;
-    # vencord.enable = true; # I'm using Webcord but it has vencord support so w/e
+    vencord.enable = true; # I'm using Webcord but it has vencord support so w/e
     vscode.enable = true; 
   };
 
