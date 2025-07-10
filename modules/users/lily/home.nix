@@ -45,6 +45,8 @@ in
         brightnessctl
         termdown
 
+        inputs.agenix.packages.${system}.default
+
         gnumake
 
         (python3.withPackages (ps: with ps; 
