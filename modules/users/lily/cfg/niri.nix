@@ -149,7 +149,7 @@ lib.mkMerge [
       pwvucontrol = "${pkgs.pwvucontrol}/bin/pwvucontrol";
 
       monitor_backlight = lib.baseNameOf (lib.head config.hostSpec.backlights.monitors);
-      keyboard_backlight = (lib.baseNameOf config.hostSpec.backlights.keyboard) or null;
+      keyboard_backlight = (lib.baseNameOf config.hostSpec.backlights.keyboard);
 
     in {
       "Mod+T".action.spawn = terminal;
