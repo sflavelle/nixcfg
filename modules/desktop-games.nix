@@ -13,6 +13,7 @@
   environment.systemPackages = with pkgs; [
     gamemode mangohud ludusavi
     archipelago stable.poptracker steam-devices-udev-rules
+    cemu ryubing
     itch heroic
     shipwright
     lutris

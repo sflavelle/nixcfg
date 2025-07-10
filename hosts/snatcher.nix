@@ -104,12 +104,6 @@
 
       # Media Production
       inkscape
-      reaper
-      # neuralnote
-      bitwig-studio5-latest
-      # Plugins
-      yabridge
-
     ];
   };
 

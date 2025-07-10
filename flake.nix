@@ -222,7 +222,11 @@
             ./modules/desktop-games.nix
             ./modules/desktop-vr.nix
             ./modules/desktop-software.nix
+
+            ./modules/desktop-prod-audio.nix
+            ./modules/desktop-prod-video.nix
             ./modules/dev.nix
+
             ./modules/chat.nix
           ];
         };
@@ -254,7 +258,11 @@
             ./modules/users/lily
 #             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
+            
+            ./modules/desktop-prod-audio.nix
+            ./modules/desktop-prod-video.nix
             ./modules/dev.nix
+
             ./modules/chat.nix
 
             {
