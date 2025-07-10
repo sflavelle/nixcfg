@@ -14,6 +14,6 @@
     airwindows
     oxefmsynth
     zam-plugins lsp-plugins
-    chow-tape-model
+    # chow-tape-model # webkitgtk nonsense
   ];
 }
