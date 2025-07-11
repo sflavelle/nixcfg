@@ -3,8 +3,9 @@ let
   lily-badgeseller =  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBmOUi6fw2ut6hfoaemCHSm8kfX3QGUSuCS3xKQ6iOOx";
   lily-minion =       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICc1Y9pDbnVAOCTNyW6jTvNm8mKzloYLZPvrNAPJwMBD";
   lily-puppetmaster = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF3wyordxC55XPMdP5dn17oMwhUYrR8jNaMR1Hk8aaFq";
+  lily-empress =      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJOnTMae/dpdLFH1tfwEIhDO1pP1/4NAItMKkZNF2OVI";
   lily-dweller = null;
-  lily = [ lily-snatcher lily-badgeseller lily-minion lily-puppetmaster ];
+  lily = [ lily-snatcher lily-badgeseller lily-minion lily-puppetmaster lily-empress ];
 
   snatcher =     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMLW334rZXE0+UID24q+upEDpQiXjyefvzse0fFXLasL";
   badgeseller =  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMaimQA4Fftnv6+114hTseYVItxuylpr0u1gqIY+3aGZ";

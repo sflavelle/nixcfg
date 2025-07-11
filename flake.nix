@@ -112,7 +112,9 @@
             inputs.stylix.nixosModules.stylix
             inputs.agenix.nixosModules.default
 
+            ./modules/age.nix
             ./modules/options
+            # ./secrets/secrets.nix
           ];
 
           virtualisation.diskSize = 32 * 1024;
@@ -240,7 +242,9 @@
           modules = [
             self.nixosModules.commonModules
             ./hosts/minion.nix
+            ./modules/wifi-home.nix
             ./modules/users/lily
+
             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
             ./modules/dev.nix
@@ -258,7 +262,9 @@
             ./modules/disko/badgeseller.nix
 
             ./hosts/badgeseller.nix
+            ./modules/wifi-home.nix
             ./modules/users/lily
+
 #             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
 
@@ -284,7 +290,9 @@
             self.nixosModules.commonModules
 
             ./hosts/dweller.nix
+            ./modules/wifi-home.nix
             ./modules/users/lily
+
             ./modules/chromebook.nix
             ./modules/dev.nix
             ./modules/chat.nix
@@ -302,7 +310,9 @@
             inputs.jovian.nixosModules.default
 
             ./hosts/empress.nix
+            ./modules/wifi-home.nix
             ./modules/users/lily
+
             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
             ./modules/chat.nix
