@@ -23,6 +23,10 @@ let
   mappedMonitors = if config ? monitors then lib.attrsets.mergeAttrsList (map mapMonitors config.monitors) else {};
   numMonitors = if config ? monitors then lib.lists.length (config.monitors) else 0;
   primaryMonitor = if config ? monitors then lib.head (lib.filter (m: m.primary) config.monitors) else null;
+
+  windowRules = import ./niri-windowrules.nix {
+    inherit lib primaryMonitor;
+  }; 
 in
 lib.mkMerge [
   {
@@ -100,28 +104,7 @@ lib.mkMerge [
     };
 
     window-rules = [
-      {
-        matches = [
-          { 
-            app-id = "firefox";
-            title = "Picture-in-Picture";
-          }
-          { 
-            app-id = "floorp";
-            title = "Picture-in-Picture";
-          }
-          { title = "Picture in picture"; }
-        ];
-        open-floating = true;
-        open-on-output = primaryMonitor.name;
-        default-floating-position = {
-          relative-to = "bottom-right";
-          x = 0;
-          y = 0;
-        };
-        default-column-width = { proportion = 1. / 5.; };
-        default-window-height = { proportion = 1. / 5.; };
-      }
+      windowRules.browserPip
     ];
 
     layer-rules = [
@@ -350,19 +333,7 @@ lib.mkMerge [
         open-on-workspace = "Games";
 
       }
-      {
-        matches = [
-          { app-id = "^steam_app_"; }
-          { app-id = "gzdoom"; }
-          { app-id = "SpaceIdle"; }
-          { title = "Ship of Harkinian"; }
-          { app-id = "Celeste"; }
-        ];
-        open-on-workspace = "Games";
-        open-floating = false;
-        default-column-width = { proportion = 2. / 3.; };
-
-      }
+      windowRules.games
       {
         matches = [
           { app-id = "ArchipelagoLauncher"; }
@@ -374,7 +345,7 @@ lib.mkMerge [
       {
         matches = [ { app-id = "com.obsproject.Studio"; is-floating = false; }];
         open-on-workspace = "OBS";
-        open-fullscreen = true;
+        open-maximized = true;
       }
       {
         matches = [
@@ -383,15 +354,7 @@ lib.mkMerge [
         open-on-workspace = "Code";
 
       }
-      {
-        matches = [
-          { app-id = "discord"; }
-          { app-id = "WebCord"; }
-          { app-id = "element"; }
-        ];
-        open-on-workspace = "Communication";
-        open-maximized = true;
-      }
+      windowRules.chatPrograms
       {
         matches = [
           { app-id = "vlc"; }
@@ -409,24 +372,20 @@ lib.mkMerge [
       "01-browser" = {
         name = "Browser";
       };
-      "02-work" = {
-        name = "Work";
+      "02-games" = lib.mkIf config.programs.steam.enable {
+        name = "Games";
       };
-      "01-communication" = {
+      "03-communication" = {
         name = "Communication";
+      };
+      "04-work" = {
+        name = "Work";
       };
     };
 
     window-rules = [
-      {
-        matches = [
-          { app-id = "discord"; }
-          { app-id = "WebCord"; }
-          { app-id = "element"; }
-        ];
-        open-on-workspace = "Communication";
-        # open-maximized = true;
-      }
+      windowRules.chatPrograms
+      (lib.mkIf config.programs.steam.enable windowRules.games)
     ];
   })
 ]
