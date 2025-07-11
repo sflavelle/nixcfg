@@ -44,6 +44,7 @@
 
   boot.loader.systemd-boot = {
     enable = true;
+    consoleMode = "auto";
   };
   boot.loader.efi.canTouchEfiVariables = true;
 

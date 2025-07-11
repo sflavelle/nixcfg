@@ -36,6 +36,8 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 0;
+  
   
   # Enable the KDE Plasma Desktop Environment.
   services.desktopManager.plasma6.enable = true;
