@@ -5,6 +5,7 @@ let
   mapMonitors = monitor: {
     "${monitor.name}" = {
       enable = true;
+      focus-at-startup = monitor.primary;
       mode = {
         height = monitor.height;
         width = monitor.width;
