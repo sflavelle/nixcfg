@@ -11,7 +11,7 @@
     hostName = "empress";
     isPublic = true;
     isHandheld = true;
-    hasWifi = true;
+    wirelessInterface = "wlp1s0";
     hasBattery = true;
   };
   monitors = [
