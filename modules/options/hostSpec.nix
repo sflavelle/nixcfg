@@ -69,8 +69,8 @@
       default = false;
       description = "Used to indicate a host that will be exposed to strangers (laptops etc.)";
     };
-    isAutoStyled = lib.mkOption {
-      type = lib.types.bool;
+    isAutoStyled = lib.mkEnableOption {
+      # type = lib.types.bool;
       default = false;
       description = "Used to indicate a host that wants auto styling like stylix";
     };

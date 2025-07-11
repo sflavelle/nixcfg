@@ -11,6 +11,12 @@
     hostName = "empress";
     isPublic = true;
     isHandheld = true;
+    isAutoStyled = true;
+    wallpaper = pkgs.fetchurl {
+      url = "https://w.wallhaven.cc/full/o3/wallhaven-o3ylm7.jpg"; # OneShot wallpaper
+      hash = "sha256-QMZDE/bQG91o9L47jhJRwpQ3w44DCq1Y4IiuU/B66dw=";
+
+    };
     wirelessInterface = "wlp1s0";
     hasBattery = true;
   };
@@ -37,7 +43,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 0;
-  
+
   
   # Enable the KDE Plasma Desktop Environment.
   services.desktopManager.plasma6.enable = true;

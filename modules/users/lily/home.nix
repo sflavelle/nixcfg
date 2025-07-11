@@ -108,10 +108,14 @@ in
     ];
   };
 
-  stylix.targets = lib.mkIf config.hostSpec.isAutoStyled {
-    waybar.addCss = false;
-    vencord.enable = true; # I'm using Webcord but it has vencord support so w/e
-    vscode.enable = true; 
+  stylix = {
+    autoEnable = config.hostSpec.isAutoStyled;
+    enable = config.hostSpec.isAutoStyled;
+    targets = lib.mkIf config.hostSpec.isAutoStyled {
+      waybar.addCss = false;
+      vencord.enable = true; # I'm using Webcord but it has vencord support so w/e
+      vscode.enable = true; 
+    };
   };
 
   # Some quick webapp shortcuts
@@ -145,7 +149,7 @@ in
     enable = !config.hostSpec.isServer;
     package = pkgs.vscode-fhs;
     profiles.default.userSettings = {
-      "workbench.colorTheme" = "Stylix";
+      "workbench.colorTheme" = lib.mkIf config.hostSpec.isAutoStyled "Stylix";
       "workbench.iconTheme" = "vscode-icons";
       "editor.lineHeight" = 20;
       "editor.tabSize" = 2;
