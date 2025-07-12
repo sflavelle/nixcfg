@@ -2,7 +2,6 @@
 let
   isNixOS = config ? hostSpec;
   user = if !isNixOS then "lily" else mainUser;
-  flakePackages = outputs.packages.${system};
 
   primaryMonitor = lib.head (lib.filter (m: m.primary) config.monitors);
 
@@ -64,7 +63,7 @@ in
       (lib.mkIf (!config.hostSpec.isServer) [
         xwayland-satellite
         jellyfin-media-player
-        flakePackages.vacuumtube
+        vacuumtube
         obsidian
         webcord-vencord
         caprine
@@ -83,10 +82,12 @@ in
 
         toot
 
+        link-steamscreenshots
+
         # Fonts
-        flakePackages.otf-determination
-        flakePackages.ttf-utpapyrus
-        flakePackages.ttf-utsans
+        otf-determination
+        ttf-utpapyrus
+        ttf-utsans
 
         glasstty-ttf
         ultimate-oldschool-pc-font-pack

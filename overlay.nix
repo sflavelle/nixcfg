@@ -1,3 +1,9 @@
+{ lib
+, pkgs
+, ...
+
+}:
+
 final: prev:
 
 let

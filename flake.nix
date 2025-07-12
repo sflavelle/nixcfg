@@ -110,11 +110,9 @@
         buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
       };
 
-      overlays =
-        rec {
-          default = sfpkgs;
-          sfpkgs = final: prev: import ./overlay.nix final prev;
-        };
+      overlays = {
+        default = import ./overlay.nix { inherit lib pkgs; };
+      };
 
       nixosModules."commonModules" =
         { self
@@ -229,7 +227,7 @@
           };
 
           nixpkgs = {
-            overlays = [ overlay-stable inputs.niri.overlays.niri inputs.audio.overlays.default ];
+            overlays = [ overlay-stable inputs.niri.overlays.niri inputs.audio.overlays.default outputs.overlays.default ];
             config.allowUnfree = true;
             config.permittedInsecurePackages = permittedInsecurePackages;
           };
