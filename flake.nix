@@ -64,7 +64,7 @@
     }@inputs:
     let
       inherit (self) outputs;
-      system = "x86_64-linux";
+      inherit (nixpkgs) lib;
 
       permittedInsecurePackages = [
         "freeimage-3.18.0-unstable-2024-04-18"
@@ -91,152 +91,32 @@
           # inputs.niri.homeModules.niri
         ];
         extraSpecialArgs = {
-          inherit inputs;
+          inherit inputs outputs;
+          system = "x86_64-linux";
           nixgl = inputs.nixgl;
           nixpkgs = inputs.nixpkgs;
         };
       };
+
       checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
         src = ./.;
         hooks = {
           nixpkgs-fmt.enable = true;
         };
       };
+
       devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
         inherit (self.checks.${system}.pre-commit-check) shellHook;
         buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
       };
-      nixosModules."commonModules" =
-        { config
-        , lib
-        , pkgs
-        , inputs
-        , system
-        , ...
-        }:
-        {
-          imports = [
-            inputs.nixos-generators.nixosModules.all-formats
-            inputs.home-manager.nixosModules.home-manager
-            inputs.niri.nixosModules.niri
-            inputs.stylix.nixosModules.stylix
-            inputs.agenix.nixosModules.default
 
-            ./modules/age.nix
-            ./modules/options
-            # ./secrets/secrets.nix
-          ];
+      overlays =
+        rec {
+          default = sfpkgs;
+          sfpkgs = final: prev: import ./overlay.nix final prev;
+        }
 
-          virtualisation.diskSize = 32 * 1024;
-
-          programs.fish.enable = true;
-          programs.kdeconnect.enable = !config.hostSpec.isServer;
-
-          services.openssh.enable = true;
-          services.tailscale.enable = true;
-          services.avahi = {
-            enable = true;
-            nssmdns4 = true;
-            publish = {
-              enable = true;
-              hinfo = true;
-              domain = true;
-            };
-          };
-          services.speechd.enable = true;
-
-          services.displayManager.gdm.enable = !config.hostSpec.isServer && !config ? jovian.steam.autoStart;
-          programs.niri.enable = !config.hostSpec.isServer;
-          programs.niri.package = pkgs.niri-unstable;
-
-          programs.appimage = {
-            enable = true;
-            binfmt = true;
-          };
-
-          users.defaultUserShell = pkgs.fish;
-          security.sudo.wheelNeedsPassword = lib.mkDefault false;
-
-          programs.nix-index.enable = true;
-          programs.command-not-found.enable = lib.mkForce false;
-
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = { inherit inputs; };
-            sharedModules = lib.mkMerge [
-              [
-                inputs.agenix.homeManagerModules.default
-                ./modules/programs/mpv-watch.nix
-              ]
-              (lib.mkIf (!config.hostSpec.isAutoStyled)
-                [ inputs.stylix.homeModules.stylix ]
-              )
-            ];
-          };
-
-          environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
-
-          environment.systemPackages = lib.mkMerge [
-            (with pkgs; [
-              duf
-              dust
-              fd
-              eza
-              curl
-              wget
-              unzip
-              fzf
-              btop
-              psmisc
-              pciutils
-              blueman
-              bluetui
-              pied
-              piper-tts
-
-              helix
-              oh-my-posh
-              zellij
-              cameractrls
-
-              wl-clipboard-rs
-
-              nvd
-              nix-output-monitor
-              nixfmt-rfc-style
-            ])
-            (with pkgs; lib.mkIf config.services.desktopManager.gnome.enable [
-              gnomeExtensions.tweaks-in-system-menu
-              gnome-tweaks
-            ])
-            # (lib.mkIf config.programs.niri.enable [ inputs.xwayland-satellite.packages.${system}.xwayland-satellite ])
-          ];
-          environment.variables = {
-            EDITOR = "hx";
-          };
-
-          nixpkgs = {
-            overlays = [ overlay-stable inputs.niri.overlays.niri inputs.audio.overlays.default ];
-            config.allowUnfree = true;
-            config.permittedInsecurePackages = permittedInsecurePackages;
-          };
-
-          nix.settings = {
-            experimental-features = [
-              "nix-command"
-              "flakes"
-            ];
-            trusted-users = [ config.hostSpec.userName ];
-            substituters = [ "https://watersucks.cachix.org" "https://ezkea.cachix.org" ];
-            trusted-public-keys = [
-              "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
-              "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
-            ];
-          };
-          # system.rebuild.enableNg = true; # enable the new NixOS rebuild system
-
-        };
+          nixosModules."commonModules" = import ./modules/common.nix;
       nixosConfigurations = {
         "snatcher" = nixpkgs.lib.nixosSystem {
           # Primary Desktop PC
@@ -377,29 +257,6 @@
             ./modules/dev.nix
           ];
         };
-      };
-      packages.x86_64-linux = {
-        link-steamscreenshots = pkgs.callPackage ./pkgs/link-steamscreenshots { };
-        mpv-watch = pkgs.callPackage ./pkgs/mpv-watch.nix {
-          pydymenu = pkgs.callPackage ./pkgs/pydymenu.nix { };
-        };
-
-        pidgin3 = pkgs.callPackage ./pkgs/pidgin/pidgin3.nix {
-          birb = self.packages.x86_64-linux.birb;
-          seagull = self.packages.x86_64-linux.seagull;
-          gplugin = self.packages.x86_64-linux.gplugin;
-        };
-
-        vacuumtube = pkgs.callPackage ./pkgs/vacuumtube.nix { };
-        hydratextclient = pkgs.callPackage ./pkgs/aphydraclient.nix { };
-
-        # Modules
-        pydymenu = pkgs.callPackage ./pkgs/pydymenu.nix { };
-
-        # Fonts
-        otf-determination = pkgs.callPackage ./pkgs/fonts/otf-determination.nix { };
-        ttf-utpapyrus = pkgs.callPackage ./pkgs/fonts/ttf-utpapsans.nix { fontVariant = "Papyrus"; };
-        ttf-utsans = pkgs.callPackage ./pkgs/fonts/ttf-utpapsans.nix { fontVariant = "Sans"; };
       };
     };
 }
