@@ -166,9 +166,13 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = { inherit inputs; };
-            sharedModules = [
-              # inputs.stylix.homeModules.stylix
+            sharedModules = lib.mkMerge [
+              [
               inputs.agenix.homeManagerModules.default
+              ]
+              (lib.mkIf (!config.hostSpec.isAutoStyled)  
+                 [ inputs.stylix.homeModules.stylix ]
+              )
             ];
           };
 

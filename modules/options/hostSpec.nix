@@ -137,7 +137,9 @@
     };
 
     stylix = {
+      autoEnable = config.hostSpec.isAutoStyled;
       enable = config.hostSpec.isAutoStyled;
+      homeManagerIntegration.autoImport = config.hostSpec.isAutoStyled;
       # base16Scheme = "${pkgs.base16-schemes}/share/themes/tarot.yaml";
       image = config.hostSpec.wallpaper;
     };

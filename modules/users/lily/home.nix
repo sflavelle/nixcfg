@@ -111,6 +111,11 @@ in
   stylix = {
     autoEnable = config.hostSpec.isAutoStyled;
     enable = config.hostSpec.isAutoStyled;
+    
+    opacity = {
+      terminal = 0.8;
+    };
+
     targets = lib.mkIf config.hostSpec.isAutoStyled {
       waybar.addCss = false;
       vencord.enable = true; # I'm using Webcord but it has vencord support so w/e
