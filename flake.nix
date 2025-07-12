@@ -167,6 +167,7 @@
             sharedModules = lib.mkMerge [
               [
                 inputs.agenix.homeManagerModules.default
+                ./modules/programs/mpv-watch.nix
               ]
               (lib.mkIf (!config.hostSpec.isAutoStyled)
                 [ inputs.stylix.homeModules.stylix ]
@@ -379,6 +380,9 @@
       };
       packages.x86_64-linux = {
         link-steamscreenshots = pkgs.callPackage ./pkgs/link-steamscreenshots { };
+        mpv-watch = pkgs.callPackage ./pkgs/mpv-watch.nix {
+          pydymenu = pkgs.callPackage ./pkgs/pydymenu.nix { };
+        };
 
         pidgin3 = pkgs.callPackage ./pkgs/pidgin/pidgin3.nix {
           birb = self.packages.x86_64-linux.birb;
@@ -388,6 +392,9 @@
 
         vacuumtube = pkgs.callPackage ./pkgs/vacuumtube.nix { };
         hydratextclient = pkgs.callPackage ./pkgs/aphydraclient.nix { };
+
+        # Modules
+        pydymenu = pkgs.callPackage ./pkgs/pydymenu.nix { };
 
         # Fonts
         otf-determination = pkgs.callPackage ./pkgs/fonts/otf-determination.nix { };

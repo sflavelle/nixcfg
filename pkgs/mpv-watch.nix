@@ -11,7 +11,7 @@
 python312Packages.buildPythonApplication rec {
   pname = "mpv-watch";
   version = "unstable-2025-01-16";
-  dots = fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "sflavelle";
     repo = "dots";
     rev = "cdde9d919f9bfb1c5e812d566212b2350dc8be79";
@@ -23,7 +23,19 @@ python312Packages.buildPythonApplication rec {
     mpv
     fzf
     rofi
+    python312Packages.pyyaml
   ];
+
+  pyproject = false;
+  build-tools = [
+
+  ];
+
+  patchPhase = ''
+    runHook prePatch
+    sed -i 's,/usr/bin/mpv,mpv,g' dot_local/bin/executable_watch
+    runHook postPatch
+  '';
 
   installPhase = ''install -Dm755 dot_local/bin/executable_watch $out/bin/mpv-watch'';
   postInstall = ''

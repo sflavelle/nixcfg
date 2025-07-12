@@ -1,29 +1,28 @@
 { lib
-, buildPythonPackage
-, fetchPypi
-, setuptools
-, wheel
-, rich
+, python312Packages
+, fetchFromGitHub
 ,
 }:
 
-buildPythonPackage rec {
+python312Packages.buildPythonPackage rec {
   pname = "pydymenu";
   version = "0.5.2";
   pyproject = true;
 
-  src = fetchPypi {
-    inherit pname version;
-    hash = "sha256-TAr8DDoKlZu2DSAk9n5Z2wIG30m562ZwIECpfroCLL4=";
+  src = fetchFromGitHub {
+    owner = "gikeymarcia";
+    repo = "pydymenu";
+    tag = "v${version}";
+    hash = "sha256-L/WGmBJMA21VgIKDiFkkN0D2Uq+u0OIGagkj1ee8R48=";
   };
 
   build-system = [
-    setuptools
-    wheel
+    python312Packages.setuptools
+    python312Packages.wheel
   ];
 
   dependencies = [
-    rich
+    python312Packages.rich
   ];
 
   pythonImportsCheck = [
