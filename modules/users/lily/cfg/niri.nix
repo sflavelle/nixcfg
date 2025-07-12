@@ -336,6 +336,7 @@ lib.mkMerge [
 
       }
       windowRules.games
+      windowRules.bitwigStudio
       {
         matches = [
           { app-id = "ArchipelagoLauncher"; }

@@ -44,4 +44,8 @@
     ];
     open-on-workspace = "Communication";
   };
-}
+  bitwigStudio = {
+    matches = [{ app-id = "com.bitwig.BitwigStudio"; }];
+    open-on-workspace = "Audio";
+  }
+    }
