@@ -34,17 +34,17 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # This Chromebook has 128GB storage now, optimise as much as we can
   nix.settings.auto-optimise-store = true;
   nix.extraOptions = ''
     download-buffer-size = ${builtins.toString (128 * 1024 * 1024)}
-    '';
+  '';
   # Especially memory (2GB)
   zramSwap = {
-      enable = true;
-      algorithm = "zstd";
+    enable = true;
+    algorithm = "zstd";
   };
   swapDevices = [
     {
@@ -56,10 +56,11 @@
   environment.systemPackages = with pkgs; [
     ungoogled-chromium
     ghostty
-    mpv yt-dlp
+    mpv
+    yt-dlp
 
     # extra CLI apps
-    epy 
+    epy
   ];
 
   system.stateVersion = "24.11";

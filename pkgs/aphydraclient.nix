@@ -1,9 +1,9 @@
-{
-  lib,
-  stdenv,
-  fetchFromGitHub,
-  buildDotnetModule,
-  dotnetCorePackages,
+{ lib
+, stdenv
+, fetchFromGitHub
+, buildDotnetModule
+, dotnetCorePackages
+,
 }:
 
 buildDotnetModule rec {
@@ -25,7 +25,7 @@ buildDotnetModule rec {
 
   executables = [ ];
 
-  
+
 
   meta = {
     homepage = "https://github.com/SWCreeperKing/HydraTextClient";

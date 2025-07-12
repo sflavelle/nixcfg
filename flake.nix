@@ -28,7 +28,7 @@
     ignis.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixgl.url   = "github:nix-community/nixGL";
+    nixgl.url = "github:nix-community/nixGL";
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,13 +55,12 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nix-stable,
-      nixos-hardware,
-      nixos-generators,
-      ...
+    { self
+    , nixpkgs
+    , nix-stable
+    , nixos-hardware
+    , nixos-generators
+    , ...
     }@inputs:
     let
       inherit (self) outputs;
@@ -90,7 +89,7 @@
         modules = [
           modules/users/lily/home.nix
           # inputs.niri.homeModules.niri
-          ];
+        ];
         extraSpecialArgs = {
           inherit inputs;
           nixgl = inputs.nixgl;
@@ -108,13 +107,12 @@
         buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
       };
       nixosModules."commonModules" =
-        {
-          config,
-          lib,
-          pkgs,
-          inputs,
-          system,
-          ...
+        { config
+        , lib
+        , pkgs
+        , inputs
+        , system
+        , ...
         }:
         {
           imports = [
@@ -168,10 +166,10 @@
             extraSpecialArgs = { inherit inputs; };
             sharedModules = lib.mkMerge [
               [
-              inputs.agenix.homeManagerModules.default
+                inputs.agenix.homeManagerModules.default
               ]
-              (lib.mkIf (!config.hostSpec.isAutoStyled)  
-                 [ inputs.stylix.homeModules.stylix ]
+              (lib.mkIf (!config.hostSpec.isAutoStyled)
+                [ inputs.stylix.homeModules.stylix ]
               )
             ];
           };
@@ -180,25 +178,36 @@
 
           environment.systemPackages = lib.mkMerge [
             (with pkgs; [
-                duf dust fd eza
-                curl wget unzip
-                fzf 
-                btop psmisc pciutils
-                blueman bluetui
-                pied piper-tts
+              duf
+              dust
+              fd
+              eza
+              curl
+              wget
+              unzip
+              fzf
+              btop
+              psmisc
+              pciutils
+              blueman
+              bluetui
+              pied
+              piper-tts
 
-                helix
-                oh-my-posh
-                zellij
-                cameractrls
+              helix
+              oh-my-posh
+              zellij
+              cameractrls
 
-                wl-clipboard-rs
+              wl-clipboard-rs
 
-                nvd nix-output-monitor nixfmt-rfc-style
+              nvd
+              nix-output-monitor
+              nixfmt-rfc-style
             ])
             (with pkgs; lib.mkIf config.services.desktopManager.gnome.enable [
-                gnomeExtensions.tweaks-in-system-menu
-                gnome-tweaks
+              gnomeExtensions.tweaks-in-system-menu
+              gnome-tweaks
             ])
             # (lib.mkIf config.programs.niri.enable [ inputs.xwayland-satellite.packages.${system}.xwayland-satellite ])
           ];
@@ -257,6 +266,8 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             self.nixosModules.commonModules
+            inputs.jovian.nixosModules.default
+
             ./hosts/minion.nix
             ./modules/wifi-home.nix
             ./modules/users/lily
@@ -281,7 +292,7 @@
             ./modules/wifi-home.nix
             ./modules/users/lily
 
-#             ./modules/desktop-games.nix
+            #             ./modules/desktop-games.nix
             ./modules/desktop-software.nix
 
             ./modules/desktop-prod-audio.nix
@@ -292,8 +303,8 @@
 
             {
               nix.settings = {
-                extra-substituters = ["https://cache.soopy.moe"];
-                extra-trusted-public-keys = ["cache.soopy.moe-1:0RZVsQeR+GOh0VQI9rvnHz55nVXkFardDqfm4+afjPo="];
+                extra-substituters = [ "https://cache.soopy.moe" ];
+                extra-trusted-public-keys = [ "cache.soopy.moe-1:0RZVsQeR+GOh0VQI9rvnHz55nVXkFardDqfm4+afjPo=" ];
               };
             }
           ];
@@ -367,19 +378,19 @@
         };
       };
       packages.x86_64-linux = {
-        link-steamscreenshots = pkgs.callPackage ./pkgs/link-steamscreenshots {};
+        link-steamscreenshots = pkgs.callPackage ./pkgs/link-steamscreenshots { };
 
         pidgin3 = pkgs.callPackage ./pkgs/pidgin/pidgin3.nix {
-          birb = self.packages.x86_64-linux.birb; 
+          birb = self.packages.x86_64-linux.birb;
           seagull = self.packages.x86_64-linux.seagull;
           gplugin = self.packages.x86_64-linux.gplugin;
-          };
+        };
 
         vacuumtube = pkgs.callPackage ./pkgs/vacuumtube.nix { };
         hydratextclient = pkgs.callPackage ./pkgs/aphydraclient.nix { };
 
         # Fonts
-        otf-determination = pkgs.callPackage ./pkgs/fonts/otf-determination.nix {};
+        otf-determination = pkgs.callPackage ./pkgs/fonts/otf-determination.nix { };
         ttf-utpapyrus = pkgs.callPackage ./pkgs/fonts/ttf-utpapsans.nix { fontVariant = "Papyrus"; };
         ttf-utsans = pkgs.callPackage ./pkgs/fonts/ttf-utpapsans.nix { fontVariant = "Sans"; };
       };

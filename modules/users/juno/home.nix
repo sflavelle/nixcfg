@@ -5,7 +5,7 @@
     homeDirectory = "/home/juno";
     shell.enableShellIntegration = true;
     stateVersion = "25.05";
-    
+
   };
 
   xdg.enable = true;
@@ -23,6 +23,6 @@
   };
   programs.zoxide = {
     enable = true;
-    options = ["--cmd cd"];
+    options = [ "--cmd cd" ];
   };
 }

@@ -1,9 +1,8 @@
-{
-  lib,
-  stdenvNoCC,
-  fetchurl,
-  unzip,
-  # python3
+{ lib
+, stdenvNoCC
+, fetchurl
+, unzip
+, # python3
 }:
 
 stdenvNoCC.mkDerivation (finalAttrs: {

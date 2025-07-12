@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }:
 let
   mediaDrive = "/mnt/media";
@@ -21,7 +20,8 @@ in
     downloadDirPermissions = "777";
   };
 
-  services.jackett = { # Indexer manager/proxy
+  services.jackett = {
+    # Indexer manager/proxy
     enable = true;
     openFirewall = true;
     port = 8787;

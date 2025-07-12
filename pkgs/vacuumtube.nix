@@ -1,9 +1,9 @@
-{
-  lib,
-  appimageTools,
-  fetchurl,
-  copyDesktopItems,
-  makeDesktopItem,
+{ lib
+, appimageTools
+, fetchurl
+, copyDesktopItems
+, makeDesktopItem
+,
 }:
 
 let
@@ -22,18 +22,18 @@ appimageTools.wrapType2 rec {
   nativeBuildInputs = [ copyDesktopItems ];
 
   desktopItem = makeDesktopItem {
-      name = pname;
-      exec = pname;
-      icon = pname;
-      desktopName = "VacuumTube";
-      categories = [ "AudioVideo" "Player" "Video" ];
-      comment = "YouTube Leanback wrapper for the desktop";
-    };
+    name = pname;
+    exec = pname;
+    icon = pname;
+    desktopName = "VacuumTube";
+    categories = [ "AudioVideo" "Player" "Video" ];
+    comment = "YouTube Leanback wrapper for the desktop";
+  };
 
   extraInstallCommands = ''
     mkdir -p $out/share/applications
     cp -r ${desktopItem}/share/applications/* $out/share/applications/
-    '';
+  '';
 
   meta = {
     description = "YouTube Leanback wrapper for the desktop";

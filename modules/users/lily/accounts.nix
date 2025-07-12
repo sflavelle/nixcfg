@@ -7,8 +7,8 @@ let
   };
 in
 {
-  calendar = {};
-  contact = {};
+  calendar = { };
+  contact = { };
   email.accounts = {
     "personal" = {
       address = "me@neurario.com";

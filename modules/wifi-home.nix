@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
+{ config
+, pkgs
+, lib
+, inputs
+, ...
 }:
 {
   networking.networkmanager.unmanaged = lib.mkIf (config.hostSpec.wirelessInterface != null) [ config.hostSpec.wirelessInterface ];

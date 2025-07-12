@@ -12,7 +12,8 @@
       "networkmanager"
     ];
     packages = with pkgs; lib.mkMerge [
-      ([ # All systems
+      ([
+        # All systems
 
       ])
       (lib.mkIf config.hostSpec.hasPhysicalKeyboard [
@@ -21,6 +22,6 @@
     ];
   };
 
-#  home-manager.users.juno = ./home.nix;
+  #  home-manager.users.juno = ./home.nix;
 
 }

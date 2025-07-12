@@ -1,15 +1,15 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }:
 {
   environment.systemPackages = with pkgs; [
     ungoogled-chromium
     snapcast
     # (callPackage ../pkgs/mpv-watch.nix)
-    tauon rmpc
+    tauon
+    rmpc
 
     streamlink
     twitch-tui

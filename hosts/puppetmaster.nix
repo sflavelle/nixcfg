@@ -6,7 +6,8 @@
     isServer = true;
   };
 
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ../hardware/puppetmaster.nix
   ];
 
@@ -25,14 +26,14 @@
   nix = { daemonCPUSchedPolicy = "batch"; };
 
   fileSystems."/mnt/media" = {
-      device = "/dev/disk/by-uuid/fb34e684-d992-4ce2-95c6-f70d8f613997";
-      fsType = "btrfs";
-      options = [ "nofail" ];
+    device = "/dev/disk/by-uuid/fb34e684-d992-4ce2-95c6-f70d8f613997";
+    fsType = "btrfs";
+    options = [ "nofail" ];
   };
   fileSystems."/home" = {
-      device = "/dev/disk/by-uuid/e368cad6-5bae-4448-874b-ebf90a1d713f";
-      fsType = "btrfs";
-      options = [ "nofail" ];
+    device = "/dev/disk/by-uuid/e368cad6-5bae-4448-874b-ebf90a1d713f";
+    fsType = "btrfs";
+    options = [ "nofail" ];
   };
 
   # Enable networking
@@ -121,13 +122,13 @@
   # Smart Home
 
   virtualisation.oci-containers.containers.homeassistant = {
-      volumes = [ "/srv/home-assistant:/config" ];
-      environment.TZ = "Australia/Melbourne";
-      image = "ghcr.io/home-assistant/home-assistant:2025.6.1";
-      extraOptions = [
-          "--network=host"
-          "--device=/dev/ttyACM0"
-      ];
+    volumes = [ "/srv/home-assistant:/config" ];
+    environment.TZ = "Australia/Melbourne";
+    image = "ghcr.io/home-assistant/home-assistant:2025.6.1";
+    extraOptions = [
+      "--network=host"
+      "--device=/dev/ttyACM0"
+    ];
   };
 
   # Containers
@@ -159,10 +160,10 @@
   virtualisation.oci-containers.containers = {
     esphome = {
       image = "ghcr.io/esphome/esphome:2025.6.2";
-      volumes = [ 
+      volumes = [
         "/srv/esphome:/config"
         "/etc/localtime:/etc/localtime:ro"
-        ];
+      ];
       extraOptions = [
         "--network=host"
         "--device=/dev/ttyUSB0"

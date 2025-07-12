@@ -1,14 +1,15 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }:
 
 {
   environment.systemPackages = with pkgs; [
-    gh git
-    nixd nil
+    gh
+    git
+    nixd
+    nil
     helix
     pgadmin4-desktopmode
 
@@ -18,7 +19,8 @@
     systemd-language-server
     marksman
 
-    jq yq
+    jq
+    yq
   ];
 
   environment.variables = {

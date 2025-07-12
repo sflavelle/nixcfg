@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
+{ config
+, pkgs
+, lib
+, inputs
+, ...
 }:
 
 {
@@ -27,13 +26,14 @@
       width = 2560;
       height = 1600;
       refreshRate = 60;
-      transform = 90; 
+      transform = 90;
       scale = 2; # Adjust scale for high DPI displays
     }
   ];
 
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ../hardware/empress.nix
     ];
 
@@ -44,7 +44,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 0;
 
-  
+
   # Enable the KDE Plasma Desktop Environment.
   services.desktopManager.plasma6.enable = true;
 
@@ -99,7 +99,7 @@
 
   programs.opengamepadui = {
     enable = true;
-    
+
   };
 
   # Allow unfree packages
@@ -108,9 +108,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    maliit-keyboard maliit-framework
+    maliit-keyboard
+    maliit-framework
     kdePackages.qtvirtualkeyboard
-    wvkbd squeekboard
+    wvkbd
+    squeekboard
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

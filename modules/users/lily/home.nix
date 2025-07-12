@@ -6,11 +6,12 @@ let
 
   primaryMonitor = lib.head (lib.filter (m: m.primary) config.monitors);
 
-  nixGLConfig = if nixgl != null && !isNixOS then {
-    packages = import nixgl { inherit pkgs; };
-    defaultWrapper = "mesa"; # or the driver you need
-    installScripts = [ "mesa" ];
-  } else {};
+  nixGLConfig =
+    if nixgl != null && !isNixOS then {
+      packages = import nixgl { inherit pkgs; };
+      defaultWrapper = "mesa"; # or the driver you need
+      installScripts = [ "mesa" ];
+    } else { };
 
   # defaultConfig = {
   #   hostSpec = {
@@ -36,14 +37,17 @@ in
     shell.enableShellIntegration = true;
     stateVersion = "25.05";
     packages = with pkgs; lib.mkMerge [
-      [ # All systems
-        mpc epy
+      [
+        # All systems
+        mpc
+        epy
         pipe-viewer
         mosh
         yt-dlp
         uair
         musikcube
-        cliphist wl-clipboard-rs
+        cliphist
+        wl-clipboard-rs
         brightnessctl
         termdown
 
@@ -51,10 +55,10 @@ in
 
         gnumake
 
-        (python3.withPackages (ps: with ps; 
+        (python3.withPackages (ps: with ps;
         [
           pelican
-        ] 
+        ]
         ++ pelican.optional-dependencies.markdown))
       ]
       (lib.mkIf (!config.hostSpec.isServer) [
@@ -62,8 +66,13 @@ in
         jellyfin-media-player
         flakePackages.vacuumtube
         obsidian
-        webcord-vencord caprine overlayed
-        zathura bemenu file-roller feh
+        webcord-vencord
+        caprine
+        overlayed
+        zathura
+        bemenu
+        file-roller
+        feh
         libreoffice-qt6-fresh
 
         nautilus
@@ -75,11 +84,26 @@ in
         toot
 
         # Fonts
-        flakePackages.otf-determination flakePackages.ttf-utpapyrus flakePackages.ttf-utsans
+        flakePackages.otf-determination
+        flakePackages.ttf-utpapyrus
+        flakePackages.ttf-utsans
 
-        glasstty-ttf ultimate-oldschool-pc-font-pack nerd-fonts.ubuntu-sans ubuntu-sans-mono
-        minecraftia monocraft pixel-code nerd-fonts.monaspace mona-sans hubot-sans aileron
-        dinish comic-relief tt2020 nerd-fonts.jetbrains-mono nerd-fonts.im-writing
+        glasstty-ttf
+        ultimate-oldschool-pc-font-pack
+        nerd-fonts.ubuntu-sans
+        ubuntu-sans-mono
+        minecraftia
+        monocraft
+        pixel-code
+        nerd-fonts.monaspace
+        mona-sans
+        hubot-sans
+        aileron
+        dinish
+        comic-relief
+        tt2020
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.im-writing
         nerd-fonts.symbols-only
       ])
     ];
@@ -95,8 +119,8 @@ in
     enable = true;
     xdgOpenUsePortal = true;
     config.common = {
-      default = ["gnome" "gtk"];
-      "org.freedesktop.portal.ScreenCast" = ["gnome"];
+      default = [ "gnome" "gtk" ];
+      "org.freedesktop.portal.ScreenCast" = [ "gnome" ];
       "org.freedesktop.portal.FileChooser" = [ "gnome" ];
       "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
     };
@@ -111,7 +135,7 @@ in
   stylix = {
     autoEnable = config.hostSpec.isAutoStyled;
     enable = config.hostSpec.isAutoStyled;
-    
+
     opacity = {
       terminal = 0.8;
     };
@@ -119,7 +143,7 @@ in
     targets = lib.mkIf config.hostSpec.isAutoStyled {
       waybar.addCss = false;
       vencord.enable = true; # I'm using Webcord but it has vencord support so w/e
-      vscode.enable = true; 
+      vscode.enable = true;
     };
   };
 
@@ -214,16 +238,20 @@ in
     enable = true;
     package = if nixGLConfig != null && effectiveConfig.lib ? nixGL then effectiveConfig.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
     scripts = with pkgs.mpvScripts; [
-      sponsorblock acompressor mpris
+      sponsorblock
+      acompressor
+      mpris
     ];
-    defaultProfiles = if config.hostSpec.isMinimal then
-      [ "fast" ]
+    defaultProfiles =
+      if config.hostSpec.isMinimal then
+        [ "fast" ]
       else [ "gpu-hq" ];
     config = {
       fs = true;
-      osd-playing-msg="Now Playing: \${media-title}";
-      ytdl-format = if config.hostSpec.isMinimal then
-        "bestvideo[height<=?480][fps<=?30]+bestaudio/best"
+      osd-playing-msg = "Now Playing: \${media-title}";
+      ytdl-format =
+        if config.hostSpec.isMinimal then
+          "bestvideo[height<=?480][fps<=?30]+bestaudio/best"
         else "bestvideo[height<=?1440][fps<=?30]+bestaudio/best";
       ytdl-raw-options = [
         (lib.mkIf config.programs.firefox.enable "cookies-from-browser=firefox")
@@ -242,9 +270,7 @@ in
   };
   programs.rclone = {
     enable = true;
-    remotes = {
-
-    };
+    remotes = { };
   };
   programs.thunderbird = {
     enable = !config.hostSpec.isServer;
@@ -272,7 +298,7 @@ in
 
   programs.zoxide = {
     enable = true;
-    options = ["--cmd cd"];
+    options = [ "--cmd cd" ];
   };
 
   # Services
@@ -291,7 +317,7 @@ in
         format "48000:16:2"
         mixer_type "software"
       }
-        '';
+    '';
   };
   services.syncthing = {
     enable = true;
@@ -317,14 +343,14 @@ in
   services.fnott = {
     enable = !config.hostSpec.isServer;
     settings = {
-      main.output = lib.mkIf (config.monitors != []) primaryMonitor.name;
-    }; 
+      main.output = lib.mkIf (config.monitors != [ ]) primaryMonitor.name;
+    };
   };
 
   services.swayidle = {
     enable = !config.hostSpec.isServer;
     timeouts = [
-      
+
     ];
   };
 

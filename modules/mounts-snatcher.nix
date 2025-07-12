@@ -14,7 +14,12 @@
   fileSystems."/mnt/media" = {
     fsType = "cifs";
     device = "//10.0.0.69/media";
-    options = [ "credentials=/home/${config.hostSpec.userName}/.smb-nas"
-    "_netdev" "x-systemd.automount" "uid=1000" "gid=100" ];
+    options = [
+      "credentials=/home/${config.hostSpec.userName}/.smb-nas"
+      "_netdev"
+      "x-systemd.automount"
+      "uid=1000"
+      "gid=100"
+    ];
   };
 }

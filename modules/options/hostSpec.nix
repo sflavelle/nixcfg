@@ -1,5 +1,8 @@
-{
-  config, pkgs, lib, inputs, ...
+{ config
+, pkgs
+, lib
+, inputs
+, ...
 }:
 # This module adapted from
 # https://unmovedcentre.com/posts/managing-nix-config-host-variables/

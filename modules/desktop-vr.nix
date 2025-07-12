@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }:
 
 {
@@ -11,7 +10,9 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    wivrn xrizer wlx-overlay-s
+    wivrn
+    xrizer
+    wlx-overlay-s
     # proton-ge-rtsp-bin
   ];
 }

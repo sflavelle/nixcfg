@@ -1,6 +1,20 @@
-{ lib, fetchurl, stdenv, makeWrapper, meson, ninja, cmake,
-gi-docgen, pkg-config, glib, gobject-introspection, help2man,
-gtk4, lua53Packages, python312, python312Packages }:
+{ lib
+, fetchurl
+, stdenv
+, makeWrapper
+, meson
+, ninja
+, cmake
+, gi-docgen
+, pkg-config
+, glib
+, gobject-introspection
+, help2man
+, gtk4
+, lua53Packages
+, python312
+, python312Packages
+}:
 stdenv.mkDerivation rec {
   pname = "gplugin";
   version = "0.44.2";
@@ -12,7 +26,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ meson ninja cmake python312 ];
 
-  buildInputs = [ 
+  buildInputs = [
     gi-docgen
     glib
     gobject-introspection

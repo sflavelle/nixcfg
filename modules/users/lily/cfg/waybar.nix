@@ -7,14 +7,14 @@ let
     position = "top";
     height = 24;
 
-    "backlight" = lib.mkIf (config.hostSpec.backlights.monitors != []) {
+    "backlight" = lib.mkIf (config.hostSpec.backlights.monitors != [ ]) {
       device = builtins.baseNameOf (builtins.head config.hostSpec.backlights.monitors);
       format = "{percent}%";
     };
 
     "battery" = {
       format = "{icon} {capacity}";
-      format-icons = ["" "" "" "" ""];
+      format-icons = [ "" "" "" "" "" ];
       tooltip-format = ''
         {capacity}
         
@@ -82,7 +82,7 @@ lib.mkMerge [
         "network"
         "wireplumber"
         (lib.mkIf config.hostSpec.hasBattery "battery")
-        (lib.mkIf (config.hostSpec.backlights.monitors != []) "backlight")
+        (lib.mkIf (config.hostSpec.backlights.monitors != [ ]) "backlight")
         "clock"
         "custom/power"
       ];

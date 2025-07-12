@@ -14,7 +14,7 @@
     backlights.monitors = [ "/sys/class/backlight/intel_backlight" ];
     backlights.keyboard = "/sys/class/leds/:white:kbd_backlight";
   };
-  
+
   monitors = [
     {
       name = "eDP-1";
@@ -33,13 +33,14 @@
   ];
 
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ../hardware/badgeseller.nix
     ];
 
   boot.kernelParams = [
-      "acpi_backlight=native"
-      "mem_sleep_default=s2idle"
+    "acpi_backlight=native"
+    "mem_sleep_default=s2idle"
   ];
 
   boot.loader.systemd-boot = {
@@ -50,7 +51,7 @@
 
   networking.networkmanager.wifi.macAddress = "permanent";
   networking.networkmanager.wifi.scanRandMacAddress = false;
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   hardware.bluetooth.enable = true;
   hardware.facetimehd.enable = true;
@@ -58,7 +59,7 @@
   hardware.apple-t2 = {
     enableIGPU = true;
     firmware.enable = true;
-    
+
   };
 
   services.mbpfan.enable = true;

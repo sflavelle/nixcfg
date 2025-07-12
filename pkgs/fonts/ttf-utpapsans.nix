@@ -1,8 +1,7 @@
-{
-  lib,
-  stdenvNoCC,
-  fetchFromGitLab,
-  # python3,
+{ lib
+, stdenvNoCC
+, fetchFromGitLab
+, # python3,
   fontVariant
 }:
 

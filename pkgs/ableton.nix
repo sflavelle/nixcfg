@@ -7,7 +7,8 @@
 , makeDesktopIcon   # This comes with erosanix. It's a handy way to generate desktop icons.
 , copyDesktopItems
 , copyDesktopIcons  # This comes with erosanix. It's a handy way to generate desktop icons.
-, unzip }:
+, unzip
+}:
 
 mkWindowsAppNoCC rec {
   inherit wine;
@@ -55,8 +56,7 @@ mkWindowsAppNoCC rec {
   # But note that you must ommit $WINEPREFIX from the path.
   # To figure out what needs to be persisted, take at look at $(dirname $WINEPREFIX)/upper,
   # while the app is running.
-  fileMap = {
-  };
+  fileMap = { };
 
   # By default, `fileMap` is applied right before running the app and is cleaned up after the app terminates. If the following option is set to "true", then `fileMap` is also applied prior to `winAppInstall`. This is set to "false" by default.
   fileMapDuringAppInstall = false;
@@ -102,9 +102,7 @@ mkWindowsAppNoCC rec {
   # When a symlink is disabled, it's replaced with a directory. That way anything written to it remains in a mkWindowsApp layer.
   # Acceptable attributes, all of which default to the boolean value 'true', are:
   # desktop, documents, downloads, music, pictures, and videos.
-  enabledWineSymlinks = {
-
-  };
+  enabledWineSymlinks = { };
 
   # Starting with version 10, Wine uses Wayland if it's available. But, usually Wayland compositors enable xwayland,
   # which causes Wine to default to X11.
@@ -170,20 +168,22 @@ mkWindowsAppNoCC rec {
     runHook postInstall
   '';
 
-  desktopItems = let
-    # mimeTypes = [ ];
-  in [
-    (makeDesktopItem {
-      # inherit mimeTypes;
+  desktopItems =
+    let
+      # mimeTypes = [ ];
+    in
+    [
+      (makeDesktopItem {
+        # inherit mimeTypes;
 
-      name = pname;
-      exec = pname;
-      icon = pname;
-      desktopName = "Ableton Live";
-      genericName = "Digital Audio Workstation";
-      categories = ["AudioVideo" "Audio" "Sequencer" "AudioVideoEditing" ];
-    })
-  ];
+        name = pname;
+        exec = pname;
+        icon = pname;
+        desktopName = "Ableton Live";
+        genericName = "Digital Audio Workstation";
+        categories = [ "AudioVideo" "Audio" "Sequencer" "AudioVideoEditing" ];
+      })
+    ];
 
   desktopIcon = makeDesktopIcon {
     name = "abletonlive";

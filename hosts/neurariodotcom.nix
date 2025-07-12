@@ -11,7 +11,8 @@
     isServer = true;
   };
 
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ../hardware/neurariodotcom.nix
   ];
 

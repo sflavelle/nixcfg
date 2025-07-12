@@ -1,5 +1,15 @@
-{ lib, fetchurl, stdenv, makeWrapper, meson, ninja, cmake,
-gi-docgen, pkg-config, glib, gobject-introspection }:
+{ lib
+, fetchurl
+, stdenv
+, makeWrapper
+, meson
+, ninja
+, cmake
+, gi-docgen
+, pkg-config
+, glib
+, gobject-introspection
+}:
 stdenv.mkDerivation rec {
   pname = "birb";
   version = "0.4.0";
@@ -11,7 +21,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ meson ninja cmake ];
 
-  buildInputs = [ 
+  buildInputs = [
     gi-docgen
     glib
     gobject-introspection

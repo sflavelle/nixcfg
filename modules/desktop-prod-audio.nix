@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }:
 {
   environment.systemPackages = with pkgs; [
@@ -13,7 +12,8 @@
     yabridge
     airwindows
     oxefmsynth
-    zam-plugins lsp-plugins
+    zam-plugins
+    lsp-plugins
     # chow-tape-model # webkitgtk nonsense
   ];
 }

@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }:
 
 {
@@ -11,14 +10,23 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    gamemode mangohud ludusavi
-    archipelago stable.poptracker steam-devices-udev-rules
-    cemu ryubing
-    itch heroic
+    gamemode
+    mangohud
+    ludusavi
+    archipelago
+    stable.poptracker
+    steam-devices-udev-rules
+    cemu
+    ryubing
+    itch
+    heroic
     shipwright
     lutris
-    xmoto space-cadet-pinball
-    tetrio-desktop ringracers osu-lazer-bin
+    xmoto
+    space-cadet-pinball
+    tetrio-desktop
+    ringracers
+    osu-lazer-bin
     celeste64
     sgt-puzzles
     shattered-pixel-dungeon

@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ../hardware/minion.nix
     ];
 
@@ -54,23 +55,30 @@
     #jack.enable = true;
   };
 
-  specialisation = { 
-    nvidia.configuration = { 
+  specialisation = {
+    nvidia.configuration = {
       # Nvidia Configuration 
-      services.xserver.videoDrivers = [ "nvidia" ]; 
-      hardware.graphics.enable = true; 
+      services.xserver.videoDrivers = [ "nvidia" ];
+      hardware.graphics.enable = true;
       hardware.nvidia.open = true;
-    
+
       # nvidia-drm.modeset=1 is required for some wayland compositors, e.g. sway 
-      hardware.nvidia.modesetting.enable = true; 
-    
-      hardware.nvidia.prime = { 
-        sync.enable = true; 
-    
-        nvidiaBusId = "PCI:1:0:0"; 
-        amdgpuBusId = "PCI:5:0:0"; 
+      hardware.nvidia.modesetting.enable = true;
+
+      hardware.nvidia.prime = {
+        sync.enable = true;
+
+        nvidiaBusId = "PCI:1:0:0";
+        amdgpuBusId = "PCI:5:0:0";
       };
     };
+  };
+
+  jovian = {
+    steam.enable = true;
+    steam.autoStart = true;
+    steam.desktopSession = "niri";
+    steam.user = config.hostSpec.userName;
   };
 
   system.stateVersion = "24.11"; # Did you read the comment?

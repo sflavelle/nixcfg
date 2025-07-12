@@ -1,12 +1,12 @@
-{
-  lib,
-  stdenv,
-  fetchFromGitHub,
-  python312Packages,
-  mpv,
-  fzf,
-  rofi,
-  pydymenu,
+{ lib
+, stdenv
+, fetchFromGitHub
+, python312Packages
+, mpv
+, fzf
+, rofi
+, pydymenu
+,
 }:
 python312Packages.buildPythonApplication rec {
   pname = "mpv-watch";
@@ -21,14 +21,15 @@ python312Packages.buildPythonApplication rec {
   dependencies = [
     pydymenu
     mpv
-    fzf rofi
+    fzf
+    rofi
   ];
 
   installPhase = ''install -Dm755 dot_local/bin/executable_watch $out/bin/mpv-watch'';
   postInstall = ''
     wrapProgram $out/bin/mpv-watch \
       --set PATH ${lib.makeBinPath [mpv fzf rofi]}
-      '';
+  '';
 
   meta = {
     description = "Helper script to easily launch a playlist in MPV";

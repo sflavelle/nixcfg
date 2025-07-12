@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  inputs,
-  lib,
-  ...
+{ config
+, pkgs
+, inputs
+, lib
+, ...
 }:
 
 {
@@ -35,7 +34,7 @@
         sampleFormat = "48000:16:2";
         codec = "pcm";
       };
-     "Soundscapes" = {
+      "Soundscapes" = {
         type = "pipe";
         location = "/run/snapserver/soundscapes";
         sampleFormat = "48000:16:2";

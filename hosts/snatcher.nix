@@ -73,14 +73,14 @@
   #             "--thread-count" "8"
   #             "--loadavg-target" "5.0"
   #         ];
-	# 	  };
+  # 	  };
   # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ hplip ];
 
-	programs.adb.enable = true;
+  programs.adb.enable = true;
 
   users.users."${config.hostSpec.userName}" = {
     extraGroups = [ "audio" "adbusers" ];
@@ -94,12 +94,12 @@
       bottles
       vial
 
-      (calibre.overrideAttrs ({ propagatedBuildInputs ? [ ], ...}: {
+      (calibre.overrideAttrs ({ propagatedBuildInputs ? [ ], ... }: {
         propagatedBuildInputs = propagatedBuildInputs ++ [ pkgs.python3Packages.brotli ];
       }))
 
       # Game Utils
-      godot 
+      godot
       # slade
 
       # Media Production
@@ -118,7 +118,9 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        rocmPackages.clr.icd amdvlk driversi686Linux.amdvlk
+        rocmPackages.clr.icd
+        amdvlk
+        driversi686Linux.amdvlk
       ];
     };
     amdgpu.amdvlk = {
@@ -127,16 +129,16 @@
     };
   };
 
-	systemd.tmpfiles.rules = [
+  systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
 
   programs.gamescope = {
-      enable = true;
-      args = [ "--fullscreen" ];
+    enable = true;
+    args = [ "--fullscreen" ];
   };
 
-    programs.opengamepadui = {
+  programs.opengamepadui = {
     enable = true;
     gamescopeSession.enable = true;
     inputplumber.enable = true;
@@ -147,10 +149,17 @@
     enable = true;
     enableVirtualCamera = true;
     plugins = with pkgs.obs-studio-plugins; [
-      wlrobs obs-ndi obs-vkcapture obs-teleport input-overlay
-      obs-text-pthread obs-source-clone
-      obs-shaderfilter obs-source-record
-      obs-composite-blur obs-pipewire-audio-capture
+      wlrobs
+      obs-ndi
+      obs-vkcapture
+      obs-teleport
+      input-overlay
+      obs-text-pthread
+      obs-source-clone
+      obs-shaderfilter
+      obs-source-record
+      obs-composite-blur
+      obs-pipewire-audio-capture
     ];
   };
 
@@ -176,7 +185,9 @@
     gpu-screen-recorder
     gpu-screen-recorder-gtk
 
-    winetricks q4wine protontricks
+    winetricks
+    q4wine
+    protontricks
 
     # soundfonts
     soundfont-arachno
