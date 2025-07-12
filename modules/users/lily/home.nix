@@ -324,43 +324,43 @@ in
     guiAddress = "0.0.0.0:8385";
   };
 
-  services.swww = {
-    enable = !config.hostSpec.isServer;
-  };
+  services.swww = lib.mkIf !config.hostSpec.isServer {
+  enable = !config.hostSpec.isServer;
+};
 
-  programs.waybar = {
-    enable = !config.hostSpec.isServer;
-    systemd.enable = true;
-    systemd.target = "graphical-session.target";
-    settings = import ./cfg/waybar.nix {
-      inherit config lib pkgs inputs mainUser isNixOS;
-    };
-    style = import ./cfg/waybar-css.nix {
-      inherit config lib inputs mainUser isNixOS;
-    };
-  };
+programs.waybar = lib.mkIf !config.hostSpec.isServer {
+enable = !config.hostSpec.isServer;
+systemd.enable = true;
+systemd.target = "graphical-session.target";
+settings = import ./cfg/waybar.nix {
+inherit config lib pkgs inputs mainUser isNixOS;
+};
+style = import ./cfg/waybar-css.nix {
+inherit config lib inputs mainUser isNixOS;
+};
+};
 
-  services.fnott = {
-    enable = !config.hostSpec.isServer;
-    settings = {
-      main.output = lib.mkIf (config.monitors != [ ]) primaryMonitor.name;
-    };
-  };
+services.fnott = lib.mkIf !config.hostSpec.isServer {
+enable = !config.hostSpec.isServer;
+settings = {
+main.output = lib.mkIf (config.monitors != [ ]) primaryMonitor.name;
+};
+};
 
-  services.swayidle = {
-    enable = !config.hostSpec.isServer;
-    timeouts = [
+services.swayidle = lib.mkIf !config.hostSpec.isServer {
+enable = !config.hostSpec.isServer;
+timeouts = [
 
-    ];
-  };
+];
+};
 
-  # Environments
-  programs.niri = {
-    # enable = isNixOS && !effectiveConfig.hostSpec.isServer;
-    # package = pkgs.niri-unstable;
-    settings = import ./cfg/niri.nix {
-      inherit lib pkgs isNixOS mainUser inputs;
-      config = effectiveConfig;
-    };
-  };
+# Environments
+programs.niri = lib.mkIf !config.hostSpec.isServer {
+# enable = isNixOS && !effectiveConfig.hostSpec.isServer;
+# package = pkgs.niri-unstable;
+settings = import ./cfg/niri.nix {
+inherit lib pkgs isNixOS mainUser inputs;
+config = effectiveConfig;
+};
+};
 }
