@@ -19,6 +19,11 @@
             type = "wifi";
             id = "Firelink Shrine";
           };
+          ipv4.method = "auto";
+          ipv6 = {
+            addr-gen-mode = "stable-privacy";
+            method = "auto";
+          };
           wifi = {
             mode = "infrastructure";
             ssid = "Firelink Shrine";
