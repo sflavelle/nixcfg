@@ -5,6 +5,10 @@
 }:
 {
   age.secrets = {
-    FirelinkShrine.file = ../secrets/FirelinkShrine.age;
+    FirelinkShrine = {
+      file = ../secrets/FirelinkShrine.age;
+      owner = "root";
+      group = "root";
+    };
   };
 }
