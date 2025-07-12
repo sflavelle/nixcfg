@@ -50,6 +50,8 @@
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     aagl.inputs.nixpkgs.follows = "nixpkgs";
 
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+
   };
 
   outputs =
@@ -94,6 +96,16 @@
           nixgl = inputs.nixgl;
           nixpkgs = inputs.nixpkgs;
         };
+      };
+      checks.${system}.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = {
+          nixpkgs-fmt.enable = true;
+        };
+      };
+      devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
+        inherit (self.checks.${system}.pre-commit-check) shellHook;
+        buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
       };
       nixosModules."commonModules" =
         {
@@ -178,7 +190,7 @@
 
                 wl-clipboard-rs
 
-                nvd nix-output-monitor
+                nvd nix-output-monitor nixfmt-rfc-style
             ])
             (with pkgs; lib.mkIf config.services.desktopManager.gnome.enable [
                 gnomeExtensions.tweaks-in-system-menu
