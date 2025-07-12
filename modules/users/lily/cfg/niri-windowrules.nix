@@ -47,5 +47,5 @@
   bitwigStudio = {
     matches = [{ app-id = "com.bitwig.BitwigStudio"; }];
     open-on-workspace = "Audio";
-  }
-    }
+  };
+}
