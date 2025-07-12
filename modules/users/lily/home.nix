@@ -260,6 +260,12 @@ in
       ];
     };
   };
+
+  programs.mpv-watch = {
+    enable = true;
+    settings = import ./cfg/watch.nix;
+  };
+
   programs.rbw = {
     enable = true;
     settings = {

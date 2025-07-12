@@ -46,6 +46,7 @@ python312Packages.buildPythonApplication rec {
   meta = {
     description = "Helper script to easily launch a playlist in MPV";
     homepage = "https://github.com/sflavelle/dots/blob/master/dot_local/bin/executable_watch";
+    platforms = [ "x86_64-linux" ];
     license = lib.licenses.unfree; # Not set
     maintainers = with lib.maintainers; [ ];
   };

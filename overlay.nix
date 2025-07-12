@@ -7,11 +7,9 @@ let
     ;
 in
 rec {
-  scripts = {
-    link-steamscreenshots = final.callPackage ./pkgs/link-steamscreenshots { };
-    mpv-watch = final.callPackage ./pkgs/mpv-watch.nix {
-      pydymenu = final.callPackage ./pkgs/pydymenu.nix { };
-    };
+  link-steamscreenshots = final.callPackage ./pkgs/link-steamscreenshots { };
+  mpv-watch = final.callPackage ./pkgs/mpv-watch.nix {
+    pydymenu = final.callPackage ./pkgs/pydymenu.nix { };
   };
 
   pidgin3 = final.callPackage ./pkgs/pidgin/pidgin3.nix {
@@ -24,10 +22,8 @@ rec {
   hydratextclient = final.callPackage ./pkgs/aphydraclient.nix { };
 
   # Fonts
-  fonts = {
-    otf-determination = final.callPackage ./pkgs/fonts/otf-determination.nix { };
-    ttf-utpapyrus = final.callPackage ./pkgs/fonts/ttf-utpapsans.nix { fontVariant = "Papyrus"; };
-    ttf-utsans = final.callPackage ./pkgs/fonts/ttf-utpapsans.nix { fontVariant = "Sans"; };
-  };
+  otf-determination = final.callPackage ./pkgs/fonts/otf-determination.nix { };
+  ttf-utpapyrus = final.callPackage ./pkgs/fonts/ttf-utpapsans.nix { fontVariant = "Papyrus"; };
+  ttf-utsans = final.callPackage ./pkgs/fonts/ttf-utpapsans.nix { fontVariant = "Sans"; };
 
 }

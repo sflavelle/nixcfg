@@ -1,4 +1,10 @@
-{ config, lib, pkgs, system, outputs, ... }:
+{ config
+, lib
+, pkgs
+, system
+, outputs
+, ...
+}:
 let
   cfg = config.programs.mpv-watch;
 
@@ -7,32 +13,35 @@ let
   configFilePath = "${config.xdg.configHome}/watch.yaml";
 in
 {
-  options.programs.mpv-watch = {
-    enable = lib.mkEnableOption "mpv-watch";
-    package = lib.mkPackageOption "mpv-watch" {
-      default = [ outputs.packages.${system}.mpv-watch ];
-    };
-    settings = mkOption {
-      type = settingsFormat.type;
-      default = {
-        "Watch Later" = "https://www.youtube.com/playlist?list=WL";
+  options = {
+    programs.mpv-watch = {
+      enable = lib.mkEnableOption "mpv-watch";
+      package = lib.mkOption {
+        type = lib.types.package;
+        default = pkgs.mpv-watch;
       };
-      example = {
-        "Watch Later" = "https://www.youtube.com/playlist?list=WL";
-        "raocow: Celeste" = {
-          url = "https://www.youtube.com/playlist?list=PLQhrpbbm5TDLuPoeFgmN_vWNIm74dhOJG";
-          remember_progress = true;
+      settings = lib.mkOption {
+        type = settingsFormat.type;
+        default = {
+          "Watch Later" = "https://www.youtube.com/playlist?list=WL";
         };
-        "Mindcrack: Trouble in Terrorist Town" = {
-          shuffle = true;
-          url = "https://www.youtube.com/playlist?list=PLNiFIwkRDS3GrgvJOmDFW6q0tDqY-QEwO";
+        example = {
+          "Watch Later" = "https://www.youtube.com/playlist?list=WL";
+          "raocow: Celeste" = {
+            url = "https://www.youtube.com/playlist?list=PLQhrpbbm5TDLuPoeFgmN_vWNIm74dhOJG";
+            remember_progress = true;
+          };
+          "Mindcrack: Trouble in Terrorist Town" = {
+            shuffle = true;
+            url = "https://www.youtube.com/playlist?list=PLNiFIwkRDS3GrgvJOmDFW6q0tDqY-QEwO";
+          };
         };
+        description = ''
+          Configuration of the set of playlists and videos to show.
+          Playlists with no extra configuration can be specified with its URL string directly.
+          Otherwise accepts an attrset: `url` specifies the URL (required), `newest_first` reverses the play order if true, `shuffle` randomises the play order, and `remember_progress` saves the playlist index of the current video on quit.
+        '';
       };
-      description = ''
-        Configuration of the set of playlists and videos to show.
-        Playlists with no extra configuration can be specified with its URL string directly.
-        Otherwise accepts an attrset: `url` specifies the URL (required), `newest_first` reverses the play order if true, `shuffle` randomises the play order, and `remember_progress` saves the playlist index of the current video on quit.
-      '';
     };
   };
   config = lib.mkIf cfg.enable {

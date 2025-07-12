@@ -3,8 +3,9 @@
 , lib
 , pkgs
 , inputs
-, outputs
 , system
+, permittedInsecurePackages
+, overlay-stable
 , ...
 }:
 {
@@ -56,7 +57,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = { inherit inputs; };
     sharedModules = lib.mkMerge [
       [
         inputs.agenix.homeManagerModules.default
@@ -110,7 +111,7 @@
   };
 
   nixpkgs = {
-    overlays = [ overlay-stable inputs.niri.overlays.niri inputs.audio.overlays.default ];
+    overlays = [ overlay-stable inputs.niri.overlays.niri inputs.audio.overlays.default self.overlays.default ];
     config.allowUnfree = true;
     config.permittedInsecurePackages = permittedInsecurePackages;
   };
