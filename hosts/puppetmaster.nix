@@ -166,7 +166,7 @@
       ];
       extraOptions = [
         "--network=host"
-        "--device=/dev/ttyUSB0"
+        # "--device=/dev/ttyUSB0"
       ];
     };
     wyoming-whisper = {
