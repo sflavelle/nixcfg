@@ -51,6 +51,11 @@ let
       format = "⏻";
       tooltip = false;
     };
+    "custom/touch-launcher" = {
+      on-click = "${pkgs.nwg-drawer}/bin/nwg-drawer -fm ${pkgs.nautilus}/bin/nautilus -wm niri";
+      format = "󱗼";
+      tooltip = false;
+    };
   };
 
   workspaceIcons = {
@@ -75,6 +80,8 @@ lib.mkMerge [
     primary = commonOptions // {
       modules-left = [
         "niri/workspaces"
+        # (lib.mkIf config.hostSpec.isHandheld "custom/touch-launcher")
+        "custom/touch-launcher"
         "niri/window"
       ];
       modules-right = [
