@@ -12,4 +12,6 @@
     })
     element-desktop
   ];
+
+  programs.noisetorch.enable = true;
 }
