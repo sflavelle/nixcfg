@@ -242,7 +242,7 @@ in
     package = if nixGLConfig != null && effectiveConfig.lib ? nixGL then effectiveConfig.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
     scripts = with pkgs.mpvScripts; [
       sponsorblock
-      builtins.acompressor
+      acompressor
       mpris
       eisa01.smart-copy-paste-2
       modernz
