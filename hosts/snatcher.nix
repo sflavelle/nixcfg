@@ -188,6 +188,7 @@
     winetricks
     q4wine
     protontricks
+    sidequest
 
     # soundfonts
     soundfont-arachno
