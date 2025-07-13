@@ -358,16 +358,7 @@ lib.mkMerge [
 
       }
       windowRules.chatPrograms
-      {
-        matches = [
-          { app-id = "vlc"; }
-          { app-id = "mpv"; }
-          { app-id = "obs-studio"; }
-          { app-id = "jellyfin-media-player"; }
-        ];
-        open-on-workspace = "Video";
-        open-fullscreen = true;
-      }
+      windowRules.video
     ];
   })
   (lib.mkIf (numMonitors <= 1) {
@@ -381,13 +372,14 @@ lib.mkMerge [
       "03-communication" = {
         name = "Communication";
       };
-      "04-work" = {
-        name = "Work";
+      "04-video" = {
+        name = "Video";
       };
     };
 
     window-rules = [
       windowRules.chatPrograms
+      windowRules.video
       (lib.mkIf config.programs.steam.enable windowRules.games)
     ];
   })

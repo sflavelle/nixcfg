@@ -22,6 +22,17 @@
     default-column-width = { proportion = 1. / 5.; };
     default-window-height = { proportion = 1. / 5.; };
   };
+  video = {
+    matches = [
+      { app-id = "vlc"; }
+      { app-id = "mpv"; }
+      { app-id = "obs-studio"; }
+      { app-id = "jellyfin-media-player"; }
+    ];
+    open-on-workspace = "Video";
+    open-fullscreen = true;
+    open-focused = true;
+  };
 
   games = {
     matches = [
