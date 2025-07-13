@@ -119,14 +119,14 @@
       enable32Bit = true;
       extraPackages = with pkgs; [
         rocmPackages.clr.icd
-        amdvlk
-        driversi686Linux.amdvlk
+        # amdvlk
+        # driversi686Linux.amdvlk
       ];
     };
-    amdgpu.amdvlk = {
-      enable = true;
-      support32Bit.enable = true;
-    };
+    # amdgpu.amdvlk = {
+    #   enable = true;
+    #   support32Bit.enable = true;
+    # };
   };
 
   systemd.tmpfiles.rules = [
