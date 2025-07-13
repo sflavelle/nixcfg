@@ -242,8 +242,11 @@ in
     package = if nixGLConfig != null && effectiveConfig.lib ? nixGL then effectiveConfig.lib.nixGL.wrap pkgs.mpv else pkgs.mpv;
     scripts = with pkgs.mpvScripts; [
       sponsorblock
-      acompressor
+      builtins.acompressor
       mpris
+      eisa01.smart-copy-paste-2
+      modernz
+      dynamic-crop
     ];
     defaultProfiles =
       if config.hostSpec.isMinimal then
