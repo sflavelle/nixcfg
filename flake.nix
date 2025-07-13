@@ -169,6 +169,8 @@
             lfs.enable = true;
           };
 
+          programs.dconf.enable = true;
+
           users.defaultUserShell = pkgs.fish;
           security.sudo.wheelNeedsPassword = lib.mkDefault false;
 
@@ -216,6 +218,8 @@
               cameractrls
 
               wl-clipboard-rs
+
+              gnome.adwaita-icon-theme
 
               nvd
               nix-output-monitor
