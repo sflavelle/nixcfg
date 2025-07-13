@@ -10,5 +10,12 @@
       owner = "root";
       group = "root";
     };
+    nix-access-tokens-github = {
+      file = ../secrets/GitHubNix.age;
+    };
   };
+
+  nix.extraOptions = ''
+    !include ${config.age.secrets.nix-access-tokens-github.path}
+  '';
 }

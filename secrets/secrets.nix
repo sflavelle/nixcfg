@@ -20,4 +20,5 @@ let
 in
 {
   "FirelinkShrine.age".publicKeys = lily ++ laptops;
+  "GitHubNix.age".publicKeys = lily ++ all-systems;
 }
