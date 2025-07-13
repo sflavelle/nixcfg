@@ -230,6 +230,13 @@
     padding-right: 16px;
   }
 
+  #custom-touch-launcher {
+    background: transparent;
+    color: @base05;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   @keyframes blink {
       to {
           background-color: #ffffff;

@@ -70,6 +70,7 @@ in
         overlayed
         zathura
         bemenu
+        nwg-drawer
         file-roller
         feh
         libreoffice-qt6-fresh
