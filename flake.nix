@@ -219,7 +219,7 @@
 
               wl-clipboard-rs
 
-              gnome.adwaita-icon-theme
+              adwaita-icon-theme
 
               nvd
               nix-output-monitor
