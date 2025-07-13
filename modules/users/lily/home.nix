@@ -143,6 +143,7 @@ in
     };
 
     targets = lib.mkIf config.hostSpec.isAutoStyled {
+      qt.platform = "qtct";
       waybar.addCss = false;
       vencord.enable = true; # I'm using Webcord but it has vencord support so w/e
       vscode.enable = true;
