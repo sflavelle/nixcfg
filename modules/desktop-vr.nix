@@ -28,7 +28,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    wivrn
+    stable.wivrn
     xrizer
     wlx-overlay-s
     # proton-ge-rtsp-bin
