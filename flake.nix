@@ -164,6 +164,11 @@
             binfmt = true;
           };
 
+          programs.git = {
+            enable = true;
+            lfs.enable = true;
+          };
+
           users.defaultUserShell = pkgs.fish;
           security.sudo.wheelNeedsPassword = lib.mkDefault false;
 
