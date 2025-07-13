@@ -185,6 +185,8 @@
     gpu-screen-recorder
     gpu-screen-recorder-gtk
 
+    blender-hip
+
     winetricks
     q4wine
     protontricks

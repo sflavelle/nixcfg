@@ -14,7 +14,7 @@
     mangohud
     ludusavi
     archipelago
-    stable.poptracker
+    poptracker
     steam-devices-udev-rules
     cemu
     ryubing
