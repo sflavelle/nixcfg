@@ -31,6 +31,8 @@
     sgt-puzzles
     shattered-pixel-dungeon
     gzdoom
+
+    steam-rom-manager
   ];
 
   programs.steam = {

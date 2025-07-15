@@ -88,7 +88,6 @@
       keyfinder-cli
       beets-unstable
       # Programs
-      steam-rom-manager
       protontricks
       filebot
       bottles
