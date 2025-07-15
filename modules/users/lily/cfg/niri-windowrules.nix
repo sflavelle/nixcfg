@@ -59,4 +59,11 @@
     matches = [{ app-id = "com.bitwig.BitwigStudio"; }];
     open-on-workspace = "Audio";
   };
+
+  commonFloating = {
+    matches = [
+      { app-id = "steam_proton"; title = "Preferences"; }
+    ]
+      open-floating = true;
+  };
 }
