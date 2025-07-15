@@ -48,7 +48,6 @@
     newest_first = true;
     url = "https://www.youtube.com/@ZFG_Vods";
   };
-  "A State of Trance" = "https://www.twitch.tv/asot";
   RiffTrax = "https://www.twitch.tv/rifftrax";
   "Games Done Quick (VOD)" = {
     shuffle = true;
@@ -207,6 +206,9 @@
     url = "https://www.youtube.com/@adriansdigitalbasement";
     shuffle = true;
   };
+  "Adrian's Digital Basement ][" = {
+    url = "https://youtube.com/@adriansdigitalbasement2";
+    shuffle = true;
   "Is It A Good Idea To Microwave This?" = {
     url = "https://www.youtube.com/playlist?list=PLU4IMu04MIlJgB6Aaj07q-5iXuHGVzFAR";
     shuffle = true;
@@ -225,4 +227,7 @@
   };
   "LarsTM: Speedrunning Wampus 1-8, Tompus 1-2, Deep Dip 1-2" =
     "https://www.youtube.com/watch?v=pqgWgIbC00Q";
+  "Tasty Classics" = {
+    url = "https://youtube.com/@tastyclassics";
+    shuffle = true;
 }
