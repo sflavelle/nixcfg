@@ -167,7 +167,7 @@
       ports = [ "6052:6052" ]
         extraOptions = [
       "--network=host"
-      # "--device=/dev/ttyUSB0"
+      "--device=/dev/ttyUSB0"
       ];
     };
     wyoming-whisper = {
