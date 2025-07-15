@@ -209,6 +209,7 @@
   "Adrian's Digital Basement ][" = {
     url = "https://youtube.com/@adriansdigitalbasement2";
     shuffle = true;
+  };
   "Is It A Good Idea To Microwave This?" = {
     url = "https://www.youtube.com/playlist?list=PLU4IMu04MIlJgB6Aaj07q-5iXuHGVzFAR";
     shuffle = true;
@@ -230,4 +231,5 @@
   "Tasty Classics" = {
     url = "https://youtube.com/@tastyclassics";
     shuffle = true;
+  };
 }
