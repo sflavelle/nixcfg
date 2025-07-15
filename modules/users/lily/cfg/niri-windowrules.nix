@@ -63,7 +63,7 @@
   commonFloating = {
     matches = [
       { app-id = "steam_proton"; title = "Preferences"; }
-    ]
-      open-floating = true;
+    ];
+    open-floating = true;
   };
 }
