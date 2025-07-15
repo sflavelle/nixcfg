@@ -64,6 +64,7 @@ in
         xwayland-satellite
         jellyfin-media-player
         vacuumtube
+        foliate
         obsidian
         webcord-vencord
         caprine
