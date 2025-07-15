@@ -164,10 +164,10 @@
         "/srv/esphome:/config"
         "/etc/localtime:/etc/localtime:ro"
       ];
-      ports = [ "6052:6052" ]
-        extraOptions = [
-      "--network=host"
-      "--device=/dev/ttyUSB0"
+      ports = [ "6052:6052" ];
+      extraOptions = [
+        "--network=host"
+        "--device=/dev/ttyUSB0"
       ];
     };
     wyoming-whisper = {
