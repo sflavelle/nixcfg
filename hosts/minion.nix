@@ -71,14 +71,12 @@
         nvidiaBusId = "PCI:1:0:0";
         amdgpuBusId = "PCI:5:0:0";
       };
-
-      jovian.steam.autoStart = true;
     };
   };
 
   jovian = {
     steam.enable = true;
-    steam.autoStart = false;
+    steam.autoStart = true;
     steam.desktopSession = "niri";
     steam.user = config.hostSpec.userName;
   };
