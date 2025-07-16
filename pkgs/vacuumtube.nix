@@ -7,12 +7,12 @@
 }:
 
 let
-  version = "1.3.1";
+  version = "1.3.8";
   pname = "VacuumTube";
 
   src = fetchurl {
     url = "https://github.com/shy1132/VacuumTube/releases/download/v${version}/VacuumTube-x86_64.AppImage";
-    hash = "sha256-x48T07g5yiwZl6brJfQbmLIi8uVPICI96wO7qkyBxUw=";
+    hash = "sha256-MhBNEiwVOgAHg8DompekJg3NOmU+bPzi0+1P4vyytjY=";
   };
 
 in
