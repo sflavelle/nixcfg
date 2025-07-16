@@ -17,6 +17,7 @@
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
 
     agenix.url = "github:ryantm/agenix";
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
 
     audio = {
       url = "github:polygon/audio.nix";

@@ -75,6 +75,7 @@ in
         file-roller
         feh
         libreoffice-qt6-fresh
+        inputs.zen-browser.packages."${system}".specific
 
         nautilus
 
