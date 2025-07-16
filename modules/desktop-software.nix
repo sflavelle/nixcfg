@@ -8,7 +8,6 @@
     ungoogled-chromium
     snapcast
     # (callPackage ../pkgs/mpv-watch.nix)
-    tauon
     rmpc
 
     streamlink
