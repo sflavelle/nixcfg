@@ -75,7 +75,6 @@ in
         file-roller
         feh
         libreoffice-qt6-fresh
-        inputs.zen-browser.packages."${system}".specific
 
         nautilus
 
@@ -194,6 +193,8 @@ in
       "git.confirmSync" = false;
     };
   };
+
+  programs.zen-browser.enable = true;
   programs.yazi.enable = true;
 
   # Configs

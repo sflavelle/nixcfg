@@ -17,7 +17,7 @@
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
 
     agenix.url = "github:ryantm/agenix";
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     audio = {
       url = "github:polygon/audio.nix";
@@ -185,6 +185,7 @@
             sharedModules = lib.mkMerge [
               [
                 inputs.agenix.homeManagerModules.default
+                inputs.zen-browser.homeModules.beta
                 ./modules/programs/mpv-watch.nix
               ]
               (lib.mkIf (!config.hostSpec.isAutoStyled)
