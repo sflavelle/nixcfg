@@ -129,7 +129,7 @@ lib.mkMerge [
     binds =
       # with config.lib.niri.actions; 
       let
-        browser = "firefox";
+        browser = "zen-beta";
         altbrowser = "chromium";
         terminal = "${pkgs.wezterm}/bin/wezterm";
         launcher = [ "${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop" "--dmenu" "bemenu -ib --fn 'Determination Sans 14'" "--term" "wezterm" ];
