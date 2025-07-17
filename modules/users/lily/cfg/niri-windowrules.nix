@@ -10,6 +10,10 @@
         app-id = "floorp";
         title = "Picture-in-Picture";
       }
+      {
+        app-id = "zen-beta";
+        title = "Picture-in-Picture";
+      }
       { title = "Picture in picture"; }
     ];
     open-floating = true;
