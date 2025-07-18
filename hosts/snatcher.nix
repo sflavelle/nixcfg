@@ -86,7 +86,7 @@
     extraGroups = [ "audio" "adbusers" ];
     packages = with pkgs; [
       keyfinder-cli
-      beets-unstable
+      stable.beets-unstable # lol, lmao
       # Programs
       protontricks
       filebot
