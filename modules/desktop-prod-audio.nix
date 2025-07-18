@@ -18,9 +18,9 @@
     # chow-tape-model # webkitgtk nonsense
     decent-sampler
 
-    papu
-    paulxstretch
-    neuralnote
+    # papu
+    # paulxstretch
+    # neuralnote
 
   ];
 }
