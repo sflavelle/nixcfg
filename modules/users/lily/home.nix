@@ -75,6 +75,7 @@ in
         file-roller
         feh
         libreoffice-qt6-fresh
+        kdePackages.kate
         qbittorrent
 
         nautilus
