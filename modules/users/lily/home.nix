@@ -75,6 +75,7 @@ in
         file-roller
         feh
         libreoffice-qt6-fresh
+        qbittorrent
 
         nautilus
 
