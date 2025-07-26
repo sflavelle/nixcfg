@@ -179,5 +179,5 @@
   "James Channel" = {
     url = "https://www.youtube.com/@Games_for_James";
     shuffle = true;
-  }
-    }
+  };
+}
