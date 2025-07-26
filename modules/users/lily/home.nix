@@ -334,6 +334,16 @@ in
         format "48000:16:2"
         mixer_type "software"
       }
+      audio_output {
+        type "httpd"
+        name "HTTP Stream"
+        encoder "opus"
+        port  "5120"
+        quality "5.0"
+        format "48000:16:2"
+        always_on "yes"
+        tags "yes"
+      }
     '';
   };
   services.syncthing = {
