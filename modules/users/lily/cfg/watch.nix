@@ -133,51 +133,51 @@
     {
       url = "https://www.youtube.com/playlist?list=PLXlhzeWIuTHLIO-ILN1BPujwqFo_RRP9H";
       shuffle = true;
+    };
+  "Freeman's Mind" = {
+    url = "https://www.youtube.com/playlist?list=PL6PNZBb6b9LvDWpI-5CPYUxG1Rnm-vr9V";
+    remember_progress = true;
+  };
+  "Freeman's Mind 2" = {
+    url = "https://www.youtube.com/playlist?list=PLVA7dP65Vdngocn7xU-pumvpzrrS89_-Y";
+    remember_progress = true;
+  };
+  "Relaxation Ambience" = {
+    url = "https://www.youtube.com/playlist?list=PLNiFIwkRDS3H-A7r3z8v5RlHmwHTZdYKQ";
+    shuffle = true;
+  };
+  "Adrian's Digital Basement" = {
+    url = "https://www.youtube.com/@adriansdigitalbasement";
+    shuffle = true;
+  };
+  "Adrian's Digital Basement ][" = {
+    url = "https://youtube.com/@adriansdigitalbasement2";
+    shuffle = true;
+  };
+  "Is It A Good Idea To Microwave This?" = {
+    url = "https://www.youtube.com/playlist?list=PLU4IMu04MIlJgB6Aaj07q-5iXuHGVzFAR";
+    shuffle = true;
+  };
+  "LVoid's Deltarune Memes" = {
+    url = "https://youtube.com/playlist?list=PLUDzLrZN3WiTX9F7m7mjEyn8W8V-b7P2x";
+    shuffle = true;
+  };
+  "LarsTM: Speedrunning Wampus 1-8, Tompus 1-2, Deep Dip 1-2" =
+    "https://www.youtube.com/watch?v=pqgWgIbC00Q";
+  "Tasty Classics" = {
+    url = "https://youtube.com/@tastyclassics";
+    shuffle = true;
+  };
+  "Coestar: Prop Hunt" = {
+    url = "https://www.youtube.com/playlist?list=PLEI1-nHBz-afb9TlXVqcKNjp3nIiQjQ2x";
+    shuffle = true;
+  };
+  "Classics of Game" = {
+    url = "https://www.youtube.com/@ClassicsOfGame";
+    shuffle = true;
+  };
+  "James Channel" = {
+    url = "https://www.youtube.com/@Games_for_James";
+    shuffle = true;
+  }
     }
-      "Freeman's Mind" = {
-  url = "https://www.youtube.com/playlist?list=PL6PNZBb6b9LvDWpI-5CPYUxG1Rnm-vr9V";
-  remember_progress = true;
-};
-"Freeman's Mind 2" = {
-url = "https://www.youtube.com/playlist?list=PLVA7dP65Vdngocn7xU-pumvpzrrS89_-Y";
-remember_progress = true;
-};
-"Relaxation Ambience" = {
-url = "https://www.youtube.com/playlist?list=PLNiFIwkRDS3H-A7r3z8v5RlHmwHTZdYKQ";
-shuffle = true;
-};
-"Adrian's Digital Basement" = {
-url = "https://www.youtube.com/@adriansdigitalbasement";
-shuffle = true;
-};
-"Adrian's Digital Basement ][" = {
-url = "https://youtube.com/@adriansdigitalbasement2";
-shuffle = true;
-};
-"Is It A Good Idea To Microwave This?" = {
-url = "https://www.youtube.com/playlist?list=PLU4IMu04MIlJgB6Aaj07q-5iXuHGVzFAR";
-shuffle = true;
-};
-"LVoid's Deltarune Memes" = {
-url = "https://youtube.com/playlist?list=PLUDzLrZN3WiTX9F7m7mjEyn8W8V-b7P2x";
-shuffle = true;
-};
-"LarsTM: Speedrunning Wampus 1-8, Tompus 1-2, Deep Dip 1-2" =
-"https://www.youtube.com/watch?v=pqgWgIbC00Q";
-"Tasty Classics" = {
-url = "https://youtube.com/@tastyclassics";
-shuffle = true;
-};
-"Coestar: Prop Hunt" = {
-url = "https://www.youtube.com/playlist?list=PLEI1-nHBz-afb9TlXVqcKNjp3nIiQjQ2x";
-shuffle = true;
-};
-"Classics of Game" = {
-url = "https://www.youtube.com/@ClassicsOfGame";
-shuffle = true;
-};
-"James Channel" = {
-url = "https://www.youtube.com/@Games_for_James";
-shuffle = true;
-}
-}
