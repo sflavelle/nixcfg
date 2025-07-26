@@ -382,7 +382,7 @@
 
             ./modules/home-audio.nix
             ./modules/snapclient.nix
-            ./modules/srv-arr.nix
+            # ./modules/srv-arr.nix
           ];
         };
         "ndc" = nixpkgs.lib.nixosSystem {
