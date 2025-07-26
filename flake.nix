@@ -288,7 +288,6 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             self.nixosModules.commonModules
-            inputs.jovian.nixosModules.default
 
             ./hosts/minion.nix
             ./modules/wifi-home.nix
