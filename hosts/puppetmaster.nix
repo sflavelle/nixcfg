@@ -124,7 +124,7 @@
   virtualisation.oci-containers.containers.homeassistant = {
     volumes = [ "/srv/home-assistant:/config" ];
     environment.TZ = "Australia/Melbourne";
-    image = "ghcr.io/home-assistant/home-assistant:2025.7.1";
+    image = "ghcr.io/home-assistant/home-assistant:2025.7.3";
     extraOptions = [
       "--network=host"
       "--device=/dev/ttyACM0"
@@ -149,17 +149,19 @@
       Restart = lib.mkForce "on-success";
     };
   };
-  # services.paperless = {
-  #   enable = true;
-  #   database.createLocally = true;
-  #   address = "0.0.0.0";
-  # };
+  services.navidrome = {
+    enable = true;
+    user = "lily";
+    settings.MusicFolder = "/home/lily/Music";
+    settings.Address = "0.0.0.0";
+    openFirewall = true;
+  };
 
   # Networking Containers
 
   virtualisation.oci-containers.containers = {
     esphome = {
-      image = "ghcr.io/esphome/esphome:2025.6.2";
+      image = "ghcr.io/esphome/esphome:2025.7.3";
       volumes = [
         "/srv/esphome:/config"
         "/etc/localtime:/etc/localtime:ro"
@@ -170,18 +172,18 @@
         "--device=/dev/ttyUSB0"
       ];
     };
-    wyoming-whisper = {
-      volumes = [ "/srv/ha-whisper:/data" ];
-      image = "rhasspy/wyoming-whisper";
-      ports = [ "10300:10300" ];
-      cmd = [ "--model" "tiny-int8" "--language" "en" ];
-    };
-    wyoming-piper = {
-      volumes = [ "/srv/ha-piper:/data" ];
-      image = "rhasspy/wyoming-piper";
-      ports = [ "10200:10200" ];
-      cmd = [ "--voice" "en_US-lessac-medium" ];
-    };
+    # wyoming-whisper = {
+    #   volumes = [ "/srv/ha-whisper:/data" ];
+    #   image = "rhasspy/wyoming-whisper";
+    #   ports = [ "10300:10300" ];
+    #   cmd = [ "--model" "tiny-int8" "--language" "en" ];
+    # };
+    # wyoming-piper = {
+    #   volumes = [ "/srv/ha-piper:/data" ];
+    #   image = "rhasspy/wyoming-piper";
+    #   ports = [ "10200:10200" ];
+    #   cmd = [ "--voice" "en_US-lessac-medium" ];
+    # };
     # Misc Service Containers
     cops = {
       image = "lscr.io/linuxserver/cops:latest";
