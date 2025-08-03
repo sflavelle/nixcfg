@@ -11,6 +11,7 @@
       withVencord = true;
     })
     element-desktop
+    weechat
   ];
 
   programs.noisetorch.enable = true;
