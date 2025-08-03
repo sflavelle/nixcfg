@@ -45,6 +45,7 @@
       { app-id = "SpaceIdle"; }
       { title = "Ship of Harkinian"; }
       { app-id = "Celeste"; }
+      { app-id = "gmod"; }
     ];
     open-on-workspace = "Games";
     open-floating = false;
