@@ -212,6 +212,7 @@
               blueman
               bluetui
               pied
+              gearlever
               piper-tts
 
               helix
