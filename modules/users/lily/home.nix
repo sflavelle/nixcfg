@@ -145,7 +145,7 @@ in
       {
         package = pkgs.posy-cursors;
         name = "Posy_Cursor_Black";
-        size = 32;
+        size = 48;
       };
 
     fonts = {
