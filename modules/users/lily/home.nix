@@ -149,11 +149,29 @@ in
       };
 
     fonts = {
-      emoji.package = pkgs.twemoji-color-font;
-      emoji.name = "Twitter Color Emoji";
+      emoji = {
+        package = pkgs.twemoji-color-font;
+        name = "Twitter Color Emoji";
+      };
+      sansSerif = {
+        package = pkgs.vegur;
+        name = "Vegur";
+      };
+      serif = {
+        package = pkgs.poly;
+        name = "Poly";
+      };
+
+      sizes = {
+        applications = 10;
+        desktop = 10;
+        terminal = 8;
+      };
+
     };
 
     opacity = {
+      popups = 0.9;
       terminal = 0.8;
     };
 
