@@ -155,7 +155,7 @@ in
       };
       monospace = {
         package = pkgs.nerd-fonts.monaspace;
-        name = "Monaspace KR Nerd Font Mono";
+        name = "MonaspiceKr Nerd Font Mono";
       };
       sansSerif = {
         package = pkgs.vegur;
