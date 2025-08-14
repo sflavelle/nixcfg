@@ -10,8 +10,8 @@
     hostName = "snatcher";
     isAutoStyled = true;
     wallpaper = pkgs.fetchurl {
-      url = "https://w.wallhaven.cc/full/9d/wallhaven-9dzz7x.png"; # Celeste, The Summit Complete Screen
-      hash = "sha256-5F8ovJQOj6xVu5aiKufDtQH7J4ZJufXstphUhqsN9X4=";
+      url = "https://w.wallhaven.cc/full/j3/wallhaven-j3d79p.jpg"; # Windows XP 'Bliss' (21:9 edit)
+      hash = "sha256-2kiQ27iRSiubgAeRxLDlw1K4EFwbGs8YqrMZjjjXWzg=";
     };
   };
   monitors = [

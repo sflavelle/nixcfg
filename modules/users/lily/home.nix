@@ -153,6 +153,10 @@ in
         package = pkgs.twemoji-color-font;
         name = "Twitter Color Emoji";
       };
+      monospace = {
+        package = pkgs.otf-determination;
+        name = "Determination Mono";
+      };
       sansSerif = {
         package = pkgs.vegur;
         name = "Vegur";
@@ -163,7 +167,7 @@ in
       };
 
       sizes = {
-        applications = 10;
+        applications = 12;
         desktop = 10;
         terminal = 8;
       };
@@ -180,6 +184,7 @@ in
       waybar.addCss = false;
       vencord.enable = true; # I'm using Webcord but it has vencord support so w/e
       vscode.enable = true;
+      zen-browser.profileNames = [ "default" ];
     };
   };
 
