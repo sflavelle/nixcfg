@@ -154,8 +154,8 @@ in
         name = "Twitter Color Emoji";
       };
       monospace = {
-        package = pkgs.otf-determination;
-        name = "Determination Mono";
+        package = pkgs.nerd-fonts.monaspace;
+        name = "Monaspace KR Nerd Font Mono";
       };
       sansSerif = {
         package = pkgs.vegur;
@@ -221,10 +221,10 @@ in
     profiles.default.userSettings = {
       "workbench.colorTheme" = lib.mkIf config.hostSpec.isAutoStyled "Stylix";
       "workbench.iconTheme" = "vscode-icons";
+      "editor.fontLigatures" = "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09'";
       "editor.lineHeight" = 20;
       "editor.tabSize" = 2;
       "editor.wordWrap" = "on";
-      "terminal.integrated.fontFamily" = "Determination Mono, monospace";
       "update.channel" = "none"; # Disable updates
       "[nix]"."editor.tabSize" = 2;
       "git.confirmSync" = false;
