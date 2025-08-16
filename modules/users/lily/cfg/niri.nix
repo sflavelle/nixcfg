@@ -118,8 +118,8 @@ lib.mkMerge [
     ];
 
     spawn-at-startup = [
-      # { command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite" ":1"]; } # No longer necessary?
       { command = [ "wl-paste" "--watch" "cliphist" "store" ]; }
+      { command = [ "kitty" "-e" "${pkgs.wtfutil}/bin/wtfutil" "run" ]; }
     ];
 
     switch-events = {
@@ -131,8 +131,8 @@ lib.mkMerge [
       let
         browser = "zen-beta";
         altbrowser = "chromium";
-        terminal = "${pkgs.wezterm}/bin/wezterm";
-        launcher = [ "${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop" "--dmenu" "bemenu -ib --fn 'Determination Sans 14'" "--term" "wezterm" ];
+        terminal = "${pkgs.kitty}/bin/kitty";
+        launcher = [ "${pkgs.j4-dmenu-desktop}/bin/j4-dmenu-desktop" "--dmenu" "bemenu -ib --fn 'Determination Sans 14'" "--term" "kitty" ];
 
         wpctl = "${pkgs.wireplumber}/bin/wpctl";
         pwvucontrol = "${pkgs.pwvucontrol}/bin/pwvucontrol";

@@ -49,6 +49,7 @@ in
         wl-clipboard-rs
         brightnessctl
         termdown
+        wtfutil
 
         inputs.agenix.packages.${system}.default
 
@@ -213,7 +214,9 @@ in
   # Fonts
   fonts.fontconfig.enable = true;
 
+  programs.bemenu.enable = true;
   programs.eza.enable = true;
+  programs.feh.enable = true;
   programs.home-manager.enable = true;
   programs.vscode = {
     enable = !config.hostSpec.isServer;
@@ -331,17 +334,8 @@ in
     };
   };
 
-  programs.wezterm = {
+  programs.kitty = {
     enable = (!config.hostSpec.isServer && config.hostSpec.hasPhysicalKeyboard);
-    extraConfig = ''
-      return {
-        font_size = 10.0,
-        font = wezterm.font_with_fallback {
-          'Determination Mono',
-        },
-        hide_tab_bar_if_only_one_tab = true,
-      }
-    '';
   };
 
   programs.zellij = {
@@ -408,6 +402,7 @@ in
       main.output = lib.mkIf (config.monitors != [ ]) primaryMonitor.name;
     };
   };
+  services.avizo.enable = true;
 
   services.swayidle = lib.mkIf (!config.hostSpec.isServer) {
     enable = !config.hostSpec.isServer;
