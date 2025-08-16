@@ -261,19 +261,24 @@ in
   programs.halloy = {
     enable = true;
     settings = {
-      "servers.oftc" = {
+      servers.oftc = {
         server = "irc.oftc.net";
+        nickname = "Splatsune";
+        alt_nicks = [ "SplatsuneTwo" "SplatsuneThree" ];
+        realname = "Splatsune 2 for Nintembo Swinch";
         channels = [
           "#postmarketos"
         ];
-        "sasl.plain" = {
+        sasl.plain = {
           username = "Splatsune";
           password_file = config.age.secrets.splatsune-tgcirc.path;
           password_file_first_line_only = true;
         };
       };
-      "servers.tgc" = {
+      servers.tgc = {
         server = "thegeneral.chat";
+        nickname = "Splatsune";
+        realname = "Splatsune 2 for Nintembo Swinch";
         channels = [
           "#general"
           "#deadbeats"
@@ -283,7 +288,7 @@ in
           "#meep.nsfw"
           "#tgcap"
         ];
-        "sasl.plain" = {
+        sasl.plain = {
           username = "Splatsune";
           password_file = config.age.secrets.splatsune-tgcirc.path;
           password_file_first_line_only = true;
