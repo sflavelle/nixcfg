@@ -13,6 +13,11 @@
     nix-access-tokens-github = {
       file = ../secrets/GitHubNix.age;
     };
+    splatsune-tgcirc = {
+      file = ../secrets/Splatsune-TGCIRC.age;
+      owner = config.hostSpec.userName;
+      group = config.hostSpec.userName;
+    };
   };
 
   nix.extraOptions = ''

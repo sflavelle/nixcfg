@@ -258,6 +258,39 @@ in
     userEmail = "me@neurario.com";
     userName = name;
   };
+  programs.halloy = {
+    enable = true;
+    settings = {
+      "servers.oftc" = {
+        server = "irc.oftc.net";
+        channels = [
+          "#postmarketos"
+        ];
+        "sasl.plain" = {
+          username = "Splatsune";
+          password_file = config.age.secrets.splatsune-tgcirc.path;
+          password_file_first_line_only = true;
+        };
+      };
+      "servers.tgc" = {
+        server = "thegeneral.chat";
+        channels = [
+          "#general"
+          "#deadbeats"
+          "#brazier"
+          "#diy-and-code"
+          "#meep"
+          "#meep.nsfw"
+          "#tgcap"
+        ];
+        "sasl.plain" = {
+          username = "Splatsune";
+          password_file = config.age.secrets.splatsune-tgcirc.path;
+          password_file_first_line_only = true;
+        };
+      };
+    };
+  };
   programs.helix = {
     enable = true;
     defaultEditor = true;
