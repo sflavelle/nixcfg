@@ -15,6 +15,7 @@
     };
     splatsune-tgcirc = {
       file = ../secrets/Splatsune-TGCIRC.age;
+      mode = "775";
       owner = config.hostSpec.userName;
       group = config.hostSpec.userName;
     };
