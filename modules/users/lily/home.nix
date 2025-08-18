@@ -271,7 +271,7 @@ in
         ];
         sasl.plain = {
           username = "Splatsune";
-          password_file = config.age.secrets.splatsune-tgcirc.path;
+          password_file = config.age.secrets.splatsune-oftc.path;
         };
       };
       servers.tgc = {

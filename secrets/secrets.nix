@@ -23,4 +23,5 @@ in
   "GitHubNix.age".publicKeys = lily ++ all-systems;
 
   "Splatsune-TGCIRC.age".publicKeys = lily ++ all-systems;
+  "Splatsune-OFTC.age".publicKeys = lily ++ all-systems;
 }
