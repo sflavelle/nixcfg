@@ -155,8 +155,8 @@ in
         name = "Twitter Color Emoji";
       };
       monospace = {
-        package = pkgs.nerd-fonts.monaspace;
-        name = "MonaspiceKr Nerd Font Mono";
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMonoNL Nerd Font Mono";
       };
       sansSerif = {
         package = pkgs.vegur;
