@@ -170,7 +170,7 @@ in
       sizes = {
         applications = 12;
         desktop = 10;
-        terminal = 8;
+        terminal = 10;
       };
 
     };
