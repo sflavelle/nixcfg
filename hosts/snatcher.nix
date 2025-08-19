@@ -10,8 +10,8 @@
     hostName = "snatcher";
     isAutoStyled = true;
     wallpaper = pkgs.fetchurl {
-      url = "https://w.wallhaven.cc/full/j3/wallhaven-j3d79p.jpg"; # Windows XP 'Bliss' (21:9 edit)
-      hash = "sha256-2kiQ27iRSiubgAeRxLDlw1K4EFwbGs8YqrMZjjjXWzg=";
+      url = "https://w.wallhaven.cc/full/zx/wallhaven-zxo1mw.jpg"; # stockholm metro 'cavern' image
+      hash = "sha256-ftwe0Ev9BQ0JfaQQXQURFl+R722KnGOLQCf1xtaPjPE=";
     };
   };
   monitors = [
@@ -54,7 +54,7 @@
     }
   ];
 
-  stylix.polarity = "light";
+  stylix.polarity = "dark";
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
