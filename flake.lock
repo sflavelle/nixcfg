@@ -430,6 +430,26 @@
         "type": "github"
       }
     },
+    "mirpkgs": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751231639,
+        "narHash": "sha256-ghqOi4+N/EA3oMDjkvjUM90AGjwVi3CBOCwLEAezyOY=",
+        "owner": "carlthome",
+        "repo": "mirpkgs",
+        "rev": "e95237a5d497a00832b834d093436dd7d7a3a154",
+        "type": "github"
+      },
+      "original": {
+        "owner": "carlthome",
+        "repo": "mirpkgs",
+        "type": "github"
+      }
+    },
     "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -847,6 +867,7 @@
         "disko": "disko",
         "home-manager": "home-manager_2",
         "jovian": "jovian",
+        "mirpkgs": "mirpkgs",
         "niri": "niri",
         "nix-stable": "nix-stable",
         "nixgl": "nixgl",

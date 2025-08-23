@@ -23,6 +23,10 @@
       url = "github:polygon/audio.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mirpkgs = {
+      url = "github:carlthome/mirpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     niri.url = "github:sodiboo/niri-flake";
     home-manager.url = "github:nix-community/home-manager";
@@ -239,7 +243,13 @@
           };
 
           nixpkgs = {
-            overlays = [ overlay-stable inputs.niri.overlays.niri inputs.audio.overlays.default outputs.overlays.default ];
+            overlays = [
+              overlay-stable
+              inputs.niri.overlays.niri
+              inputs.audio.overlays.default
+              inputs.mirpkgs.overlays.default
+              outputs.overlays.default
+            ];
             config.allowUnfree = true;
             config.permittedInsecurePackages = permittedInsecurePackages;
           };

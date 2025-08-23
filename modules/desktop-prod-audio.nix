@@ -9,6 +9,8 @@
     reaper
     ffmpeg-full
 
+    demucs
+
     # VST plugins
     yabridge
     yabridgectl
