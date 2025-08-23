@@ -7,6 +7,7 @@
   environment.systemPackages = with pkgs; [
     bitwig-studio5-latest
     reaper
+    ffmpeg-full
 
     # VST plugins
     yabridge
