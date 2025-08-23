@@ -16,8 +16,6 @@
     archipelago
     poptracker
     steam-devices-udev-rules
-    cemu
-    ryubing
     itch
     heroic
     shipwright
@@ -31,6 +29,10 @@
     sgt-puzzles
     shattered-pixel-dungeon
     gzdoom
+
+    cemu
+    ryubing
+    pcsx2
 
     steam-rom-manager
   ];
