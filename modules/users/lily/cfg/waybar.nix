@@ -23,6 +23,18 @@ let
       '';
     };
 
+    "clock" = {
+      format = "{:%Y-%m-%d %I:%M %p (%Z)}";
+      tooltip-format = "{tz_list}";
+      timezones = [
+        "Etc/UTC"
+        "America/Chicago"
+        "America/San_Francisco"
+        "Europe/London"
+        "Asia/Tokyo"
+      ];
+    };
+
     "network" = {
       "format-wifi" = "{essid} ({signalStrength}%) ";
       "format-ethernet" = "{ipaddr}/{cidr} 󰊗";
