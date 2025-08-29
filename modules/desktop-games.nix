@@ -40,6 +40,9 @@
 
   programs.steam = {
     enable = true;
+    package = pkgs.steam.override {
+      extraBwrapArgs = [ "--unsetenv TZ" ];
+    };
     remotePlay.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
     protontricks.enable = true;
