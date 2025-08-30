@@ -394,7 +394,7 @@ in
           enable = true;
           mountPoint = "/home/${config.hostSpec.userName}/mnt/ndc";
           options = {
-            cache-dir = "/home/${config.hostSpec.userName}/.cache/rclone";
+            cache-dir = "/home/${config.hostSpec.userName}/.cache/rclone/ndc";
             vfs-cache-mode = "writes";
             vfs-cache-max-size = "100M";
             umask = 022;
@@ -413,7 +413,7 @@ in
           enable = true;
           mountPoint = "/home/${config.hostSpec.userName}/mnt/tgc";
           options = {
-            cache-dir = "/home/${config.hostSpec.userName}/.cache/rclone";
+            cache-dir = "/home/${config.hostSpec.userName}/.cache/rclone/tgc";
             vfs-cache-mode = "writes";
             vfs-cache-max-size = "100M";
             umask = 022;
