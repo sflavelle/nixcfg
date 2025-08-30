@@ -26,6 +26,12 @@
       owner = config.hostSpec.userName;
       group = config.hostSpec.userName;
     };
+    copyparty = {
+      file = ../secrets/copyparty.age;
+      mode = "770";
+      owner = config.hostSpec.userName;
+      group = config.hostSpec.userName;
+    };
   };
 
   nix.extraOptions = ''

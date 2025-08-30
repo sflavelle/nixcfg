@@ -361,7 +361,46 @@ in
   };
   programs.rclone = {
     enable = true;
-    remotes = { };
+    remotes = {
+      ndc-files = {
+        config = {
+          type = "webdav";
+          url = "http://neurario.com:4200";
+          vendor = "owncloud";
+          user = "splatsune";
+        };
+        secrets.password = config.age.secrets.copyparty.path;
+        mounts."/" = {
+          enable = true;
+          mountPoint = "/home/${config.hostSpec.userName}/mnt/ndc";
+          options = {
+            cache-dir = "/home/${config.hostSpec.userName}/.cache/rclone";
+            vfs-cache-mode = "writes";
+            vfs-cache-max-size = "100M";
+            umask = 022;
+          };
+        };
+      };
+      tgc-files = {
+        config = {
+          type = "webdav";
+          url = "http://thegeneral.chat:4200";
+          vendor = "nextcloud";
+          user = "splatsune";
+        };
+        secrets.password = config.age.secrets.copyparty.path;
+        mounts."/" = {
+          enable = true;
+          mountPoint = "/home/${config.hostSpec.userName}/mnt/tgc";
+          options = {
+            cache-dir = "/home/${config.hostSpec.userName}/.cache/rclone";
+            vfs-cache-mode = "writes";
+            vfs-cache-max-size = "100M";
+            umask = 022;
+          };
+        };
+      };
+    };
   };
   programs.thunderbird = {
     enable = !config.hostSpec.isServer;

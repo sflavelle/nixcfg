@@ -24,4 +24,6 @@ in
 
   "Splatsune-TGCIRC.age".publicKeys = lily ++ all-systems;
   "Splatsune-OFTC.age".publicKeys = lily ++ all-systems;
+
+  "copyparty.age".publicKeys = lily ++ all-systems;
 }
