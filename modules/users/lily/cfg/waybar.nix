@@ -27,9 +27,10 @@ let
       format = "{:%Y-%m-%d %I:%M %p (%Z)}";
       tooltip-format = "{tz_list}";
       timezones = [
+        "Australia/Melbourne"
         "Etc/UTC"
         "America/Chicago"
-        "America/San_Francisco"
+        "America/San_Diego"
         "Europe/London"
         "Asia/Tokyo"
       ];
