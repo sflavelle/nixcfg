@@ -26,6 +26,8 @@ let
   effectiveConfig = config;
 
   webapp-browser = "${pkgs.ungoogled-chromium}/bin/chromium";
+
+  agehome = config.home-manager.users."${config.hostSpec.userName}".age;
 in
 {
   nixGL = nixGLConfig;
@@ -189,6 +191,24 @@ in
     };
   };
 
+  age = {
+    identityPaths = [ "/home/${config.hostSpec.userName}/.ssh/id_ed25519" ];
+    secrets = {
+      splatsune-oftc = {
+        file = ../../../secrets/Splatsune-OFTC.age;
+        mode = "700";
+      };
+      splatsune-tgcirc = {
+        file = ../../../secrets/Splatsune-TGCIRC.age;
+        mode = "700";
+      };
+      copyparty = {
+        file = ../../../secrets/copyparty.age;
+        mode = "700";
+      };
+    };
+  };
+
   # Some quick webapp shortcuts
   xdg.desktopEntries.tgc = {
     name = "The General Chat";
@@ -271,7 +291,7 @@ in
         ];
         sasl.plain = {
           username = "Splatsune";
-          password_file = config.age.secrets.splatsune-oftc.path;
+          password_file = agehome.secrets.splatsune-oftc.path;
         };
       };
       servers.tgc = {
@@ -289,7 +309,7 @@ in
         ];
         sasl.plain = {
           username = "Splatsune";
-          password_file = config.age.secrets.splatsune-tgcirc.path;
+          password_file = agehome.secrets.splatsune-tgcirc.path;
         };
       };
     };
@@ -369,7 +389,7 @@ in
           vendor = "owncloud";
           user = "splatsune";
         };
-        secrets.password = config.age.secrets.copyparty.path;
+        secrets.password = agehome.secrets.copyparty.path;
         mounts."/" = {
           enable = true;
           mountPoint = "/home/${config.hostSpec.userName}/mnt/ndc";
@@ -388,7 +408,7 @@ in
           vendor = "nextcloud";
           user = "splatsune";
         };
-        secrets.password = config.age.secrets.copyparty.path;
+        secrets.password = agehome.secrets.copyparty.path;
         mounts."/" = {
           enable = true;
           mountPoint = "/home/${config.hostSpec.userName}/mnt/tgc";
