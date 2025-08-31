@@ -68,14 +68,15 @@
   gsr = {
     matches = [
       { title = "gsr ui"; }
+      { title = "gsr notify"; }
     ];
     open-floating = true;
+    open-on-output = primaryMonitor.name;
     default-floating-position = {
-      relative-to = "top-left";
+      relative-to = "top-right";
       x = 0;
       y = 0;
     };
-    default-column-width = { };
 
     shadow.enable = false;
     border.enable = false;
