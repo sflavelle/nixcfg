@@ -68,12 +68,12 @@
   gsr = {
     matches = [
       { title = "gsr ui"; }
-      { title = "gsr notify"; }
     ];
     open-floating = true;
+    open-fullscreen = false;
     open-on-output = primaryMonitor.name;
     default-floating-position = {
-      relative-to = "top-right";
+      relative-to = "top-left";
       x = 0;
       y = 0;
     };
@@ -83,10 +83,31 @@
     draw-border-with-background = false;
   };
 
-  commonFloating = {
-    matches = [
-      { app-id = "steam_proton"; title = "Preferences"; }
-    ];
-    open-floating = true;
-  };
+  gsr-notify =
+    {
+      matches = [
+        { title = "gsr notify"; }
+      ];
+      open-floating = true;
+      open-focused = false;
+      open-on-output = primaryMonitor.name;
+      default-floating-position = {
+        relative-to = "top-right";
+        x = 0;
+        y = 0;
+      };
+
+      shadow.enable = false;
+      border.enable = false;
+      draw-border-with-background = false;
+    }
+
+      commonFloating = {
+  matches = [
+  { app-id = "steam_proton";
+  title = "Preferences";
+}
+];
+open-floating = true;
+};
 }
