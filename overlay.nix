@@ -32,4 +32,9 @@ rec {
   ttf-utpapyrus = final.callPackage ./pkgs/fonts/ttf-utpapsans.nix { fontVariant = "Papyrus"; };
   ttf-utsans = final.callPackage ./pkgs/fonts/ttf-utpapsans.nix { fontVariant = "Sans"; };
 
+  # GSR (from Keenan Weaver's nix-config)
+  gpu-screen-recorder = prev.callPackage ./pkgs/gpu-screen-recorder/gsr.nix { };
+  gpu-screen-recorder-notification = prev.callPackage ./pkgs/gpu-screen-recorder/notif.nix { };
+  gpu-screen-recorder-ui = prev.callPackage ./pkgs/gpu-screen-recorder/ui.nix { };
+
 }

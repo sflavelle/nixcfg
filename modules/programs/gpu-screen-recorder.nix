@@ -1,7 +1,6 @@
 { config
 , lib
 , pkgs
-, username
 , ...
 }:
 
@@ -10,6 +9,7 @@ let
   package = cfg.package.override {
     inherit (config.security) wrapperDir;
   };
+  username = config.hostSpec.userName;
 in
 {
   options = {
@@ -72,18 +72,18 @@ in
           '';
         })
       ];
-      programs.plasma = {
-        hotkeys = {
-          commands = {
-            "gsr-save-replay" = {
-              name = "Save GSR Replay";
-              key = "Meta+Ctrl+|";
-              command = "gsr-save-replay";
-              comment = "Save GPU Screen Recorder replay";
-            };
-          };
-        };
-      };
+      # programs.plasma = {
+      #   hotkeys = {
+      #     commands = {
+      #       "gsr-save-replay" = {
+      #         name = "Save GSR Replay";
+      #         key = "Meta+Ctrl+|";
+      #         command = "gsr-save-replay";
+      #         comment = "Save GPU Screen Recorder replay";
+      #       };
+      #     };
+      #   };
+      # };
     };
   };
 
