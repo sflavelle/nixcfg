@@ -74,8 +74,8 @@
       relative-to = "top-left";
       x = 0;
       y = 0;
-      default-column-width = { };
     };
+    default-column-width = { };
 
     shadow.enable = false;
     border.enable = false;
