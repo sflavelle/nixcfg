@@ -100,14 +100,15 @@
       shadow.enable = false;
       border.enable = false;
       draw-border-with-background = false;
-    }
+    };
 
-      commonFloating = {
-  matches = [
-  { app-id = "steam_proton";
-  title = "Preferences";
-}
-];
-open-floating = true;
-};
+  commonFloating = {
+    matches = [
+      {
+        app-id = "steam_proton";
+        title = "Preferences";
+      }
+    ];
+    open-floating = true;
+  };
 }
