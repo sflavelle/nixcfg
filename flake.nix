@@ -140,6 +140,8 @@
             ./modules/age.nix
             ./modules/options
             # ./secrets/secrets.nix
+
+            ./modules/programs/gpu-screen-recorder.nix
           ];
 
           virtualisation.diskSize = 32 * 1024;
