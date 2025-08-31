@@ -146,6 +146,8 @@
     powerstation.enable = true;
   };
 
+  programs.gsr.defaultAudioDevice = "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3";
+
   programs.obs-studio = {
     enable = true;
     enableVirtualCamera = true;

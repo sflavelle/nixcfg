@@ -56,4 +56,9 @@
   hardware.graphics.enable = true;
 
   hardware.xone.enable = true;
+
+  programs.gsr = {
+    enable = true;
+    ui.enable = true;
+  };
 }
