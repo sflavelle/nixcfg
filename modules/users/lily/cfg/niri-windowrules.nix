@@ -65,6 +65,23 @@
     open-on-workspace = "Audio";
   };
 
+  gsr = {
+    matches = [
+      { title = "gsr ui"; }
+    ];
+    open-floating = true;
+    default-floating-position = {
+      relative-to = "top-left";
+      x = 0;
+      y = 0;
+      default-column-width = { };
+    };
+
+    shadow.enable = false;
+    border.enable = false;
+    draw-border-with-background = false;
+  };
+
   commonFloating = {
     matches = [
       { app-id = "steam_proton"; title = "Preferences"; }
