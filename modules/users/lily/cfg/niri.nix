@@ -30,11 +30,25 @@ let
 in
 lib.mkMerge [
   {
-    input.touchpad.tap = true;
-    input.touchpad.natural-scroll = true;
-    input.focus-follows-mouse.enable = true;
-    input.focus-follows-mouse.max-scroll-amount = "20%";
-    input.power-key-handling.enable = false; # Too many accidental sleeps on laptops...
+    cursor = {
+      hide-when-typing = true;
+      hide-after-inactive-ms = 3000;
+    };
+
+    input = {
+      power-key-handling.enable = false; # Too many accidental sleeps on laptops...
+      focus-follows-mouse = {
+        enable = true;
+        max-scroll-amount = "20%";
+      };
+      touchpad = {
+        tap = true;
+        natural-scroll = true;
+      };
+      mouse = {
+        scroll-factor = 1.25;
+      };
+    };
 
     prefer-no-csd = true;
 
@@ -58,6 +72,7 @@ lib.mkMerge [
 
       border = {
         enable = true;
+        width = 2;
         urgent.color = "rgb(255 0 0)";
       };
 
@@ -105,6 +120,14 @@ lib.mkMerge [
 
     window-rules = [
       windowRules.browserPip
+      windowRules.gsr
+      windowRules.gsr-notify
+      {
+        matches = [
+          { at-startup = true; }
+        ];
+        open-focused = false;
+      }
     ];
 
     layer-rules = [
@@ -119,7 +142,6 @@ lib.mkMerge [
 
     spawn-at-startup = [
       { command = [ "wl-paste" "--watch" "cliphist" "store" ]; }
-      { command = [ "kitty" "-e" "${pkgs.wtfutil}/bin/wtfutil" "run" ]; }
     ];
 
     switch-events = {
@@ -337,7 +359,6 @@ lib.mkMerge [
       }
       windowRules.games
       windowRules.bitwigStudio
-      windowRules.gsr
 
       {
         matches = [
