@@ -389,7 +389,7 @@ in
           vendor = "owncloud";
           user = "splatsune";
         };
-        secrets.password = agehome.secrets.copyparty.path;
+        secrets.pass = agehome.secrets.copyparty.path;
         mounts."/" = {
           enable = true;
           mountPoint = "/home/${config.hostSpec.userName}/mnt/ndc";
@@ -408,7 +408,7 @@ in
           vendor = "nextcloud";
           user = "splatsune";
         };
-        secrets.password = agehome.secrets.copyparty.path;
+        secrets.pass = agehome.secrets.copyparty.path;
         mounts."/" = {
           enable = true;
           mountPoint = "/home/${config.hostSpec.userName}/mnt/tgc";
