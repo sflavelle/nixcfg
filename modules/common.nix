@@ -99,6 +99,8 @@
       nvd
       nix-output-monitor
       nixfmt-rfc-style
+
+      distrobox
     ])
     (with pkgs; lib.mkIf config.services.desktopManager.gnome.enable [
       gnomeExtensions.tweaks-in-system-menu
