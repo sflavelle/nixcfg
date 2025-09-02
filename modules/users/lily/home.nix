@@ -405,7 +405,7 @@ in
         config = {
           type = "webdav";
           url = "http://thegeneral.chat:4200";
-          vendor = "nextcloud";
+          vendor = "owncloud";
           user = "splatsune";
         };
         secrets.pass = agehome.secrets.copyparty.path;
