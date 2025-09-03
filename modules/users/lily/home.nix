@@ -65,7 +65,7 @@ in
       ]
       (lib.mkIf (!config.hostSpec.isServer) [
         xwayland-satellite
-        jellyfin-media-player
+        # jellyfin-media-player
         vacuumtube
         foliate
         obsidian
