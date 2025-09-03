@@ -266,7 +266,7 @@ in
       beet-dlp = ''
         mkdir -p /tmp/beetdlp-$(id -u)
         pushd /tmp/beetdlp-$(id -u)
-        ${pkgs.yt-dlp}/bin/yt-dlp -t mp3 --embed-metadata -o "%(extractor)s/%(album_artist)s - %(album)s/%(playlist_index)02d - %(title)s.%(ext)s" $argv
+        ${pkgs.yt-dlp}/bin/yt-dlp --ignore-config -t mp3 --embed-metadata -o "%(extractor)s/%(album_artist)s - %(album)s/%(playlist_index)02d - %(title)s.%(ext)s" $argv
         beet import .
         popd
       '';
