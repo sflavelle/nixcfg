@@ -5,7 +5,7 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    bitwig-studio5-latest
+    bitwig-studio
     reaper
     ffmpeg-full
 
