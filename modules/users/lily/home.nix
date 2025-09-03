@@ -87,8 +87,6 @@ in
 
         quodlibet
 
-        toot
-
         link-steamscreenshots
 
         # Fonts
