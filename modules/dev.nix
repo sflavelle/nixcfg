@@ -16,7 +16,7 @@
     yaml-language-server
     python3Packages.python-lsp-server
     bash-language-server
-    systemd-language-server
+    # systemd-language-server
     marksman
 
     jq

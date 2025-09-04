@@ -14,7 +14,7 @@
     # VST plugins
     yabridge
     yabridgectl
-    airwindows
+    # airwindows
     oxefmsynth
     zam-plugins
     lsp-plugins
