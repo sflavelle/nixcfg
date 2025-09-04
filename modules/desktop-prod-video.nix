@@ -5,7 +5,7 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    davinci-resolve-studio
+    # davinci-resolve-studio
     kdePackages.kdenlive
   ];
 }
