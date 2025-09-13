@@ -44,13 +44,13 @@
         type = "airplay";
         sampleFormat = "48000:16:2";
         location = "${pkgs.shairport-sync}/bin/shairport-sync";
-        query.port = 6000;
+        query.port = "6000";
       };
       "Shairplay (Juno)" = {
         type = "airplay";
         sampleFormat = "48000:16:2";
         location = "${pkgs.shairport-sync}/bin/shairport-sync";
-        query.port = 6001;
+        query.port = "6001";
       };
       # };
       # "ABC NewsRadio" = {
