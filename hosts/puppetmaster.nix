@@ -49,7 +49,7 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 27015 8123 80 8000 5001 ];
+    allowedTCPPorts = [ 27015 8123 80 8000 5001 6000 6001 ];
     allowedUDPPorts = [ 27005 27020 ];
     extraCommands =
       "  iptables -A nixos-fw -p tcp --source 10.0.0.0/16 -j nixos-fw-accept\n  iptables -A nixos-fw -p udp --source 10.0.0.0/16 -j nixos-fw-accept\n";
