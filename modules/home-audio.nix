@@ -40,6 +40,16 @@
         sampleFormat = "48000:16:2";
         codec = "pcm";
       };
+      "Shairplay (Lily)" = {
+        type = "airplay";
+        sampleFormat = "48000:16:2";
+        location = "${pkgs.shairport-sync}/bin/shairport-sync";
+      };
+      "Shairplay (Juno)" = {
+        type = "airplay";
+        sampleFormat = "48000:16:2";
+        location = "${pkgs.shairport-sync}/bin/shairport-sync";
+      };
       # };
       # "ABC NewsRadio" = {
       #   type = "process";
