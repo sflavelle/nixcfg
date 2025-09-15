@@ -161,7 +161,7 @@
     openFirewall = true;
     mediaLocation = "/mnt/media/immich";
     accelerationDevices = [ "/dev/dri/renderD128" ];
-    settings.server.externalDomain = "photos.home.neurario.com";
+    settings.server.externalDomain = "https://photos.home.neurario.com";
   };
 
   # Networking Containers
