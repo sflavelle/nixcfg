@@ -156,6 +156,13 @@
     settings.Address = "0.0.0.0";
     openFirewall = true;
   };
+  services.immich = {
+    enable = true;
+    openFirewall = true;
+    mediaLocation = "/mnt/media/immich";
+    accelerationDevices = [ "/dev/dri/renderD128" ];
+    settings.server.externalDomain = "photos.home.neurario.com";
+  };
 
   # Networking Containers
 
