@@ -5,7 +5,7 @@
         blanket
         dbeaver-bin
         localsend
-        vesktop
+        vesktop arrpc
 
         # cli tools
         git
