@@ -6,6 +6,7 @@
         dbeaver-bin
         localsend
         vesktop arrpc
+        alacritty
 
         # cli tools
         git
@@ -30,12 +31,15 @@
         tree
         unrar
         vivaldi vivaldi-ffmpeg-codecs
+        inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
         voxtype
         netbird
         zoxide
         yazi
 
         python314Packages.yt-dlp-ejs
+
+        steam-run
       ];
 
       services.openssh.enable = true;
