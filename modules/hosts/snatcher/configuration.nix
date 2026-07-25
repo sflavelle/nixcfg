@@ -85,6 +85,8 @@
     packages = with pkgs; [
       kdePackages.kate
       pipeweaver
+      archipelago
+      poptracker
     ];
   };
 
