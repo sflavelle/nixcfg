@@ -2,6 +2,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # ARM projects
+#     mobile-nixos.url = "github:mobile-nixos/mobile-nixos";
+#     mobile-nixos.flake = false;
+
     # Helpers
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";

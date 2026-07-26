@@ -87,6 +87,24 @@
       pipeweaver
       archipelago
       poptracker
+      calibre
+      bitwig-studio
+
+      celestegame
+      (celestegame.override {
+        writableDir = "/home/lily/Games/celeste/mods/modded";
+        gameDir = "/home/lily/Games/celeste/modded";
+        withEverest = true;
+      })
+      (celestegame.override {
+        writableDir = "/home/lily/Games/celeste/mods/ap";
+        gameDir = "/home/lily/Games/celeste/ap";
+        withEverest = true;
+      })
+      (olympus.override { finderHints = [
+        "/home/lily/Games/celeste/ap"
+        "/home/lily/Games/celeste/modded"
+      ]; })
     ];
   };
 

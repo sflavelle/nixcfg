@@ -9,7 +9,7 @@
         alacritty
 
         # cli tools
-        git
+        git diffnav
         aria2
         wget
         duf
