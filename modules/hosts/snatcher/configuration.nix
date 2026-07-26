@@ -182,7 +182,7 @@
       libxinerama
       libxcursor
       libxrender
-      libxScrnSaver
+      libxscrnsaver
       libxi
       libsm
       libice
