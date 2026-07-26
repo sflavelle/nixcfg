@@ -5,7 +5,7 @@
           self'.packages.neuAlacritty
         ];
         fonts.packages = with pkgs; [
-          anakron
+          nerd-fonts.bigblue-terminal
         ];
     };
 
@@ -14,7 +14,7 @@
             inherit pkgs;
             settings = {
               font.normal = {
-                family = "ANAKRON Nerd Font Mono";
+                family = "BigBlueTerm Nerd Font Mono";
               };
               font.size = 9;
 
