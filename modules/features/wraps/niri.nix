@@ -3,7 +3,7 @@
     flake.nixosModules.niri = { pkgs, lib, ... }: {
         programs.niri = {
             enable = true;
-            package = self.packages.${pkgs.stdenv.hostPlatform.system}.niri;
+            package = self.packages.${pkgs.stdenv.hostPlatform.system}.neuri;
         };
         programs.dms-shell = {
             enable = true;
@@ -11,11 +11,15 @@
         };
     };
 
-    perSystem = { pkgs, lib, ... }: {
-        packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
+    perSystem = { pkgs, lib, self', ... }: {
+        packages.neuri = inputs.wrapper-modules.wrappers.niri.wrap {
+            inherit pkgs;
             settings = {
                 screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
                 prefer-no-csd = true;
+
+                xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
+
                 input = {
                     keyboard = {
                         repeat-delay = 600;
@@ -23,15 +27,14 @@
                         track-layout = "global";
                     };
                     touchpad = {
-                        tap = true;
-                        natural-scroll = true;
+                        tap = _: {};
+                        natural-scroll = _: {};
                     };
                     mouse.scroll-factor = 1.0;
-                    focus-follows-mouse.max-scroll-amount = "20%";
+#                     focus-follows-mouse = "max-scroll-amount=20%";
                     disable-power-key-handling = true;
                 };
                 layout = {
-                    gaps = 8;
                     focus-ring.off = _: {};
                     border = {
                         on = _: {};
@@ -45,8 +48,8 @@
                 };
 
                 binds = {
-                    "Mod+T".spawn-sh = lib.getExe pkgs.alacritty;
-                    "Mod+Return".spawn-sh = "${lib.getExe pkgs.alacritty} --class=scratch -e helix";
+                    "Mod+T".spawn-sh = lib.getExe self'.packages.neuAlacritty;
+                    "Mod+Return".spawn-sh = "${lib.getExe self'.packages.neuAlacritty} --class=scratch -e ${lib.getExe pkgs.helix}";
                 };
 
                 spawn-at-startup = [

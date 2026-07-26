@@ -5,6 +5,7 @@
             self.nixosModules.snatcherConfig
             self.nixosModules.commonSetup
             self.nixosModules.mountsHome
+            self.nixosModules.niri
         ];
     };
 

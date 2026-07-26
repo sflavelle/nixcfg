@@ -1,12 +1,12 @@
 { self, inputs, ... }: {
 
   flake.nixosModules.commonSetup = { config, pkgs, ... }: {
+      nix.settings.experimental-features = [ "nix-command" "flakes" ];
       environment.systemPackages = with pkgs; [
         blanket
         dbeaver-bin
         localsend
         vesktop arrpc
-        alacritty
 
         # cli tools
         git diffnav
