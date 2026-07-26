@@ -85,8 +85,6 @@
     packages = with pkgs; [
       kdePackages.kate
       pipeweaver
-      archipelago
-      poptracker
       calibre
       bitwig-studio
       rclone
@@ -246,7 +244,7 @@
       libgcrypt
       libvpx
       librsvg
-      xorg.libXft
+      libxft
       libvdpau
       # ...
       # Some more libraries that I needed to run programs
