@@ -114,6 +114,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  environment.systemPackages = with pkgs; [
+    vscodium-fhs nixfmt
+  ];
+
   programs.steam = {
     enable = true;
     extest.enable = false;

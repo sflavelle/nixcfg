@@ -1,8 +1,8 @@
 { self, inputs, ...}: {
 
-    flake.nixosModules.terminal = { pkgs, lib, ... }: {
-        environment.systemPackages = with pkgs; [
-          ${self'.packages.neuAlacritty}
+    flake.nixosModules.terminal = { pkgs, lib, self', ... }: {
+        environment.systemPackages = [
+          self'.packages.neuAlacritty
         ];
         fonts.packages = with pkgs; [
           anakron
@@ -14,9 +14,9 @@
             inherit pkgs;
             settings = {
               font.normal = {
-                family = "ANAKRON";
-                style = "Regular";
+                family = "ANAKRON Nerd Font Mono";
               };
+              font.size = 9;
 
               colors.transparent_background_colors = false;
 
