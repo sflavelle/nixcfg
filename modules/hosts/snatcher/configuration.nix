@@ -87,6 +87,7 @@
       pipeweaver
       calibre
       bitwig-studio
+      davinci-resolve-studio
       rclone
 
       celestegame
