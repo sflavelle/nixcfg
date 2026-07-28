@@ -65,6 +65,32 @@
 
                 };
 
+                workspaces = {
+                    "Browser" = {
+                        open-on-output = "KOGAN AUSTRALIA PTY LTD KAMN34RQUCSA Unknown";
+                        
+                    };
+                    "Chat" = {
+                        open-on-output = "Microstep MSI G24C6 0x00000243";
+                        
+                    };
+                    "Games" = {
+                        open-on-output = "KOGAN AUSTRALIA PTY LTD KAMN34RQUCSA Unknown";
+                        
+                    };
+                    "Utility" = {
+                        open-on-output = "Graphica Computer HD Display Unknown";
+                        
+                    };
+                    "Music" = {
+                        open-on-output = "Graphica Computer HD Display Unknown";
+                        
+                    };
+                    "Archipelago" = {
+                        open-on-output = "Graphica Computer HD Display Unknown";   
+                    };
+                };
+
                 binds = let
                     dms = lib.getExe pkgs.dms-shell;
                     ipc = "${dms} ipc call";
@@ -161,6 +187,87 @@
                     "Mod+Comma".spawn-sh = "${ipc} settings toggle";
                     "Mod+L".spawn-sh = "${ipc} lock lock";
                 };
+
+                window-rules = [
+                    {
+                        matches = [
+                            { app-id = "^steam$"; }
+                            { app-id = "heroic"; }
+                            { app-id = "^love$"; title="Olympus"; }
+                            { app-id = "lutris"; }
+                        ];
+                        open-on-workspace = "Games";
+                    }
+                    {
+                        matches = [
+                            { app-id = "discord"; }
+                            { app-id = "WebCord"; }
+                            { app-id = "vesktop"; }
+                            { app-id = "element"; }
+                            { app-id = "fluxer"; }
+                        ];
+                        open-on-workspace = "Communication";
+                    }
+                    {
+                        matches = [
+                            { app-id = "firefox"; title="Picture-in-Picture"; }
+                            { app-id = "floorp"; title="Picture-in-Picture"; }
+                            { app-id = "zen"; title="Picture-in-Picture"; }
+                            { title = "Picture in picture"; }
+                        ];
+                        open-floating = true;
+                        default-floating-position = {
+                            relative-to = "bottom-right";
+                            x = 0;
+                            y = 0;
+                        };
+                    }
+                    {
+                        matches = [ { at-startup = true; } ];
+                        open-focused = false;
+                    }
+                    {
+                        matches = [
+                            { app-id = "^org.wezfurlong.wezterm$"; }
+                            { app-id = "Alacritty"; }
+                            { app-id = "ghostty"; }
+                            { app-id = "kitty"; }
+                        ];
+                        draw-border-with-background = false;
+                        background-effect.blur = true;
+                    }
+
+                    {
+                        matches = [
+                            { app-id="^steam_app_"; }
+                            { app-id="gzdoom"; }
+                            { app-id="uzdoom"; }
+                            { app-id="SpaceIdle"; }
+                            { title="Ship of Harkinian"; }
+                            { app-id="Celeste"; }
+                            { app-id="gmod"; }
+                            { app-id="SMB1R"; }
+                            { app-id="hollow_knight"; }
+                            { app-id="hitman3"; }
+                            { app-id="sm64coopdx"; }
+                            { app-id="Refunct-Linux-Shipping"; }
+                            { app-id="gamescope"; }
+                            { app-id="Minecraft"; }
+                            { app-id="mcpelauncher-client"; }
+                            { app-id="p2ce"; }
+                            { app-id="^Haste.x86_64$"; }
+                            { app-id="^dusk$"; }
+                            { app-id="^com.twilitrealm.dusk"; }
+                            { app-id="MarbleItUp"; }
+                        ];
+                        open-on-workspace = "Games";
+                        open-focused = true;
+                        open-floating = false;
+                        open-fullscreen = true;
+                        variable-refresh-rate = true;
+                        default-column-width = { fixed = 2468; };
+                    }
+                ];
 
                 spawn-at-startup = [
                 ];
