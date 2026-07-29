@@ -216,11 +216,11 @@
                             { title = "Picture in picture"; }
                         ];
                         open-floating = true;
-                        default-floating-position = {
-                            relative-to = "bottom-right";
-                            x = 0;
-                            y = 0;
-                        };
+                        # default-floating-position = {
+                        #     relative-to = "bottom-right";
+                        #     x = 0;
+                        #     y = 0;
+                        # };
                     }
                     {
                         matches = [ { at-startup = true; } ];
