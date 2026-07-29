@@ -38,13 +38,20 @@
         yazi
 
         python314Packages.yt-dlp-ejs
+        pipx
 
         steam-run
+        wine
+        winePackages.yabridge
       ];
 
       services.openssh.enable = true;
       
       services.flatpak.enable = true;
+
+      programs.fish = {
+        enable = true;
+      };
 
   };
 }

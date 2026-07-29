@@ -13,6 +13,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [ "reboot=acpi" "pci=noaer" ];
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -82,13 +83,22 @@
     isNormalUser = true;
     description = "Lily Flavelle";
     extraGroups = [ "networkmanager" "wheel" "input" "audio" ];
+    shell = pkgs.fish;
     packages = with pkgs; [
       kdePackages.kate
       pipeweaver
       calibre
-      bitwig-studio
+      bitwig-studio demucs-rs
       davinci-resolve-studio
       rclone
+      (python313Packages.beets.override {
+        pluginOverrides = {
+          bandcamp = {
+            enable = true;
+            propagatedBuildInputs = [ python313Packages.beetcamp ];
+          };
+        };
+      })
 
       celestegame
       (olympus.override { finderHints = [
