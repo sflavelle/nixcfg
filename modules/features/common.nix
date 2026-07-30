@@ -29,7 +29,8 @@
         rclone
         trash-cli
         tree
-        unrar
+        unrar unzip
+        jq yq
         vivaldi vivaldi-ffmpeg-codecs
         inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
         voxtype
