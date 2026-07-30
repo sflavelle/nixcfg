@@ -78,6 +78,10 @@
                         open-on-output = "KOGAN AUSTRALIA PTY LTD KAMN34RQUCSA Unknown";
                         
                     };
+                    "Work" = {
+                        open-on-output = "KOGAN AUSTRALIA PTY LTD KAMN34RQUCSA Unknown";
+                        
+                    };
                     "Utility" = {
                         open-on-output = "Graphica Computer HD Display Unknown";
                         
@@ -206,7 +210,7 @@
                             { app-id = "element"; }
                             { app-id = "fluxer"; }
                         ];
-                        open-on-workspace = "Communication";
+                        open-on-workspace = "Chat";
                     }
                     {
                         matches = [
@@ -221,6 +225,13 @@
                         #     x = 0;
                         #     y = 0;
                         # };
+                    }
+                    {
+                        matches = [
+                            { app-id = "com.danklinux.dms"; }
+                        ];
+                        open-floating = true;
+                        background-effect.blur = true;
                     }
                     {
                         matches = [ { at-startup = true; } ];
@@ -266,6 +277,16 @@
                         open-fullscreen = true;
                         variable-refresh-rate = true;
                         default-column-width = { fixed = 2468; };
+                    }
+
+                    {
+                        matches = [
+                            { app-id="com.bitwig.BitwigStudio"; }
+                            { app-id=""; }
+                        ];
+                        open-on-workspace = "Work";
+                        open-focused = true;
+                        open-fullscreen = true;
                     }
                 ];
 
