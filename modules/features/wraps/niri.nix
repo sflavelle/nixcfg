@@ -282,7 +282,6 @@
                     {
                         matches = [
                             { app-id="com.bitwig.BitwigStudio"; }
-                            { app-id=""; }
                         ];
                         open-on-workspace = "Work";
                         open-focused = true;
