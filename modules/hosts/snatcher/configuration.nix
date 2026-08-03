@@ -13,7 +13,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [ "reboot=acpi" "pci=noaer" ];
+  boot.kernelParams = [ "acpi=force" "apm=power_off" ];
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
