@@ -287,6 +287,15 @@
                         open-focused = true;
                         open-fullscreen = true;
                     }
+
+                    {
+                        matches = [
+                            { app-id="steam_app_570940"; title="Archipelago Client"; }
+                            { app-id="^Archipelago"; }
+                        ];
+                        open-on-workspace = "Archipelago";
+                        open-fullscreen = false;
+                    }
                 ];
 
                 spawn-at-startup = [
