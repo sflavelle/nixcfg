@@ -271,6 +271,9 @@
                             { app-id="^com.twilitrealm.dusk"; }
                             { app-id="MarbleItUp"; }
                         ];
+                        excludes = [
+                            { app-id="steam_app_570940"; title="Archipelago Client"; }
+                        ];
                         open-on-workspace = "Games";
                         open-focused = true;
                         open-floating = false;
@@ -294,7 +297,6 @@
                             { app-id="^Archipelago"; }
                         ];
                         open-on-workspace = "Archipelago";
-                        open-fullscreen = false;
                     }
                 ];
 
