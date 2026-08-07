@@ -78,7 +78,7 @@
   users.users."lily" = {
     isNormalUser = true;
     description = "Lily Flavelle";
-    extraGroups = [ "networkmanager" "wheel" "input" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "uinput" "audio" ];
     shell = pkgs.fish;
     packages = with pkgs; [
       kdePackages.kate
@@ -86,6 +86,7 @@
       calibre
       bitwig-studio inputs.demucs.packages.x86_64-linux.demucs
       davinci-resolve-studio
+      godot
       rclone
       (python313Packages.beets.override {
         pluginOverrides = {
@@ -96,11 +97,15 @@
         };
       })
 
+      hydrus
+
       celestegame
       (olympus.override { finderHints = [
         "/home/lily/Games/celeste/ap"
         "/home/lily/Games/celeste/modded"
       ]; })
+      uzdoom
+      
     ];
   };
 
@@ -123,6 +128,13 @@
   };
   hardware.steam-hardware.enable = true;
   programs.gamescope.enable = true;
+
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 
   services.wivrn = {
     enable = true;

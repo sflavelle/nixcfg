@@ -7,6 +7,7 @@
         dbeaver-bin
         localsend
         vesktop arrpc
+        feishin
 
         # cli tools
         git diffnav
@@ -37,13 +38,18 @@
         netbird
         zoxide
         yazi
+        oh-my-posh
 
         python314Packages.yt-dlp-ejs
         pipx
 
+        syncthing
+
         steam-run
         wine
         winePackages.yabridge
+
+        game-devices-udev-rules
       ];
 
       services.openssh.enable = true;
