@@ -3,7 +3,7 @@
     flake.nixosModules.niri = { pkgs, lib, ... }: {
         programs.niri = {
             enable = true;
-            package = self.packages.${pkgs.stdenv.hostPlatform.system}.neuri;
+            package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.neuri;
         };
         programs.dms-shell.enable = true;
     };
@@ -66,33 +66,12 @@
                 };
 
                 workspaces = {
-                    "Browser" = {
-                        open-on-output = "KOGAN AUSTRALIA PTY LTD KAMN34RQUCSA Unknown";
-                        
-                    };
-                    "Chat" = {
-                        open-on-output = "Microstep MSI G24C6 0x00000243";
-                        
-                    };
-                    "Games" = {
-                        open-on-output = "KOGAN AUSTRALIA PTY LTD KAMN34RQUCSA Unknown";
-                        
-                    };
-                    "Work" = {
-                        open-on-output = "KOGAN AUSTRALIA PTY LTD KAMN34RQUCSA Unknown";
-                        
-                    };
-                    "Utility" = {
-                        open-on-output = "Graphica Computer HD Display Unknown";
-                        
-                    };
-                    "Music" = {
-                        open-on-output = "Graphica Computer HD Display Unknown";
-                        
-                    };
-                    "Archipelago" = {
-                        open-on-output = "Graphica Computer HD Display Unknown";   
-                    };
+                    "Browser" = {};
+                    "Chat" = {};
+                    "Games" = {};
+                    "Work" = {};
+                    "Utility" = {};
+                    "Media" = {};
                 };
 
                 binds = let
@@ -301,6 +280,7 @@
                 ];
 
                 spawn-at-startup = [
+                    [ (lib.getExe pkgs.voxtype) ]
                 ];
             };
         };
