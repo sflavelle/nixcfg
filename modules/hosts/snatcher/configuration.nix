@@ -44,6 +44,7 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.dms-greeter.enable = true;
+  services.displayManager.dms-greeter.compositor.name = "niri";
 
   # Configure keymap in X11
   services.xserver.xkb = {

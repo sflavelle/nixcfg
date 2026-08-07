@@ -33,7 +33,7 @@
         jq yq
         vivaldi vivaldi-ffmpeg-codecs
         inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-        voxtype
+        voxtype voxtype-vulkan
         netbird
         zoxide
         yazi
