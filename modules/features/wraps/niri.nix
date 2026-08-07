@@ -99,6 +99,7 @@
 
                     "Mod+V".spawn-sh = "${ipc} clipboard toggle";
                     "Mod+Escape".spawn-sh = "${ipc} processlist toggle";
+                    "Mod+Shift+Escape".spawn-sh = "${term} --class=btop -e ${lib.getExe pkgs.btop}";
                     "Mod+Space".spawn-sh = "${ipc} spotlight toggle";
                     "Mod+F2".spawn-sh = "${ipc} spotlight-bar toggle";
 
@@ -267,15 +268,25 @@
                         ];
                         open-on-workspace = "Work";
                         open-focused = true;
-                        open-fullscreen = true;
+                        open-maximized-to-edges = true;
                     }
 
                     {
                         matches = [
                             { app-id="steam_app_570940"; title="Archipelago Client"; }
                             { app-id="^Archipelago"; }
+                            { app-id="vacuumtube";}
                         ];
                         open-on-workspace = "Archipelago";
+                    }
+
+                    {
+                        matches = [
+                            { app-id="feishin"; }
+                            { app-id="mpv";}
+                        ];
+                        open-on-workspace = "Media";
+                        open-maximized-to-edges = true;
                     }
                 ];
 
