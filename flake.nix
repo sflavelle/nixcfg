@@ -16,6 +16,7 @@
     # Other programs
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    demucs.url = "github:mukize/demucs.nix";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake
