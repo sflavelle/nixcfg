@@ -41,7 +41,10 @@
                         natural-scroll = _: {};
                     };
                     mouse.scroll-factor = 1.0;
-                    focus-follows-mouse = [];
+                    focus-follows-mouse = _: {
+                        props = {
+                            max-scroll-amount = "20%";
+                        };};
                     disable-power-key-handling = true;
                 };
 
@@ -278,6 +281,13 @@
                             { app-id="vacuumtube";}
                         ];
                         open-on-workspace = "Archipelago";
+                    }
+
+                    {
+                        matches = [
+                            { app-id="btop";}
+                        ];
+                        open-on-workspace = "Utility";
                     }
 
                     {
