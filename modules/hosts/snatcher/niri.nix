@@ -45,7 +45,7 @@
                     mode = "1920x1080@60";
                 };
                 "Graphica Computer HD Display Unknown" = {
-                    scale = 1;
+                    scale = 1.25; # 1 is just a touch too small :(
                     position = _: {props = {
                         x = 2780;
                         y = 1440;
