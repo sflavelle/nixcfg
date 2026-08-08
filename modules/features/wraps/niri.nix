@@ -94,7 +94,7 @@
                     "Mod+C".center-column = _: {};
 
                     "Mod+T".spawn-sh = term;
-                    "Mod+Return".spawn-sh = "${term} --class=scratch -e ${lib.getExe pkgs.helix}";
+                    "Mod+Return".spawn-sh = "${ipc} notepad toggle";
 
                     "Mod+E".spawn-sh = "${term} --class=yazi -e ${lib.getExe pkgs.yazi}";
                     "Mod+Shift+E".spawn-sh = "${ipc} defaultApp fileManager";
@@ -173,6 +173,16 @@
                     "Ctrl+Alt+Delete".spawn-sh = "${ipc} powermenu toggle";
                     "Mod+Comma".spawn-sh = "${ipc} settings toggle";
                     "Mod+L".spawn-sh = "${ipc} lock lock";
+
+                    # Multimedia Keys
+
+                    XF86AudioLowerVolume.spawn-sh = "${ipc} audio decrement";
+                    XF86AudioMicMute = "${ipc} audio micmute";
+                    XF86AudioMute = "${ipc} audio mute";
+                    XF86AudioRaiseVolume = "${ipc} audio increment";
+
+                    XF86MonBrightnessDown.spawn-sh = "${ipc} brightness decrement";
+                    XF86MonBrightnessUp.spawn-sh = "${ipc} brightness decrement";
                 };
 
                 window-rules = [
@@ -294,6 +304,7 @@
                         matches = [
                             { app-id="feishin"; }
                             { app-id="mpv";}
+                            { app-id="vacuumtube";}
                         ];
                         open-on-workspace = "Media";
                         open-maximized-to-edges = true;
