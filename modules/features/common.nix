@@ -1,6 +1,6 @@
 { self, inputs, ... }: {
 
-  flake.nixosModules.commonSetup = { config, pkgs, ... }: {
+  flake.nixosModules.commonSetup = { self', config, pkgs, ... }: {
       nix.settings.experimental-features = [ "nix-command" "flakes" ];
       environment.systemPackages = with pkgs; [
         blanket
@@ -27,6 +27,7 @@
         iotop
         btop
         mpv
+        self'.packages.vacuumtube
         rclone
         trash-cli
         tree
@@ -34,6 +35,7 @@
         jq yq
         vivaldi vivaldi-ffmpeg-codecs
         inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+        
         voxtype voxtype-vulkan
         netbird
         zoxide

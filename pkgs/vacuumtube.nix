@@ -3,6 +3,8 @@
   buildNpmPackage,
   fetchFromGitHub,
   electron_42,
+  zip,
+  makeWrapper,
   copyDesktopItems,
   makeDesktopItem,
 }:
@@ -22,30 +24,38 @@ buildNpmPackage (finalAttrs: {
 
   npmDepsHash = "sha256-Wtyft343sSs018v5bagCvvta5z+yzU9IgkJ4LH+HQzs=";
 
-  # The prepack script runs the build script, which we'd rather do in the build phase.
-  npmPackFlags = [ "--ignore-scripts" ];
-
-  npmBuildScript = "linux:build-unpacked";
-
+  dontNpmBuild = true;
   makeCacheWritable = true;
+  nativeBuildInputs = [
+    makeWrapper
+    copyDesktopItems
+  ];
 
-  env.ELECTRON_SKIP_BINARY_DOWNLOAD = true;
+  installPhase = ''
+    runHook preInstall
 
-  NODE_OPTIONS = "--openssl-legacy-provider";
+    mkdir -p $out/share/VacuumTube $out/bin
 
-  # desktopItem = makeDesktopItem {
-  #   name = finalAttrs.pname;
-  #   exec = finalAttrs.pname;
-  #   icon = finalAttrs.pname;
-  #   desktopName = "VacuumTube";
-  #   categories = [ "AudioVideo" "Player" "Video" ];
-  #   comment = "YouTube Leanback wrapper for the desktop";
-  # };
+    # Copy the application source alongside installed node_modules
+    cp -r . $out/share/VacuumTube
 
-  # extraInstallCommands = ''
-  #   mkdir -p $out/share/applications
-  #   cp -r ${finalAttrs.desktopItem}/share/applications/* $out/share/applications/
-  # '';
+    # Create an executable wrapper pointing to the Nixpkgs electron binary
+    makeWrapper ${finalAttrs.electron}/bin/electron $out/bin/VacuumTube \
+      --add-flags "$out/share/VacuumTube"
+
+    runHook postInstall
+  '';
+
+  desktopItems = [
+    (makeDesktopItem {
+      name = "VacuumTube";
+      exec = "VacuumTube";
+      icon = "VacuumTube";
+      desktopName = "VacuumTube";
+      categories = [ "AudioVideo" "Player" "Video" ];
+      comment = "YouTube Leanback wrapper for the desktop";
+    })
+  ];
 
   meta = {
     description = "YouTube Leanback wrapper for the desktop";
