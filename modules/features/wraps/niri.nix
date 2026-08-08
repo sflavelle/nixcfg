@@ -204,6 +204,7 @@
                             { app-id = "fluxer"; }
                         ];
                         open-on-workspace = "Chat";
+                        background-effect.blur = true;
                     }
                     {
                         matches = [
