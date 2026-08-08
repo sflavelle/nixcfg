@@ -21,7 +21,7 @@
               colors.transparent_background_colors = false;
 
               window = {
-                opacity = 0.9;
+                opacity = 0.8;
                 blur = true;
               };
             };
