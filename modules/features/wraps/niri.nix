@@ -177,9 +177,9 @@
                     # Multimedia Keys
 
                     XF86AudioLowerVolume.spawn-sh = "${ipc} audio decrement";
-                    XF86AudioMicMute = "${ipc} audio micmute";
-                    XF86AudioMute = "${ipc} audio mute";
-                    XF86AudioRaiseVolume = "${ipc} audio increment";
+                    XF86AudioMicMute.spawn-sh = "${ipc} audio micmute";
+                    XF86AudioMute.spawn-sh = "${ipc} audio mute";
+                    XF86AudioRaiseVolume.spawn-sh = "${ipc} audio increment";
 
                     XF86MonBrightnessDown.spawn-sh = "${ipc} brightness decrement";
                     XF86MonBrightnessUp.spawn-sh = "${ipc} brightness decrement";

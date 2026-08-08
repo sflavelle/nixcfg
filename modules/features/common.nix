@@ -11,13 +11,14 @@
   };
 
   flake.nixosModules.commonSetup = { self, config, pkgs, ... }: {
-      # inherit flake;
+      imports = [
+        inputs.nixcord.nixosModules.nixcord
+      ];
       nix.settings.experimental-features = [ "nix-command" "flakes" ];
       environment.systemPackages = with pkgs; [
         blanket
         dbeaver-bin
         localsend
-        vesktop arrpc
         feishin
 
         # cli tools
@@ -38,7 +39,7 @@
         iotop
         btop
         mpv
-        # vacuumtube
+        (pkgs.callPackage ../../pkgs/vacuumtube.nix {})
         rclone
         trash-cli
         tree
@@ -73,5 +74,85 @@
         enable = true;
       };
 
+      programs.nixcord = {
+        enable = true;
+        user = "lily";
+        discord.equicord.enable = true;
+
+        config = {
+          autoUpdate = false;
+          notifyAboutUpdates = false;
+          disableMinSize = true;
+          transparent = true;
+
+          enabledThemeLinks = [
+            "https://rdf1337.github.io/DiscordSnippets/VoicePanelNoChevrons/main.css"
+            "https://raw.githubusercontent.com/sdhEmily/TranslucentSide/refs/heads/main/TranslucentSide.theme.css"
+          ];
+        };
+
+        config.plugins = {
+          clearUrls.enable = true;
+          concatenatedComponentExtractor.enable = true;
+          copyEmojiMarkdown.enable = true;
+          crashHandler.enable = true;
+          dearrow = {
+            enable = true;
+            dearrowByDefault = false;
+          };
+          disableDeepLinks.enable = true;
+          dontRoundMyTimestamps.enable = true;
+          expressionCloner.enable = true;
+          fullSearchContext.enable = true;
+          greetStickerPicker.enable = true;
+          implicitRelationships.enable = true;
+          mentionAvatars.enable = true;
+          moreUserTags = {
+            enable = true;
+            tagSettings = {
+              webhook = { };
+              owner = { };
+              administrator = { };
+              moderatorStaff = { };
+              moderator = { };
+              voiceModerator = { };
+              chatModerator = { };
+            };
+          };
+          noMaskedUrlPaste.enable = true;
+          noTrack.enable = true;
+          relationshipNotifier.enable = true;
+          replyTimestamp.enable = true;
+          sendTimestamps.enable = true;
+          settings.enable = true;
+          showConnections.enable = true;
+          supportHelper.enable = true;
+          themeAttributes.enable = true;
+          typingIndicator.enable = true;
+          unindent.enable = true;
+          userMessagesPronouns.enable = true;
+          validReply.enable = true;
+          validUser.enable = true;
+          viewIcons.enable = true;
+          voiceMessages.enable = true;
+          volumeBooster.enable = true;
+          webContextMenus = {
+            enable = true;
+            addBack = true;
+          };
+          webKeybinds.enable = true;
+          webScreenShareFixes.enable = true;
+        };
+      extraConfig.plugins = {
+        platformIndicators = {
+          badges = true;
+        };
+        userMessagesPronouns = {
+          pronounSource = 0;
+          showInMessages = true;
+          showInProfile = true;
+        };
+      };
+    };
   };
 }

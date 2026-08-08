@@ -16,7 +16,20 @@
     # Other programs
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    nixcord.url = "github:4evy/nixcord";
     demucs.url = "github:mukize/demucs.nix";
+
+    comfyui-nix = {
+      url = "github:utensils/comfyui-nix";
+      inputs.flake-parts.follows = "flake-parts";
+    };
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.systems.follows = "systems";
+      # inputs.treefmt-nix.follows = "nur-xddxdd/treefmt-nix";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake

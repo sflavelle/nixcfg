@@ -75,7 +75,7 @@
                     
                 };
                 "Media" = {
-                    open-on-output = "Graphica Computer HD Display Unknown";
+                    open-on-output = "Philips Consumer Electronics Company PHL 216V6 ZV01929011836";
                     
                 };
                 "Archipelago" = {
