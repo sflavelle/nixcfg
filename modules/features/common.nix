@@ -1,6 +1,17 @@
 { self, inputs, ... }: {
 
-  flake.nixosModules.commonSetup = { self', config, pkgs, ... }: {
+  imports = [
+    inputs.flake-parts.flakeModules.easyOverlay
+  ];
+
+  perSystem = { config, pkgs, ... }: {
+    overlayAttrs = {
+      inherit (config.packages) vacuumtube;
+    };
+  };
+
+  flake.nixosModules.commonSetup = { self, config, pkgs, ... }: {
+      # inherit flake;
       nix.settings.experimental-features = [ "nix-command" "flakes" ];
       environment.systemPackages = with pkgs; [
         blanket
@@ -27,7 +38,7 @@
         iotop
         btop
         mpv
-        self'.packages.vacuumtube
+        # vacuumtube
         rclone
         trash-cli
         tree
