@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
 
     # ARM projects
 #     mobile-nixos.url = "github:mobile-nixos/mobile-nixos";
@@ -16,6 +17,10 @@
     # Other programs
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    inputs.helium = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixcord.url = "github:4evy/nixcord";
     demucs.url = "github:mukize/demucs.nix";
 

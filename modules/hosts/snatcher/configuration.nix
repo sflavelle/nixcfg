@@ -75,39 +75,33 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."lily" = {
-    isNormalUser = true;
-    description = "Lily Flavelle";
-    extraGroups = [ "networkmanager" "wheel" "input" "uinput" "audio" ];
-    shell = pkgs.fish;
-    packages = with pkgs; [
-      kdePackages.kate
-      pipeweaver
-      calibre
-      bitwig-studio inputs.demucs.packages.x86_64-linux.demucs
-      davinci-resolve-studio
-      godot
-      rclone
-      (python313Packages.beets.override {
-        pluginOverrides = {
-          bandcamp = {
-            enable = true;
-            propagatedBuildInputs = [ python313Packages.beetcamp ];
-          };
+  users.users."lily".packages = with pkgs; [
+    pipeweaver
+    calibre
+    bitwig-studio inputs.demucs.packages.x86_64-linux.demucs
+    davinci-resolve-studio
+    godot
+    rclone
+    (python313Packages.beets.override {
+      pluginOverrides = {
+        bandcamp = {
+          enable = true;
+          propagatedBuildInputs = [ python313Packages.beetcamp ];
         };
-      })
+      };
+    })
 
-      hydrus
+    hydrus
 
-      celestegame
-      (olympus.override { finderHints = [
-        "/home/lily/Games/celeste/ap"
-        "/home/lily/Games/celeste/modded"
-      ]; })
-      uzdoom
-      
-    ];
-  };
+    celestegame
+    (olympus.override { finderHints = [
+      "/home/lily/Games/celeste/ap"
+      "/home/lily/Games/celeste/modded"
+    ]; })
+    uzdoom
+    
+  ];
+
 
   # Install firefox.
   programs.firefox.enable = true;
