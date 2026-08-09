@@ -6,6 +6,9 @@
             package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.neuri;
         };
         programs.dms-shell.enable = true;
+        environment.systemPackages = with pkgs; [
+          zathura feh
+        ];
     };
 
     perSystem = { pkgs, lib, self', ... }: {
@@ -81,6 +84,13 @@
                     dms = lib.getExe pkgs.dms-shell;
                     ipc = "${dms} ipc call";
                     term = lib.getExe self'.packages.neuAlacritty;
+                    # yazi = inputs.wrapper-modules.wrappers.yazi.wrap {
+                    #     plugins = with pkgs.yaziPlugins; {
+                    #         glow = glow;
+                    #         gvfs = gvfs;
+                    #         mount = mount;
+                    #     };
+                    # };
                 in {
                     # Window Management
                     "Mod+Q".close-window = _: {};
@@ -97,7 +107,7 @@
                     "Mod+Return".spawn-sh = "${ipc} notepad toggle";
 
                     "Mod+E".spawn-sh = "${term} --class=yazi -e ${lib.getExe pkgs.yazi}";
-                    "Mod+Shift+E".spawn-sh = "${ipc} defaultApp fileManager";
+                    "Mod+Shift+E".spawn-sh = lib.getExe pkgs.nautilus;
                     "Mod+B".spawn-sh = "${ipc} defaultApp browser";
 
                     "Mod+V".spawn-sh = "${ipc} clipboard toggle";
@@ -309,6 +319,7 @@
                         ];
                         open-on-workspace = "Media";
                         open-maximized-to-edges = true;
+                        open-focused = true;
                     }
                 ];
 
