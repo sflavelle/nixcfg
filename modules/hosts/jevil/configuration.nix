@@ -77,17 +77,6 @@
   services.hardware.openrgb.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."lily" = {
-    isNormalUser = true;
-    description = "Lily Flavelle";
-    extraGroups = [ "networkmanager" "wheel" "input" "uinput" "audio" ];
-    shell = pkgs.fish;
-    packages = with pkgs; [
-      pipeweaver
-      rclone
-      
-    ];
-  };
 
   # Install firefox.
   programs.firefox.enable = true;
