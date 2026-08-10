@@ -21,6 +21,8 @@
         inputs.helium.overlays.default
       ];
 
+      services.resolved.enable = true;
+
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
@@ -83,20 +85,17 @@
       
       services.flatpak.enable = true;
 
-      programs.fish = {
-        enable = true;
-        package = inputs.wrapper-modules.wrappers.fish.wrap {
-          inherit pkgs;
-          shellAliases = let
-            eza = lib.getExe pkgs.eza;
-          in {
-            ls = eza;
-            ll = "${eza} -l";
-            cat = lib.getExe pkgs.bat;
-            tldr = lib.getExe pkgs.tealdeer;
-          };
+      services.netbird = {
+        useRoutingFeatures = "both";
+        clients.wt0 = {
+          port = 51820;
+          ui.enable = true;
+          openFirewall = true;
+          openInternalFirewall = true;
         };
       };
+
+      programs.fish.enable = true;
 
       programs.localsend = {
         enable = true; openFirewall = true;

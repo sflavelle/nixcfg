@@ -1,10 +1,13 @@
 { self, inputs, ... }: {
 
-  flake.nixosModules.userLily = { pkgs, lib, config, ... }: {
+  flake.nixosModules.userLily = { pkgs, lib, config, ... }: let
+    primEmail = "me@neurario.com";
+  
+  in {
     users.users."lily" = {
       isNormalUser = true;
       description = "Lily Flavelle";
-      extraGroups = [ "networkmanager" "wheel" "input" "uinput" "audio" ];
+      extraGroups = [ "networkmanager" "wheel" "input" "uinput" "audio" "netbird-wt0" ];
       shell = pkgs.fish;
       packages = with pkgs; [
         rclone
@@ -22,12 +25,31 @@
 
       ];
 
+      programs.fish = {
+        enable = true;
+        shellAliases = let
+            eza = lib.getExe pkgs.eza;
+          in {
+            ls = eza;
+            ll = "${eza} -l";
+            cat = lib.getExe pkgs.bat;
+            helix = "hx";
+            tldr = lib.getExe pkgs.tealdeer;
+          };
+        shellInit = let
+            confOmp = ./posh.yaml;
+          in ''
+          ${lib.getExe pkgs.zoxide} init --cmd cd fish | source
+          ${lib.getExe pkgs.oh-my-posh} init fish -c ${confOmp} | source
+        '';
+      };
+
       programs.git = {
         enable = true;
         settings = {
           user = {
             name = "Lily Flavelle";
-            email = "me@neurario.com";
+            email = primEmail;
           };
         };
       };
@@ -39,6 +61,13 @@
       programs.home-manager.enable = true;
 
       programs.zellij.enable = true;
+
+      programs.rbw = {
+        enable = true;
+        settings.base_url = "https://vault.neurario.com";
+        settings.email = primEmail;
+        settings.pinentry = pkgs.pinentry-gnome3;
+      };
 
       programs.rclone = {
         enable = true;
