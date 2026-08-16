@@ -19,7 +19,7 @@
         lincity armagetronad rocksndiamonds
         torus-trooper apotris xmoto zaz
 
-        tetrio-desktop
+        tetrio-desktop osu
         shattered-pixel-dungeon
         space-cadet-pinball
         supermariowar
