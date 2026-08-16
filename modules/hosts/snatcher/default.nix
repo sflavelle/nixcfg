@@ -4,8 +4,9 @@
         modules = [
             self.nixosModules.snatcherConfig
             self.nixosModules.commonSetup
-            self.nixosModules.userLily
+            self.nixosModules.gaming
             self.nixosModules.archipelago
+            self.nixosModules.userLily
             self.nixosModules.mountsHome
             self.nixosModules.niri
             self.nixosModules.snatcherNiri

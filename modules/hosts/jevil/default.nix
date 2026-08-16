@@ -4,7 +4,8 @@
         modules = [
             self.nixosModules.jevilConfig
             self.nixosModules.commonSetup
-						self.nixosModules.userLily
+            self.nixosModules.gaming
+            self.nixosModules.userLily
             self.nixosModules.mountsHome
             self.nixosModules.niri
         ];

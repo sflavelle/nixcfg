@@ -45,6 +45,8 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.dms-greeter.enable = true;
   services.displayManager.dms-greeter.compositor.name = "niri";
+  services.displayManager.defaultSession = "niri";
+  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -75,6 +77,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users."lily".extraGroups = ["docker"];
   users.users."lily".packages = with pkgs; [
     pipeweaver
     calibre
@@ -98,9 +101,12 @@
       "/home/lily/Games/celeste/ap"
       "/home/lily/Games/celeste/modded"
     ]; })
-    uzdoom
+
+    lmstudio
     
   ];
+
+  hardware.amdgpu.opencl.enable = true;
 
 
   # Install firefox.
@@ -113,15 +119,7 @@
     vscodium-fhs nixfmt
   ];
 
-  programs.steam = {
-    enable = true;
-    extest.enable = false;
-    localNetworkGameTransfers.openFirewall = true;
-    remotePlay.openFirewall = true;
-    extraPackages = [pkgs.hidapi];
-  };
-  hardware.steam-hardware.enable = true;
-  programs.gamescope.enable = true;
+  virtualisation.docker.enable = true;
 
   services.sunshine = {
     enable = true;

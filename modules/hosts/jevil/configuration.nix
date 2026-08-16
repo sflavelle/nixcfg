@@ -88,16 +88,6 @@
     vscodium-fhs nixfmt
   ];
 
-  programs.steam = {
-    enable = true;
-    extest.enable = false;
-    localNetworkGameTransfers.openFirewall = true;
-    remotePlay.openFirewall = true;
-    extraPackages = [pkgs.hidapi];
-  };
-  hardware.steam-hardware.enable = true;
-  programs.gamescope.enable = true;
-
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
