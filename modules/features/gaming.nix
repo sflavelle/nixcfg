@@ -12,10 +12,10 @@
       hardware.steam-hardware.enable = true;
       programs.gamescope.enable = true;
       programs.gpu-screen-recorder.enable = true;
-      
+
 
       environment.systemPackages = with pkgs; [
-        stuntrally ultimate-stunts bzflag torcs
+        stuntrally ultimatestunts bzflag torcs
         lincity armagetronad rocksndiamonds
         torus-trooper apotris xmoto zaz
 
