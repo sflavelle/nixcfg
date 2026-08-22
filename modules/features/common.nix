@@ -85,14 +85,10 @@
       
       services.flatpak.enable = true;
 
-      services.netbird = {
+      services.tailscale = {
+        enable = true;
         useRoutingFeatures = "both";
-        clients.wt0 = {
-          port = 51820;
-          ui.enable = true;
-          openFirewall = true;
-          openInternalFirewall = true;
-        };
+        openFirewall = true;
       };
 
       programs.fish.enable = true;

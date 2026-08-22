@@ -48,6 +48,8 @@
   services.displayManager.defaultSession = "niri";
   services.desktopManager.plasma6.enable = true;
 
+  services.udev.packages = [ pkgs.quark-goldleaf ];
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "au";
@@ -96,11 +98,7 @@
 
     hydrus
 
-    celestegame
-    (olympus.override { finderHints = [
-      "/home/lily/Games/celeste/ap"
-      "/home/lily/Games/celeste/modded"
-    ]; })
+    olympus
 
     lmstudio
     
