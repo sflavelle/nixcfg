@@ -29,6 +29,7 @@
 
         # modding
         balatro-mod-manager
+        r2modman
 
         # emulators
         desmume

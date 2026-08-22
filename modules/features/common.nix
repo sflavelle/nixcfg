@@ -82,8 +82,10 @@
         yazi
         oh-my-posh
 
+        nodejs_26
+
         python314Packages.yt-dlp-ejs
-        pipx
+        pipx uv
 
         syncthing
 
