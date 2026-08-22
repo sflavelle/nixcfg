@@ -7,6 +7,9 @@
 #     mobile-nixos.url = "github:mobile-nixos/mobile-nixos";
 #     mobile-nixos.flake = false;
 
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+
     # Helpers
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";

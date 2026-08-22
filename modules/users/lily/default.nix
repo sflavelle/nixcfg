@@ -78,17 +78,21 @@
               url = "https://files.neurario.com";
               vendor = "owncloud";
               user = "splatsune";
+              # pacer-min-sleep = "0.01ms";
             };
             mounts."/" = {
               enable = true;
               mountPoint = "${config.home-manager.users.lily.home.homeDirectory}/mnt/ndc-files";
               options = {
-
+                vfs-cache-mode = "writes";
+                vfs-cache-max-age = "5s";
+                attr-timeout = "5s";
+                dir-cache-time = "5s";
               };
             };
-            # secrets = {
-            #   headers = 
-            # };
+            secrets = {
+              pass = config.age.secrets.rclone-ndcfiles.path;
+            };
           };
         };
       };

@@ -14,7 +14,19 @@
       imports = [
         inputs.nixcord.nixosModules.nixcord
         inputs.home-manager.nixosModules.home-manager
+        inputs.agenix.nixosModules.default
       ];
+
+      age = {
+        secrets = {
+          rclone-ndcfiles = {
+            file = ../../secrets/rclone-ndcfiles.age;
+            owner = "lily";
+            group = "users";
+            mode = "770";
+          };
+        };
+      };
 
       nix.settings.experimental-features = [ "nix-command" "flakes" ];
       nixpkgs.overlays = [
@@ -61,6 +73,7 @@
 
         vivaldi vivaldi-ffmpeg-codecs
         inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
         helium
         
         voxtype voxtype-vulkan
