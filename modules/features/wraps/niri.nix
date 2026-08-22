@@ -274,6 +274,7 @@
                             { app-id="^dusk$"; }
                             { app-id="^com.twilitrealm.dusk"; }
                             { app-id="MarbleItUp"; }
+                            { app-id="^sm64."; title="Super Mario 64 EX"; }
                         ];
                         excludes = [
                             { app-id="steam_app_570940"; title="Archipelago Client"; }
