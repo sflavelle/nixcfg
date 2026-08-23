@@ -22,8 +22,12 @@
       };
 
       home.packages = with pkgs; [
-
+        tuisky
       ];
+
+      systemd.user.sessionVariables = {
+        EDITOR = "hx";
+      };
 
       programs.fish = {
         enable = true;
@@ -58,6 +62,14 @@
         gitCredentialHelper.enable = true;
       };
 
+      programs.helix = {
+        enable = true;
+        defaultEditor = true;
+        settings = {
+          editor.soft-wrap = true;
+        };
+      };
+
       programs.home-manager.enable = true;
 
       programs.zellij.enable = true;
@@ -67,6 +79,19 @@
         settings.base_url = "https://vault.neurario.com";
         settings.email = primEmail;
         settings.pinentry = pkgs.pinentry-gnome3;
+      };
+
+      programs.yazi = {
+        enable = true;
+        settings = {
+          mgr = {
+            ratio = [1 3 4];
+          };
+        };
+        extraPackages = with pkgs; [
+          glow
+          ouch
+        ];
       };
 
       programs.rclone = {
@@ -93,6 +118,18 @@
             secrets = {
               pass = config.age.secrets.rclone-ndcfiles.path;
             };
+          };
+        };
+      };
+
+      programs.gallery-dl = {
+        enable = true;
+        settings = {
+          extractor = {
+            base-directory = "~/Pictures/gallery-dl";
+          };
+          downloader = {
+            ytdl.module = "yt-dlp";
           };
         };
       };

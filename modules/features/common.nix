@@ -57,7 +57,6 @@
         fastfetch
         fd
         fzf
-        gallery-dl
         yt-dlp
         helix
         inxi
@@ -70,6 +69,7 @@
         tree
         unrar unzip
         jq yq
+        wl-clipboard-rs
 
         vivaldi vivaldi-ffmpeg-codecs
         inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default

@@ -222,6 +222,7 @@
                             { app-id = "floorp"; title="Picture-in-Picture"; }
                             { app-id = "zen"; title="Picture-in-Picture"; }
                             { title = "Picture in picture"; }
+                            { app-id = "^Dialog$"; }
                         ];
                         open-floating = true;
                         # default-floating-position = {
@@ -308,6 +309,7 @@
                     {
                         matches = [
                             { app-id="btop";}
+                            { app-id="localsend_app";}
                         ];
                         open-on-workspace = "Utility";
                     }

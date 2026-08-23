@@ -10,6 +10,8 @@
             self.nixosModules.mountsHome
             self.nixosModules.niri
             self.nixosModules.snatcherNiri
+
+            inputs.comfyui-nix.nixosModules.default
         ];
     };
 
