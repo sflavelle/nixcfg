@@ -107,7 +107,7 @@
                     "Mod+Return".spawn-sh = "${ipc} notepad toggle";
 
                     "Mod+E".spawn-sh = "${term} --class=yazi -e ${lib.getExe pkgs.yazi}";
-                    "Mod+Shift+E".spawn-sh = lib.getExe pkgs.nautilus;
+                    "Mod+Shift+E".spawn-sh = lib.getExe pkgs.dolphin;
                     "Mod+B".spawn-sh = "${ipc} defaultApp browser";
 
                     "Mod+V".spawn-sh = "${ipc} clipboard toggle";
@@ -225,11 +225,22 @@
                             { app-id = "^Dialog$"; }
                         ];
                         open-floating = true;
-                        # default-floating-position = {
-                        #     relative-to = "bottom-right";
-                        #     x = 0;
-                        #     y = 0;
-                        # };
+                    }
+                    {
+                        matches = [
+                            { app-id = "firefox"; title="Picture-in-Picture"; }
+                            { app-id = "floorp"; title="Picture-in-Picture"; }
+                            { app-id = "zen"; title="Picture-in-Picture"; }
+                            { title = "Picture in picture"; }
+                        ];
+                        
+                        default-floating-position = _: {
+                            props = {
+                                relative-to = "bottom-right";
+                                x = 0;
+                                y = 0;
+                            };
+                        };
                     }
                     {
                         matches = [
