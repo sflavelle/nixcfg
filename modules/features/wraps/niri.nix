@@ -7,7 +7,7 @@
         };
         programs.dms-shell.enable = true;
         environment.systemPackages = with pkgs; [
-          zathura feh
+          zathura feh kdePackages.qt6ct
         ];
     };
 
@@ -71,6 +71,10 @@
 
                 };
 
+                environment = {
+                    "QT_QPA_PLATFORMTHEME" = "qt6ct";
+                };
+
                 workspaces = {
                     "Browser" = {};
                     "Chat" = {};
@@ -107,7 +111,7 @@
                     "Mod+Return".spawn-sh = "${ipc} notepad toggle";
 
                     "Mod+E".spawn-sh = "${term} --class=yazi -e ${lib.getExe pkgs.yazi}";
-                    "Mod+Shift+E".spawn-sh = lib.getExe pkgs.dolphin;
+                    "Mod+Shift+E".spawn-sh = lib.getExe pkgs.kdePackages.dolphin;
                     "Mod+B".spawn-sh = "${ipc} defaultApp browser";
 
                     "Mod+V".spawn-sh = "${ipc} clipboard toggle";
@@ -287,6 +291,7 @@
                             { app-id="^com.twilitrealm.dusk"; }
                             { app-id="MarbleItUp"; }
                             { app-id="^sm64."; title="Super Mario 64 EX"; }
+                            { app-id="DK64Recompiled"; }
                         ];
                         excludes = [
                             { app-id="steam_app_570940"; title="Archipelago Client"; }
@@ -294,7 +299,7 @@
                         open-on-workspace = "Games";
                         open-focused = true;
                         open-floating = false;
-                        open-fullscreen = true;
+                        # open-fullscreen = true;
                         variable-refresh-rate = true;
                         default-column-width = { fixed = 2468; };
                     }

@@ -11,20 +11,20 @@
                     position = _: {
                         props = {
                             x = 0;
-                            y = 320;
+                            y = 0;
                         };
                     };
                     mode = "1920x1080";
                 };
-                "KOGAN AUSTRALIA PTY LTD KAMN34RQUCSA Unknown" = {
+                "Lenovo Group Limited R45w-30 UPP07HR8" = {
                     scale = 1.0;
                     focus-at-startup = _: {};
                     variable-refresh-rate = _: {};
                     position = _: {props = {
-                        x = 1920;
-                        y = 0;
+                        x = 0;
+                        y = 1080;
                     };};
-                    mode = "3440x1440";
+                    mode = "5120x1440";
                     layout = {
                         default-column-width = { proportion = 0.25; };
                         preset-column-widths = [
@@ -39,23 +39,23 @@
                 "Microstep MSI G24C6 0x00000243" = {
                     scale = 1;
                     position = _: {props = {
-                        x = 5360;
-                        y = 320;
+                        x = 2520;
+                        y = 0;
                     };};
                     mode = "1920x1080@60";
                 };
                 "Graphica Computer HD Display Unknown" = {
                     scale = 1.25; # 1 is just a touch too small :(
                     position = _: {props = {
-                        x = 2780;
-                        y = 1440;
+                        x = 1920;
+                        y = 2520;
                     };};
                     mode = "1920x720";
                 };
             };
             workspaces = {
                 "Browser" = {
-                    open-on-output = "KOGAN AUSTRALIA PTY LTD KAMN34RQUCSA Unknown";
+                    open-on-output = "Lenovo Group Limited R45w-30 UPP07HR8";
                     
                 };
                 "Chat" = {
@@ -63,11 +63,11 @@
                     
                 };
                 "Games" = {
-                    open-on-output = "KOGAN AUSTRALIA PTY LTD KAMN34RQUCSA Unknown";
+                    open-on-output = "Lenovo Group Limited R45w-30 UPP07HR8";
                     
                 };
                 "Work" = {
-                    open-on-output = "KOGAN AUSTRALIA PTY LTD KAMN34RQUCSA Unknown";
+                    open-on-output = "Lenovo Group Limited R45w-30 UPP07HR8";
                     
                 };
                 "Utility" = {
