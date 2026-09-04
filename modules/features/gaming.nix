@@ -46,6 +46,8 @@
         xemu
         xenia-canary
 
+        protonplus 
+
         game-devices-udev-rules
       ];
   

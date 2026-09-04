@@ -79,7 +79,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."lily".extraGroups = ["docker"];
+  users.users."lily".extraGroups = ["docker" "render"];
   users.users."lily".packages = with pkgs; [
     pipeweaver
     calibre
@@ -105,7 +105,7 @@
   ];
 
   hardware.amdgpu.opencl.enable = true;
-
+  programs.gamemode.enable = true;
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -115,7 +115,15 @@
 
   environment.systemPackages = with pkgs; [
     vscodium-fhs nixfmt
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.dsh
   ];
+
+  nix.settings = {
+    extra-substituters = [ "https://cache.numtide.com" ];
+    extra-trusted-public-keys = [
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+    ];
+};
 
   virtualisation.docker.enable = true;
 
