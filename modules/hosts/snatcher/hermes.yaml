@@ -1,0 +1,6 @@
+model:
+  provider: openrouter
+  default: qwen/qwen3.8-flash
+  api_mode: chat_completions
+terminal:
+  cwd: /home/lily

@@ -7,4 +7,5 @@ let
 in
 {
   "rclone-ndcfiles.age".publicKeys = users ++ systems;
+  "hermes.yaml".publicKeys = [lily snatcher];
 }

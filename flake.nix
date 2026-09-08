@@ -31,13 +31,8 @@
       url = "github:utensils/comfyui-nix";
       inputs.flake-parts.follows = "flake-parts";
     };
-    llm-agents = {
-      url = "github:numtide/llm-agents.nix";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.systems.follows = "systems";
-      # inputs.treefmt-nix.follows = "nur-xddxdd/treefmt-nix";
-    };
+
+    hermes-agent.url = "github:NousResearch/hermes-agent";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake
