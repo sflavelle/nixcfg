@@ -7,7 +7,7 @@
         };
         programs.dms-shell.enable = true;
         environment.systemPackages = with pkgs; [
-          zathura feh kdePackages.qt6ct
+          zathura loupe kdePackages.qt6ct
         ];
     };
 
@@ -214,6 +214,7 @@
                             { app-id = "discord"; }
                             { app-id = "WebCord"; }
                             { app-id = "vesktop"; }
+                            { app-id = "Dorion"; }
                             { app-id = "element"; }
                             { app-id = "fluxer"; }
                         ];

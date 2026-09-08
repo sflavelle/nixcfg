@@ -47,8 +47,12 @@
         feishin
         audacity
 
+        # mini tools
+        mousam gitte
+
         # cli tools
         git diffnav
+        nushell
         aria2
         wget
         duf
@@ -66,7 +70,7 @@
         mpv
         (pkgs.callPackage ../../pkgs/vacuumtube.nix {})
         rclone
-        trash-cli
+        trash-cli playerctl
         tree
         unrar unzip
         jq yq
@@ -112,37 +116,6 @@
 
       programs.localsend = {
         enable = true; openFirewall = true;
-      };
-
-      programs.nixcord = {
-        enable = true;
-        user = "lily";
-        discord.vencord.enable = true;
-
-        extraConfig.plugins = {
-          userMessagesPronouns = {
-            pronounSource = 0;
-            showInMessages = true;
-            showInProfile = true;
-          };
-        };
-
-        config = {
-          autoUpdate = false;
-          notifyAboutUpdates = false;
-          disableMinSize = true;
-          frameless = true; 
-          transparent = true;
-
-          enabledThemeLinks = [
-            "https://rdf1337.github.io/DiscordSnippets/VoicePanelNoChevrons/main.css"
-            "https://themes.equicord.org/api/22"
-            "https://themes.equicord.org/api/63"
-            "https://themes.equicord.org/api/23"
-            "https://themes.equicord.org/api/9"
-            "https://themes.equicord.org/api/67"
-          ];
-        };
       };
   
   };

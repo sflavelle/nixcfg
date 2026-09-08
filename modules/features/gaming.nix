@@ -11,7 +11,10 @@
       };
       hardware.steam-hardware.enable = true;
       programs.gamescope.enable = true;
-      programs.gpu-screen-recorder.enable = true;
+      programs.gpu-screen-recorder = {
+        enable = true;
+        ui.enable = true;
+      };
 
 
       environment.systemPackages = with pkgs; [
@@ -25,11 +28,16 @@
         supermariowar
         ringracers
 
+        openttd vcmi
+
         uzdoom
+
+        openspeedrun
 
         # modding
         balatro-mod-manager
         r2modman
+        beammp-launcher
 
         # emulators
         desmume
@@ -47,6 +55,7 @@
         xenia-canary
 
         protonplus 
+        steam-rom-manager steam-art-manager
 
         game-devices-udev-rules
       ];

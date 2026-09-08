@@ -9,8 +9,10 @@
       description = "Lily Flavelle";
       extraGroups = [ "networkmanager" "wheel" "input" "uinput" "audio" "netbird-wt0" ];
       shell = pkgs.fish;
+      linger = true;
       packages = with pkgs; [
         rclone
+        dorion
       ];
     };
 
