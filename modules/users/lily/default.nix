@@ -57,6 +57,7 @@
             name = "Lily Flavelle";
             email = primEmail;
           };
+          pager.diff = "diffnav";
         };
       };
       programs.gh = {

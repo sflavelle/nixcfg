@@ -115,6 +115,7 @@
 
   environment.systemPackages = with pkgs; [
     vscodium-fhs nixfmt
+    SDL2 glew
   ];
 
   virtualisation.docker.enable = true;

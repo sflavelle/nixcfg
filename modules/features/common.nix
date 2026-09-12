@@ -51,16 +51,18 @@
         mousam gitte
 
         # cli tools
+        gnumake gcc cmake
         git diffnav
         nushell
         aria2
         wget
+        bat
         duf
         dust
         edir
         eza
         fastfetch
-        fd
+        fd ripgrep
         fzf
         yt-dlp
         helix
