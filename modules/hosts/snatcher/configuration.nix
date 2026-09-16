@@ -47,6 +47,7 @@
   services.displayManager.dms-greeter.compositor.name = "niri";
   services.displayManager.defaultSession = "niri";
   services.desktopManager.plasma6.enable = true;
+  programs.umbriel.enable = true;
 
   services.udev.packages = [ pkgs.quark-goldleaf ];
 
