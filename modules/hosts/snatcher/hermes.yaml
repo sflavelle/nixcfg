@@ -4,3 +4,17 @@ model:
   api_mode: chat_completions
 terminal:
   cwd: /home/lily
+gateway:
+  platforms:
+    a2a:
+      enabled: false
+      extra:
+        host: 0.0.0.0
+        port: 9900
+a2a_agents:
+  hermesagent:
+    url: http://10.20.0.98:9900
+    auth:
+      type: bearer
+      token: 618d98d02522a3178469c126263ef54a5587ebe4894b39c4b7e33c7f406b713c
+    timeout: 300
