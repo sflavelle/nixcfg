@@ -345,6 +345,7 @@
 
                 spawn-at-startup = [
                     [ (lib.getExe pkgs.voxtype) ]
+                    [ (lib.getExe pkgs.dorion) ]
                 ];
             };
         };
