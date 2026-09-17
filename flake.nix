@@ -13,6 +13,7 @@
     # Helpers
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
+    nix-converter.url = "github:theobori/nix-converter";
 
     # Program Wrappers
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";

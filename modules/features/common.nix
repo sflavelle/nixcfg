@@ -77,6 +77,7 @@
         unrar unzip
         jq yq
         wl-clipboard-rs
+        inputs.nix-converter.packages.${pkgs.stdenv.hostPlatform.system}.default
 
         vivaldi vivaldi-ffmpeg-codecs
         inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
