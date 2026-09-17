@@ -85,7 +85,7 @@
     pipeweaver
     calibre
     bitwig-studio inputs.demucs.packages.x86_64-linux.demucs
-    davinci-resolve-studio
+    # davinci-resolve-studio
     godot
     rclone
     (python313Packages.beets.override {
@@ -101,7 +101,7 @@
 
     olympus
 
-    lmstudio
+    # lmstudio
     
   ];
 
@@ -135,21 +135,6 @@
   };
 
   programs.obs-studio.enable = true;
-
-  services.comfyui = {
-    enable = true;
-    # gpuSupport = "cuda";  # Enable NVIDIA GPU acceleration (recommended for most users)
-    gpuSupport = "rocm";  # Enable AMD GPU acceleration
-    # cudaCapabilities = [ "8.9" ];  # Optional: optimize system CUDA packages for RTX 40xx
-    #   Note: Pre-built PyTorch wheels already include every supported GPU architecture
-    enableManager = true;  # Enable the built-in ComfyUI Manager
-    port = 8188;
-    listenAddress = "127.0.0.1";  # Use "0.0.0.0" for network access
-    dataDir = "/var/lib/comfyui";
-    openFirewall = false;
-    extraArgs = [ "--lowvram" ];
-    # environment = { };
-  };
 
   programs.nix-ld = {
     enable = true;
