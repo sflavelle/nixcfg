@@ -57,6 +57,8 @@
         protonplus 
         steam-rom-manager steam-art-manager
 
+        lutris
+
         game-devices-udev-rules
       ];
   

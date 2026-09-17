@@ -14,7 +14,7 @@
             self.nixosModules.snatcherUmbriel
             self.nixosModules.snatcherHermes
 
-            inputs.comfyui-nix.nixosModules.default
+            # inputs.comfyui-nix.nixosModules.default
         ];
     };
 
