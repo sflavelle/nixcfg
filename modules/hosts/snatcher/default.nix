@@ -10,6 +10,8 @@
             self.nixosModules.mountsHome
             self.nixosModules.niri
             self.nixosModules.snatcherNiri
+            self.nixosModules.umbriel
+            self.nixosModules.snatcherUmbriel
             self.nixosModules.snatcherHermes
 
             inputs.comfyui-nix.nixosModules.default

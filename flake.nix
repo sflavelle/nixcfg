@@ -28,9 +28,9 @@
     nixcord.url = "github:4evy/nixcord";
     demucs.url = "github:mukize/demucs.nix";
 
-    comfyui-nix = {
-      url = "github:utensils/comfyui-nix";
-      inputs.flake-parts.follows = "flake-parts";
+    umbriel = {
+      url = "github:noctalia-dev/umbriel";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hermes-agent.url = "github:NousResearch/hermes-agent";
