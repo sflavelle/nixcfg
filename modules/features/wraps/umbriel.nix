@@ -293,10 +293,10 @@
                 "Mod+Ctrl+Up" = "output-focus-up";
                 "Mod+Ctrl+Down" = "output-focus-down";
 
-                "Mod+Shift+Ctrl+Left" = "column-move-to-output-left";
-                "Mod+Shift+Ctrl+Right" = "column-move-to-output-right";
-                "Mod+Shift+Ctrl+Up" = "column-move-to-output-up";
-                "Mod+Shift+Ctrl+Down" = "column-move-to-output-down";
+                "Mod+Shift+Ctrl+Left" = "window-move-to-output-left";
+                "Mod+Shift+Ctrl+Right" = "window-move-to-output-right";
+                "Mod+Shift+Ctrl+Up" = "window-move-to-output-up";
+                "Mod+Shift+Ctrl+Down" = "window-move-to-output-down";
 
                 "Mod+BracketLeft" = "window-consume-or-expel-left";
                 "Mod+BracketRight" = "window-consume-or-expel-right";
