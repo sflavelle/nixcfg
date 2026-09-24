@@ -2,8 +2,11 @@
 
   flake.nixosModules.gaming = { pkgs, lib, self', ... }: {
 
+      nixpkgs.overlays = [ inputs.millennium.overlays.default ];
+
       programs.steam = {
         enable = true;
+        package = pkgs.millennium-steam;
         extest.enable = false;
         localNetworkGameTransfers.openFirewall = true;
         remotePlay.openFirewall = true;
@@ -38,6 +41,7 @@
         balatro-mod-manager
         r2modman
         beammp-launcher
+        satisfactorymodmanager ficsit-cli
 
         # emulators
         desmume

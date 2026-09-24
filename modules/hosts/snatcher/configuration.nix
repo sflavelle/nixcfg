@@ -43,8 +43,7 @@
   };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.dms-greeter.enable = true;
-  services.displayManager.dms-greeter.compositor.name = "niri";
+  services.displayManager.noctalia-greeter.enable = true;
   services.displayManager.defaultSession = "niri";
   services.desktopManager.plasma6.enable = true;
   programs.umbriel.enable = true;
@@ -117,7 +116,9 @@
   environment.systemPackages = with pkgs; [
     vscodium-fhs nixfmt
     SDL2 glew
+    # inputs.iloader.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
+  services.usbmuxd.enable = true;
 
   virtualisation.docker.enable = true;
 

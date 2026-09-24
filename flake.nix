@@ -27,11 +27,13 @@
     };
     nixcord.url = "github:4evy/nixcord";
     demucs.url = "github:mukize/demucs.nix";
+    iloader.url = "github:nab138/iloader";
 
     umbriel = {
       url = "github:noctalia-dev/umbriel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
 
     hermes-agent.url = "github:NousResearch/hermes-agent";
   };

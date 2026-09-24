@@ -66,10 +66,9 @@
         fzf
         yt-dlp
         helix
-        inxi
-        iotop
-        btop
-        mpv
+        inxi witr
+        iotop btop
+        mpv sendspin-go
         (pkgs.callPackage ../../pkgs/vacuumtube.nix {})
         rclone
         trash-cli playerctl

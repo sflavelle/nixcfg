@@ -12,7 +12,7 @@
       linger = true;
       packages = with pkgs; [
         rclone
-        dorion
+        dorion discord telegram-desktop
       ];
     };
 
