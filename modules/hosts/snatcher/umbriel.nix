@@ -47,6 +47,7 @@
                 {
                     name = "Chat";
                     output = "Microstep MSI G24C6 0x00000243";
+                    layout.mode = "dwindle";
                 }
                 {
                     name = "Games";
@@ -75,6 +76,44 @@
                     name = "Archipelago";
                     output = "Graphica Computer HD Display Unknown";
                     layout.mode = "master";
+                }
+            ];
+            window_rule = [
+                {
+                    match.app_id = "(discord|Dorion|fluxer|element|telegram)";
+                    default_workspace = "Chat";
+                }
+                {
+                    match.app_id = "(feishin|mpv|vacuumtube)";
+                    default_workspace = "Media";
+                    default_maximize_to_edges = true;
+                }
+                {
+                    match.app_id = "^(steam_proton|steam_app.*|.?zdoom|sm64.+|com.twilitrealm.dusk|DK64Recompiled)$";
+                    default_floating = false;
+                    default_fullscreen = true;
+                    default_workspace = "Games";
+                }
+                {
+                    match.content_type = "game";
+                    default_floating = false;
+                    default_fullscreen = true;
+                    default_workspace = "Games";
+                }
+                {
+                    match.xdg_tag = "proton-game";
+                    default_floating = false;
+                    default_fullscreen = true;
+                    default_workspace = "Games";
+                }
+                {
+                    match.app_id = "localsend_app";
+                    default_workspace = "Utility";
+                    default_scrolling_extent_px = 600;
+                }
+                {
+                    match.app_id = "ArchipelagoLauncher";
+                    default_workspace = "Archipelago";
                 }
             ];
         };

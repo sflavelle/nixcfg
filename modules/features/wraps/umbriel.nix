@@ -37,6 +37,14 @@
       # User: declarative TOML config (live-reloaded, validated at build)
       # https://docs.noctalia.dev/umbriel/configuration/
       # https://github.com/noctalia-dev/umbriel/blob/main/examples/config.toml
+
+      programs.noctalia = {
+        enable = true;
+        systemd.enable = true;
+        systemd.target = "umbriel-session.target";
+        recommendedServices.enable = true;
+      };
+
       home-manager.users.lily = {
         imports = [ inputs.umbriel.homeModules.default ];
 
@@ -54,7 +62,9 @@
             # General — https://docs.noctalia.dev/umbriel/configuration/#general
             general = {
               autostart = [
-                (lib.getExe pkgs.noctalia)
+                # (lib.getExe pkgs.noctalia)
+                (lib.getExe pkgs.discord)
+                (lib.getExe pkgs.telegram-desktop)
               ];
               mod_key = "Super"; # Mod in keybinds; Alt when nested (same as niri cursor mod)
               xwayland = true; # needs xwayland-satellite on PATH (niri uses satellite too)
@@ -314,6 +324,11 @@
                 "Mod+Tab" = "scratchpad-toggle";
                 "Mod+Shift+Tab" = "window-toggle-scratchpad";
 
+                "Mod+Minus" = "window-modify-primary-extent:-0.1";
+                "Mod+Equal" = "window-modify-primary-extent:0.1";
+
+                "Mod+F1" = "cheatsheet-open";
+
                 "Mod+Slash" = {
                   action = "overview-toggle";
                   repeat = false;
@@ -365,6 +380,7 @@
                 match.title = "^(Picture-in-Picture|Picture in picture)$";
                 "default_floating" = true;
                 "default_maximize" = false;
+                default_pinned = true;
                 "default_position" = {
                   "x" = 20;
                   "y" = 20;
@@ -391,7 +407,7 @@
               }
               {
                 match.app_id = "^(Alacritty|kitty|org\\.gnome\\.Nautilus)$";
-                default_scrolling_extent = 0.33;
+                default_scrolling_extent_px = 800;
               }
             ];
           };
