@@ -70,6 +70,7 @@
         iotop btop
         mpv sendspin-go
         (pkgs.callPackage ../../pkgs/vacuumtube.nix {})
+        (pkgs.callPackage ../../pkgs/neo.nix {})
         rclone
         trash-cli playerctl
         tree
