@@ -12,7 +12,8 @@
       linger = true;
       packages = with pkgs; [
         rclone
-        dorion discord telegram-desktop
+        dorion discord materialgram
+        imhex
       ];
     };
 

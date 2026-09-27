@@ -42,6 +42,8 @@
         r2modman
         beammp-launcher
         satisfactorymodmanager ficsit-cli
+        prismlauncher
+        ultimate-doom-builder 
 
         # emulators
         desmume
