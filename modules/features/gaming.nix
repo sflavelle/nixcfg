@@ -53,8 +53,8 @@
         ryubing
 
         ppsspp
-        # pcsx2
-        # rpcs3
+        pcsx2
+        rpcs3
         shadps4 shadps4-qtlauncher
 
         xemu
