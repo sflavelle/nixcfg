@@ -75,6 +75,8 @@
         trash-cli playerctl
         tree
         unrar unzip
+        rar zip
+        imagemagick
         jq yq
         wl-clipboard-rs
         inputs.nix-converter.packages.${pkgs.stdenv.hostPlatform.system}.default
