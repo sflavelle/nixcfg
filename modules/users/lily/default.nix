@@ -7,12 +7,12 @@
     users.users."lily" = {
       isNormalUser = true;
       description = "Lily Flavelle";
-      extraGroups = [ "networkmanager" "wheel" "input" "uinput" "audio" "netbird-wt0" ];
+      extraGroups = [ "networkmanager" "wheel" "input" "uinput" "audio" ];
       shell = pkgs.fish;
       linger = true;
       packages = with pkgs; [
         rclone
-        dorion discord materialgram
+        discord materialgram
         imhex
       ];
     };

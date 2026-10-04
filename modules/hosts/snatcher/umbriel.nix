@@ -5,8 +5,8 @@
   {
     home-manager.users.lily.programs.umbriel.settings = {
             environment = {
-                PROTON_ENABLE_WAYLAND = "1";
-                DXVK_HDR = "1";
+                # PROTON_ENABLE_WAYLAND = "1";
+                # DXVK_HDR = "1";
             };
             input.tablet = {
                 enabled = true;

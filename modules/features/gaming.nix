@@ -21,7 +21,7 @@
 
 
       environment.systemPackages = with pkgs; [
-        stuntrally ultimatestunts bzflag torcs
+        # stuntrally ultimatestunts bzflag torcs
         lincity armagetronad rocksndiamonds
         torus-trooper apotris xmoto zaz
 

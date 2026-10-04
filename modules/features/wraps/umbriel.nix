@@ -47,6 +47,9 @@
 
       home-manager.users.lily = {
         imports = [ inputs.umbriel.homeModules.default ];
+        home.packages = with pkgs; [
+          posy-cursors
+        ];
 
         programs.umbriel = {
           enable = true;
@@ -227,8 +230,8 @@
                 enabled = lib.mkDefault false;
               };
               cursor = {
-                theme = "Bibata-Modern-Ice";
-                size = 24;
+                theme = "Posy_Cursor_Black";
+                size = 32;
                 hardware_cursor = true;
                 follows_focus = true;
                 hide_when_typing = true;
