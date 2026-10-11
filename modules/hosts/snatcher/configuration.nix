@@ -104,6 +104,36 @@
     
   ];
 
+  home-manager.users.lily = {
+    programs.rclone = {
+      enable = true;
+      remotes = {
+        hermes = {
+          config = {
+            type = "sftp";
+            host = "10.20.0.98";
+            user = "hermes";
+            # pacer-min-sleep = "0.01ms";
+          };
+          mounts."/" = {
+            enable = true;
+            mountPoint = "${config.home-manager.users.lily.home.homeDirectory}/mnt/hermes";
+            options = {
+              vfs-cache-mode = "writes";
+              vfs-cache-max-age = "5s";
+              attr-timeout = "5s";
+              dir-cache-time = "5s";
+            };
+          };
+          secrets = {
+            pass = config.age.secrets.rclone-hermes.path;
+          };
+        };
+      };
+    };
+
+  };
+
   hardware.amdgpu.opencl.enable = true;
   programs.gamemode.enable = true;
 

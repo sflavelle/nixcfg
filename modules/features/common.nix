@@ -24,6 +24,12 @@
             group = "users";
             mode = "770";
           };
+          rclone-hermes = {
+            file = ../../secrets/rclone-hermes.age;
+            owner = "lily";
+            group = "users";
+            mode = "770";
+          };
         };
       };
 
