@@ -26,6 +26,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixcord.url = "github:4evy/nixcord";
+    nixcord.inputs.home-manager.follows = "home-manager";
+    nixcord.inputs.nixpkgs.follows = "nixpkgs";
     demucs.url = "github:mukize/demucs.nix";
     iloader.url = "github:nab138/iloader";
 
@@ -34,6 +36,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
+    millennium.inputs.nixpkgs.follows = "nixpkgs";
 
     hermes-agent.url = "github:NousResearch/hermes-agent";
   };
