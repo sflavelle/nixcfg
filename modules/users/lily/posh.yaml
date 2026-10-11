@@ -15,7 +15,7 @@ blocks:
     powerline_symbol: 
     background: "#c386f1"
     type: session
-  - properties:
+  - options:
       mapped_locations:
         ~/Downloads: 󰉍
       style: unique
@@ -27,7 +27,7 @@ blocks:
 - type: rprompt
   alignment: right
   segments:
-  - properties:
+  - options:
       time_format: Jan-02-06 15:04:05
     style: plain
     type: time
