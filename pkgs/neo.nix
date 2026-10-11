@@ -11,18 +11,18 @@
 
 buildNpmPackage (finalAttrs: {
   pname = "neo";
-  version = "0.8.1";
+  version = "1.5.0";
 
   src = fetchFromGitHub {
     owner = "hughhowey";
     repo = "neo";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-mg27M+C7FntzFofrFbMHqn86YGg4jY+8FW9dyz48X+U=";
+    hash = "sha256-KnPXf6b/TpDiQnJwdXdYiKAK1SIqXXWAdr51pPh9Vro=";
   };
 
   electron = electron_42;
 
-  npmDepsHash = "sha256-bP8hcyP8AZ3bWFYSJtTHKNmavm7uzJR4WKpy5m2uNRY=";
+  npmDepsHash = "sha256-93LZtKt4wfv4ehoxG0pkAJtZ0sfm6eSKVuHbjKzIhqk=";
 
   dontNpmBuild = true;
   makeCacheWritable = true;

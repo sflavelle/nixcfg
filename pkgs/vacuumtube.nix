@@ -11,18 +11,18 @@
 
 buildNpmPackage (finalAttrs: {
   pname = "VacuumTube";
-  version = "1.8.2";
+  version = "2.0.0";
 
   src = fetchFromGitHub {
     owner = "shy1132";
     repo = "VacuumTube";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-KgXV6fSvV6jl8V2YEjJm+CIG8ATvb1/iEhLog91DPY0=";
+    hash = "sha256-OA3UjqJTELqe2nn2y2/ztQxipENt873Iw5WDsjyjjRc=";
   };
 
   electron = electron_42;
 
-  npmDepsHash = "sha256-Wtyft343sSs018v5bagCvvta5z+yzU9IgkJ4LH+HQzs=";
+  npmDepsHash = "sha256-kKyOjpl6LwUOdWP5+AN8m2RxMcDhzov3YLw1rhUna3k=";
 
   dontNpmBuild = true;
   makeCacheWritable = true;
