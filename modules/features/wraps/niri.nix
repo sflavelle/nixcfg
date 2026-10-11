@@ -6,6 +6,7 @@
             package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.neuri;
         };
         programs.dms-shell.enable = true;
+        programs.dms-shell.systemd.target = "niri-session.target";
         environment.systemPackages = with pkgs; [
           zathura loupe kdePackages.qt6ct
         ];
@@ -345,7 +346,7 @@
 
                 spawn-at-startup = [
                     [ (lib.getExe pkgs.voxtype) ]
-                    [ (lib.getExe pkgs.dorion) ]
+                    # [ (lib.getExe pkgs.dorion) ]
                 ];
             };
         };
