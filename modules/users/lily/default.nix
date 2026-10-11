@@ -17,6 +17,10 @@
       ];
     };
 
+    home-manager.sharedModules = [
+      inputs.nixcord.homeModules.nixcord
+    ];
+
     home-manager.users.lily = {
       home = {
         username = "lily";
@@ -30,6 +34,13 @@
 
       systemd.user.sessionVariables = {
         EDITOR = "hx";
+      };
+
+      programs.nixcord = {
+        enable = true;
+        discord.enable = true;
+        discord.vencord.enable = true;
+        config.useQuickCss = true;
       };
 
       programs.fish = {

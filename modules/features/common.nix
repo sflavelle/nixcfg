@@ -12,7 +12,6 @@
 
   flake.nixosModules.commonSetup = { pkgs, lib, self', ... }: {
       imports = [
-        inputs.nixcord.nixosModules.nixcord
         inputs.home-manager.nixosModules.home-manager
         inputs.agenix.nixosModules.default
       ];
@@ -67,6 +66,8 @@
         yt-dlp
         helix
         inxi witr
+        pciutils usbutils mesa-demos vulkan-tools bluez
+        dmidecode hddtemp smartmontools 
         iotop btop
         mpv sendspin-go
         (pkgs.callPackage ../../pkgs/vacuumtube.nix {})
@@ -122,6 +123,8 @@
       programs.localsend = {
         enable = true; openFirewall = true;
       };
+
+      programs.xonsh.enable = true;
   
   };
 }
