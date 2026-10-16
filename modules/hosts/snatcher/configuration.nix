@@ -105,6 +105,18 @@
   ];
 
   home-manager.users.lily = {
+    systemd.user.services.ap-worlds-sync = {
+      Unit.Description = "Sync Archipelago custom worlds from ndc-files";
+      Service.Type = "oneshot";
+      Service.ExecStart = "${pkgs.rclone}/bin/rclone copy ndc-files:/ndcap/Worlds %h/AP/custom_worlds --transfers 8";
+    };
+    systemd.user.timers.ap-worlds-sync = {
+      Unit.Description = "Archipelago worlds sync: on-boot + hourly";
+      Timer.OnBootSec = "2min";
+      Timer.OnUnitActiveSec = "1h";
+      Install.WantedBy = [ "timers.target" ];
+    };
+
     programs.rclone = {
       enable = true;
       remotes = {
@@ -119,10 +131,11 @@
             enable = true;
             mountPoint = "${config.home-manager.users.lily.home.homeDirectory}/mnt/hermes";
             options = {
-              vfs-cache-mode = "writes";
-              vfs-cache-max-age = "5s";
-              attr-timeout = "5s";
-              dir-cache-time = "5s";
+              vfs-cache-mode = "full";
+              vfs-cache-max-size = "1G";
+              vfs-cache-max-age = "168h";
+              attr-timeout = "5m";
+              dir-cache-time = "1m";
             };
           };
           secrets = {
