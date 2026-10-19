@@ -30,6 +30,8 @@
     nixcord.inputs.nixpkgs.follows = "nixpkgs";
     demucs.url = "github:mukize/demucs.nix";
     iloader.url = "github:nab138/iloader";
+    audiocpp.url = "github:0xShug0/audio.cpp";
+    audiocpp.inputs.nixpkgs.follows = "nixpkgs";
 
     umbriel = {
       url = "github:noctalia-dev/umbriel";

@@ -95,6 +95,7 @@
         };
       };
     })
+    audiocpp.packages.x86_64-linux.rocm
 
     hydrus
 
