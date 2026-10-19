@@ -8,6 +8,7 @@
             self.nixosModules.userLily
             self.nixosModules.mountsHome
             self.nixosModules.niri
+            self.nixosModules.umbriel
         ];
     };
 
