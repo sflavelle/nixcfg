@@ -84,7 +84,7 @@
     pipeweaver
     calibre
     bitwig-studio inputs.demucs.packages.x86_64-linux.demucs
-    # davinci-resolve-studio
+    davinci-resolve-studio
     godot
     rclone
     (python313Packages.beets.override {
@@ -95,7 +95,7 @@
         };
       };
     })
-    audiocpp.packages.x86_64-linux.rocm
+    inputs.audiocpp.packages.x86_64-linux.rocm
 
     hydrus
 
