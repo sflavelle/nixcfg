@@ -12,7 +12,8 @@
       linger = true;
       packages = with pkgs; [
         rclone
-        discord materialgram
+        discord 
+        # materialgram
         imhex
       ];
     };
